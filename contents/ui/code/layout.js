@@ -106,7 +106,7 @@ function preferredMinWidth() {
     if (!tasks.vertical && !tasks.iconsOnly) {
       width +=
           (PlasmaCore.Units.smallSpacing * 2) +
-          (PlasmaCore.Theme.mSize(PlasmaCore.Theme.defaultFont).width * 12);
+          (plasmoid.configuration.maxLength/*PlasmaCore.Theme.mSize(PlasmaCore.Theme.defaultFont).width * 12*/);
     }
 
     return width;
@@ -125,12 +125,12 @@ function preferredMaxWidth() {
         return preferredMinWidth();
     }
 
-    return Math.floor(preferredMinWidth() * 1.6);
+    return Math.floor(preferredMinWidth());
 }
 
 function preferredMinHeight() {
     // TODO FIXME UPSTREAM: Port to proper font metrics for descenders once we have access to them.
-    return PlasmaCore.Theme.mSize(PlasmaCore.Theme.defaultFont).height + 4;
+    return plasmoid.configuration.maxLength + 4;
 }
 
 function preferredMaxHeight() {

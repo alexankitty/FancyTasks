@@ -25,6 +25,7 @@ Kirigami.FormLayout {
     property bool cfg_indicateAudioStreams
     property alias cfg_maxStripes: maxStripes.value
     property alias cfg_forceStripes: forceStripes.checked
+    property alias cfg_maxLength: maxLength.value
     property int cfg_iconSpacing: 0
 
     CheckBox {
@@ -69,9 +70,10 @@ Kirigami.FormLayout {
     }
 
     SpinBox {
-        id: maxWdith
+        id: maxLength
         Kirigami.FormData.label: i18n("Maximum button length (px):")
         from: 1
+        to: 9999
     }
 
     Item {
