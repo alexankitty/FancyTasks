@@ -30,6 +30,10 @@
       <label>How tasks are grouped: 0 = Do Not Group, 1 = By Program Name</label>
       <default>1</default>
     </entry>
+    <entry name="iconOnly" type="Enum">
+      <label>How tasks are display: 0 = Show Task Names, 1 = Show Icons Only</label>
+      <default>1</default>
+    </entry>
     <entry name="groupedTaskVisualization" type="Enum">
       <label>What happens when clicking on a grouped task: 0 = cycle through grouped tasks, 1 = try to show tooltips, 2 = try to show present Windows effect, 3 = show textual list (AKA group dialog)</label>
       <default>0</default>

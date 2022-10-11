@@ -33,6 +33,7 @@ Item {
     property alias cfg_minimizeActiveTaskOnClick: minimizeActive.checked
     property alias cfg_unhideOnAttention: unhideOnAttention.checked
     property alias cfg_reverseMode: reverseMode.checked
+    property alias cfg_iconOnly: iconOnly.currentIndex
 
     TaskManagerApplet.Backend {
         id: backend
@@ -41,6 +42,14 @@ Item {
     Kirigami.FormLayout {
         anchors.left: parent.left
         anchors.right: parent.right
+
+        ComboBox {
+            id: iconOnly
+            Kirigami.FormData.label: i18n("Display:")
+            Layout.fillWidth: true
+            Layout.minimumWidth: Kirigami.Units.gridUnit * 14
+            model: [i18n("Show task names"), i18n("Show icons only")]
+        }
 
         ComboBox {
             id: groupingStrategy
@@ -93,21 +102,21 @@ Item {
 
         CheckBox {
             id: groupPopups
-            visible: (plasmoid.pluginName !== "org.kde.plasma.icontasks")
+            visible: (!plasmoid.configuration.iconOnly)
             text: i18n("Combine into single button")
             enabled: groupingStrategy.currentIndex > 0
         }
 
         CheckBox {
             id: onlyGroupWhenFull
-            visible: (plasmoid.pluginName !== "org.kde.plasma.icontasks")
+            visible: (!plasmoid.configuration.iconOnly)
             text: i18n("Group only when the Task Manager is full")
             enabled: groupingStrategy.currentIndex > 0 && groupPopups.checked
         }
 
         Item {
             Kirigami.FormData.isSection: true
-            visible: (plasmoid.pluginName !== "org.kde.plasma.icontasks")
+            visible: (!plasmoid.configuration.iconOnly)
         }
 
         ComboBox {
@@ -120,14 +129,14 @@ Item {
 
         CheckBox {
             id: separateLaunchers
-            visible: (plasmoid.pluginName !== "org.kde.plasma.icontasks")
+            visible: (!plasmoid.configuration.iconOnly)
             text: i18n("Keep launchers separate")
             enabled: sortingStrategy.currentIndex == 1
         }
 
         Item {
             Kirigami.FormData.isSection: true
-            visible: (plasmoid.pluginName !== "org.kde.plasma.icontasks")
+            visible: (!plasmoid.configuration.iconOnly)
         }
 
         CheckBox {

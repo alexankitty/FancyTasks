@@ -18,7 +18,7 @@ Kirigami.FormLayout {
 
     readonly property bool plasmaPaAvailable: Qt.createComponent("PulseAudio.qml").status === Component.Ready
     readonly property bool plasmoidVertical: Plasmoid.formFactor === PlasmaCore.Types.Vertical
-    readonly property bool iconOnly: Plasmoid.pluginName === "org.kde.plasma.icontasks"
+    readonly property bool iconOnly: plasmoid.configuration.iconOnly
 
     property alias cfg_showToolTips: showToolTips.checked
     property alias cfg_highlightWindows: highlightWindows.checked
@@ -70,6 +70,7 @@ Kirigami.FormLayout {
     }
 
     SpinBox {
+        visible: !plasmoidVertical && !iconOnly
         id: maxLength
         Kirigami.FormData.label: i18n("Maximum button length (px):")
         from: 1

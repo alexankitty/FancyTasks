@@ -24,7 +24,7 @@ MouseArea {
     hoverEnabled: true
 
     property bool vertical: plasmoid.formFactor === PlasmaCore.Types.Vertical
-    property bool iconsOnly: plasmoid.pluginName === "org.kde.plasma.icontasks"
+    property bool iconsOnly: plasmoid.configuration.iconOnly
 
     property var toolTipOpenedByClick: null
 
