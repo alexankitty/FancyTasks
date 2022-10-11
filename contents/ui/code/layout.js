@@ -130,7 +130,7 @@ function preferredMaxWidth() {
 
 function preferredMinHeight() {
     // TODO FIXME UPSTREAM: Port to proper font metrics for descenders once we have access to them.
-    return plasmoid.configuration.maxLength + 4;
+    return PlasmaCore.Theme.mSize(PlasmaCore.Theme.defaultFont).height + 4;
 }
 
 function preferredMaxHeight() {
