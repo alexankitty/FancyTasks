@@ -19,4 +19,9 @@ ConfigModel {
          icon: "preferences-desktop"
          source: "ConfigBehavior.qml"
     }
+    ConfigCategory {
+        name: i18n("Indicators")
+        icon: "preferences-desktop-navigation"
+        source: "ConfigIndicators.qml"
+    }
 }

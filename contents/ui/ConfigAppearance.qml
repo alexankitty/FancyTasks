@@ -11,6 +11,8 @@ import QtQuick.Layouts 1.15
 import org.kde.kirigami 2.19 as Kirigami
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.plasmoid 2.0
+import org.kde.kquickcontrols 2.0 as KQControls
+
 
 Kirigami.FormLayout {
     anchors.left: parent.left
@@ -27,6 +29,10 @@ Kirigami.FormLayout {
     property alias cfg_forceStripes: forceStripes.checked
     property alias cfg_maxLength: maxLength.value
     property int cfg_iconSpacing: 0
+
+    property alias cfg_useBorders: useBorders.checked
+    property alias cfg_taskSpacingSize: taskSpacingSize.value
+
 
     CheckBox {
         id: showToolTips
@@ -53,6 +59,12 @@ Kirigami.FormLayout {
         enabled: plasmaPaAvailable
     }
 
+    CheckBox {
+        id: useBorders
+        text: i18n("Use plasma borders")
+    }
+
+
     Item {
         Kirigami.FormData.isSection: true
     }
@@ -75,6 +87,13 @@ Kirigami.FormLayout {
         Kirigami.FormData.label: i18n("Maximum button length (px):")
         from: 1
         to: 9999
+    }
+
+    SpinBox {
+        id: taskSpacingSize
+        Kirigami.FormData.label: i18n("Space between taskbar items (px):")
+        from: 0
+        to: 99
     }
 
     Item {

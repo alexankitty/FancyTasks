@@ -132,6 +132,50 @@
       <label> Spacing between icons in task manager. Margin is multiplied by this value.</label>
       <default>1</default>
     </entry>
+    <entry name="indicatorsEnabled" type="Enum">
+      <label>Enable taskbar indicator effect. 0 = Off, 1 = On</label>
+      <default>0</default>
+    </entry>
+    <entry name="indicatorLocation" type="Enum">
+      <label>Sets where the indicator should be. 0 = Top, 1 = Bottom, 2 = Left, 3 = Right</label>
+      <default>0</default>
+    </entry>
+    <entry name="followIndicator" type="Bool">
+      <label>Makes the plasma theme change directions with the indicator. Based on breeze.</label>
+      <default>false</default>
+    </entry>
+    <entry name="usePlasmaStyle" type="Enum">
+      <label>Enable both Plasma Style and custom indicators. 0 = Only Custom Indicators, 1 = Both.</label>
+      <default>0</default>
+    </entry>
+    <entry name="indicatorStyle" type="Enum">
+      <label>Select between 1 of 3 indicator styles. 0 = Metro, 1 = Cliora, 2 = Dots</label>
+      <default>0</default>
+    </entry>
+    <entry name="indicatorSize" type="Int">
+      <label>Set the size of the indicator in pixels</label>
+      <default>4</default>
+    </entry>
+    <entry name="indicatorDominantColor" type="Bool">
+      <label>Make the indicator the dominant Icon Color</label>
+      <default>false</default>
+    </entry>
+    <entry name="indicatorAccentColor" type="Bool">
+      <label>Make the icon the plasma accent color.</label>
+      <default>true</default>
+    </entry>
+    <entry name="indicatorCustomColor" type="String">
+      <label>Set the indicator to a custom color.</label>
+      <default>white</default>
+    </entry>
+    <entry name="useBorders" type="Bool">
+      <label>Enable plasma borders.</label>
+      <default>True</default>
+    </entry>
+    <entry name="taskSpacingSize" type="Int">
+      <label>Size in pixels of space between taskbar items.</label>
+      <default>0</default>
+    </entry>  
   </group>
 
 </kcfg>
