@@ -19,7 +19,7 @@ Features improvements tweaks and options to the original task manager plasmoid m
 
 * Implemented switching between taskbar types.
 
-* Indicators based on dash to dock styles from gnome, using [latte-indicator-dashtopanel](https://github.com/psifidotos/latte-indicator-dashtopanel) as the reference implementation.
+* Indicators based on dash to panel styles from gnome, using [latte-indicator-dashtopanel](https://github.com/psifidotos/latte-indicator-dashtopanel) as the reference implementation.
 * Customizable indicator locations and colorizing of plasma. Note: not every plasma theme will color in a pleasant way as it depends on how the SVGs are made. General rule of thumb is bright white does not colorize well.
 
 ## Pictures
