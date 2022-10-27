@@ -11,7 +11,7 @@
 
 ## Features
 
-Features improvements tweaks and options to the original task manager plasmoid made by Eike Hein, licensed under GPL V2.0.
+Features improvements tweaks and options to the original task manager plasmoid made by Eike Hein, licensed under GPL V2.0: [link](https://github.com/KDE/plasma-desktop/tree/master/applets/taskmanager).
 
 * Implemented adjustable task width.
 
