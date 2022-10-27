@@ -1,4 +1,4 @@
-# Customized KDE Task Manager
+# FancyTasks
 
 ![Fancy Tasks Icon](https://github.com/alexankitty/Plasma-Customizable-TaskManager/blob/main/FancyTasks.png?raw=true)
 
