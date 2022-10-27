@@ -6,7 +6,7 @@
 
 1. Clone this repository with the following command `git clone https://github.com/alexankitty/FancyTasks`
 2. CD into the foloder and run the script `install.sh`, you may need to chmod +x or run append your shell in front of the script to run it
-3. Right click your panel, click add widges and search for fancy tasks.
+3. Right click your panel, click add widgets and search for fancy tasks.
 4. Right click the new task panel and click Configure Fancy Tasks... - everything you will want to configure to enable the new features will be in there. Default features are based on the KDE's team existing vision.
 
 (This package is also on the AUR and can be installed from there)
@@ -34,6 +34,7 @@ Metro Full Sized
 Ciliora Full Sized  
 
 ![Ciliora Full Sized](https://github.com/alexankitty/Plasma-Customizable-TaskManager/blob/main/docs/Ciliora%20Full.png?raw=true)
+
 Dashes Full Sized  
 
 ![Dashes Full Sized](https://github.com/alexankitty/Plasma-Customizable-TaskManager/blob/main/docs/Dashes%20Full.png?raw=true)
