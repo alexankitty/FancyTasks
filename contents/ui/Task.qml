@@ -412,7 +412,7 @@ MouseArea {
                     if(task.state === 'launcher') {
                         return 0;
                     }
-                    return Math.min(task.childCount + 1, maxStates);
+                    return Math.min((task.childCount === 0) ? 1 : task.childCount, maxStates);
                 }
                 readonly property int maxStates: isMetro ? 2 : 4
 
