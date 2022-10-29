@@ -144,13 +144,25 @@
       <label>Sets where the indicator should be. 0 = Top, 1 = Bottom, 2 = Left, 3 = Right</label>
       <default>0</default>
     </entry>
-    <entry name="usePlasmaStyle" type="Enum">
-      <label>Enable both Plasma Style and custom indicators. 0 = Only Custom Indicators, 1 = Both.</label>
-      <default>0</default>
-    </entry>
     <entry name="indicatorStyle" type="Enum">
       <label>Select between 1 of 3 indicator styles. 0 = Metro, 1 = Cliora, 2 = Dots</label>
       <default>0</default>
+    </entry>
+    <entry name="indicatorLimit" type="Int">
+      <label>Set the maximum number of running indicators to display.</label>
+      <default>4</default>
+    </entry>
+    <entry name="indicatorDesaturate" type="Bool">
+      <label>Desaturate the indicator when minimized</label>
+      <default>false</default>
+    </entry>
+    <entry name="indicatorGrow" type="Bool">
+      <label>Shrink the indicator when minimized</label>
+      <default>false</default>
+    </entry>
+    <entry name="indicatorGrowFactor" type="Int">
+      <label>Amount to grow the indicator by</label>
+      <default>100</default>
     </entry>
     <entry name="indicatorSize" type="Int">
       <label>Set the size of the indicator in pixels</label>
