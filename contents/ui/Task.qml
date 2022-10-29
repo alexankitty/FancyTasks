@@ -445,7 +445,7 @@ MouseArea {
                         var parentSize = !isVertical ? frame.width : frame.height;
                         var indicatorComputedSize;
                         var adjustment = isFirst ? adjust : 0
-                        var parentSpacingAdjust = task.childCount >= 1 && maxStates >= 2 ? spacing * 3 : 0 //Spacing fix for multiple items
+                        var parentSpacingAdjust = task.childCount >= 1 && maxStates >= 2 ? (spacing * 2.5) : 0 //Spacing fix for multiple items
                         if(plasmoid.configuration.indicatorDominantColor){
                             colorEval = decoColor
                         }
@@ -492,7 +492,7 @@ MouseArea {
                             var colorHSL = hexToHSL(colorEval)
                             colorCalc = Qt.hsla(colorHSL.h, 0.2, 0.6, 1)
                         }
-                        if(!isFirst && plasmoid.configuration.indicatorStyle === 0) {//Metro specific handling
+                        else if(!isFirst && plasmoid.configuration.indicatorStyle ===  0 && task.state !== "minimized") {//Metro specific handling
                             colorCalc = Qt.darker(colorEval, 1.2) 
                         }
                         else {
