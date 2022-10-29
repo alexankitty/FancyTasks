@@ -59,6 +59,11 @@ Kirigami.FormLayout {
         text: i18n("Override location")
     }
 
+    Label {
+        text: i18n("Be sure to use this when using as a floating widget")
+        font: Kirigami.Theme.smallFont
+    }
+
     ComboBox {
         enabled: indicatorsEnabled.currentIndex
         visible: indicatorOverride.checked
