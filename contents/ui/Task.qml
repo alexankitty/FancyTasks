@@ -394,8 +394,6 @@ MouseArea {
         Flow {
             id: indicator
             flow: Flow.LeftToRight
-            anchors.top: parent.top
-            anchors.horizontalCenter: parent.horizontalCenter
             spacing: PlasmaCore.Units.smallSpacing
             Repeater {
 
@@ -427,6 +425,8 @@ MouseArea {
                     readonly property bool isVertical: {
                         if(plasmoid.formFactor === PlasmaCore.Types.Vertical && !plasmoid.configuration.indicatorOverride)
                         return true;
+                        if(plasmoid.formFactor == PlasmaCore.Types.Floating && plasmoid.configuration.indicatorLocation === 1 || plasmoid.configuration.indicatorLocation === 2)
+                        return  true;
                         if(plasmoid.configuration.indicatorLocation === 1 || plasmoid.configuration.indicatorLocation === 2)
                         return true;
                         else{
@@ -548,6 +548,81 @@ MouseArea {
         }
 
         states:[
+            State {//safety case - use bottom when not override
+                name: "floating-fallback"
+                when: (plasmoid.location === PlasmaCore.Types.Floating && !plasmoid.configuration.indicatorOverride)
+
+                AnchorChanges {
+                    target: indicator
+                    anchors{ top:undefined; bottom:parent.bottom; left:undefined; right:undefined;
+                        horizontalCenter:parent.horizontalCenter; verticalCenter:undefined}
+                }
+                PropertyChanges {
+                    target: indicator
+                    width: undefined
+                    height: plasmoid.configuration.indicatorSize
+                }
+            },
+            State {
+                name: "floating-bottom"
+                when: (plasmoid.location === PlasmaCore.Types.Floating && plasmoid.configuration.indicatorLocation === 0)
+
+                AnchorChanges {
+                    target: indicator
+                    anchors{ top:undefined; bottom:parent.bottom; left:undefined; right:undefined;
+                        horizontalCenter:parent.horizontalCenter; verticalCenter:undefined}
+                }
+                PropertyChanges {
+                    target: indicator
+                    width: undefined
+                    height: plasmoid.configuration.indicatorSize
+                }
+            },
+            State {
+                name: "floating-left"
+                when: (plasmoid.location === PlasmaCore.Types.Floating && plasmoid.configuration.indicatorLocation === 0)
+
+                AnchorChanges {
+                    target: indicator
+                    anchors{ top:undefined; bottom:undefined; left:parent.left; right:undefined;
+                        horizontalCenter:undefined; verticalCenter:parent.verticalCenter}
+                }
+                PropertyChanges {
+                    target: indicator
+                    height: undefined
+                    width: plasmoid.configuration.indicatorSize
+                }
+            },
+            State {
+                name: "floating-right"
+                when: (plasmoid.location === PlasmaCore.Types.Floating && plasmoid.configuration.indicatorLocation === 0)
+
+                AnchorChanges {
+                    target: indicator
+                    anchors{ top:undefined; bottom:undefined; left:undefined; right:parent.right;
+                        horizontalCenter:undefined; verticalCenter:parent.verticalCenter}
+                }
+                PropertyChanges {
+                    target: indicator
+                    height: undefined
+                    width: plasmoid.configuration.indicatorSize
+                }
+            },
+            State {
+                name: "floating-top"
+                when: (plasmoid.location === PlasmaCore.Types.Floating && plasmoid.configuration.indicatorLocation === 0)
+
+                AnchorChanges {
+                    target: indicator
+                    anchors{ top:parent.top; bottom:undefined; left:undefined; right:undefined;
+                        horizontalCenter:parent.horizontalCenter; verticalCenter:undefined}
+                }
+                PropertyChanges {
+                    target: indicator
+                    width: undefined
+                    height: plasmoid.configuration.indicatorSize
+                }
+            },
             State {
                 name: "bottom"
                 when: (plasmoid.configuration.indicatorOverride && plasmoid.configuration.indicatorLocation === 0)

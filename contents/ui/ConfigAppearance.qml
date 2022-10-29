@@ -103,9 +103,14 @@ Kirigami.FormLayout {
         text: i18n("Override")
     }
 
+    Label {
+        text: i18n("Be sure to use this when using as a floating widget")
+        font: Kirigami.Theme.smallFont
+    }
+
     ComboBox {
         id: plasmaButtonDirection
-        enabled: overridePlasmaButtonDirection.checked
+        visible: overridePlasmaButtonDirection.checked
         //Kirigami.FormData.label: i18n("Indicator Location:")
         model: [
             i18n("North"),
