@@ -18,6 +18,10 @@ Kirigami.FormLayout {
     property alias cfg_indicatorReverse: indicatorReverse.checked
     property alias cfg_indicatorOverride: indicatorOverride.checked
     property alias cfg_indicatorStyle: indicatorStyle.currentIndex
+    property alias cfg_indicatorLimit: indicatorLimit.value
+    property alias cfg_indicatorDesaturate: indicatorDesaturate.checked
+    property alias cfg_indicatorGrow: indicatorGrow.checked
+    property alias cfg_indicatorGrowFactor: indicatorGrowFactor.value
     property alias cfg_indicatorSize: indicatorSize.value
     property alias cfg_indicatorLength: indicatorLength.value
     property alias cfg_indicatorRadius: indicatorRadius.value
@@ -91,6 +95,57 @@ Kirigami.FormLayout {
             i18n("Ciliora"),
             i18n("Dashes")
             ]
+    }
+
+    SpinBox {
+        enabled: indicatorsEnabled.currentIndex
+        id: indicatorLimit
+        Kirigami.FormData.label: i18n("Indicator Limit:")
+        from: 1
+        to: 10
+    }
+
+    CheckBox {
+        enabled: indicatorsEnabled.currentIndex
+        id: indicatorDesaturate
+        Kirigami.FormData.label: i18n("Minimize Options:")
+        text: i18n("Desaturate")
+    }
+
+    CheckBox {
+        enabled: indicatorsEnabled.currentIndex
+        id: indicatorGrow
+        text: i18n("Shrink when minimized")
+    }
+
+    SpinBox {
+        id: indicatorGrowFactor
+        enabled: indicatorsEnabled.currentIndex
+        visible: indicatorGrow.checked
+        from: 100
+        to: 10 * 100
+        stepSize: 25
+        Kirigami.FormData.label: i18n("Growth/Shrink factor:")
+
+        property int decimals: 2
+        property real realValue: value / 100
+
+        validator: DoubleValidator {
+            bottom: Math.min(indicatorGrowFactor.from, indicatorGrowFactor.to)
+            top:  Math.max(indicatorGrowFactor.from, indicatorGrowFactor.to)
+        }
+
+        textFromValue: function(value, locale) {
+            return Number(value / 100).toLocaleString(locale, 'f', indicatorGrowFactor.decimals)
+        }
+
+        valueFromText: function(text, locale) {
+            return Number.fromLocaleString(locale, text) * 100
+        }
+    }
+
+    Item {
+        Kirigami.FormData.isSection: true
     }
 
     SpinBox {
