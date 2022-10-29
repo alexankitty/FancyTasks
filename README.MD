@@ -9,18 +9,26 @@
 3. Right click your panel, click add widgets and search for fancy tasks.
 4. Right click the new task panel and click Configure Fancy Tasks... - everything you will want to configure to enable the new features will be in there. Default features are based on the KDE's team existing vision.
 
+(Alternatively you should be able to double click the shell script to run it)
+
 (This package is also on the AUR and can be installed from there)
+
+## Updating
+
+1. Run the update.sh script, it will automatically stop and restart plasma to make sure the new changes get loaded in.
 
 ## Features
 
 Features improvements tweaks and options to the original task manager plasmoid made by Eike Hein, licensed under GPL V2.0: [link](https://github.com/KDE/plasma-desktop/tree/master/applets/taskmanager).
 
 * Implemented adjustable task width.
-
 * Implemented switching between taskbar types.
-
 * Indicators based on dash to panel styles from gnome, using [latte-indicator-dashtopanel](https://github.com/psifidotos/latte-indicator-dashtopanel) as the reference implementation.
 * Customizable indicator locations and colorizing of plasma. Note: not every plasma theme will color in a pleasant way as it depends on how the SVGs are made. General rule of thumb is bright white does not colorize well.
+* Animations (Thanks ziomek64!)
+* Growing/Shrinking and desaturation of indicators on minimize (Thanks ziomek64!)
+* Customization of number of indicators displayed - limit 10.
+
 
 ## Pictures
 Colorful Tasks  
