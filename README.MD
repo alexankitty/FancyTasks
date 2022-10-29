@@ -33,28 +33,28 @@ Features improvements tweaks and options to the original task manager plasmoid m
 ## Pictures
 Colorful Tasks  
 
-![Colorful tasks](https://github.com/alexankitty/Plasma-Customizable-TaskManager/blob/main/docs/ColoredTasks.png?raw=true)
+![Colorful tasks](https://github.com/alexankitty/FancyTasks/blob/main/docs/colorfulicons%20crop.png?raw=true)
 
-Metro Full Sized  
+Metro  
 
-![Metro Full Sized](https://github.com/alexankitty/Plasma-Customizable-TaskManager/blob/main/docs/Metro%20Full.png?raw=true)
+![Metro](https://github.com/alexankitty/FancyTasks/blob/main/docs/metro.png?raw=true)
 
-Ciliora Full Sized  
+Ciliora  
 
-![Ciliora Full Sized](https://github.com/alexankitty/Plasma-Customizable-TaskManager/blob/main/docs/Ciliora%20Full.png?raw=true)
+![Ciliora](https://github.com/alexankitty/FancyTasks/blob/main/docs/ciliora.png?raw=true)
 
-Dashes Full Sized  
+Dashes  
 
-![Dashes Full Sized](https://github.com/alexankitty/Plasma-Customizable-TaskManager/blob/main/docs/Dashes%20Full.png?raw=true)
+![Dashes](https://github.com/alexankitty/FancyTasks/blob/main/docs/dashes.png?raw=true)
 
-Metro Icon Only  
+Dots  
 
-![Metro Icon Only](https://github.com/alexankitty/Plasma-Customizable-TaskManager/blob/main/docs/Metro%20Short.png?raw=true)
+![Dots](https://github.com/alexankitty/FancyTasks/blob/main/docs/dots.png?raw=true)
 
-Ciliora Icon Only  
+Desaturate minimized tasks  
 
-![Ciliora Icon Only](https://github.com/alexankitty/Plasma-Customizable-TaskManager/blob/main/docs/Ciliora%20Short.png?raw=true)
+![Desaturated Minimized Tasks](https://github.com/alexankitty/FancyTasks/blob/main/docs/desaturate%20crop.png?raw=true)
 
-Dashes Icon Only  
+Minimized task shrinking  
 
-![Dashes Icon Only](https://github.com/alexankitty/Plasma-Customizable-TaskManager/blob/main/docs/Dashes%20Short.png?raw=true)
+![Minimized task shrinking](https://github.com/alexankitty/FancyTasks/blob/main/docs/shrink%20crop.png?raw=true)
