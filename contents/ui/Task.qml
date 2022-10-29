@@ -394,8 +394,6 @@ MouseArea {
         Flow {
             id: indicator
             flow: Flow.LeftToRight
-            anchors.top: parent.top
-            anchors.horizontalCenter: parent.horizontalCenter
             spacing: PlasmaCore.Units.smallSpacing
             Repeater {
 
@@ -550,9 +548,9 @@ MouseArea {
         }
 
         states:[
-            State {//safety case - use bottom when not overriding
+            State {//safety case - use bottom when not override
                 name: "floating-fallback"
-                when: (PlasmaCore.Types.Floating && !plasmoid.configuration.indicatorOverride)
+                when: (plasmoid.location === PlasmaCore.Types.Floating && !plasmoid.configuration.indicatorOverride)
 
                 AnchorChanges {
                     target: indicator
@@ -564,10 +562,10 @@ MouseArea {
                     width: undefined
                     height: plasmoid.configuration.indicatorSize
                 }
-            }
+            },
             State {
                 name: "floating-bottom"
-                when: (PlasmaCore.Types.Floating && plasmoid.configuration.indicatorLocation === 0)
+                when: (plasmoid.location === PlasmaCore.Types.Floating && plasmoid.configuration.indicatorLocation === 0)
 
                 AnchorChanges {
                     target: indicator
@@ -582,7 +580,7 @@ MouseArea {
             },
             State {
                 name: "floating-left"
-                when: (PlasmaCore.Types.Floating && plasmoid.configuration.indicatorLocation === 0)
+                when: (plasmoid.location === PlasmaCore.Types.Floating && plasmoid.configuration.indicatorLocation === 0)
 
                 AnchorChanges {
                     target: indicator
@@ -597,7 +595,7 @@ MouseArea {
             },
             State {
                 name: "floating-right"
-                when: (PlasmaCore.Types.Floating && plasmoid.configuration.indicatorLocation === 0)
+                when: (plasmoid.location === PlasmaCore.Types.Floating && plasmoid.configuration.indicatorLocation === 0)
 
                 AnchorChanges {
                     target: indicator
@@ -612,7 +610,7 @@ MouseArea {
             },
             State {
                 name: "floating-top"
-                when: (PlasmaCore.Types.Floating && plasmoid.configuration.indicatorLocation === 0)
+                when: (plasmoid.location === PlasmaCore.Types.Floating && plasmoid.configuration.indicatorLocation === 0)
 
                 AnchorChanges {
                     target: indicator
