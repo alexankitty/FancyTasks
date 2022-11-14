@@ -37,6 +37,8 @@ Features improvements tweaks and options to the original task manager plasmoid m
 * Fix LTS support
 * Allow disabling of the plasma SVG (easy)
 * Update colorize to a more clear radio button.
+* Correct Metro to have *no* spacing (the multi app running indicator doesn't have a spacing in win10 and I apparently missed this)
+* Allow customization of the space between indicators (may have dangerous implications)
 
 ## Pictures
 Colorful Tasks  
