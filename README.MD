@@ -30,6 +30,9 @@ Features improvements tweaks and options to the original task manager plasmoid m
 * Customization of number of indicators displayed - limit 10.
 
 
+## Known Issues
+* Does not support LTS currently! (fix me pls)
+
 ## Pictures
 Colorful Tasks  
 
