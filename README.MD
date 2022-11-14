@@ -33,6 +33,11 @@ Features improvements tweaks and options to the original task manager plasmoid m
 ## Known Issues
 * Does not support LTS currently! (fix me pls)
 
+## To Do
+* Fix LTS support
+* Allow disabling of the plasma SVG (easy)
+* Update colorize to a more clear radio button.
+
 ## Pictures
 Colorful Tasks  
 
