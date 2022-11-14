@@ -212,6 +212,10 @@
       <label>Set a custom color for the task button.</label>
       <default>#FFFFFF</default>
     </entry>
+        <entry name="disableButtonSvg" type="Bool">
+      <label>Disables the decoration SVG</label>
+      <default>false</default>
+    </entry>
     <entry name="overridePlasmaButtonDirection" type="Bool">
       <label>Override the plasma button direction</label>
       <default>false</default>

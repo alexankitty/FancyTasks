@@ -37,6 +37,7 @@ Kirigami.FormLayout {
     property alias cfg_buttonColorizeDominant: buttonColorizeDominant.checked
     property alias cfg_buttonColorizeCustom: buttonColorizeCustom.color
 
+    property alias cfg_disableButtonSvg: disableButtonSvg.checked
     property alias cfg_overridePlasmaButtonDirection: overridePlasmaButtonDirection.checked
     property alias cfg_plasmaButtonDirection: plasmaButtonDirection.currentIndex
 
@@ -95,6 +96,12 @@ Kirigami.FormLayout {
 
     Item {
         Kirigami.FormData.isSection: true
+    }
+
+    CheckBox {
+        id: disableButtonSvg
+        Kirigami.FormData.label: i18n("Plasma Button Decorations:")
+        text: i18n("Disable")
     }
 
     CheckBox {
