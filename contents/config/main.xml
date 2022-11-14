@@ -136,6 +136,10 @@
       <label>Enable taskbar indicator effect. 0 = Off, 1 = On</label>
       <default>0</default>
     </entry>
+    <entry name="indicatorsAnimated" type="Bool">
+      <label>Enable animating indicators</label>
+      <default>true</default>
+    </entry>
     <entry name="groupIconEnabled" type="Enum">
       <label>Enable taskbar group overlay effect. 0 = Off, 1 = On</label>
       <default>1</default>

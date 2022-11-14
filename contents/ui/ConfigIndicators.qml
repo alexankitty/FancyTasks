@@ -14,6 +14,7 @@ Kirigami.FormLayout {
 
     property alias cfg_indicatorsEnabled: indicatorsEnabled.currentIndex
     property alias cfg_groupIconEnabled: groupIconEnabled.currentIndex
+    property alias cfg_indicatorsAnimated: indicatorsAnimated.checked
     property alias cfg_indicatorLocation: indicatorLocation.currentIndex
     property alias cfg_indicatorReverse: indicatorReverse.checked
     property alias cfg_indicatorOverride: indicatorOverride.checked
@@ -45,6 +46,18 @@ Kirigami.FormLayout {
         text: i18n("Takes effect on next time plasma groups tasks.")
         font: Kirigami.Theme.smallFont
     }
+
+    Item {
+        Kirigami.FormData.isSection: true
+    }
+
+    CheckBox {
+        enabled: indicatorsEnabled.currentIndex
+        id: indicatorsAnimated
+        Kirigami.FormData.label: i18n("Animate Indicators:")
+        text: i18n("Enabled")
+    }
+
 
     Item {
         Kirigami.FormData.isSection: true
