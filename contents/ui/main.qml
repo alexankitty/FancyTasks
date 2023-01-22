@@ -356,11 +356,13 @@ MouseArea {
             taskList.layout();
         }
     }
-
+    // Save drag data
     TaskManagerApplet.DragHelper {
         id: dragHelper
 
-        dragIconSize: PlasmaCore.Units.iconSizes.medium
+        Drag.dragType: Drag.Automatic
+        Drag.supportedActions: Qt.CopyAction | Qt.MoveAction | Qt.LinkAction
+        Drag.onDragFinished: tasks.dragSource = null;
     }
 
     PlasmaCore.FrameSvgItem {
