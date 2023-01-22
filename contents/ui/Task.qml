@@ -46,8 +46,6 @@ MouseArea {
     property int previousChildCount: 0
     property alias labelText: label.text
     property bool pressed: false
-    property int pressX: -1
-    property int pressY: -1
     property QtObject contextMenu: null
     property int wheelDelta: 0
     readonly property bool smartLauncherEnabled: !inPopup && model.IsStartup !== true
@@ -92,7 +90,7 @@ MouseArea {
         toolTipArea.hideToolTip();
     }
 
-    acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MidButton | Qt.BackButton | Qt.ForwardButton
+     acceptedButtons: Qt.RightButton | Qt.MidButton | Qt.BackButton | Qt.ForwardButton
 
     onPidChanged: updateAudioStreams({delay: false})
     onAppNameChanged: updateAudioStreams({delay: false})
@@ -131,10 +129,8 @@ MouseArea {
     }
 
     onPressed: {
-        if (mouse.button == Qt.LeftButton || mouse.button == Qt.MidButton || mouse.button === Qt.BackButton || mouse.button === Qt.ForwardButton) {
+        if (mouse.button == Qt.MidButton || mouse.button === Qt.BackButton || mouse.button === Qt.ForwardButton) {
             pressed = true;
-            pressX = mouse.x;
-            pressY = mouse.y;
         } else if (mouse.button == Qt.RightButton) {
             // When we're a launcher, there's no window controls, so we can show all
             // places without the menu getting super huge.
@@ -146,21 +142,6 @@ MouseArea {
         }
     }
 
-    onPressAndHold: if (mouse.button === Qt.LeftButton) {
-        /* TODO: make press and hold to open menu exclusive to touch.
-         * I (ndavis) tried `if (lastDeviceType & ~(PointerDevice.Mouse | PointerDevice.TouchPad))`
-         * with a TapHandler. lastDeviceType was gotten from the EventPoint argument of the
-         * grabChanged() signal. ngraham said it wouldn't work because it was preventing single
-         * taps on touch. I didn't have a touch screen to test it with.
-         */
-        // When we're a launcher, there's no window controls, so we can show all
-        // places without the menu getting super huge.
-        if (model.IsLauncher === true) {
-            showContextMenu({showAllPlaces: true})
-        } else {
-            showContextMenu();
-        }
-    }
 
     onReleased: {
         if (pressed) {
@@ -177,11 +158,7 @@ MouseArea {
                 } else if (plasmoid.configuration.middleClickAction === TaskManagerApplet.Backend.BringToCurrentDesktop) {
                     tasksModel.requestVirtualDesktops(modelIndex(), [virtualDesktopInfo.currentDesktop]);
                 }
-            } else if (mouse.button == Qt.LeftButton) {
-                if (plasmoid.configuration.showToolTips && toolTipArea.active) {
-                    hideToolTipTemporarily();
-                }
-                TaskTools.activateTask(modelIndex(), model, mouse.modifiers, task);
+
             } else if (mouse.button === Qt.BackButton || mouse.button === Qt.ForwardButton) {
                 var sourceName = mpris2Source.sourceNameForLauncherUrl(model.LauncherUrlWithoutIcon, model.AppPid);
                 if (sourceName) {
@@ -357,6 +334,52 @@ MouseArea {
             Component.onCompleted: timer.start()
         }
     }
+    TapHandler {
+        acceptedButtons: Qt.LeftButton
+        onTapped: {
+            if (plasmoid.configuration.showToolTips && toolTipArea.active) {
+                hideToolTipTemporarily();
+            }
+            TaskTools.activateTask(modelIndex(), model, eventPoint.event.modifiers, task);
+        }
+        onLongPressed: {
+            /* TODO: make press and hold to open menu exclusive to touch.
+             * I (ndavis) tried `if (lastDeviceType & ~(PointerDevice.Mouse | PointerDevice.TouchPad))`
+             * with a TapHandler. lastDeviceType was gotten from the EventPoint argument of the
+             * grabChanged() signal. ngraham said it wouldn't work because it was preventing single
+             * taps on touch. I didn't have a touch screen to test it with.
+             */
+            // When we're a launcher, there's no window controls, so we can show all
+            // places without the menu getting super huge.
+            if (model.IsLauncher === true) {
+                showContextMenu({showAllPlaces: true})
+            } else {
+                showContextMenu();
+            }
+        }
+    }
+
+    // Avoid repositioning delegate item after dragFinished
+    Item {
+        anchors.fill: parent
+
+        DragHandler {
+            id: dragHandler
+
+            onActiveChanged: if (active) {
+                icon.grabToImage((result) => {
+                    tasks.dragSource = task;
+                    dragHelper.Drag.imageSource = result.url;
+                    dragHelper.Drag.mimeData = dragHelper.generateMimeData(model.MimeType, model.MimeData, model.LauncherUrlWithoutIcon);
+                    dragHelper.Drag.active = dragHandler.active;
+                });
+            } else {
+                dragHelper.Drag.active = false;
+                dragHelper.Drag.imageSource = "";
+            }
+        }
+    }
+
     PlasmaCore.FrameSvgItem {
         id: frame
         property color dominantColor: imageColors.dominant
