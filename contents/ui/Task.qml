@@ -401,6 +401,8 @@ MouseArea {
                     
                     if(!plasmoid.configuration.indicatorsEnabled)
                     return 0;
+                    if(task.childCount < plasmoid.configuration.indicatorMinLimit)
+                    return 0;
                     if(task.parent.toString().includes('QQuickItem'))//Target only the main task items.
                     return 0;
                     /*for(var key in task) {
@@ -412,7 +414,7 @@ MouseArea {
                     }
                     return Math.min((task.childCount === 0) ? 1 : task.childCount, maxStates);
                 }
-                readonly property int maxStates: plasmoid.configuration.indicatorLimit
+                readonly property int maxStates: plasmoid.configuration.indicatorMaxLimit
 
                 Rectangle{
                     id: stateRect
@@ -421,7 +423,7 @@ MouseArea {
                     Behavior on color { PropertyAnimation {duration: plasmoid.configuration.indicatorsAnimated ? 250 : 0} }
                     Behavior on radius { PropertyAnimation {duration: plasmoid.configuration.indicatorsAnimated ? 250 : 0} }
                     readonly property color decoColor: frame.dominantColor
-                    readonly property int maxStates: plasmoid.configuration.indicatorLimit
+                    readonly property int maxStates: plasmoid.configuration.indicatorMaxLimit
                     readonly property bool isFirst: index === 0
                     readonly property int adjust: plasmoid.configuration.indicatorShrink
                     readonly property int indicatorLength: plasmoid.configuration.indicatorLength
