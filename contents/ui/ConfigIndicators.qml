@@ -19,7 +19,8 @@ Kirigami.FormLayout {
     property alias cfg_indicatorReverse: indicatorReverse.checked
     property alias cfg_indicatorOverride: indicatorOverride.checked
     property alias cfg_indicatorStyle: indicatorStyle.currentIndex
-    property alias cfg_indicatorLimit: indicatorLimit.value
+    property alias cfg_indicatorMinLimit: indicatorMinLimit.value
+    property alias cfg_indicatorMaxLimit: indicatorMaxLimit.value
     property alias cfg_indicatorDesaturate: indicatorDesaturate.checked
     property alias cfg_indicatorGrow: indicatorGrow.checked
     property alias cfg_indicatorGrowFactor: indicatorGrowFactor.value
@@ -112,8 +113,16 @@ Kirigami.FormLayout {
 
     SpinBox {
         enabled: indicatorsEnabled.currentIndex
-        id: indicatorLimit
-        Kirigami.FormData.label: i18n("Indicator Limit:")
+        id: indicatorMinLimit
+        Kirigami.FormData.label: i18n("Indicator Min Limit:")
+        from: 1
+        to: 10
+    }
+
+    SpinBox {
+        enabled: indicatorsEnabled.currentIndex
+        id: indicatorMaxLimit
+        Kirigami.FormData.label: i18n("Indicator Max Limit:")
         from: 1
         to: 10
     }
