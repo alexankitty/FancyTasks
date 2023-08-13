@@ -115,7 +115,7 @@ Kirigami.FormLayout {
         enabled: indicatorsEnabled.currentIndex
         id: indicatorMinLimit
         Kirigami.FormData.label: i18n("Indicator Min Limit:")
-        from: 1
+        from: 0
         to: 10
     }
 
