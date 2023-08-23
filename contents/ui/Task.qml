@@ -897,11 +897,6 @@ MouseArea {
                 target: frame
                 basePrefix: "minimized"
             }
-            PropertyChanges { 
-                target: colorOverride
-                visible: plasmoid.configuration.buttonColorize ? frame.isHovered ? true : false : false
-                //lightness: hexToHSL(plasmoid.configuration.buttonColorizeDominant ? imageColors.dominant : plasmoid.configuration.buttonColorizeCustom).l - 0.8
-            }
         },
         State {
             name: "active"
