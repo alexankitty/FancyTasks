@@ -16,7 +16,6 @@ import org.kde.plasma.private.taskmanager 0.1 as TaskManagerApplet
 
 import QtQuick.Layouts 1.3
 
-
 import QtGraphicalEffects 1.15
 
 import "code/layout.js" as LayoutManager
@@ -707,9 +706,6 @@ MouseArea {
         id: colorOverride
         anchors.fill: frame
         source: frame
-        /*hue: hexToHSL(plasmoid.configuration.buttonColorizeDominant ? frame.dominantColor : plasmoid.configuration.buttonColorizeCustom).h
-        lightness: frame.isHovered ? hexToHSL(plasmoid.configuration.buttonColorizeDominant ? frame.dominantColor : plasmoid.configuration.buttonColorizeCustom).l - 0.5 : hexToHSL(plasmoid.configuration.buttonColorizeDominant ? imageColors.dominant : plasmoid.configuration.buttonColorizeCustom).l - 1
-        saturation: hexToHSL(plasmoid.configuration.buttonColorizeDominant ? frame.dominantColor : plasmoid.configuration.buttonColorizeCustom).s*/
         color: plasmoid.configuration.buttonColorizeDominant ? frame.dominantColor : plasmoid.configuration.buttonColorizeCustom
         visible: plasmoid.configuration.buttonColorize ? true : false
     }
@@ -821,6 +817,12 @@ MouseArea {
         source: "AudioStream.qml"
         width: Math.min(Math.min(iconBox.width, iconBox.height) * 0.4, PlasmaCore.Units.iconSizes.smallMedium)
         height: width
+
+        Binding {
+            target: audioStreamIconLoader.item
+            property: "dominantIconColor"
+            value: frame.dominantColor
+        }
 
         anchors {
             right: frame.right
