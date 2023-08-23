@@ -893,11 +893,16 @@ MouseArea {
         },
         State {
             name: "minimized"
-            when: model.IsMinimized === true
+            when: model.IsMinimized === true && !frame.isHovered
 
             PropertyChanges {
                 target: frame
                 basePrefix: "minimized"
+                visible: plasmoid.configuration.buttonColorize && plasmoid.configuration.buttonColorizeInactive ? false : true
+            }
+            PropertyChanges { 
+                target: colorOverride
+                visible: plasmoid.configuration.buttonColorize && plasmoid.configuration.buttonColorizeInactive ? true : false
             }
         },
         State {
