@@ -45,7 +45,10 @@ Features improvements tweaks and options to the original task manager plasmoid m
 * Allow changing of animation duration, and possibly animating of button color and frame transitions.
 * Change styles (Metro, Ciliora, Dashes) to presets, switch preset to custom when modifying settings. Add in Dots as a preset.
 * Fix naming conventions to be more clear to users.
-* Translations.
+
+## Translation Help Wanted!
+Information regarding submitting translations is available [here](https://github.com/alexankitty/FancyTasks/blob/main/package/translate/ReadMe.md).  
+Important note: Any time an update to strings is made, the translations need to be merged and a new po template needs to be created.
 
 ## Pictures
 Colorful Tasks  
