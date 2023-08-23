@@ -48,7 +48,8 @@ Features improvements tweaks and options to the original task manager plasmoid m
 
 ## Translation Help Wanted!
 Information regarding submitting translations is available [here](https://github.com/alexankitty/FancyTasks/blob/main/package/translate/ReadMe.md).  
-Important note: Any time an update to strings is made, the translations need to be merged and a new po template needs to be created.
+Important note: Any time an update to strings is made, the translations need to be merged and a new po template needs to be created.  
+Finally, the metadata.json is done separately.
 
 ## Pictures
 Colorful Tasks  
