@@ -7,8 +7,11 @@
 import QtQuick 2.15
 
 import org.kde.plasma.core 2.0 as PlasmaCore
+import org.kde.kirigami 2.20 as Kirigami
+import QtGraphicalEffects 1.15
 
 MouseArea {
+    property string dominantIconColor
     id: audioStreamIconBox
     hoverEnabled: true
     onClicked: toggleMuted()
@@ -80,10 +83,19 @@ MouseArea {
     visible: opacity > 0
 
     PlasmaCore.FrameSvgItem {
+        id: audioStreamFrame
         anchors.fill: audioStreamIcon
-        visible: parent.containsMouse
+        visible: parent.containsMouse && !plasmoid.configuration.buttonColorize ? true : false
         imagePath: "widgets/viewitem"
         prefix: "hover"
+    }
+
+    ColorOverlay {
+        id: colorOverrideAudio
+        anchors.fill: audioStreamFrame
+        source: audioStreamFrame
+        color: plasmoid.configuration.buttonColorizeDominant ? dominantIconColor : plasmoid.configuration.buttonColorizeCustom
+        visible: parent.containsMouse && plasmoid.configuration.buttonColorize ? true : false
     }
 
     PlasmaCore.Svg {
