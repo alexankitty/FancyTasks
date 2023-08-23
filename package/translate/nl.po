@@ -1,4 +1,4 @@
-# Translation of fancytasks in LANGUAGE
+# Translation of fancytasks in nl
 # Copyright (C) 2023
 # This file is distributed under the same license as the fancytasks package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
