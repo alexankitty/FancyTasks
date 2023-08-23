@@ -76,24 +76,32 @@ Kirigami.FormLayout {
         Kirigami.FormData.isSection: true
     }
 
-    CheckBox {
-        id: buttonColorize
-        text: i18n("Colorize buttons")
+    ButtonGroup {
+        id: colorizeButtonGroup
     }
 
-    RowLayout {
-        Item { implicitWidth: Kirigami.Units.gridUnit }
-        CheckBox {
-            id: buttonColorizeInactive
-            text: i18n("Colorize inactive buttons")
-        }
+    RadioButton {
+        Kirigami.FormData.label: i18n("Button Colors:")
+        checked: !buttonColorize.checked
+        text: i18n("Using Plasma Style/Accent")
+        ButtonGroup.group: colorizeButtonGroup
+    }
+
+    RadioButton {
+        id: buttonColorize
+        checked: plasmoid.configuration.buttonColorize === true
+        text: i18n("Using Color Overlay")
+        ButtonGroup.group: colorizeButtonGroup
     }
 
     CheckBox {
         enabled: buttonColorize.checked
         id: buttonColorizeDominant
         text: i18n("Use dominant icon color")
+        visible: buttonColorize.checked
     }
+
+
 
     KQControls.ColorButton {
         Layout.leftMargin: Kirigami.Units.GridUnit
@@ -101,6 +109,13 @@ Kirigami.FormLayout {
         id: buttonColorizeCustom
         Kirigami.FormData.label: i18n("Custom Color:")
         showAlphaChannel: true
+        visible: buttonColorize.checked && !buttonColorizeDominant.checked
+    }
+
+    CheckBox {
+        id: buttonColorizeInactive
+        text: i18n("Colorize inactive buttons")
+        visible: buttonColorize.checked
     }
 
     Item {
