@@ -171,7 +171,7 @@
             "Plasma/Applet"
         ],
         "Version": "4.0",
-        "Website": "https://userbase.kde.org/Plasma/Tasks"
+        "Website": "https://github.com/alexankitty/FancyTasks"
     },
     "X-Plasma-API": "declarativeappletscript",
     "X-Plasma-MainScript": "ui/main.qml",
