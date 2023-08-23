@@ -3,11 +3,11 @@
         "Authors": [
             {
                 "Email": "Hein@kde.org, ideas@alexankitty.com",
-                "Name": "Eike Hein, Alexandra Stone, Alexandra Stone",
-                "Name[ar]": "Eike Hein, Alexandra Stone, Alexandra Stone",
-                "Name[az]": "Eike Hein, Alexandra Stone, Alexandra Stone",
-                "Name[bg]": "Eike Hein, Alexandra Stone, Alexandra Stone",
-                "Name[ca@valencia]": "Eike Hein, Alexandra Stone, Alexandra Stone",
+                "Name": "Eike Hein, Alexandra Stone",
+                "Name[ar]": "Eike Hein, Alexandra Stone",
+                "Name[az]": "Eike Hein, Alexandra Stone",
+                "Name[bg]": "Eike Hein, Alexandra Stone",
+                "Name[ca@valencia]": "Eike Hein, Alexandra Stone",
                 "Name[ca]": "Eike Hein, Alexandra Stone",
                 "Name[cs]": "Eike Hein, Alexandra Stone",
                 "Name[da]": "Eike Hein, Alexandra Stone",
@@ -45,7 +45,7 @@
             }
         ],
         "Category": "Windows and Tasks",
-        "Description": "More modern style taskbar-style window switcher displaying icons and text, with some improvments",
+        "Description": "More modern taskbar-style window switcher displaying icons and text, with some improvments and customization options.",
         "Description[ar]": "مبدل نوافذ تقليدي بنمط شريط المهام يعرض الأيقونات والنص",
         "Description[az]": "Nişanlar və mətn göstərən klassik tapşırıq paneli üslubunda pəncərə dəyişdirici",
         "Description[bg]": "Класически превключвател на прозорци в стил лента на задачите, показващ икони и текст",
