@@ -9,7 +9,7 @@ Thanks for your understanding.
 ## Installing
 
 1. Clone this repository with the following command `git clone https://github.com/alexankitty/FancyTasks`
-2. CD into the foloder and run the script `install.sh`, you may need to chmod +x or prepend your shell before the script in order to run it
+2. CD into the folder and run the script `install.sh`, you may need to chmod +x or prepend your shell before the script in order to run it
 3. Right click your panel, click add widgets and search for fancy tasks.
 4. Right click the new task panel and click Configure Fancy Tasks... - everything you will want to configure to enable the new features will be in there. Default features are based on the KDE's team existing vision.
 
