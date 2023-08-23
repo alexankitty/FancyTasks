@@ -6,9 +6,9 @@
 # https://invent.kde.org/sysadmin/l10n-scripty/-/blob/master/extract-messages.sh
 
 DIR=`cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd`
-plasmoidName=`kreadconfig5 --file="$DIR/../metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Name"`
+plasmoidName=`python3 jsonparse.py $DIR/../metadata.json KPlugin.Name`
 widgetName="${plasmoidName##*.}" # Strip namespace
-website=`kreadconfig5 --file="$DIR/../metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Website"`
+website=`python3 jsonparse.py $DIR/../metadata.json KPlugin.Website`
 bugAddress="$website"
 packageRoot=".." # Root of translatable sources
 projectName="plasma_applet_${plasmoidName}" # project name
