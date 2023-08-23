@@ -34,6 +34,7 @@ Kirigami.FormLayout {
     property alias cfg_taskSpacingSize: taskSpacingSize.value
 
     property alias cfg_buttonColorize: buttonColorize.checked
+    property alias cfg_buttonColorizeInactive: buttonColorizeInactive.checked
     property alias cfg_buttonColorizeDominant: buttonColorizeDominant.checked
     property alias cfg_buttonColorizeCustom: buttonColorizeCustom.color
 
@@ -78,6 +79,14 @@ Kirigami.FormLayout {
     CheckBox {
         id: buttonColorize
         text: i18n("Colorize buttons")
+    }
+
+    RowLayout {
+        Item { implicitWidth: Kirigami.Units.gridUnit }
+        CheckBox {
+            id: buttonColorizeInactive
+            text: i18n("Colorize inactive buttons")
+        }
     }
 
     CheckBox {

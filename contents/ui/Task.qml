@@ -910,6 +910,30 @@ MouseArea {
                 target: colorOverride
                 visible: plasmoid.configuration.buttonColorize ? true : false
             }
+        },
+        State {
+            name: "inactive"
+            when: model.IsActive === false && !frame.isHovered
+            PropertyChanges { 
+                target: colorOverride
+                visible: plasmoid.configuration.buttonColorize && plasmoid.configuration.buttonColorizeInactive ? true : false
+            }
+            PropertyChanges { 
+                target: frame
+                visible: plasmoid.configuration.buttonColorize && plasmoid.configuration.buttonColorizeInactive ? false : true
+            }
+        },
+        State {
+            name: "hover"
+            when: frame.isHovered
+            PropertyChanges { 
+                target: colorOverride
+                visible: plasmoid.configuration.buttonColorize ? true : false
+            }
+            PropertyChanges { 
+                target: frame
+                visible: plasmoid.configuration.buttonColorize ? false : true
+            }
         }
     ]
 
