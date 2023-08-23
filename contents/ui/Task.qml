@@ -381,6 +381,14 @@ MouseArea {
         visible: plasmoid.configuration.buttonColorize ? false : true
     }
 
+    ColorOverlay {
+        id: colorOverride
+        anchors.fill: frame
+        source: frame
+        color: plasmoid.configuration.buttonColorizeDominant ? frame.dominantColor : plasmoid.configuration.buttonColorizeCustom
+        visible: plasmoid.configuration.buttonColorize ? true : false
+    }
+
     Flow {
         id: indicator
         flow: Flow.LeftToRight
@@ -482,7 +490,7 @@ MouseArea {
                     }
                     if(plasmoid.configuration.indicatorDesaturate && task.state === "minimized") {
                         var colorHSL = hexToHSL(colorEval)
-                        colorCalc = Qt.hsla(colorHSL.h, 0.2, 0.6, 1)
+                        colorCalc = Qt.hsla(colorHSL.h, 0.2, colorHSL.l, 1)
                     }
                     else if(!isFirst && plasmoid.configuration.indicatorStyle ===  0 && task.state !== "minimized") {//Metro specific handling
                         colorCalc = Qt.darker(colorEval, 1.2) 
@@ -702,13 +710,7 @@ MouseArea {
         }
     }
 
-    ColorOverlay {
-        id: colorOverride
-        anchors.fill: frame
-        source: frame
-        color: plasmoid.configuration.buttonColorizeDominant ? frame.dominantColor : plasmoid.configuration.buttonColorizeCustom
-        visible: plasmoid.configuration.buttonColorize ? true : false
-    }
+
 
 
     Loader {
