@@ -1,6 +1,5 @@
 # Notice
-I'm not using Linux enough to actively work on this project. If someone wants to become the maintainer of this project, let me know. Unfortunately between work and everything else I don't have the time to maintain this. I understand there's a very real desire for this to exist and be in a more usable state, but Linux also isn't quite there yet for me to attempt active development either. You can reach out to me at ideas@alexankitty.com  
-Thanks for your understanding.
+Development of this project has more or less resumed. Help is always wanted and appreciated, however.
 
 # FancyTasks
 
