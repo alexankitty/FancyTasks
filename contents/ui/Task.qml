@@ -16,7 +16,6 @@ import org.kde.plasma.private.taskmanager 0.1 as TaskManagerApplet
 
 import QtQuick.Layouts 1.3
 
-
 import QtGraphicalEffects 1.15
 
 import "code/layout.js" as LayoutManager
@@ -357,14 +356,14 @@ MouseArea {
             Component.onCompleted: timer.start()
         }
     }
+
     PlasmaCore.FrameSvgItem {
         id: frame
-        property color dominantColor: imageColors.dominant
         Kirigami.ImageColors {
             id: imageColors
             source: model.decoration
         }
-
+        property color dominantColor: imageColors.dominant
         anchors {
             fill: parent
 
@@ -379,192 +378,127 @@ MouseArea {
         property bool isHovered: task.highlighted && plasmoid.configuration.taskHoverEffect
         property string basePrefix: "normal"
         prefix: isHovered ? TaskTools.taskPrefixHovered(basePrefix) : TaskTools.taskPrefix(basePrefix)
+        visible: plasmoid.configuration.buttonColorize ? false : true
+    }
 
-        property Colorize colorOverride: colorOverride
-        Colorize {
-            id: colorOverride
-            anchors.fill: frame
-            source: parent
-            hue: hexToHSL(plasmoid.configuration.buttonColorizeDominant ? imageColors.dominant : plasmoid.configuration.buttonColorizeCustom).h
-            lightness: frame.isHovered ? hexToHSL(plasmoid.configuration.buttonColorizeDominant ? imageColors.dominant : plasmoid.configuration.buttonColorizeCustom).l - 0.5 : hexToHSL(plasmoid.configuration.buttonColorizeDominant ? imageColors.dominant : plasmoid.configuration.buttonColorizeCustom).l - 0.6
-            saturation: hexToHSL(plasmoid.configuration.buttonColorizeDominant ? imageColors.dominant : plasmoid.configuration.buttonColorizeCustom).s
-            visible: plasmoid.configuration.buttonColorize ? frame.isHovered ? true : false : false
-        }
+    Flow {
+        id: indicator
+        flow: Flow.LeftToRight
+        spacing: PlasmaCore.Units.smallSpacing
+        Repeater {
 
-        Flow {
-            id: indicator
-            flow: Flow.LeftToRight
-            spacing: PlasmaCore.Units.smallSpacing
-            Repeater {
-
-                model: {
-                    
-                    if(!plasmoid.configuration.indicatorsEnabled)
+            model: {
+                
+                if(!plasmoid.configuration.indicatorsEnabled)
+                return 0;
+                if(task.childCount < plasmoid.configuration.indicatorMinLimit)
+                return 0;
+                if(task.parent.toString().includes('QQuickItem'))//Target only the main task items.
+                return 0;
+                /*for(var key in task) {
+                    console.log(key)
+                    console.log(task[key])
+                }*/ //Kept for debugging
+                if(task.state === 'launcher') {
                     return 0;
-                    if(task.childCount < plasmoid.configuration.indicatorMinLimit)
-                    return 0;
-                    if(task.parent.toString().includes('QQuickItem'))//Target only the main task items.
-                    return 0;
-                    /*for(var key in task) {
-                        console.log(key)
-                        console.log(task[key])
-                    }*/ //Kept for debugging
-                    if(task.state === 'launcher') {
-                        return 0;
-                    }
-                    return Math.min((task.childCount === 0) ? 1 : task.childCount, maxStates);
                 }
+                return Math.min((task.childCount === 0) ? 1 : task.childCount, maxStates);
+            }
+            readonly property int maxStates: plasmoid.configuration.indicatorMaxLimit
+
+            Rectangle{
+                id: stateRect
+                Behavior on height { PropertyAnimation {duration: plasmoid.configuration.indicatorsAnimated ? 250 : 0} }
+                Behavior on width { PropertyAnimation {duration: plasmoid.configuration.indicatorsAnimated ? 250 : 0} }
+                Behavior on color { PropertyAnimation {duration: plasmoid.configuration.indicatorsAnimated ? 250 : 0} }
+                Behavior on radius { PropertyAnimation {duration: plasmoid.configuration.indicatorsAnimated ? 250 : 0} }
+                readonly property color decoColor: frame.dominantColor
                 readonly property int maxStates: plasmoid.configuration.indicatorMaxLimit
-
-                Rectangle{
-                    id: stateRect
-                    Behavior on height { PropertyAnimation {duration: plasmoid.configuration.indicatorsAnimated ? 250 : 0} }
-                    Behavior on width { PropertyAnimation {duration: plasmoid.configuration.indicatorsAnimated ? 250 : 0} }
-                    Behavior on color { PropertyAnimation {duration: plasmoid.configuration.indicatorsAnimated ? 250 : 0} }
-                    Behavior on radius { PropertyAnimation {duration: plasmoid.configuration.indicatorsAnimated ? 250 : 0} }
-                    readonly property color decoColor: frame.dominantColor
-                    readonly property int maxStates: plasmoid.configuration.indicatorMaxLimit
-                    readonly property bool isFirst: index === 0
-                    readonly property int adjust: plasmoid.configuration.indicatorShrink
-                    readonly property int indicatorLength: plasmoid.configuration.indicatorLength
-                    readonly property int spacing: PlasmaCore.Units.smallSpacing
-                    readonly property bool isVertical: {
-                        if(plasmoid.formFactor === PlasmaCore.Types.Vertical && !plasmoid.configuration.indicatorOverride)
-                        return true;
-                        if(plasmoid.formFactor == PlasmaCore.Types.Floating && plasmoid.configuration.indicatorLocation === 1 || plasmoid.configuration.indicatorLocation === 2)
-                        return  true;
-                        if(plasmoid.configuration.indicatorLocation === 1 || plasmoid.configuration.indicatorLocation === 2)
-                        return true;
-                        else{
-                            return false;
-                        }
+                readonly property bool isFirst: index === 0
+                readonly property int adjust: plasmoid.configuration.indicatorShrink
+                readonly property int indicatorLength: plasmoid.configuration.indicatorLength
+                readonly property int spacing: PlasmaCore.Units.smallSpacing
+                readonly property bool isVertical: {
+                    if(plasmoid.formFactor === PlasmaCore.Types.Vertical && !plasmoid.configuration.indicatorOverride)
+                    return true;
+                    if(plasmoid.formFactor == PlasmaCore.Types.Floating && plasmoid.configuration.indicatorLocation === 1 || plasmoid.configuration.indicatorLocation === 2)
+                    return  true;
+                    if(plasmoid.configuration.indicatorLocation === 1 || plasmoid.configuration.indicatorLocation === 2)
+                    return true;
+                    else{
+                        return false;
                     }
-                    readonly property var computedVar: {
-                        var height;
-                        var width;
-                        var colorCalc;
-                        var colorEval = '#FFFFFF';
-                        var parentSize = !isVertical ? frame.width : frame.height;
-                        var indicatorComputedSize;
-                        var adjustment = isFirst ? adjust : 0
-                        var parentSpacingAdjust = task.childCount >= 1 && maxStates >= 2 ? (spacing * 2.5) : 0 //Spacing fix for multiple items
-                        if(plasmoid.configuration.indicatorDominantColor){
-                            colorEval = decoColor
-                        }
-                        if(plasmoid.configuration.indicatorAccentColor){
-                            colorEval = PlasmaCore.Theme.highlightColor
-                        }
-                        else if(!plasmoid.configuration.indicatorDominantColor && !plasmoid.configuration.indicatorAccentColor){
-                            colorEval = plasmoid.configuration.indicatorCustomColor
-                        }
-                        if(isFirst){//compute the size
-                            var growFactor = plasmoid.configuration.indicatorGrowFactor / 100
-                            if(plasmoid.configuration.indicatorGrow && task.state === "minimized") {
-                                var mainSize = indicatorLength * growFactor;
-                            }
-                            else{
-                                var mainSize = (parentSize + parentSpacingAdjust);
-                            }
-                            switch(plasmoid.configuration.indicatorStyle){
-                                case 0:
-                                indicatorComputedSize = mainSize - (Math.min(task.childCount, maxStates === 1 ? 0 : maxStates)  * (spacing + indicatorLength)) - adjust
-                                break
-                                case 1:
-                                indicatorComputedSize = mainSize - (Math.min(task.childCount, maxStates === 1 ? 0 : maxStates)  * (spacing + indicatorLength)) - adjust
-                                break
-                                case 2:
-                                indicatorComputedSize = plasmoid.configuration.indicatorGrow && task.state !== "minimized" ? indicatorLength * growFactor : indicatorLength
-                                break
-                                default:
-                                break
-                            }
-                        }
-                        else {
-                            indicatorComputedSize = indicatorLength
-                        }
-                        if(!isVertical){
-                            width = indicatorComputedSize;
-                            height = plasmoid.configuration.indicatorSize
+                }
+                readonly property var computedVar: {
+                    var height;
+                    var width;
+                    var colorCalc;
+                    var colorEval = '#FFFFFF';
+                    var parentSize = !isVertical ? frame.width : frame.height;
+                    var indicatorComputedSize;
+                    var adjustment = isFirst ? adjust : 0
+                    var parentSpacingAdjust = task.childCount >= 1 && maxStates >= 2 ? (spacing * 2.5) : 0 //Spacing fix for multiple items
+                    if(plasmoid.configuration.indicatorDominantColor){
+                        colorEval = decoColor
+                    }
+                    if(plasmoid.configuration.indicatorAccentColor){
+                        colorEval = PlasmaCore.Theme.highlightColor
+                    }
+                    else if(!plasmoid.configuration.indicatorDominantColor && !plasmoid.configuration.indicatorAccentColor){
+                        colorEval = plasmoid.configuration.indicatorCustomColor
+                    }
+                    if(isFirst){//compute the size
+                        var growFactor = plasmoid.configuration.indicatorGrowFactor / 100
+                        if(plasmoid.configuration.indicatorGrow && task.state === "minimized") {
+                            var mainSize = indicatorLength * growFactor;
                         }
                         else{
-                            width = plasmoid.configuration.indicatorSize
-                            height = indicatorComputedSize
+                            var mainSize = (parentSize + parentSpacingAdjust);
                         }
-                        if(plasmoid.configuration.indicatorDesaturate && task.state === "minimized") {
-                            var colorHSL = hexToHSL(colorEval)
-                            colorCalc = Qt.hsla(colorHSL.h, 0.2, 0.6, 1)
+                        switch(plasmoid.configuration.indicatorStyle){
+                            case 0:
+                            indicatorComputedSize = mainSize - (Math.min(task.childCount, maxStates === 1 ? 0 : maxStates)  * (spacing + indicatorLength)) - adjust
+                            break
+                            case 1:
+                            indicatorComputedSize = mainSize - (Math.min(task.childCount, maxStates === 1 ? 0 : maxStates)  * (spacing + indicatorLength)) - adjust
+                            break
+                            case 2:
+                            indicatorComputedSize = plasmoid.configuration.indicatorGrow && task.state !== "minimized" ? indicatorLength * growFactor : indicatorLength
+                            break
+                            default:
+                            break
                         }
-                        else if(!isFirst && plasmoid.configuration.indicatorStyle ===  0 && task.state !== "minimized") {//Metro specific handling
-                            colorCalc = Qt.darker(colorEval, 1.2) 
-                        }
-                        else {
-                            colorCalc = colorEval
-                        }
-                        return {height: height, width: width, colorCalc: colorCalc}
                     }
-                    width: computedVar.width
-                    height: computedVar.height
-                    color: computedVar.colorCalc
-                    radius: (Math.max(width, height) / Math.min(width,  height)) * (plasmoid.configuration.indicatorRadius / 100)
-                }   
-            }
-        }
-
-        PlasmaCore.ToolTipArea {
-            id: toolTipArea
-
-            anchors.fill: parent
-            location: plasmoid.location
-
-            enabled: plasmoid.configuration.showToolTips && !inPopup && !tasks.groupDialog && (tasks.toolTipOpenedByClick === task || tasks.toolTipOpenedByClick === null)
-            interactive: model.IsWindow === true || mainItem.hasPlayer
-
-            // when the mouse leaves the tooltip area, a timer to hide is set for (timeout / 20) ms
-            // see plasma-framework/src/declarativeimports/core/tooltipdialog.cpp function dismiss()
-            // to compensate for that we multiply by 20 here, to get an effective leave timeout of 2s.
-            timeout: (tasks.toolTipOpenedByClick === task) ? 2000*20 : 4000
-
-            mainItem: (model.IsWindow === true) ? openWindowToolTipDelegate : pinnedAppToolTipDelegate
-
-            onToolTipVisibleChanged: {
-                if (!toolTipVisible) {
-                    tasks.toolTipOpenedByClick = null;
+                    else {
+                        indicatorComputedSize = indicatorLength
+                    }
+                    if(!isVertical){
+                        width = indicatorComputedSize;
+                        height = plasmoid.configuration.indicatorSize
+                    }
+                    else{
+                        width = plasmoid.configuration.indicatorSize
+                        height = indicatorComputedSize
+                    }
+                    if(plasmoid.configuration.indicatorDesaturate && task.state === "minimized") {
+                        var colorHSL = hexToHSL(colorEval)
+                        colorCalc = Qt.hsla(colorHSL.h, 0.2, 0.6, 1)
+                    }
+                    else if(!isFirst && plasmoid.configuration.indicatorStyle ===  0 && task.state !== "minimized") {//Metro specific handling
+                        colorCalc = Qt.darker(colorEval, 1.2) 
+                    }
+                    else {
+                        colorCalc = colorEval
+                    }
+                    return {height: height, width: width, colorCalc: colorCalc}
                 }
-            }
-
-            onContainsMouseChanged: if (containsMouse) {
-                updateMainItemBindings();
-            }
-
-            // Will also be called in activateTaskAtIndex(index)
-            function updateMainItemBindings() {
-                if (tasks.toolTipOpenedByClick !== null && tasks.toolTipOpenedByClick !== task) {
-                    return;
-                }
-
-                mainItem.parentTask = task;
-                mainItem.rootIndex = tasksModel.makeModelIndex(itemIndex, -1);
-
-                mainItem.appName = Qt.binding(() => model.AppName);
-                mainItem.pidParent = Qt.binding(() => model.AppPid !== undefined ? model.AppPid : 0);
-                mainItem.windows = Qt.binding(() => model.WinIdList);
-                mainItem.isGroup = Qt.binding(() => model.IsGroupParent === true);
-                mainItem.icon = Qt.binding(() => model.decoration);
-                mainItem.launcherUrl = Qt.binding(() => model.LauncherUrlWithoutIcon);
-                mainItem.isLauncher = Qt.binding(() => model.IsLauncher === true);
-                mainItem.isMinimizedParent = Qt.binding(() => model.IsMinimized === true);
-                mainItem.displayParent = Qt.binding(() => model.display);
-                mainItem.genericName = Qt.binding(() => model.GenericName);
-                mainItem.virtualDesktopParent = Qt.binding(() =>
-                    (model.VirtualDesktops !== undefined && model.VirtualDesktops.length > 0) ? model.VirtualDesktops : [0]);
-                mainItem.isOnAllVirtualDesktopsParent = Qt.binding(() => model.IsOnAllVirtualDesktops === true);
-                mainItem.activitiesParent = Qt.binding(() => model.Activities);
-
-                mainItem.smartLauncherCountVisible = Qt.binding(() => task.smartLauncherItem && task.smartLauncherItem.countVisible);
-                mainItem.smartLauncherCount = Qt.binding(() => mainItem.smartLauncherCountVisible ? task.smartLauncherItem.count : 0);
-            }
+                width: computedVar.width
+                height: computedVar.height
+                color: computedVar.colorCalc
+                radius: (Math.max(width, height) / Math.min(width,  height)) * (plasmoid.configuration.indicatorRadius / 100)
+            }   
         }
-
+        
         states:[
             State {//safety case - use bottom when not override
                 name: "floating-fallback"
@@ -644,8 +578,8 @@ MouseArea {
             State {
                 name: "bottom"
                 when: (plasmoid.configuration.indicatorOverride && plasmoid.configuration.indicatorLocation === 0)
-                  || (!plasmoid.configuration.indicatorOverride && plasmoid.location === PlasmaCore.Types.BottomEdge && !plasmoid.configuration.indicatorReverse)
-                  || (!plasmoid.configuration.indicatorOverride && plasmoid.location === PlasmaCore.Types.TopEdge && plasmoid.configuration.indicatorReverse)
+                    || (!plasmoid.configuration.indicatorOverride && plasmoid.location === PlasmaCore.Types.BottomEdge && !plasmoid.configuration.indicatorReverse)
+                    || (!plasmoid.configuration.indicatorOverride && plasmoid.location === PlasmaCore.Types.TopEdge && plasmoid.configuration.indicatorReverse)
 
                 AnchorChanges {
                     target: indicator
@@ -661,9 +595,9 @@ MouseArea {
             State {
                 name: "left"
                 when: (plasmoid.configuration.indicatorOverride && plasmoid.configuration.indicatorLocation === 1)
-                  || (!plasmoid.configuration.indicatorOverride && plasmoid.location === PlasmaCore.Types.LeftEdge && !plasmoid.configuration.indicatorReverse)
-                  || (!plasmoid.configuration.indicatorOverride && plasmoid.location === PlasmaCore.Types.RightEdge && plasmoid.configuration.indicatorReverse)
- 
+                    || (!plasmoid.configuration.indicatorOverride && plasmoid.location === PlasmaCore.Types.LeftEdge && !plasmoid.configuration.indicatorReverse)
+                    || (!plasmoid.configuration.indicatorOverride && plasmoid.location === PlasmaCore.Types.RightEdge && plasmoid.configuration.indicatorReverse)
+
 
                 AnchorChanges {
                     target: indicator
@@ -679,8 +613,8 @@ MouseArea {
             State {
                 name: "right"
                 when: (plasmoid.configuration.indicatorOverride && plasmoid.configuration.indicatorLocation === 2)
-                  || (!plasmoid.configuration.indicatorOverride && plasmoid.location === PlasmaCore.Types.RightEdge && !plasmoid.configuration.indicatorReverse)
-                  || (!plasmoid.configuration.indicatorOverride && plasmoid.location === PlasmaCore.Types.LeftEdge && plasmoid.configuration.indicatorReverse)
+                    || (!plasmoid.configuration.indicatorOverride && plasmoid.location === PlasmaCore.Types.RightEdge && !plasmoid.configuration.indicatorReverse)
+                    || (!plasmoid.configuration.indicatorOverride && plasmoid.location === PlasmaCore.Types.LeftEdge && plasmoid.configuration.indicatorReverse)
 
                 AnchorChanges {
                     target: indicator
@@ -696,8 +630,8 @@ MouseArea {
             State {
                 name: "top"
                 when: (plasmoid.configuration.indicatorOverride && plasmoid.configuration.indicatorLocation === 3)
-                  || (!plasmoid.configuration.indicatorOverride && plasmoid.location === PlasmaCore.Types.TopEdge && !plasmoid.configuration.indicatorReverse)
-                  || (!plasmoid.configuration.indicatorOverride && plasmoid.location === PlasmaCore.Types.BottomEdge && plasmoid.configuration.indicatorReverse)
+                    || (!plasmoid.configuration.indicatorOverride && plasmoid.location === PlasmaCore.Types.TopEdge && !plasmoid.configuration.indicatorReverse)
+                    || (!plasmoid.configuration.indicatorOverride && plasmoid.location === PlasmaCore.Types.BottomEdge && plasmoid.configuration.indicatorReverse)
 
                 AnchorChanges {
                     target: indicator
@@ -711,9 +645,70 @@ MouseArea {
                 }
             }
         ]
-        
     }
 
+    PlasmaCore.ToolTipArea {
+        id: toolTipArea
+
+        anchors.fill: parent
+        location: plasmoid.location
+
+        enabled: plasmoid.configuration.showToolTips && !inPopup && !tasks.groupDialog && (tasks.toolTipOpenedByClick === task || tasks.toolTipOpenedByClick === null)
+        interactive: model.IsWindow === true || mainItem.hasPlayer
+
+        // when the mouse leaves the tooltip area, a timer to hide is set for (timeout / 20) ms
+        // see plasma-framework/src/declarativeimports/core/tooltipdialog.cpp function dismiss()
+        // to compensate for that we multiply by 20 here, to get an effective leave timeout of 2s.
+        timeout: (tasks.toolTipOpenedByClick === task) ? 2000*20 : 4000
+
+        mainItem: (model.IsWindow === true) ? openWindowToolTipDelegate : pinnedAppToolTipDelegate
+
+        onToolTipVisibleChanged: {
+            if (!toolTipVisible) {
+                tasks.toolTipOpenedByClick = null;
+            }
+        }
+
+        onContainsMouseChanged: if (containsMouse) {
+            updateMainItemBindings();
+        }
+
+        // Will also be called in activateTaskAtIndex(index)
+        function updateMainItemBindings() {
+            if (tasks.toolTipOpenedByClick !== null && tasks.toolTipOpenedByClick !== task) {
+                return;
+            }
+
+            mainItem.parentTask = task;
+            mainItem.rootIndex = tasksModel.makeModelIndex(itemIndex, -1);
+
+            mainItem.appName = Qt.binding(() => model.AppName);
+            mainItem.pidParent = Qt.binding(() => model.AppPid !== undefined ? model.AppPid : 0);
+            mainItem.windows = Qt.binding(() => model.WinIdList);
+            mainItem.isGroup = Qt.binding(() => model.IsGroupParent === true);
+            mainItem.icon = Qt.binding(() => model.decoration);
+            mainItem.launcherUrl = Qt.binding(() => model.LauncherUrlWithoutIcon);
+            mainItem.isLauncher = Qt.binding(() => model.IsLauncher === true);
+            mainItem.isMinimizedParent = Qt.binding(() => model.IsMinimized === true);
+            mainItem.displayParent = Qt.binding(() => model.display);
+            mainItem.genericName = Qt.binding(() => model.GenericName);
+            mainItem.virtualDesktopParent = Qt.binding(() =>
+                (model.VirtualDesktops !== undefined && model.VirtualDesktops.length > 0) ? model.VirtualDesktops : [0]);
+            mainItem.isOnAllVirtualDesktopsParent = Qt.binding(() => model.IsOnAllVirtualDesktops === true);
+            mainItem.activitiesParent = Qt.binding(() => model.Activities);
+
+            mainItem.smartLauncherCountVisible = Qt.binding(() => task.smartLauncherItem && task.smartLauncherItem.countVisible);
+            mainItem.smartLauncherCount = Qt.binding(() => mainItem.smartLauncherCountVisible ? task.smartLauncherItem.count : 0);
+        }
+    }
+
+    ColorOverlay {
+        id: colorOverride
+        anchors.fill: frame
+        source: frame
+        color: plasmoid.configuration.buttonColorizeDominant ? frame.dominantColor : plasmoid.configuration.buttonColorizeCustom
+        visible: plasmoid.configuration.buttonColorize ? true : false
+    }
 
 
     Loader {
@@ -823,6 +818,12 @@ MouseArea {
         width: Math.min(Math.min(iconBox.width, iconBox.height) * 0.4, PlasmaCore.Units.iconSizes.smallMedium)
         height: width
 
+        Binding {
+            target: audioStreamIconLoader.item
+            property: "dominantIconColor"
+            value: frame.dominantColor
+        }
+
         anchors {
             right: frame.right
             top: frame.top
@@ -892,16 +893,16 @@ MouseArea {
         },
         State {
             name: "minimized"
-            when: model.IsMinimized === true
+            when: model.IsMinimized === true && !frame.isHovered
 
             PropertyChanges {
                 target: frame
                 basePrefix: "minimized"
+                visible: plasmoid.configuration.buttonColorize && plasmoid.configuration.buttonColorizeInactive ? false : true
             }
             PropertyChanges { 
                 target: colorOverride
-                visible: plasmoid.configuration.buttonColorize ? frame.isHovered ? true : false : false
-                lightness: hexToHSL(plasmoid.configuration.buttonColorizeDominant ? imageColors.dominant : plasmoid.configuration.buttonColorizeCustom).l - 0.8
+                visible: plasmoid.configuration.buttonColorize && plasmoid.configuration.buttonColorizeInactive ? true : false
             }
         },
         State {
@@ -915,6 +916,30 @@ MouseArea {
             PropertyChanges { 
                 target: colorOverride
                 visible: plasmoid.configuration.buttonColorize ? true : false
+            }
+        },
+        State {
+            name: "inactive"
+            when: model.IsActive === false && !frame.isHovered
+            PropertyChanges { 
+                target: colorOverride
+                visible: plasmoid.configuration.buttonColorize && plasmoid.configuration.buttonColorizeInactive ? true : false
+            }
+            PropertyChanges { 
+                target: frame
+                visible: plasmoid.configuration.buttonColorize && plasmoid.configuration.buttonColorizeInactive ? false : true
+            }
+        },
+        State {
+            name: "hover"
+            when: frame.isHovered
+            PropertyChanges { 
+                target: colorOverride
+                visible: plasmoid.configuration.buttonColorize ? true : false
+            }
+            PropertyChanges { 
+                target: frame
+                visible: plasmoid.configuration.buttonColorize ? false : true
             }
         }
     ]

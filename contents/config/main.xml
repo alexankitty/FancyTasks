@@ -212,6 +212,10 @@
       <label>Colorize task buttons</label>
       <default>false</default>
     </entry>
+    <entry name="buttonColorizeInactive" type="Bool">
+      <label>Colorize inactive task buttons</label>
+      <default>false</default>
+    </entry>
     <entry name="buttonColorizeDominant" type="Bool">
       <label>Make the task button use the icon's dominant color</label>
       <default>true</default>
