@@ -1,0 +1,712 @@
+# Translation of fancytasks in LANGUAGE
+# Copyright (C) 2023
+# This file is distributed under the same license as the fancytasks package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: fancytasks\n"
+"Report-Msgid-Bugs-To: https://userbase.kde.org/Plasma/Tasks\n"
+"POT-Creation-Date: 2023-08-23 17:30-0600\n"
+"PO-Revision-Date: 2023-07-13 22:27+0200\n"
+"Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.3.2\n"
+
+#: ../contents/config/config.qml
+msgid "Appearance"
+msgstr "Vormgeving"
+
+#: ../contents/config/config.qml
+msgid "Behavior"
+msgstr "Gedrag"
+
+#: ../contents/config/config.qml
+msgid "Indicators"
+msgstr "Indicators"
+
+#: ../contents/ui/Badge.qml
+msgctxt "Invalid number of new messages, overlay, keep short"
+msgid "—"
+msgstr "—"
+
+#: ../contents/ui/Badge.qml
+msgctxt "Over 9999 new messages, overlay, keep short"
+msgid "9,999+"
+msgstr "9,999+"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "General:"
+msgstr "Algemeen:"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Show tooltips"
+msgstr "Vensterminiaturen tonen"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Highlight windows when hovering over task tooltips"
+msgstr "Vensters voorvertonen na aanwĳzen van vensterminiaturen"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Mark applications that play audio"
+msgstr "Programma's die audio afspelen markeren"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Use plasma borders"
+msgstr "Plasmakaders gebruiken"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Button Colors:"
+msgstr ""
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Using Plasma Style/Accent"
+msgstr ""
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Using Color Overlay"
+msgstr ""
+
+#: ../contents/ui/ConfigAppearance.qml ../contents/ui/ConfigIndicators.qml
+msgid "Use dominant icon color"
+msgstr "Dominante pictogramkleur gebruiken"
+
+#: ../contents/ui/ConfigAppearance.qml ../contents/ui/ConfigIndicators.qml
+msgid "Custom Color:"
+msgstr "Zelfgekozen kleur:"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Colorize inactive buttons"
+msgstr ""
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Plasma Button Decorations:"
+msgstr "Plasma-knopdecoraties:"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Disable"
+msgstr "Uitschakelen"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Plasma Button Direction:"
+msgstr "Plasma-knoprichting:"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Override"
+msgstr "Afdwingen"
+
+#: ../contents/ui/ConfigAppearance.qml ../contents/ui/ConfigIndicators.qml
+msgid "Be sure to use this when using as a floating widget"
+msgstr "Let op: gebruik dit alleen bĳ gebruik als zwevende widget"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "North"
+msgstr "Bovenaan"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "South"
+msgstr "Onderaan"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "West"
+msgstr "Links"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "East"
+msgstr "Rechts"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Maximum columns:"
+msgstr "Maximaal aantal kolommen:"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Maximum rows:"
+msgstr "Maximaal aantal rĳen:"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Always arrange tasks in rows of as many columns"
+msgstr "Taken altĳd verdelen over zoveel mogelĳk kolommen"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Always arrange tasks in columns of as many rows"
+msgstr "Taken altĳd verdelen over zoveel mogelĳk rĳen"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Maximum button length (px):"
+msgstr "Maximale knopbreedte (in px):"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Space between taskbar items (px):"
+msgstr "Ruimte tussen taakbalkitems (in px):"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Press OK to fix layout issues."
+msgstr "Klik op oké om indelingsproblemen op te lossen."
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Spacing between icons:"
+msgstr "Ruimte tussen pictogrammen:"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgctxt "@item:inlistbox Icon spacing"
+msgid "Small"
+msgstr "Klein"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgctxt "@item:inlistbox Icon spacing"
+msgid "Normal"
+msgstr "Normaal"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgctxt "@item:inlistbox Icon spacing"
+msgid "Large"
+msgstr "Groot"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgctxt "@info:usagetip under a set of radio buttons when Touch Mode is on"
+msgid "Automatically set to Large when in Touch Mode"
+msgstr "Automatisch ingesteld op ‘Groot’ als de aanraakmodus is ingeschakeld"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "Display:"
+msgstr "Tonen:"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "Show task names"
+msgstr "Pictogrammen en namen"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "Show icons only"
+msgstr "Alleen pictogrammen"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "Group:"
+msgstr "Groeperen:"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "Do not group"
+msgstr "Niet groeperen"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "By program name"
+msgstr "Op programmanaam"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "Clicking grouped task:"
+msgstr "Actie na aanklikken van gegroepeerde taak:"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgctxt "Completes the sentence 'Clicking grouped task cycles through tasks' "
+msgid "Cycles through tasks"
+msgstr "Van taak wisselen"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgctxt ""
+"Completes the sentence 'Clicking grouped task shows tooltip window "
+"thumbnails' "
+msgid "Shows tooltip window thumbnails"
+msgstr "Vensterminiaturen tonen"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgctxt ""
+"Completes the sentence 'Clicking grouped task shows windows side by side' "
+msgid "Shows windows side by side"
+msgstr "Vensters naast elkaar tonen"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgctxt "Completes the sentence 'Clicking grouped task shows textual list' "
+msgid "Shows textual list"
+msgstr "Vensterlĳst tonen"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid ""
+"Tooltips are disabled, so the windows will be displayed side by side instead."
+msgstr ""
+"Vensterminiaturen zĳn uitgeschakeld; vensters worden naast elkaar getoond."
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid ""
+"Tooltips are disabled, and the compositor does not support displaying "
+"windows side by side, so a textual list will be displayed instead"
+msgstr ""
+"Vensterminiaturen zĳn uitgeschakeld en de compositor heeft geen "
+"ondersteuning voor het tonen van vensters naast elkaar. Er wordt in plaats "
+"daarvan een lĳst getoond."
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid ""
+"The compositor does not support displaying windows side by side, so a "
+"textual list will be displayed instead."
+msgstr ""
+"De compositor heeft geen ondersteuning voor het tonen van vensters naast "
+"elkaar; er wordt een lĳst getoond."
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "Combine into single button"
+msgstr "Combineren tot één knop"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "Group only when the Task Manager is full"
+msgstr "Alleen groeperen als takenbeheer vol is"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "Sort:"
+msgstr "Rangschikken:"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "Do not sort"
+msgstr "Niet rangschikken"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "Manually"
+msgstr "Handmatig"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "Alphabetically"
+msgstr "Op alfabetische volgorde"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "By desktop"
+msgstr "Op bureaublad"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "By activity"
+msgstr "Op activiteit"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "Keep launchers separate"
+msgstr "Starters gescheiden houden"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgctxt "Part of a sentence: 'Clicking active task minimizes the task'"
+msgid "Clicking active task:"
+msgstr "Actie na aanklikken van actieve taak:"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgctxt "Part of a sentence: 'Clicking active task minimizes the task'"
+msgid "Minimizes the task"
+msgstr "Taak minimaliseren"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "Middle-clicking any task:"
+msgstr "Actie na middelklikken op een taak:"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgctxt "Part of a sentence: 'Middle-clicking any task does nothing'"
+msgid "Does nothing"
+msgstr "Niets doen"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgctxt "Part of a sentence: 'Middle-clicking any task closes window or group'"
+msgid "Closes window or group"
+msgstr "Venster of groep sluiten"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgctxt "Part of a sentence: 'Middle-clicking any task opens a new window'"
+msgid "Opens a new window"
+msgstr "Nieuw venster openen"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgctxt ""
+"Part of a sentence: 'Middle-clicking any task minimizes/restores window or "
+"group'"
+msgid "Minimizes/Restores window or group"
+msgstr "Venster of groep minimaliseren/herstellen"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgctxt "Part of a sentence: 'Middle-clicking any task toggles grouping'"
+msgid "Toggles grouping"
+msgstr "Groeperen in-/uitschakelen"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgctxt ""
+"Part of a sentence: 'Middle-clicking any task brings it to the current "
+"virtual desktop'"
+msgid "Brings it to the current virtual desktop"
+msgstr "Verplaatsen naar huidig virtueel bureaublad"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgctxt "Part of a sentence: 'Mouse wheel cycles through tasks'"
+msgid "Mouse wheel:"
+msgstr "Muiswiel:"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgctxt "Part of a sentence: 'Mouse wheel cycles through tasks'"
+msgid "Cycles through tasks"
+msgstr "Van taak wisselen"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "Skip minimized tasks"
+msgstr "Geminimaliseerde taken overslaan"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "Show only tasks:"
+msgstr "Alleen taken tonen van:"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "From current screen"
+msgstr "Huidig scherm"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "From current desktop"
+msgstr "Huidig bureaublad"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "From current activity"
+msgstr "Huidige activiteit"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "That are minimized"
+msgstr "Geminimaliseerde vensters"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "When panel is hidden:"
+msgstr "Als het paneel verborgen is:"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "Unhide when a window wants attention"
+msgstr "Tonen als een venster om aandacht vraagt"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "New tasks appear:"
+msgstr "Nieuwe taken tonen aan:"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "To the right"
+msgstr "Rechterkant"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "To the left"
+msgstr "Linkerkant"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Indicators:"
+msgstr "Indicators:"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Disabled"
+msgstr "Uitgeschakeld"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Enabled"
+msgstr "Ingeschakeld"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Group Overlay:"
+msgstr "Groepslaag:"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Takes effect on next time plasma groups tasks."
+msgstr "Let op: dit wordt toegepast na de volgende groepering."
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Animate Indicators:"
+msgstr "Indicators voorzien van animaties:"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Indicator Location:"
+msgstr "Indicatorlocatie:"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Reverse shown side"
+msgstr "Aan andere zĳde tonen"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Override location"
+msgstr "Locatie afdwingen"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Bottom"
+msgstr "Onderaan"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Left"
+msgstr "Links"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Right"
+msgstr "Rechts"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Top"
+msgstr "Bovenaan"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Indicator Style:"
+msgstr "Indicatorstijl:"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Metro"
+msgstr "Metro"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Ciliora"
+msgstr "Ciliora"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Dashes"
+msgstr "Streepjes"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Indicator Min Limit:"
+msgstr ""
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Indicator Max Limit:"
+msgstr ""
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Minimize Options:"
+msgstr "Minimaliseeropties:"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Desaturate"
+msgstr "Verzadiging verminderen"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Shrink when minimized"
+msgstr "Verkleinen"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Growth/Shrink factor:"
+msgstr "Vergroot-/Verkleinfactor:"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Indicator size (px):"
+msgstr "Indicatorgrootte (in px):"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Indicator length (px):"
+msgstr "Indicatorbreedte (in px):"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Indicator Radius (%):"
+msgstr "Indicatorstraal (in %):"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Indicator margin (px):"
+msgstr "Indicatormarge (in px):"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Indicator Color:"
+msgstr "Indicatorkleur:"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Use plasma accent color"
+msgstr "Plasma-accentkleur"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "Places"
+msgstr "Locaties"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "Recent Files"
+msgstr "Recente bestanden"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "Actions"
+msgstr "Acties"
+
+#: ../contents/ui/ContextMenu.qml
+msgctxt "Play previous track"
+msgid "Previous Track"
+msgstr "Vorig nummer"
+
+#: ../contents/ui/ContextMenu.qml
+msgctxt "Pause playback"
+msgid "Pause"
+msgstr "Pauzeren"
+
+#: ../contents/ui/ContextMenu.qml
+msgctxt "Start playback"
+msgid "Play"
+msgstr "Afspelen"
+
+#: ../contents/ui/ContextMenu.qml
+msgctxt "Play next track"
+msgid "Next Track"
+msgstr "Volgend nummer"
+
+#: ../contents/ui/ContextMenu.qml
+msgctxt "Stop playback"
+msgid "Stop"
+msgstr "Stoppen"
+
+#: ../contents/ui/ContextMenu.qml
+msgctxt "Quit media player app"
+msgid "Quit"
+msgstr "Afsluiten"
+
+#: ../contents/ui/ContextMenu.qml
+msgctxt "Open or bring to the front window of media player app"
+msgid "Restore"
+msgstr "Herstellen"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "Mute"
+msgstr "Dempen"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "Open New Window"
+msgstr "Nieuw venster openen"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "Move to &Desktop"
+msgstr "Verplaatsen naar bureaubla&d"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "Move &To Current Desktop"
+msgstr "Verplaa&tsen naar huidig bureaublad"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "&All Desktops"
+msgstr "&Alle bureaubladen"
+
+#: ../contents/ui/ContextMenu.qml
+msgctxt "1 = number of desktop, 2 = desktop name"
+msgid "&%1 %2"
+msgstr "&%1 %2"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "&New Desktop"
+msgstr "&Nieuw bureaublad"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "Show in &Activities"
+msgstr "Tonen in &activiteiten"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "Add To Current Activity"
+msgstr "Toevoegen aan huidige activiteit"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "All Activities"
+msgstr "Alle activiteiten"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "Move to %1"
+msgstr "Verplaatsen naar %1"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "&Pin to Task Manager"
+msgstr "Vastma&ken aan takenbeheer"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "On All Activities"
+msgstr "Op alle activiteiten"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "On The Current Activity"
+msgstr "Op de huidige activiteit"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "Unpin from Task Manager"
+msgstr "Losmaken van takenbeheer"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "More"
+msgstr "Meer"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "&Move"
+msgstr "Ver&plaatsen"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "Re&size"
+msgstr "Grootte aanpa&ssen"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "Ma&ximize"
+msgstr "Ma&ximaliseren"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "Mi&nimize"
+msgstr "Mi&nimaliseren"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "Keep &Above Others"
+msgstr "&Altĳd bovenaan"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "Keep &Below Others"
+msgstr "Altĳd on&deraan"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "&Fullscreen"
+msgstr "&Volledig scherm"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "&Shade"
+msgstr "Op&rollen"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "Allow this program to be grouped"
+msgstr "Groeperen toestaan"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "&Close"
+msgstr "&Sluiten"
+
+#: ../contents/ui/Task.qml
+msgid "Activate %1"
+msgstr "%1 activeren"
+
+#: ../contents/ui/ToolTipInstance.qml
+msgctxt "button to unmute app"
+msgid "Unmute %1"
+msgstr "%1 ontdempen"
+
+#: ../contents/ui/ToolTipInstance.qml
+msgctxt "button to mute app"
+msgid "Mute %1"
+msgstr "%1 dempen"
+
+#: ../contents/ui/ToolTipInstance.qml
+msgctxt "Accessibility data on volume slider"
+msgid "Adjust volume for %1"
+msgstr "Volumeniveau van %1 aanpassen"
+
+#: ../contents/ui/ToolTipInstance.qml
+msgctxt "volume percentage"
+msgid "%1%"
+msgstr "%1%"
+
+#: ../contents/ui/ToolTipInstance.qml
+msgctxt "only used for sizing, should be widest possible string"
+msgid "100%"
+msgstr "100%"
+
+#: ../contents/ui/ToolTipInstance.qml
+msgctxt "Comma-separated list of desktops"
+msgid "On %1"
+msgstr "Op %1"
+
+#: ../contents/ui/ToolTipInstance.qml
+msgctxt "Comma-separated list of desktops"
+msgid "Pinned to all desktops"
+msgstr "Vastgemaakt op alle bureaubladen"
+
+#: ../contents/ui/ToolTipInstance.qml
+msgctxt "Which virtual desktop a window is currently on"
+msgid "Available on all activities"
+msgstr "Actief op alle activiteiten"
+
+#: ../contents/ui/ToolTipInstance.qml
+msgctxt "Activities a window is currently on (apart from the current one)"
+msgid "Also available on %1"
+msgstr "Ook actief op %1"
+
+#: ../contents/ui/ToolTipInstance.qml
+msgctxt "Which activities a window is currently on"
+msgid "Available on %1"
+msgstr "Actief op %1"
+
+#~ msgid "Colorize buttons"
+#~ msgstr "Knoppen verkleuren"
+
+#~ msgid "Indicator Limit:"
+#~ msgstr "Indicatorlimiet:"
