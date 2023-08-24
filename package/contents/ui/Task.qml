@@ -74,6 +74,10 @@ MouseArea {
         || (task.contextMenu && task.contextMenu.status === PlasmaComponents.DialogStatus.Open)
         || (!!tasks.groupDialog && tasks.groupDialog.visualParent === task)
 
+    property string tintColor: Kirigami.ColorUtils.brightnessForColor(PlasmaCore.Theme.backgroundColor) ===
+                                Kirigami.ColorUtils.Dark ?
+                                "#ffffff" : "#000000"
+
     Accessible.name: model.display
     Accessible.description: model.display ? i18n("Activate %1", model.display) : ""
     Accessible.role: Accessible.Button
@@ -364,6 +368,7 @@ MouseArea {
             source: model.decoration
         }
         property color dominantColor: imageColors.dominant
+        property color indicatorColor: Kirigami.ColorUtils.tintWithAlpha(frame.dominantColor, tintColor, .38)
         anchors {
             fill: parent
 
@@ -385,7 +390,9 @@ MouseArea {
         id: colorOverride
         anchors.fill: frame
         source: frame
-        color: plasmoid.configuration.buttonColorizeDominant ? frame.dominantColor : plasmoid.configuration.buttonColorizeCustom
+        color: plasmoid.configuration.buttonColorizeDominant ?
+                frame.indicatorColor :
+                plasmoid.configuration.buttonColorizeCustom
         visible: plasmoid.configuration.buttonColorize ? true : false
     }
 
@@ -420,7 +427,7 @@ MouseArea {
                 Behavior on width { PropertyAnimation {duration: plasmoid.configuration.indicatorsAnimated ? 250 : 0} }
                 Behavior on color { PropertyAnimation {duration: plasmoid.configuration.indicatorsAnimated ? 250 : 0} }
                 Behavior on radius { PropertyAnimation {duration: plasmoid.configuration.indicatorsAnimated ? 250 : 0} }
-                readonly property color decoColor: frame.dominantColor
+                readonly property color decoColor: frame.indicatorColor
                 readonly property int maxStates: plasmoid.configuration.indicatorMaxLimit
                 readonly property bool isFirst: index === 0
                 readonly property int adjust: plasmoid.configuration.indicatorShrink
@@ -490,7 +497,7 @@ MouseArea {
                     }
                     if(plasmoid.configuration.indicatorDesaturate && task.state === "minimized") {
                         var colorHSL = hexToHSL(colorEval)
-                        colorCalc = Qt.hsla(colorHSL.h, 0.2, colorHSL.l, 1)
+                        colorCalc = Qt.hsla(colorHSL.h, colorHSL.s*0.5, colorHSL.l*.8, 1)
                     }
                     else if(!isFirst && plasmoid.configuration.indicatorStyle ===  0 && task.state !== "minimized") {//Metro specific handling
                         colorCalc = Qt.darker(colorEval, 1.2) 
@@ -823,7 +830,7 @@ MouseArea {
         Binding {
             target: audioStreamIconLoader.item
             property: "dominantIconColor"
-            value: frame.dominantColor
+            value: frame.indicatorColor
         }
 
         anchors {
