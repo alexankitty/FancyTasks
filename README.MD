@@ -7,7 +7,7 @@ Development of this project has more or less resumed. Help is always wanted and 
 
 ## Installing
 
-If your distro does not include kirigami2, install it now. It's required for the settings, and used for the dominant icon color effect.
+If your distro does not include kirigami2, install it now. It's required for the settings, and used for the dominant icon color effect. Python3 is required for installing.
 
 1. Clone this repository with the following command `git clone https://github.com/alexankitty/FancyTasks`
 2. CD into the folder and run the script `install.sh`, you may need to chmod +x or prepend your shell before the script in order to run it
