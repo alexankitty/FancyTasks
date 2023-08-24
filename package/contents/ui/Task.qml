@@ -74,7 +74,7 @@ MouseArea {
         || (task.contextMenu && task.contextMenu.status === PlasmaComponents.DialogStatus.Open)
         || (!!tasks.groupDialog && tasks.groupDialog.visualParent === task)
 
-    property string tintColor: Kirigami.ColorUtils.brightnessForColor(Kirigami.Theme.backgroundColor) ===
+    property string tintColor: Kirigami.ColorUtils.brightnessForColor(PlasmaCore.Theme.backgroundColor) ===
                                 Kirigami.ColorUtils.Dark ?
                                 "#ffffff" : "#000000"
 
