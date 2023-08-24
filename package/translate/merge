@@ -6,9 +6,9 @@
 # https://invent.kde.org/sysadmin/l10n-scripty/-/blob/master/extract-messages.sh
 
 DIR=`cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd`
-plasmoidName=`python3 jsonParse.py $DIR/../metadata.json KPlugin.Name`
+plasmoidName=`python3 $DIR/jsonParse.py $DIR/../metadata.json KPlugin.Name`
 widgetName="${plasmoidName##*.}" # Strip namespace
-website=`python3 jsonParse.py $DIR/../metadata.json KPlugin.Website`
+website=`python3 $DIR/jsonParse.py $DIR/../metadata.json KPlugin.Website`
 bugAddress="$website"
 packageRoot=".." # Root of translatable sources
 projectName="plasma_applet_${plasmoidName}" # project name

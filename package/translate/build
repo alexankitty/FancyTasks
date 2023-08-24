@@ -6,8 +6,8 @@
 # Eg: contents/locale/fr_CA/LC_MESSAGES/plasma_applet_org.kde.plasma.eventcalendar.mo
 
 DIR=`cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd`
-plasmoidName=`python3 jsonParse.py $DIR/../metadata.json KPlugin.Id`
-website=`python3 jsonParse.py $DIR/../metadata.json KPlugin.Website`
+plasmoidName=`python3 $DIR/jsonParse.py $DIR/../metadata.json KPlugin.Id`
+website=`python3 $DIR/jsonParse.py $DIR/../metadata.json KPlugin.Website`
 bugAddress="$website"
 packageRoot=".." # Root of translatable sources
 projectName="plasma_applet_${plasmoidName}" # project name
