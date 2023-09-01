@@ -7,4 +7,4 @@ cd $SCRIPT_DIR
 kpackagetool5 -u $SCRIPT_DIR/package
 killall plasmashell
 kstart5 plasmashell
-cp ./FancyTasks.png ~/.local/share/icons/hicolor/256x256/apps/FancyTasks.png
+cp ./package/FancyTasks.png ~/.local/share/icons/hicolor/256x256/apps/FancyTasks.png
