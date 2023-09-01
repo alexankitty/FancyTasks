@@ -14,6 +14,7 @@ Kirigami.FormLayout {
 
     property alias cfg_indicatorsEnabled: indicatorsEnabled.currentIndex
     property alias cfg_groupIconEnabled: groupIconEnabled.currentIndex
+    property alias cfg_disableInactiveIndicators: disableInactiveIndicators.checked
     property alias cfg_indicatorsAnimated: indicatorsAnimated.checked
     property alias cfg_indicatorLocation: indicatorLocation.currentIndex
     property alias cfg_indicatorReverse: indicatorReverse.checked
@@ -36,6 +37,13 @@ Kirigami.FormLayout {
         id: indicatorsEnabled
         Kirigami.FormData.label: i18n("Indicators:")
         model: [i18n("Disabled"), i18n("Enabled")]
+    }
+
+    CheckBox {
+        enabled: indicatorsEnabled.currentIndex
+        visible: indicatorsEnabled.currentIndex
+        id: disableInactiveIndicators
+        text: i18n("Disable for Inactive Windows")
     }
 
     ComboBox {

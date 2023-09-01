@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Tasks\n"
 "Report-Msgid-Bugs-To: https://github.com/alexankitty/FancyTasks\n"
-"POT-Creation-Date: 2023-08-23 17:38-0600\n"
+"POT-Creation-Date: 2023-08-31 22:24-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -88,7 +88,11 @@ msgid "Plasma Button Decorations:"
 msgstr ""
 
 #: ../contents/ui/ConfigAppearance.qml
-msgid "Disable"
+msgid "Disable All"
+msgstr ""
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Disable Inactive Buttons"
 msgstr ""
 
 #: ../contents/ui/ConfigAppearance.qml
@@ -375,6 +379,10 @@ msgstr ""
 
 #: ../contents/ui/ConfigIndicators.qml
 msgid "Enabled"
+msgstr ""
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Disable for Inactive Windows"
 msgstr ""
 
 #: ../contents/ui/ConfigIndicators.qml

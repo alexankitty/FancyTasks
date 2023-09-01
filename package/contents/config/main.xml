@@ -136,6 +136,10 @@
       <label>Enable taskbar indicator effect. 0 = Off, 1 = On</label>
       <default>0</default>
     </entry>
+    <entry name="disableInactiveIndicators" type="Bool">
+      <label>Disables the indicator for inactive windows</label>
+      <default>false</default>
+    </entry>
     <entry name="indicatorsAnimated" type="Bool">
       <label>Enable animating indicators</label>
       <default>true</default>
@@ -224,8 +228,12 @@
       <label>Set a custom color for the task button.</label>
       <default>#FFFFFF</default>
     </entry>
-        <entry name="disableButtonSvg" type="Bool">
+    <entry name="disableButtonSvg" type="Bool">
       <label>Disables the decoration SVG</label>
+      <default>false</default>
+    </entry>
+    <entry name="disableButtonInactiveSvg" type="Bool">
+      <label>Disables the decoration SVG for inactive windows</label>
       <default>false</default>
     </entry>
     <entry name="overridePlasmaButtonDirection" type="Bool">

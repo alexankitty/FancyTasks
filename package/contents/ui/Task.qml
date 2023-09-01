@@ -829,17 +829,39 @@ MouseArea {
             }
         },
         State {
-            name: "minimized"
-            when: model.IsMinimized === true && !frame.isHovered
+            name: "minimizedNormal"
+            when: model.IsMinimized === true && !frame.isHovered && !plasmoid.configuration.disableButtonInactiveSvg
 
             PropertyChanges {
                 target: frame
                 basePrefix: "minimized"
-                visible: plasmoid.configuration.buttonColorize && plasmoid.configuration.buttonColorizeInactive ? false : true
+                visible: (plasmoid.configuration.buttonColorize && plasmoid.configuration.buttonColorizeInactive) ? false : true
             }
             PropertyChanges { 
                 target: colorOverride
-                visible: plasmoid.configuration.buttonColorize && plasmoid.configuration.buttonColorizeInactive ? true : false
+                visible: (plasmoid.configuration.buttonColorize && plasmoid.configuration.buttonColorizeInactive) ? true : false
+            }
+            PropertyChanges{
+                target: indicator
+                visible: plasmoid.configuration.disableInactiveIndicators ? false : true
+            }
+        },
+        State {
+            name: "minimizedNodecoration"
+            when: (model.IsMinimized === true && !frame.isHovered) && plasmoid.configuration.disableButtonInactiveSvg
+
+            PropertyChanges {
+                target: frame
+                basePrefix: "minimized"
+                visible: plasmoid.configuration.disableButtonInactiveSvg ? false : true
+            }
+            PropertyChanges { 
+                target: colorOverride
+                visible: plasmoid.configuration.disableButtonInactiveSvg ? false : true
+            }
+            PropertyChanges{
+                target: indicator
+                visible: plasmoid.configuration.disableInactiveIndicators ? false : true
             }
         },
         State {
@@ -854,10 +876,14 @@ MouseArea {
                 target: colorOverride
                 visible: plasmoid.configuration.buttonColorize ? true : false
             }
+            PropertyChanges{
+                target: indicator
+                visible: plasmoid.configuration.indicatorsEnabled ? true : false
+            }
         },
         State {
-            name: "inactive"
-            when: model.IsActive === false && !frame.isHovered
+            name: "inactiveNormal"
+            when: model.IsActive === false && !frame.isHovered && !plasmoid.configuration.disableButtonInactiveSvg
             PropertyChanges { 
                 target: colorOverride
                 visible: plasmoid.configuration.buttonColorize && plasmoid.configuration.buttonColorizeInactive ? true : false
@@ -865,6 +891,26 @@ MouseArea {
             PropertyChanges { 
                 target: frame
                 visible: plasmoid.configuration.buttonColorize && plasmoid.configuration.buttonColorizeInactive ? false : true
+            }
+            PropertyChanges{
+                target: indicator
+                visible: plasmoid.configuration.disableInactiveIndicators ? false : true
+            }
+        },
+        State {
+            name: "inactiveNoDecoration"
+            when: (model.IsActive === false && !frame.isHovered) && plasmoid.configuration.disableButtonInactiveSvg
+            PropertyChanges { 
+                target: colorOverride
+                visible: plasmoid.configuration.disableButtonInactiveSvg ? false : true
+            }
+            PropertyChanges { 
+                target: frame
+                visible: plasmoid.configuration.disableButtonInactiveSvg ? false : true
+            }
+            PropertyChanges{
+                target: indicator
+                visible: plasmoid.configuration.disableInactiveIndicators ? false : true
             }
         },
         State {
