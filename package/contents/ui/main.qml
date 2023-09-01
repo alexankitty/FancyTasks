@@ -19,18 +19,6 @@ import "code/tools.js" as TaskTools
 
 
 MouseArea {
-
-    Item {
-        Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
-        Plasmoid.compactRepresentation: Item{
-            Image {
-                id: fancyTasksIcon
-                source: "FancyTasks.png"
-                anchors.fill: parent
-            }
-        }
-    }
-
     id: tasks
 
     anchors.fill: parent
