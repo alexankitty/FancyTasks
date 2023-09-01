@@ -80,7 +80,8 @@
         "Description[x-test]": "xxClassic taskbar-style window switcher displaying icons and textxx",
         "Description[zh_CN]": "经典风格的同时显示图标和文本的任务栏式窗口切换器",
         "EnabledByDefault": true,
-        "Icon": "FancyTasks",
+        "Icon": "FancyTasks.png",
+        
         "Id": "alexankitty.fancytasks",
         "License": "GPL-2.0+",
         "Name": "Fancy Tasks",
