@@ -436,10 +436,8 @@ MouseArea {
                 readonly property bool isVertical: {
                     if(plasmoid.formFactor === PlasmaCore.Types.Vertical && !plasmoid.configuration.indicatorOverride)
                     return true;
-                    if(plasmoid.formFactor == PlasmaCore.Types.Floating && plasmoid.configuration.indicatorLocation === 1 || plasmoid.configuration.indicatorLocation === 2)
+                    if(plasmoid.formFactor == PlasmaCore.Types.Floating && plasmoid.configuration.indicatorOverride && (plasmoid.configuration.indicatorLocation === 1 || plasmoid.configuration.indicatorLocation === 2))
                     return  true;
-                    if(plasmoid.configuration.indicatorLocation === 1 || plasmoid.configuration.indicatorLocation === 2)
-                    return true;
                     else{
                         return false;
                     }
@@ -515,86 +513,13 @@ MouseArea {
         }
         
         states:[
-            State {//safety case - use bottom when not override
-                name: "floating-fallback"
-                when: (plasmoid.location === PlasmaCore.Types.Floating && !plasmoid.configuration.indicatorOverride)
-
-                AnchorChanges {
-                    target: indicator
-                    anchors{ top:undefined; bottom:parent.bottom; left:undefined; right:undefined;
-                        horizontalCenter:parent.horizontalCenter; verticalCenter:undefined}
-                }
-                PropertyChanges {
-                    target: indicator
-                    width: undefined
-                    height: plasmoid.configuration.indicatorSize
-                }
-            },
-            State {
-                name: "floating-bottom"
-                when: (plasmoid.location === PlasmaCore.Types.Floating && plasmoid.configuration.indicatorLocation === 0)
-
-                AnchorChanges {
-                    target: indicator
-                    anchors{ top:undefined; bottom:parent.bottom; left:undefined; right:undefined;
-                        horizontalCenter:parent.horizontalCenter; verticalCenter:undefined}
-                }
-                PropertyChanges {
-                    target: indicator
-                    width: undefined
-                    height: plasmoid.configuration.indicatorSize
-                }
-            },
-            State {
-                name: "floating-left"
-                when: (plasmoid.location === PlasmaCore.Types.Floating && plasmoid.configuration.indicatorLocation === 0)
-
-                AnchorChanges {
-                    target: indicator
-                    anchors{ top:undefined; bottom:undefined; left:parent.left; right:undefined;
-                        horizontalCenter:undefined; verticalCenter:parent.verticalCenter}
-                }
-                PropertyChanges {
-                    target: indicator
-                    height: undefined
-                    width: plasmoid.configuration.indicatorSize
-                }
-            },
-            State {
-                name: "floating-right"
-                when: (plasmoid.location === PlasmaCore.Types.Floating && plasmoid.configuration.indicatorLocation === 0)
-
-                AnchorChanges {
-                    target: indicator
-                    anchors{ top:undefined; bottom:undefined; left:undefined; right:parent.right;
-                        horizontalCenter:undefined; verticalCenter:parent.verticalCenter}
-                }
-                PropertyChanges {
-                    target: indicator
-                    height: undefined
-                    width: plasmoid.configuration.indicatorSize
-                }
-            },
-            State {
-                name: "floating-top"
-                when: (plasmoid.location === PlasmaCore.Types.Floating && plasmoid.configuration.indicatorLocation === 0)
-
-                AnchorChanges {
-                    target: indicator
-                    anchors{ top:parent.top; bottom:undefined; left:undefined; right:undefined;
-                        horizontalCenter:parent.horizontalCenter; verticalCenter:undefined}
-                }
-                PropertyChanges {
-                    target: indicator
-                    width: undefined
-                    height: plasmoid.configuration.indicatorSize
-                }
-            },
             State {
                 name: "bottom"
                 when: (plasmoid.configuration.indicatorOverride && plasmoid.configuration.indicatorLocation === 0)
                     || (!plasmoid.configuration.indicatorOverride && plasmoid.location === PlasmaCore.Types.BottomEdge && !plasmoid.configuration.indicatorReverse)
                     || (!plasmoid.configuration.indicatorOverride && plasmoid.location === PlasmaCore.Types.TopEdge && plasmoid.configuration.indicatorReverse)
+                    || (plasmoid.location === PlasmaCore.Types.Floating && plasmoid.configuration.indicatorLocation === 0)
+                    || (plasmoid.location === PlasmaCore.Types.Floating && !plasmoid.configuration.indicatorOverride && !plasmoid.configuration.indicatorReverse)
 
                 AnchorChanges {
                     target: indicator
@@ -612,7 +537,7 @@ MouseArea {
                 when: (plasmoid.configuration.indicatorOverride && plasmoid.configuration.indicatorLocation === 1)
                     || (!plasmoid.configuration.indicatorOverride && plasmoid.location === PlasmaCore.Types.LeftEdge && !plasmoid.configuration.indicatorReverse)
                     || (!plasmoid.configuration.indicatorOverride && plasmoid.location === PlasmaCore.Types.RightEdge && plasmoid.configuration.indicatorReverse)
-
+                    || (plasmoid.location === PlasmaCore.Types.Floating && plasmoid.configuration.indicatorLocation === 1 && plasmoid.configuration.indicatorOverride)
 
                 AnchorChanges {
                     target: indicator
@@ -630,6 +555,7 @@ MouseArea {
                 when: (plasmoid.configuration.indicatorOverride && plasmoid.configuration.indicatorLocation === 2)
                     || (!plasmoid.configuration.indicatorOverride && plasmoid.location === PlasmaCore.Types.RightEdge && !plasmoid.configuration.indicatorReverse)
                     || (!plasmoid.configuration.indicatorOverride && plasmoid.location === PlasmaCore.Types.LeftEdge && plasmoid.configuration.indicatorReverse)
+                    || (plasmoid.location === PlasmaCore.Types.Floating && plasmoid.configuration.indicatorLocation === 2 && plasmoid.configuration.indicatorOverride)
 
                 AnchorChanges {
                     target: indicator
@@ -647,6 +573,8 @@ MouseArea {
                 when: (plasmoid.configuration.indicatorOverride && plasmoid.configuration.indicatorLocation === 3)
                     || (!plasmoid.configuration.indicatorOverride && plasmoid.location === PlasmaCore.Types.TopEdge && !plasmoid.configuration.indicatorReverse)
                     || (!plasmoid.configuration.indicatorOverride && plasmoid.location === PlasmaCore.Types.BottomEdge && plasmoid.configuration.indicatorReverse)
+                    || (plasmoid.location === PlasmaCore.Types.Floating && plasmoid.configuration.indicatorLocation === 3 && plasmoid.configuration.indicatorOverride)
+                    || (plasmoid.location === PlasmaCore.Types.Floating && plasmoid.configuration.indicatorReverse && !plasmoid.configuration.indicatorOverride)
 
                 AnchorChanges {
                     target: indicator
