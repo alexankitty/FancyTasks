@@ -493,11 +493,11 @@ MouseArea {
                         width = plasmoid.configuration.indicatorSize
                         height = indicatorComputedSize
                     }
-                    if(plasmoid.configuration.indicatorDesaturate && task.state === "minimized") {
+                    if(plasmoid.configuration.indicatorDesaturate && task.state === "minimizedNormal") {
                         var colorHSL = hexToHSL(colorEval)
                         colorCalc = Qt.hsla(colorHSL.h, colorHSL.s*0.5, colorHSL.l*.8, 1)
                     }
-                    else if(!isFirst && plasmoid.configuration.indicatorStyle ===  0 && task.state !== "minimized") {//Metro specific handling
+                    else if(!isFirst && plasmoid.configuration.indicatorStyle ===  0 && task.state !== "minimizedNormal") {//Metro specific handling
                         colorCalc = Qt.darker(colorEval, 1.2) 
                     }
                     else {
