@@ -24,7 +24,7 @@ MouseArea {
         Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
         Plasmoid.compactRepresentation: Item{
             Image {
-                id: myIcon
+                id: fancyTasksIcon
                 source: "FancyTasks.png"
                 anchors.fill: parent
             }
