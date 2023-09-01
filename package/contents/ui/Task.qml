@@ -924,6 +924,10 @@ MouseArea {
                 target: frame
                 visible: plasmoid.configuration.buttonColorize ? false : true
             }
+            PropertyChanges{
+                target: indicator
+                visible: plasmoid.configuration.disableInactiveIndicators ? false : true
+            }
         }
     ]
 
