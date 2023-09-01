@@ -17,7 +17,20 @@ import org.kde.plasma.private.taskmanager 0.1 as TaskManagerApplet
 import "code/layout.js" as LayoutManager
 import "code/tools.js" as TaskTools
 
+
 MouseArea {
+
+    Item {
+        Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
+        Plasmoid.compactRepresentation: Item{
+            Image {
+                id: myIcon
+                source: "FancyTasks.png"
+                anchors.fill: parent
+            }
+        }
+    }
+
     id: tasks
 
     anchors.fill: parent

@@ -4,6 +4,7 @@ cd $SCRIPT_DIR/package/translate/
 sh ./merge
 sh ./build
 cd $SCRIPT_DIR
+rm -rf $SCRIPT_DIR/release
 mkdir $SCRIPT_DIR/build
 mkdir $SCRIPT_DIR/release
 cp -r $SCRIPT_DIR/package/contents $SCRIPT_DIR/build
