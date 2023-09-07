@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fancytasks\n"
 "Report-Msgid-Bugs-To: https://github.com/alexankitty/FancyTasks\n"
-"POT-Creation-Date: 2023-09-06 23:19-0600\n"
+"POT-Creation-Date: 2023-09-07 01:07-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -416,6 +416,10 @@ msgstr "切换显示位置"
 #: ../contents/ui/ConfigIndicators.qml
 msgid "Override location"
 msgstr "覆盖位置"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Indicator Edge Offset (px):"
+msgstr ""
 
 #: ../contents/ui/ConfigIndicators.qml
 msgid "Bottom"

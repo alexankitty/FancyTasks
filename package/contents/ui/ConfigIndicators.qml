@@ -21,6 +21,7 @@ Kirigami.FormLayout {
     property alias cfg_indicatorLocation: indicatorLocation.currentIndex
     property alias cfg_indicatorReverse: indicatorReverse.checked
     property alias cfg_indicatorOverride: indicatorOverride.checked
+    property alias cfg_indicatorEdgeOffset: indicatorEdgeOffset.value
     property alias cfg_indicatorStyle: indicatorStyle.currentIndex
     property alias cfg_indicatorMinLimit: indicatorMinLimit.value
     property alias cfg_indicatorMaxLimit: indicatorMaxLimit.value
@@ -106,6 +107,15 @@ Kirigami.FormLayout {
         text: i18n("Be sure to use this when using as a floating widget")
         font: Kirigami.Theme.smallFont
     }
+
+    SpinBox {
+        enabled: indicatorsEnabled.currentIndex
+        id: indicatorEdgeOffset
+        Kirigami.FormData.label: i18n("Indicator Edge Offset (px):")
+        from: 0
+        to: 999
+    }
+
 
     ComboBox {
         enabled: indicatorsEnabled.currentIndex

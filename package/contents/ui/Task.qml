@@ -400,6 +400,7 @@ MouseArea {
         id: indicator
         flow: Flow.LeftToRight
         spacing: PlasmaCore.Units.smallSpacing
+        clip: true
         Repeater {
 
             model: {
@@ -544,11 +545,15 @@ MouseArea {
                     target: indicator
                     anchors{ top:undefined; bottom:parent.bottom; left:undefined; right:undefined;
                         horizontalCenter:parent.horizontalCenter; verticalCenter:undefined}
-                }
+                    }
                 PropertyChanges {
                     target: indicator
                     width: undefined
                     height: plasmoid.configuration.indicatorSize
+                    anchors.topMargin: 0;
+                    anchors.bottomMargin: plasmoid.configuration.indicatorEdgeOffset;
+                    anchors.leftMargin: 0;
+                    anchors.rightMargin: 0;
                 }
             },
             State {
@@ -567,6 +572,10 @@ MouseArea {
                     target: indicator
                     height: undefined
                     width: plasmoid.configuration.indicatorSize
+                    anchors.topMargin: 0;
+                    anchors.bottomMargin: 0;
+                    anchors.leftMargin: plasmoid.configuration.indicatorEdgeOffset;
+                    anchors.rightMargin: 0;
                 }
             },
             State {
@@ -585,6 +594,10 @@ MouseArea {
                     target: indicator
                     height: undefined
                     width: plasmoid.configuration.indicatorSize
+                    anchors.topMargin: 0;
+                    anchors.bottomMargin: 0;
+                    anchors.leftMargin: 0;
+                    anchors.rightMargin: plasmoid.configuration.indicatorEdgeOffset;
                 }
             },
             State {
@@ -604,6 +617,10 @@ MouseArea {
                     target: indicator
                     width: undefined
                     height: plasmoid.configuration.indicatorSize
+                    anchors.topMargin: plasmoid.configuration.indicatorEdgeOffset;
+                    anchors.bottomMargin: 0;
+                    anchors.leftMargin: 0;
+                    anchors.rightMargin: 0;
                 }
             }
         ]
