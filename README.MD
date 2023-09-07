@@ -1,6 +1,9 @@
 # Notice
 Development of this project has more or less resumed. Help is always wanted and appreciated, however.
 
+# Contact
+You can reach me at ideas@alexankitty.com, by putting an issue on this github, by commenting on the [AUR package](https://aur.archlinux.org/packages/fancytasks), by commenting on the kde-look page, or on the [FancyTasks KDE Reddit community](https://www.reddit.com/r/fancytaskskde/).
+
 # FancyTasks
 
 ![Fancy Tasks Icon](https://github.com/alexankitty/FancyTasks/blob/main/package/FancyTasks.png?raw=true)
