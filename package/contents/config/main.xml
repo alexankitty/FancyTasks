@@ -67,7 +67,7 @@
       <default>2</default>
       <min>1</min>
     </entry>
-    <entry name="maxLength" type="Int">
+    <entry name="maxButtonLength" type="Int">
       <label>The max legnth of a task button.</label>
       <default>200</default>
       <min>1</min>

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fancytasks\n"
 "Report-Msgid-Bugs-To: https://github.com/alexankitty/FancyTasks\n"
-"POT-Creation-Date: 2023-09-06 18:36-0600\n"
+"POT-Creation-Date: 2023-09-06 21:59-0600\n"
 "PO-Revision-Date: 2023-07-13 22:27+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -150,10 +150,6 @@ msgstr "Maximale knopbreedte (in px):"
 #: ../contents/ui/ConfigAppearance.qml
 msgid "Space between taskbar items (px):"
 msgstr "Ruimte tussen taakbalkitems (in px):"
-
-#: ../contents/ui/ConfigAppearance.qml
-msgid "Press OK to fix layout issues."
-msgstr "Klik op oké om indelingsproblemen op te lossen."
 
 #: ../contents/ui/ConfigAppearance.qml
 msgid "Spacing between icons:"
@@ -716,6 +712,9 @@ msgstr "Ook actief op %1"
 msgctxt "Which activities a window is currently on"
 msgid "Available on %1"
 msgstr "Actief op %1"
+
+#~ msgid "Press OK to fix layout issues."
+#~ msgstr "Klik op oké om indelingsproblemen op te lossen."
 
 #~ msgid "Disable"
 #~ msgstr "Uitschakelen"

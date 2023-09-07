@@ -24,4 +24,11 @@ ConfigModel {
         icon: "preferences-desktop-navigation"
         source: "ConfigIndicators.qml"
     }
+    property int test: {
+        for(var key in parent){
+            console.log(key)
+            console.log(parent[key])
+        }
+        return 0
+    }
 }

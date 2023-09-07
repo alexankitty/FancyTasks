@@ -106,7 +106,7 @@ function preferredMinWidth() {
     if (!tasks.vertical && !tasks.iconsOnly) {
       width +=
           (PlasmaCore.Units.smallSpacing * 2) +
-          (plasmoid.configuration.maxLength /*PlasmaCore.Theme.mSize(PlasmaCore.Theme.defaultFont).width * 12*/);
+          (plasmoid.configuration.maxButtonLength /*PlasmaCore.Theme.mSize(PlasmaCore.Theme.defaultFont).width * 12*/);
     }
 
     return width;

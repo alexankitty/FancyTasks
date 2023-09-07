@@ -28,7 +28,7 @@ Kirigami.FormLayout {
     property alias cfg_iconScale: iconScale.value
     property alias cfg_maxStripes: maxStripes.value
     property bool cfg_forceStripes
-    property alias cfg_maxLength: maxLength.value
+    property alias cfg_maxButtonLength: maxButtonLength.value
     property int cfg_iconSpacing: 0
 
     property alias cfg_useBorders: useBorders.checked
@@ -190,7 +190,7 @@ Kirigami.FormLayout {
 
     SpinBox {
         visible: !plasmoidVertical && !iconOnly
-        id: maxLength
+        id: maxButtonLength
         Kirigami.FormData.label: i18n("Maximum button length (px):")
         from: 1
         to: 9999
@@ -201,10 +201,6 @@ Kirigami.FormLayout {
         Kirigami.FormData.label: i18n("Space between taskbar items (px):")
         from: 0
         to: 99
-    }
-    Label {
-        text: i18n("Press OK to fix layout issues.")
-        font: Kirigami.Theme.smallFont
     }
 
     Item {

@@ -322,6 +322,16 @@ MouseArea {
         }
     }
 
+    Timer {
+        id: updateTimer
+        interval: 500
+        repeat: false
+        onTriggered: {
+            TaskTools.publishIconGeometries(taskList.children);
+            taskList.layout();
+        }
+    }
+
     Binding {
         target: plasmoid
         property: "status"
@@ -353,9 +363,11 @@ MouseArea {
         function onGroupingLauncherUrlBlacklistChanged() {
             tasksModel.groupingLauncherUrlBlacklist = plasmoid.configuration.groupingLauncherUrlBlacklist;
         }
-        function onIconSpacingChanged() {
-            taskList.layout();
+        function onValueChanged() {
+            // On a timer to make sure all of the layout changes are applied.
+            updateTimer.start()
         }
+
     }
 
     TaskManagerApplet.DragHelper {

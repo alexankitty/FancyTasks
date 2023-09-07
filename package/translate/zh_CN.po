@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fancytasks\n"
 "Report-Msgid-Bugs-To: https://github.com/alexankitty/FancyTasks\n"
-"POT-Creation-Date: 2023-09-06 18:36-0600\n"
+"POT-Creation-Date: 2023-09-06 21:59-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -150,10 +150,6 @@ msgstr "最大按钮长度（px）"
 #: ../contents/ui/ConfigAppearance.qml
 msgid "Space between taskbar items (px):"
 msgstr "任务栏组件间距（px）"
-
-#: ../contents/ui/ConfigAppearance.qml
-msgid "Press OK to fix layout issues."
-msgstr "按OK键来修复布局问题。"
 
 #: ../contents/ui/ConfigAppearance.qml
 msgid "Spacing between icons:"
@@ -698,6 +694,9 @@ msgstr "也在 %1 上可用"
 msgctxt "Which activities a window is currently on"
 msgid "Available on %1"
 msgstr "在 %1 上可用"
+
+#~ msgid "Press OK to fix layout issues."
+#~ msgstr "按OK键来修复布局问题。"
 
 #~ msgid "Disable"
 #~ msgstr "关闭"
