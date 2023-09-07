@@ -83,7 +83,7 @@ Kirigami.FormLayout {
         from: 0
         to: 300
         stepSize: 25.0
-        Kirigami.FormData.label: i18n("Icon Scale ") + iconScale.valueAt(iconScale.position) + "%"
+        Kirigami.FormData.label: i18n("Icon Scale") " " + iconScale.valueAt(iconScale.position) + "%"
     }
 
     Item {
