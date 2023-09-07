@@ -701,9 +701,9 @@ MouseArea {
             topMargin: adjustMargin(false, parent.height, taskFrame.margins.top)
         }
 
-        width: height
+        width: height * (plasmoid.configuration.iconScale / 100)
         height: (parent.height - adjustMargin(false, parent.height, taskFrame.margins.top)
-            - adjustMargin(false, parent.height, taskFrame.margins.bottom))
+            - adjustMargin(false, parent.height, taskFrame.margins.bottom)) 
 
         function adjustMargin(vert, size, margin) {
             if (!size) {
@@ -723,14 +723,20 @@ MouseArea {
 
         PlasmaCore.IconItem {
             id: icon
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.horizontalCenter: parent.horizontalCenter
             active: task.highlighted
+            anchors.centerIn: parent
             enabled: true
             usesPlasmaTheme: false
+            roundToIconSize: false
 
-            height: parent.height * (plasmoid.configuration.iconScale / 100)
-            width: parent.width * (plasmoid.configuration.iconScale / 100)
+            //height: parent.height * (plasmoid.configuration.iconScale / 100)
+            //width: height
+            width: parent.width
+            height: width
+            property int dummy: {
+                console.log(parent.height * plasmoid.configuration.iconScale / 100)
+                return 0
+            }
 
             source: model.decoration
         }
