@@ -25,6 +25,7 @@ Item {
         clip: true
 
         PlasmaCore.FrameSvgItem {
+            enabledBorders: plasmoid.configuration.useBorders ? 1 | 2 | 4 | 8 : 0
             id: progressFrame
             width: background.width
             height: background.height
