@@ -729,8 +729,6 @@ MouseArea {
             usesPlasmaTheme: false
             roundToIconSize: false
 
-            //height: parent.height * (plasmoid.configuration.iconScale / 100)
-            //width: height
             width: parent.width
             height: width
             property int dummy: {
@@ -745,8 +743,9 @@ MouseArea {
             // QTBUG anchors.fill in conjunction with the Loader doesn't reliably work on creation:
             // have a window with a badge, move it from one screen to another, the new task item on the
             // other screen will now have a glitched out badge mask.
-            width: parent.width
-            height: parent.height
+            width: icon.paintedWidth
+            height: icon.paintedHeight
+            anchors.centerIn: icon
             asynchronous: true
             source: "TaskBadgeOverlay.qml"
             active: height >= PlasmaCore.Units.iconSizes.small
