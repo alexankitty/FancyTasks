@@ -731,10 +731,6 @@ MouseArea {
 
             width: parent.width
             height: width
-            property int dummy: {
-                console.log(parent.height * plasmoid.configuration.iconScale / 100)
-                return 0
-            }
 
             source: model.decoration
         }
