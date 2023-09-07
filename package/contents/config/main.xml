@@ -140,6 +140,14 @@
       <label>Enable taskbar indicator effect. 0 = Off, 1 = On</label>
       <default>0</default>
     </entry>
+    <entry name="indicatorProgress" type="Bool">
+      <label>Display progress on indicator instead of button</label>
+      <default>false</default>
+    </entry>
+    <entry name="indicatorProgressColor" type="String">
+      <label>Set a custom color for the task button.</label>
+      <default>#00FF00</default>
+    </entry>
     <entry name="disableInactiveIndicators" type="Bool">
       <label>Disables the indicator for inactive windows</label>
       <default>false</default>

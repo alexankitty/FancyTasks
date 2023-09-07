@@ -438,6 +438,8 @@ MouseArea {
                     return true;
                     if(plasmoid.formFactor == PlasmaCore.Types.Floating && plasmoid.configuration.indicatorOverride && (plasmoid.configuration.indicatorLocation === 1 || plasmoid.configuration.indicatorLocation === 2))
                     return  true;
+                    if(plasmoid.configuration.indicatorOverride && (plasmoid.configuration.indicatorLocation === 1 || plasmoid.configuration.indicatorLocation === 2))
+                    return  true;
                     else{
                         return false;
                     }
@@ -509,6 +511,23 @@ MouseArea {
                 height: computedVar.height
                 color: computedVar.colorCalc
                 radius: (Math.max(width, height) / Math.min(width,  height)) * (plasmoid.configuration.indicatorRadius / 100)
+                Rectangle{
+                    Behavior on height { PropertyAnimation {duration: plasmoid.configuration.indicatorsAnimated ? 250 : 0} }
+                    Behavior on width { PropertyAnimation {duration: plasmoid.configuration.indicatorsAnimated ? 250 : 0} }
+                    Behavior on color { PropertyAnimation {duration: plasmoid.configuration.indicatorsAnimated ? 250 : 0} }
+                    Behavior on radius { PropertyAnimation {duration: plasmoid.configuration.indicatorsAnimated ? 250 : 0} }
+                    visible:  task.isWindow && task.smartLauncherItem && task.smartLauncherItem.progressVisible && isFirst && plasmoid.configuration.indicatorProgress
+                    anchors{
+                        top: isVertical ? undefined : parent.top
+                        bottom: isVertical ? undefined : parent.bottom
+                        left: isVertical ? parent.left : undefined
+                        right: isVertical ? parent.right : undefined
+                    }
+                    width: isVertical ? parent.width : parent.width * (task.smartLauncherItem.progress / 100)
+                    height: isVertical ? parent.height * (task.smartLauncherItem.progress / 100) : parent.height
+                    radius: parent.radius
+                    color: plasmoid.configuration.indicatorProgressColor
+                }
             }   
         }
         
@@ -652,7 +671,7 @@ MouseArea {
         anchors.fill: frame
         asynchronous: true
         source: "TaskProgressOverlay.qml"
-        active: task.isWindow && task.smartLauncherItem && task.smartLauncherItem.progressVisible
+        active: task.isWindow && task.smartLauncherItem && task.smartLauncherItem.progressVisible && !plasmoid.configuration.indicatorProgress
     }
 
     Item {

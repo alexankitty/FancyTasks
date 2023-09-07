@@ -14,6 +14,8 @@ Kirigami.FormLayout {
 
     property alias cfg_indicatorsEnabled: indicatorsEnabled.currentIndex
     property alias cfg_groupIconEnabled: groupIconEnabled.currentIndex
+    property alias cfg_indicatorProgress: indicatorProgress.checked 
+    property alias cfg_indicatorProgressColor: indicatorProgressColor.color
     property alias cfg_disableInactiveIndicators: disableInactiveIndicators.checked
     property alias cfg_indicatorsAnimated: indicatorsAnimated.checked
     property alias cfg_indicatorLocation: indicatorLocation.currentIndex
@@ -37,6 +39,21 @@ Kirigami.FormLayout {
         id: indicatorsEnabled
         Kirigami.FormData.label: i18n("Indicators:")
         model: [i18n("Disabled"), i18n("Enabled")]
+    }
+
+    CheckBox {
+        id: indicatorProgress
+        enabled: indicatorsEnabled.currentIndex
+        visible: indicatorsEnabled.currentIndex
+        text: i18n("Display Progress on Indicator")
+    }
+
+    KQControls.ColorButton {
+        enabled: indicatorsEnabled.currentIndex
+        visible: indicatorProgress.checked
+        id: indicatorProgressColor
+        Kirigami.FormData.label: i18n("Progress Color:")
+        showAlphaChannel: true
     }
 
     CheckBox {

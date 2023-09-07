@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fancytasks\n"
 "Report-Msgid-Bugs-To: https://github.com/alexankitty/FancyTasks\n"
-"POT-Creation-Date: 2023-09-06 21:59-0600\n"
+"POT-Creation-Date: 2023-09-06 23:19-0600\n"
 "PO-Revision-Date: 2023-07-13 22:27+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -398,6 +398,14 @@ msgstr "Uitgeschakeld"
 #: ../contents/ui/ConfigIndicators.qml
 msgid "Enabled"
 msgstr "Ingeschakeld"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Display Progress on Indicator"
+msgstr ""
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Progress Color:"
+msgstr ""
 
 #: ../contents/ui/ConfigIndicators.qml
 msgid "Disable for Inactive Windows"
