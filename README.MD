@@ -3,7 +3,7 @@ Development of this project has more or less resumed. Help is always wanted and 
 
 # FancyTasks
 
-![Fancy Tasks Icon](https://github.com/alexankitty/Plasma-Customizable-TaskManager/blob/main/FancyTasks.png?raw=true)
+![Fancy Tasks Icon](https://github.com/alexankitty/FancyTasks/blob/main/package/FancyTasks.png?raw=true)
 
 ## Installing
 
