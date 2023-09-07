@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Tasks\n"
 "Report-Msgid-Bugs-To: https://github.com/alexankitty/FancyTasks\n"
-"POT-Creation-Date: 2023-08-31 22:24-0600\n"
+"POT-Creation-Date: 2023-09-06 17:56-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,6 +57,10 @@ msgstr ""
 
 #: ../contents/ui/ConfigAppearance.qml
 msgid "Use plasma borders"
+msgstr ""
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Icon Scale "
 msgstr ""
 
 #: ../contents/ui/ConfigAppearance.qml

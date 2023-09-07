@@ -25,6 +25,7 @@ Kirigami.FormLayout {
     property alias cfg_showToolTips: showToolTips.checked
     property alias cfg_highlightWindows: highlightWindows.checked
     property bool cfg_indicateAudioStreams
+    property alias cfg_iconScale: iconScale.value
     property alias cfg_maxStripes: maxStripes.value
     property bool cfg_forceStripes
     property alias cfg_maxLength: maxLength.value
@@ -71,6 +72,18 @@ Kirigami.FormLayout {
     CheckBox {
         id: useBorders
         text: i18n("Use plasma borders")
+    }
+
+    Item {
+        Kirigami.FormData.isSection: true
+    }
+
+    Slider {
+        id: iconScale
+        from: 0
+        to: 300
+        stepSize: 25.0
+        Kirigami.FormData.label: i18n("Icon Scale ") + iconScale.valueAt(iconScale.position) + "%"
     }
 
     Item {
@@ -149,7 +162,6 @@ Kirigami.FormLayout {
     ComboBox {
         id: plasmaButtonDirection
         visible: overridePlasmaButtonDirection.checked
-        //Kirigami.FormData.label: i18n("Indicator Location:")
         model: [
             i18n("North"),
             i18n("South"),

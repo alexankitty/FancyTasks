@@ -687,12 +687,14 @@ MouseArea {
 
         PlasmaCore.IconItem {
             id: icon
-
-            anchors.fill: parent
-
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.horizontalCenter: parent.horizontalCenter
             active: task.highlighted
             enabled: true
             usesPlasmaTheme: false
+
+            height: parent.height * (plasmoid.configuration.iconScale / 100)
+            width: parent.width * (plasmoid.configuration.iconScale / 100)
 
             source: model.decoration
         }
