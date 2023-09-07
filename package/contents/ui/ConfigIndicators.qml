@@ -103,6 +103,18 @@ Kirigami.FormLayout {
         text: i18n("Override location")
     }
 
+    ComboBox {
+        enabled: indicatorsEnabled.currentIndex
+        visible: indicatorOverride.checked
+        id: indicatorLocation
+        model: [
+            i18n("Bottom"),
+            i18n("Left"),
+            i18n("Right"),
+            i18n("Top")
+        ]
+    }
+
     Label {
         text: i18n("Be sure to use this when using as a floating widget")
         font: Kirigami.Theme.smallFont
@@ -114,19 +126,6 @@ Kirigami.FormLayout {
         Kirigami.FormData.label: i18n("Indicator Edge Offset (px):")
         from: 0
         to: 999
-    }
-
-
-    ComboBox {
-        enabled: indicatorsEnabled.currentIndex
-        visible: indicatorOverride.checked
-        id: indicatorLocation
-        model: [
-            i18n("Bottom"),
-            i18n("Left"),
-            i18n("Right"),
-            i18n("Top")
-        ]
     }
 
     Item {
