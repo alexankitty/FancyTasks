@@ -440,6 +440,7 @@ MouseArea {
 
         anchors {
             left: parent.left
+            leftMargin: plasmoid.configuration.reverseMode && !vertical ? (LayoutManager.logicalTaskCount() + tasksModel.logicalLauncherCount) * plasmoid.configuration.taskSpacingSize : 0
             top: parent.top
         }
 
@@ -463,6 +464,7 @@ MouseArea {
             taskList.width = LayoutManager.layoutWidth();
             taskList.height = LayoutManager.layoutHeight();
             LayoutManager.layout(taskRepeater);
+            LayoutManager
         }
 
         Timer {
@@ -478,7 +480,10 @@ MouseArea {
             id: taskRepeater
 
             delegate: Task {}
-            onItemAdded: taskList.layout()
+            onItemAdded: {
+                taskList.layout()
+
+            }
             onItemRemoved: {
                 if (tasks.containsMouse && index != taskRepeater.count &&
                     item.winIdList && item.winIdList.length > 0 &&
