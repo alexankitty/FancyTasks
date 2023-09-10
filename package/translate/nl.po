@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fancytasks\n"
 "Report-Msgid-Bugs-To: https://github.com/alexankitty/FancyTasks\n"
-"POT-Creation-Date: 2023-09-07 01:07-0600\n"
+"POT-Creation-Date: 2023-09-07 17:17-0600\n"
 "PO-Revision-Date: 2023-07-13 22:27+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -38,6 +38,50 @@ msgstr "—"
 msgctxt "Over 9999 new messages, overlay, keep short"
 msgid "9,999+"
 msgstr "9,999+"
+
+#: ../contents/ui/ColorSlider.qml
+msgid "Hue"
+msgstr ""
+
+#: ../contents/ui/ColorSlider.qml
+msgid "Saturation"
+msgstr ""
+
+#: ../contents/ui/ColorSlider.qml
+msgid "Lightness"
+msgstr ""
+
+#: ../contents/ui/ColorSlider.qml
+msgid "Alpha"
+msgstr ""
+
+#: ../contents/ui/ColorSlider.qml
+msgid "Automatic Color Pick Method:"
+msgstr ""
+
+#: ../contents/ui/ColorSlider.qml
+msgid "Average"
+msgstr ""
+
+#: ../contents/ui/ColorSlider.qml
+msgid "Background"
+msgstr ""
+
+#: ../contents/ui/ColorSlider.qml
+msgid "Closest to Black"
+msgstr ""
+
+#: ../contents/ui/ColorSlider.qml
+msgid "Closest to White"
+msgstr ""
+
+#: ../contents/ui/ColorSlider.qml
+msgid "Dominant"
+msgstr ""
+
+#: ../contents/ui/ColorSlider.qml
+msgid "Dominant Contrast"
+msgstr ""
 
 #: ../contents/ui/ConfigAppearance.qml
 msgid "General:"
@@ -436,10 +480,6 @@ msgid "Override location"
 msgstr "Locatie afdwingen"
 
 #: ../contents/ui/ConfigIndicators.qml
-msgid "Indicator Edge Offset (px):"
-msgstr ""
-
-#: ../contents/ui/ConfigIndicators.qml
 msgid "Bottom"
 msgstr "Onderaan"
 
@@ -454,6 +494,10 @@ msgstr "Rechts"
 #: ../contents/ui/ConfigIndicators.qml
 msgid "Top"
 msgstr "Bovenaan"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Indicator Edge Offset (px):"
+msgstr ""
 
 #: ../contents/ui/ConfigIndicators.qml
 msgid "Indicator Style:"

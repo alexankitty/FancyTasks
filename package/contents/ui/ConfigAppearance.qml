@@ -13,7 +13,6 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.plasmoid 2.0
 import org.kde.kquickcontrols 2.0 as KQControls
 
-
 Kirigami.FormLayout {
     anchors.left: parent.left
     anchors.right: parent.right
@@ -88,6 +87,10 @@ Kirigami.FormLayout {
 
     Item {
         Kirigami.FormData.isSection: true
+    }
+
+    ColorSlider{
+        id: test
     }
 
     ButtonGroup {
