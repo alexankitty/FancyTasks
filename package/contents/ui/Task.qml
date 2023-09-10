@@ -398,6 +398,7 @@ MouseArea {
 
     Flow {
         id: indicator
+        visible: plasmoid.configuration.indicatorsEnabled ? true : false
         flow: Flow.LeftToRight
         spacing: PlasmaCore.Units.smallSpacing
         clip: true
