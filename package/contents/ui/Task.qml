@@ -410,12 +410,8 @@ MouseArea {
                 return 0;
                 if(task.childCount < plasmoid.configuration.indicatorMinLimit)
                 return 0;
-                if(task.parent.toString().includes('QQuickItem'))//Target only the main task items.
+                if(task.isSubTask)//Target only the main task items.
                 return 0;
-                /*for(var key in task) {
-                    console.log(key)
-                    console.log(task[key])
-                }*/ //Kept for debugging
                 if(task.state === 'launcher') {
                     return 0;
                 }

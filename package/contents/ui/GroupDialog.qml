@@ -88,6 +88,7 @@ PlasmaCore.Dialog {
                         width: groupListView.width
                         visible: true
                         inPopup: true
+                        readonly property bool isSubTask: true
 
                         ListView.onRemove: Qt.callLater(groupFilter.updateMaxTextWidth)
                         Connections {
