@@ -524,8 +524,14 @@ MouseArea {
                         left: isVertical ? parent.left : undefined
                         right: isVertical ? parent.right : undefined
                     }
-                    width: isVertical ? parent.width : parent.width * (task.smartLauncherItem.progress / 100)
-                    height: isVertical ? parent.height * (task.smartLauncherItem.progress / 100) : parent.height
+                    readonly property var progress: {
+                        if(task.smartLauncherItem && task.smartLauncherItem.progressVisible && task.smartLauncherItem.progress){
+                            return task.smartLauncherItem.progress / 100
+                        }
+                        return 0
+                    }
+                    width: isVertical ? parent.width : parent.width * progress
+                    height: isVertical ? parent.height * progress : parent.height
                     radius: parent.radius
                     color: plasmoid.configuration.indicatorProgressColor
                 }
