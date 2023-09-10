@@ -479,7 +479,9 @@ MouseArea {
         Repeater {
             id: taskRepeater
 
-            delegate: Task {}
+            delegate: Task {
+                readonly property bool isSubTask: false
+            }
             onItemAdded: {
                 taskList.layout()
 
