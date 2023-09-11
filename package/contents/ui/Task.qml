@@ -704,7 +704,7 @@ MouseArea {
             topMargin: adjustMargin(false, parent.height, taskFrame.margins.top)
         }
 
-        width: height * (plasmoid.configuration.iconScale / 100)
+        width: iconsOnly ? height : height * (plasmoid.configuration.iconScale / 100)
         height: (parent.height - adjustMargin(false, parent.height, taskFrame.margins.top)
             - adjustMargin(false, parent.height, taskFrame.margins.bottom))
         function adjustMargin(vert, size, margin) {
@@ -731,7 +731,7 @@ MouseArea {
             usesPlasmaTheme: false
             roundToIconSize: false
 
-            width: iconsOnly ? parent.width * (plasmoid.configuration.iconScale / 100) : parent.width
+            width: iconsOnly ? parent.height * (plasmoid.configuration.iconScale / 100) : parent.width
             height: width
 
             source: model.decoration
