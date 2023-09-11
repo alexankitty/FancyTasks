@@ -377,7 +377,10 @@ MouseArea {
             leftMargin: ((inPopup || tasks.vertical) && taskList.columns > 1) ? LayoutManager.iconMargin : 0
             rightMargin: ((inPopup || tasks.vertical) && taskList.columns > 1) ? LayoutManager.iconMargin : 0           
         }
-
+        property int test: {
+            console.log(task.state);
+            return 0
+        }
         imagePath: plasmoid.configuration.disableButtonSvg ? "" : "widgets/tasks"
         enabledBorders: plasmoid.configuration.useBorders ? 1 | 2 | 4 | 8 : 0
         property bool isHovered: task.highlighted && plasmoid.configuration.taskHoverEffect
@@ -863,10 +866,11 @@ MouseArea {
             PropertyChanges {
                 target: frame
                 basePrefix: "attention"
+                visible: (plasmoid.configuration.buttonColorize && !frame.isHovered) || !plasmoid.configuration.buttonColorize
             }
             PropertyChanges { 
                 target: colorOverride
-                visible: plasmoid.configuration.buttonColorize ? frame.isHovered ? true : false : false
+                visible: (plasmoid.configuration.buttonColorize && frame.isHovered)
             }
         },
         State {
