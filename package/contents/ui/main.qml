@@ -216,7 +216,7 @@ MouseArea {
     PlasmaCore.DataSource {
         id: mpris2Source
         engine: "mpris2"
-        interval: 100 // update ondemand
+        interval: 500 // update every half second
         connectedSources: sources
         onSourceAdded: {
             connectSource(source);
