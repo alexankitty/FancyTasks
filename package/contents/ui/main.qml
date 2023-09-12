@@ -216,6 +216,7 @@ MouseArea {
     PlasmaCore.DataSource {
         id: mpris2Source
         engine: "mpris2"
+        interval: 100 // update ondemand
         connectedSources: sources
         onSourceAdded: {
             connectSource(source);
@@ -243,12 +244,18 @@ MouseArea {
                 if (source === "@multiplex") {
                     continue;
                 }
-
+                
                 var sourceData = data[source];
-                if (!sourceData) {
+                if (!sourceData && mpris2Source.data[source]['Metadata']["xesam:artist"] != "" ) {
                     continue;
                 }
-
+                if(desktopFileName === "firefox"){//Hack to replace firefox with the plasma browser integration if it's availalbe.
+                    for (var x = 0, length = connectedSources.length; x < length; ++x) {
+                        if(connectedSources[x] === "plasma-browser-integration"){
+                            return connectedSources[x]
+                        }
+                    }
+                }
                 /**
                  * If the task is in a group, we can't use desktopFileName to match the task.
                  * but in case PID match fails, use the match result from desktopFileName.

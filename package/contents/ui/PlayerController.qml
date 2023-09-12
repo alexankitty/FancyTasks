@@ -21,8 +21,9 @@ RowLayout {
     readonly property string mprisSourceName: mpris2Source.sourceNameForLauncherUrl(launcherUrl, appPid)
     readonly property var playerData: mprisSourceName != "" ? mpris2Source.data[mprisSourceName] : 0
     readonly property bool playing: !!(playerData.PlaybackStatus === "Playing")
+    property string parentTitle
 
-    readonly property var currentMetadata: !!playerData ? playerData.Metadata : ""
+    property var currentMetadata: !!playerData ? playerData.Metadata : ""
 
     readonly property string track: {
         const xesamTitle = currentMetadata["xesam:title"]
@@ -68,6 +69,7 @@ RowLayout {
                 wrapMode: Text.NoWrap
                 elide: parent.state ? Text.ElideNone : Text.ElideRight
                 text: track
+                visible: !parentTitle.includes(track)
                 textFormat: Text.PlainText
             }
         }
