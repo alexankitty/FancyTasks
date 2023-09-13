@@ -245,7 +245,7 @@ function taskPrefix(prefix) {
             case 1:
                 effectivePrefix = "north-" + prefix;
                 break;
-            case 4:
+            case 3:
                 effectivePrefix = "east-" + prefix;
                 break;
             default:

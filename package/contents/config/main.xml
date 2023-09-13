@@ -136,7 +136,7 @@
       <label> Spacing between icons in task manager. Margin is multiplied by this value.</label>
       <default>1</default>
     </entry>
-    <entry name="indicatorsEnabled" type="Enum">
+    <entry name="indicatorsEnabled" type="Int">
       <label>Enable taskbar indicator effect. 0 = Off, 1 = On</label>
       <default>0</default>
     </entry>
@@ -156,15 +156,15 @@
       <label>Enable animating indicators</label>
       <default>true</default>
     </entry>
-    <entry name="groupIconEnabled" type="Enum">
+    <entry name="groupIconEnabled" type="Int">
       <label>Enable taskbar group overlay effect. 0 = Off, 1 = On</label>
       <default>1</default>
     </entry>
-    <entry name="indicatorLocation" type="Enum">
+    <entry name="indicatorLocation" type="Int">
       <label>Sets where the indicator should be. 0 = Top, 1 = Bottom, 2 = Left, 3 = Right</label>
       <default>0</default>
     </entry>
-    <entry name="indicatorStyle" type="Enum">
+    <entry name="indicatorStyle" type="Int">
       <label>Select between 1 of 3 indicator styles. 0 = Metro, 1 = Cliora, 2 = Dots</label>
       <default>0</default>
     </entry>
@@ -253,29 +253,13 @@
       <default>false</default>
     </entry>
     <entry name="overridePlasmaButtonDirection" type="Bool">
-      <label>Override the plasma button direction</label>
+      <label>Override the plasma button direction </label>
       <default>false</default>
     </entry>
-    <entry name="plasmaButtonDirection" type="Enum">
-      <label>Which direction should the plasma button be forced to render</label>
-      <choices>
-            <choice name="North"/>
-            <choice name="South"/>
-            <choice name="West"/>
-            <choice name="East"/>
-      </choices>
+    <entry name="plasmaButtonDirection" type="Int">
+      <label>Direction of the plasma button SVG: 0 = North, 1 = West, 2 = South, 3 = East</label>
       <default>0</default>
-    </entry>
-    <entry name="Indicator Location" type="Enum">
-      <label>Which direction should the plasma button be forced to render</label>
-      <choices>
-            <choice name="Bottom"/>
-            <choice name="Left"/>
-            <choice name="Right"/>
-            <choice name="Top"/>
-      </choices>
-      <default>0</default>
-    </entry>
+    </entry> 
     <entry name="indicatorReverse" type="Bool">
       <label>Reerse the side the indicator is shown on.</label>
       <default>false</default>
