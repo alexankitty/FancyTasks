@@ -704,13 +704,14 @@ MouseArea {
         }
 
         width: {
+            let isWider = parent.width > height
             if(iconsOnly){
-                return height;
+                return isWider ? height : parent.width;
             }
             if(!iconsOnly && plasmoid.configuration.iconSizeOverride){
                 return plasmoid.configuration.iconSizePx
             }
-            return height * (plasmoid.configuration.iconScale / 100)
+            return isWider ? parent.height * (plasmoid.configuration.iconScale / 100) : height * (plasmoid.configuration.iconScale / 100)
         }
         height: (parent.height - adjustMargin(false, parent.height, taskFrame.margins.top)
             - adjustMargin(false, parent.height, taskFrame.margins.bottom))
@@ -726,6 +727,7 @@ MouseArea {
             }
 
             return margin;
+
         }
 
         //width: inPopup ? PlasmaCore.Units.iconSizes.small : Math.min(height, parent.width - LayoutManager.horizontalMargins())
@@ -739,13 +741,14 @@ MouseArea {
             roundToIconSize: false
 
             width: {
+                let isWider = parent.width > parent.height
                 if(iconsOnly && !plasmoid.configuration.iconSizeOverride){
-                    return parent.height * (plasmoid.configuration.iconScale / 100)
+                    return isWider ? parent.height * (plasmoid.configuration.iconScale / 100) : parent.width * (plasmoid.configuration.iconScale / 100)
                 }
                 if(iconsOnly && plasmoid.configuration.iconSizeOverride){
                     return plasmoid.configuration.iconSizePx
                 }
-                return parent.width
+                return isWider ? parent.height : parent.width
             }
             height: width
 
