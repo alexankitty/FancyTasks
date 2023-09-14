@@ -24,6 +24,7 @@ If your distro does not include kirigami2, install it now. It's required for the
 ## Updating
 
 1. Run the update.sh script, it will automatically stop and restart plasma to make sure the new changes get loaded in.
+2. It is recommended you log out and back into your session. plasmashell seems to exhibit some odd behaviors if the plasmoid is updated without clearing the session.
 
 ## Features
 
