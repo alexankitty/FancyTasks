@@ -995,7 +995,7 @@ MouseArea {
         if (!inPopup && model.IsWindow === true) {
             if(plasmoid.configuration.groupIconEnabled){
                 var component = Qt.createComponent("GroupExpanderOverlay.qml");
-                component.createObject(task);
+                component.createObject(iconBox);
             }
         }
 

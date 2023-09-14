@@ -12,11 +12,11 @@ PlasmaCore.SvgItem {
     id: arrow
 
     anchors {
-        bottom: arrow.parent.bottom
+        bottom: icon.bottom
         horizontalCenter: iconBox.horizontalCenter
     }
 
-    visible: parent.m.IsGroupParent === true
+    visible: task.m.IsGroupParent === true
 
     states: [
         State {
@@ -24,7 +24,7 @@ PlasmaCore.SvgItem {
             when: plasmoid.location === PlasmaCore.Types.TopEdge
             AnchorChanges {
                 target: arrow
-                anchors.top: arrow.parent.top
+                anchors.top: icon.top
                 anchors.left: undefined
                 anchors.right: undefined
                 anchors.bottom: undefined
@@ -38,7 +38,7 @@ PlasmaCore.SvgItem {
             AnchorChanges {
                 target: arrow
                 anchors.top: undefined
-                anchors.left: arrow.parent.left
+                anchors.left: icon.left
                 anchors.right: undefined
                 anchors.bottom: undefined
                 anchors.horizontalCenter: undefined
@@ -52,7 +52,7 @@ PlasmaCore.SvgItem {
                 target: arrow
                 anchors.top: undefined
                 anchors.left: undefined
-                anchors.right: arrow.parent.right
+                anchors.right: icon.right
                 anchors.bottom: undefined
                 anchors.horizontalCenter: undefined
                 anchors.verticalCenter: iconBox.verticalCenter
