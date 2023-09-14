@@ -703,7 +703,15 @@ MouseArea {
             topMargin: adjustMargin(false, parent.height, taskFrame.margins.top)
         }
 
-        width: iconsOnly ? height : height * (plasmoid.configuration.iconScale / 100)
+        width: {
+            if(iconsOnly){
+                return height;
+            }
+            if(!iconsOnly && plasmoid.configuration.iconSizeOverride){
+                return plasmoid.configuration.iconSizePx
+            }
+            return height * (plasmoid.configuration.iconScale / 100)
+        }
         height: (parent.height - adjustMargin(false, parent.height, taskFrame.margins.top)
             - adjustMargin(false, parent.height, taskFrame.margins.bottom))
         function adjustMargin(vert, size, margin) {
@@ -730,7 +738,15 @@ MouseArea {
             usesPlasmaTheme: false
             roundToIconSize: false
 
-            width: iconsOnly ? parent.height * (plasmoid.configuration.iconScale / 100) : parent.width
+            width: {
+                if(iconsOnly && !plasmoid.configuration.iconSizeOverride){
+                    return parent.height * (plasmoid.configuration.iconScale / 100)
+                }
+                if(iconsOnly && plasmoid.configuration.iconSizeOverride){
+                    return plasmoid.configuration.iconSizePx
+                }
+                return parent.width
+            }
             height: width
 
             source: model.decoration

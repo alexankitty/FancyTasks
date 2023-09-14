@@ -26,6 +26,8 @@ Kirigami.FormLayout {
     property alias cfg_highlightWindows: highlightWindows.checked
     property bool cfg_indicateAudioStreams
     property alias cfg_iconScale: iconScale.value
+    property alias cfg_iconSizePx: iconSizePx.value
+    property alias cfg_iconSizeOverride: iconSizeOverride.checked
     property alias cfg_maxStripes: maxStripes.value
     property bool cfg_forceStripes
     property alias cfg_maxButtonLength: maxButtonLength.value
@@ -84,6 +86,20 @@ Kirigami.FormLayout {
         to: 300
         stepSize: 25.0
         Kirigami.FormData.label: i18n("Icon Scale") + " " + iconScale.valueAt(iconScale.position) + "%"
+        visible: !iconSizeOverride.checked
+    }
+
+    SpinBox {
+        id: iconSizePx
+        Kirigami.FormData.label: i18n("Icon Size (px):")
+        from: 0
+        to: 999
+        visible: iconSizeOverride.checked
+    }
+
+    CheckBox {
+        id: iconSizeOverride
+        text: i18n("Set icon size instead of scaling")
     }
 
     Item {
