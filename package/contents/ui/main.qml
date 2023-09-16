@@ -244,18 +244,17 @@ MouseArea {
                 if (source === "@multiplex") {
                     continue;
                 }
-                
-                var sourceData = data[source];
-                if (!sourceData && mpris2Source.data[source]['Metadata']["xesam:artist"] != "" ) {
-                    continue;
-                }
-                if(desktopFileName === "firefox"){//Hack to replace firefox with the plasma browser integration if it's availalbe.
+                var sourceData
+                var browserIntegrationArray = ["firefox", "chrome", "chromium", "vivaldi", "brave", "opera", "microsoft-edge"]
+                if(browserIntegrationArray.findIndex(browser => browser.includes(desktopFileName)) !== -1){//Hack to replace any plasma browser integration compatible browser
                     for (var x = 0, length = connectedSources.length; x < length; ++x) {
-                        if(connectedSources[x] === "plasma-browser-integration"){
+                        sourceData = data[connectedSources[x]]
+                        if(connectedSources[x] === "plasma-browser-integration" && sourceData.DesktopEntry == desktopFileName){ //Sanity check to ensure we can replace it
                             return connectedSources[x]
                         }
                     }
                 }
+                sourceData = data[source];
                 /**
                  * If the task is in a group, we can't use desktopFileName to match the task.
                  * but in case PID match fails, use the match result from desktopFileName.
