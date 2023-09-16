@@ -249,7 +249,12 @@ MouseArea {
                 if(browserIntegrationArray.findIndex(browser => browser.includes(desktopFileName)) !== -1){//Hack to replace any plasma browser integration compatible browser
                     for (var x = 0, length = connectedSources.length; x < length; ++x) {
                         sourceData = data[connectedSources[x]]
-                        if(connectedSources[x] === "plasma-browser-integration" && sourceData.DesktopEntry == desktopFileName){ //Sanity check to ensure we can replace it
+                        if(connectedSources[x] === "plasma-browser-integration" && (sourceData.Metadata["kde:pid"] == pid || sourceData.DesktopEntry == desktopFileName)){ //Sanity check to ensure we can replace it
+                            for(var key in sourceData){
+                                console.log(`${key}: ${sourceData[key]}`)
+                            }
+                            for (var key in sourceData.Metadata)
+                            console.log(`${key}: ${sourceData.Metadata[key]}`)
                             return connectedSources[x]
                         }
                     }
