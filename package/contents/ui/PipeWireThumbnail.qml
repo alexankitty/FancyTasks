@@ -18,7 +18,7 @@ Item {
         id: pipeWireSourceItem
 
         enabled: false // Must be set in pipewiresourceitem.cpp so opacity animation can work
-        visible: waylandItem.nodeId > 0
+        visible: true
         nodeId: waylandItem.nodeId
 
         anchors.fill: parent

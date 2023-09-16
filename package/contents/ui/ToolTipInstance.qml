@@ -39,12 +39,7 @@ ColumnLayout {
         } else {
             text = displayParent;
         }
-
-        // KWin appends increasing integers in between pointy brackets to otherwise equal window titles.
-        // In this case save <#number> as counter and delete it at the end of text.
-        text = `${(text.match(/.*(?=\s*(—|-))/) || [""])[0]}${(text.match(/<\d+>/) || [""]).pop()}`;
-
-        // In case the window title had only redundant information (i.e. appName), text is now empty.
+        // KWin only appends brackets to names that are duplicated, therefore this feature has been removed as unnecessary and probably self-obsoleted, and only worked in reverse.
         // Add a hyphen to indicate that and avoid empty space.
         if (text === "") {
             text = "—";
@@ -72,28 +67,29 @@ ColumnLayout {
         // all textlabels
         ColumnLayout {
             spacing: 0
-            // app name
+            
+
+            // window title
             PlasmaExtras.Heading {
-                id: appNameHeading
+                id: winTitle
                 level: 3
                 maximumLineCount: 1
                 lineHeight: isWin ? 1 : appNameHeading.lineHeight
                 Layout.fillWidth: true
                 elide: Text.ElideRight
-                text: appName
-                opacity: flatIndex == 0
-                visible: text.length !== 0
+                text: title
+                visible: title.length !== 0 
                 textFormat: Text.PlainText
             }
-            // window title
+            // app name
             PlasmaComponents3.Label {
-                id: winTitle
+                id: appNameHeading
                 maximumLineCount: 1
                 Layout.fillWidth: true
                 elide: Text.ElideRight
-                text: titleIncludesTrack ? "" : title
+                text: appName
                 opacity: 0.75
-                visible: title.length !== 0 && title !== appNameHeading.text
+                visible: text.length !== 0 && appNameHeading.text !== title
                 textFormat: Text.PlainText
             }
             // subtext
@@ -102,7 +98,7 @@ ColumnLayout {
                 maximumLineCount: 1
                 Layout.fillWidth: true
                 elide: Text.ElideRight
-                text: isWin ? generateSubText() : ""
+                text: generateSubText()
                 opacity: 0.6
                 visible: text.length !== 0 && text !== appNameHeading.text
                 textFormat: Text.PlainText
@@ -253,14 +249,13 @@ ColumnLayout {
             // in all other cases we can safely show the album art without checking the title
             readonly property bool available: (status === Image.Ready || status === Image.Loading)
                 && (!(isGroup || backend.applicationCategories(launcherUrl).includes("WebBrowser")) || titleIncludesTrack)
-
             anchors.fill: hoverHandler
             // Indent by one pixel to make sure we never cover up the entire highlight
             anchors.margins: 1
             sourceSize: Qt.size(parent.width, parent.height)
 
             asynchronous: true
-            source: playerController.item ? playerController.item.albumArt : ""
+            source: playerController.item ? playerController.item.albumArt.split("?")[0] : ""
             fillMode: Image.PreserveAspectFit
             visible: available
         }
@@ -284,6 +279,11 @@ ColumnLayout {
         active: hasPlayer && flatIndex !== -1 // Avoid loading when the instance is going to be destroyed
         asynchronous: true
         visible: active
+        Binding {
+            target: playerController.item
+            property: "parentTitle"
+            value: title
+        }
         Layout.fillWidth: true
         Layout.maximumWidth: header.Layout.maximumWidth
         Layout.leftMargin: header.Layout.margins

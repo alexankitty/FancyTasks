@@ -216,6 +216,7 @@ MouseArea {
     PlasmaCore.DataSource {
         id: mpris2Source
         engine: "mpris2"
+        interval: 500 // update every half second
         connectedSources: sources
         onSourceAdded: {
             connectSource(source);
@@ -243,12 +244,17 @@ MouseArea {
                 if (source === "@multiplex") {
                     continue;
                 }
-
-                var sourceData = data[source];
-                if (!sourceData) {
-                    continue;
+                var sourceData
+                var browserIntegrationArray = ["firefox", "chrome", "chromium", "vivaldi", "brave", "opera", "microsoft-edge"]
+                if(browserIntegrationArray.findIndex(browser => browser.includes(desktopFileName)) !== -1){//Hack to replace any plasma browser integration compatible browser
+                    for (var x = 0, length = connectedSources.length; x < length; ++x) {
+                        sourceData = data[connectedSources[x]]
+                        if(connectedSources[x] === "plasma-browser-integration" && (sourceData.Metadata["kde:pid"] == pid || sourceData.DesktopEntry == desktopFileName)){ //Sanity check to ensure we can replace it
+                            return connectedSources[x]
+                        }
+                    }
                 }
-
+                sourceData = data[source];
                 /**
                  * If the task is in a group, we can't use desktopFileName to match the task.
                  * but in case PID match fails, use the match result from desktopFileName.
@@ -479,7 +485,9 @@ MouseArea {
         Repeater {
             id: taskRepeater
 
-            delegate: Task {}
+            delegate: Task {
+                readonly property bool isSubTask: false
+            }
             onItemAdded: {
                 taskList.layout()
 

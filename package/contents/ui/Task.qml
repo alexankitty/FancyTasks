@@ -377,7 +377,6 @@ MouseArea {
             leftMargin: ((inPopup || tasks.vertical) && taskList.columns > 1) ? LayoutManager.iconMargin : 0
             rightMargin: ((inPopup || tasks.vertical) && taskList.columns > 1) ? LayoutManager.iconMargin : 0           
         }
-
         imagePath: plasmoid.configuration.disableButtonSvg ? "" : "widgets/tasks"
         enabledBorders: plasmoid.configuration.useBorders ? 1 | 2 | 4 | 8 : 0
         property bool isHovered: task.highlighted && plasmoid.configuration.taskHoverEffect
@@ -398,6 +397,7 @@ MouseArea {
 
     Flow {
         id: indicator
+        visible: plasmoid.configuration.indicatorsEnabled ? true : false
         flow: Flow.LeftToRight
         spacing: PlasmaCore.Units.smallSpacing
         clip: true
@@ -409,12 +409,8 @@ MouseArea {
                 return 0;
                 if(task.childCount < plasmoid.configuration.indicatorMinLimit)
                 return 0;
-                if(task.parent.toString().includes('QQuickItem'))//Target only the main task items.
+                if(task.isSubTask)//Target only the main task items.
                 return 0;
-                /*for(var key in task) {
-                    console.log(key)
-                    console.log(task[key])
-                }*/ //Kept for debugging
                 if(task.state === 'launcher') {
                     return 0;
                 }
@@ -524,8 +520,14 @@ MouseArea {
                         left: isVertical ? parent.left : undefined
                         right: isVertical ? parent.right : undefined
                     }
-                    width: isVertical ? parent.width : parent.width * (task.smartLauncherItem.progress / 100)
-                    height: isVertical ? parent.height * (task.smartLauncherItem.progress / 100) : parent.height
+                    readonly property var progress: {
+                        if(task.smartLauncherItem && task.smartLauncherItem.progressVisible && task.smartLauncherItem.progress){
+                            return task.smartLauncherItem.progress / 100
+                        }
+                        return 0
+                    }
+                    width: isVertical ? parent.width : parent.width * progress
+                    height: isVertical ? parent.height * progress : parent.height
                     radius: parent.radius
                     color: plasmoid.configuration.indicatorProgressColor
                 }
@@ -701,10 +703,18 @@ MouseArea {
             topMargin: adjustMargin(false, parent.height, taskFrame.margins.top)
         }
 
-        width: height * (plasmoid.configuration.iconScale / 100)
+        width: {
+            let isWider = parent.width > parent.height
+            if(iconsOnly){
+                return isWider ? height : parent.width;
+            }
+            if(!iconsOnly && plasmoid.configuration.iconSizeOverride){
+                return plasmoid.configuration.iconSizePx
+            }
+            return height * (plasmoid.configuration.iconScale / 100)
+        }
         height: (parent.height - adjustMargin(false, parent.height, taskFrame.margins.top)
-            - adjustMargin(false, parent.height, taskFrame.margins.bottom)) 
-
+            - adjustMargin(false, parent.height, taskFrame.margins.bottom))
         function adjustMargin(vert, size, margin) {
             if (!size) {
                 return margin;
@@ -717,6 +727,7 @@ MouseArea {
             }
 
             return margin;
+
         }
 
         //width: inPopup ? PlasmaCore.Units.iconSizes.small : Math.min(height, parent.width - LayoutManager.horizontalMargins())
@@ -729,7 +740,16 @@ MouseArea {
             usesPlasmaTheme: false
             roundToIconSize: false
 
-            width: parent.width
+            width: {
+                let isWider = parent.width > parent.height
+                if(iconsOnly && !plasmoid.configuration.iconSizeOverride){
+                    return isWider ? parent.height * (plasmoid.configuration.iconScale / 100) : parent.width * (plasmoid.configuration.iconScale / 100)
+                }
+                if(iconsOnly && plasmoid.configuration.iconSizeOverride){
+                    return plasmoid.configuration.iconSizePx
+                }
+                return parent.width
+            }
             height: width
 
             source: model.decoration
@@ -861,10 +881,11 @@ MouseArea {
             PropertyChanges {
                 target: frame
                 basePrefix: "attention"
+                visible: (plasmoid.configuration.buttonColorize && !frame.isHovered) || !plasmoid.configuration.buttonColorize
             }
             PropertyChanges { 
                 target: colorOverride
-                visible: plasmoid.configuration.buttonColorize ? frame.isHovered ? true : false : false
+                visible: (plasmoid.configuration.buttonColorize && frame.isHovered)
             }
         },
         State {
@@ -974,7 +995,7 @@ MouseArea {
         if (!inPopup && model.IsWindow === true) {
             if(plasmoid.configuration.groupIconEnabled){
                 var component = Qt.createComponent("GroupExpanderOverlay.qml");
-                component.createObject(task);
+                component.createObject(iconBox);
             }
         }
 
