@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fancytasks\n"
 "Report-Msgid-Bugs-To: https://github.com/alexankitty/FancyTasks\n"
-"POT-Creation-Date: 2023-09-13 22:51-0600\n"
+"POT-Creation-Date: 2023-09-16 20:43-0600\n"
 "PO-Revision-Date: 2023-07-13 22:27+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -22,12 +22,46 @@ msgid "Appearance"
 msgstr "Vormgeving"
 
 #: ../contents/config/config.qml
+msgid "Colors"
+msgstr ""
+
+#: ../contents/config/config.qml
 msgid "Behavior"
 msgstr "Gedrag"
 
 #: ../contents/config/config.qml
 msgid "Indicators"
 msgstr "Indicators"
+
+#: ../contents/lib/AppletVersion.qml
+msgid "<b>Version:</b> %1"
+msgstr ""
+
+#: ../contents/libconfig/FontFamily.qml ../contents/lib/ConfigFontFamily.qml
+msgctxt "Use default font"
+msgid "Default"
+msgstr ""
+
+#: ../contents/libconfig/NotificationField.qml
+msgid "Notification"
+msgstr ""
+
+#: ../contents/libconfig/NotificationField.qml
+#: ../contents/lib/ConfigNotification.qml
+msgid "SFX:"
+msgstr ""
+
+#: ../contents/libconfig/SoundField.qml ../contents/lib/ConfigSound.qml
+msgid "Choose a sound effect"
+msgstr ""
+
+#: ../contents/libconfig/SoundField.qml ../contents/lib/ConfigSound.qml
+msgid "Sound files (%1)"
+msgstr ""
+
+#: ../contents/libconfig/SoundField.qml ../contents/lib/ConfigSound.qml
+msgid "All files (%1)"
+msgstr ""
 
 #: ../contents/ui/Badge.qml
 msgctxt "Invalid number of new messages, overlay, keep short"
@@ -40,23 +74,11 @@ msgid "9,999+"
 msgstr "9,999+"
 
 #: ../contents/ui/ColorSlider.qml
-msgid "Hue"
+msgid "Color:"
 msgstr ""
 
 #: ../contents/ui/ColorSlider.qml
-msgid "Saturation"
-msgstr ""
-
-#: ../contents/ui/ColorSlider.qml
-msgid "Lightness"
-msgstr ""
-
-#: ../contents/ui/ColorSlider.qml
-msgid "Alpha"
-msgstr ""
-
-#: ../contents/ui/ColorSlider.qml
-msgid "Automatic Color Pick Method:"
+msgid "Icon Test:"
 msgstr ""
 
 #: ../contents/ui/ColorSlider.qml

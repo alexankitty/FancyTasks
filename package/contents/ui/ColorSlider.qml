@@ -2,106 +2,96 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 
-import org.kde.kirigami 2.19 as Kirigami
-import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.plasmoid 2.0
 import org.kde.kquickcontrols 2.0 as KQControls
 
+import "../libconfig" as LibConfig
 
-Kirigami.FormLayout {
+Item {
     id: colorSlider
     objectName: "ColorSlider"
     anchors.left: parent.left
     anchors.right: parent.right
-
+    height: childrenRect.height
+    width: childrenRect.width
     
     readonly property color color: "#FFFFFFFF"
-    readonly property bool autoSaturate: false
-    readonly property bool autoHue: false
-    readonly property bool autoLightness: false 
-    readonly property int autoType: 0
+    readonly property alias autoSaturate: sat.checked
+    readonly property alias autoHue: hue.checked
+    readonly property alias autoLightness: light.checked 
+    readonly property alias autoType: autoMethod.currentValue
 
-    readonly property int hue: hueSlider.valueAt(hueSlider.position)
-    readonly property double saturation: satSlider.valueAt(satSlider.position)
-    readonly property double lightness: lightSlider.valueAt(lightSlider.position)
-    readonly property double alpha: alphaSlider.valueAt(alphaSlider.position)
+    readonly property alias hue: hue.value
+    readonly property alias saturation: sat.value
+    readonly property alias lightness: light.value
+    readonly property alias alpha: alpha.value
+    ColumnLayout{
+        SliderComponent{
+            label: "Hue"
+            checkLabel: "Automatic"
+            id: hue
+            from: 0
+            to: 360
+            stepSize: 1.0
+            decimals: 0
+        }
+        SliderComponent{
+            label: "Saturation"
+            checkLabel: "Automatic"
+            id: sat
+            from: 0
+            to: 1.0
+            stepSize: 1.0
+            decimals: 2
+        }
+        SliderComponent{
+            label: "Lightness"
+            checkLabel: "Automatic"
+            id: light
+            from: 0
+            to: 1.0
+            stepSize: 1.0
+            decimals: 2
+        }
+        SliderComponent{
+            label: "Alpha"
+            checkLabel: "Automatic"
+            id: alpha
+            from: 0
+            to: 1.0
+            stepSize: 1.0
+            decimals: 2
+        }
 
-    Label {
-        text: i18n("Hue")
-    }
-    Slider {
-        id: hueSlider
-        from: 0
-        to: 360
-    }
-    SpinBox {
-        id: hueBox
-        from: 0
-        to: 360
-        value: hue
-    }
-    Label {
-        text: i18n("Saturation")
-    }
-    Slider {
-        id: satSlider
-        from: 0.0
-        to: 1.0
-    }
-    MLDoubleSpinBox {
-        id: satBox
-        from: 0.0
-        to: 1.0
-        stepSize: 0.01
-        value: saturation
-    }
-    Label {
-        text: i18n("Lightness")
-    }
-    Slider {
-        id: lightSlider
-        from: 0
-        to: 1
-    }
-    MLDoubleSpinBox {
-        id: lightBox
-        from: 0.0
-        to: 1.0
-        stepSize: 0.01
-        value: lightness
-    }
-    Label {
-        text: i18n("Alpha")
-    }
-    Slider {
-        id: alphaSlider
-        from: 0
-        to: 1
-        value: alpha
-    }
-    MLDoubleSpinBox {
-        id: alphaBox
-        from: 0.0
-        to: 1.0
-        stepSize: 0.01
-    }
-    KQControls.ColorButton {
-        id: colorPicker
-        showAlphaChannel: true
-    }
-    Label {
-        text: i18n("Automatic Color Pick Method:")
-    }
-    ComboBox {
-        id: autoMethod
-        model: [
-            i18n("Average"),
-            i18n("Background"),
-            i18n("Closest to Black"),
-            i18n("Closest to White"),
-            i18n("Dominant"),
-            i18n("Dominant Contrast")
-        ]
-    }
+        RowLayout{
+            Label {
+                text: i18n("Color:")
+            }
+            KQControls.ColorButton {
+                id: colorPicker
+                showAlphaChannel: true
+            }
+        }
 
+        RowLayout {
+            Label {
+                text: i18n("Icon Test:")
+            }
+            LibConfig.IconField {
+
+            }
+        }
+        RowLayout{
+            ComboBox {
+                id: autoMethod
+                model: [
+                    i18n("Average"),
+                    i18n("Background"),
+                    i18n("Closest to Black"),
+                    i18n("Closest to White"),
+                    i18n("Dominant"),
+                    i18n("Dominant Contrast")
+                ]
+            }
+        }
+    }
 }

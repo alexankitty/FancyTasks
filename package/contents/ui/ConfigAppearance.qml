@@ -105,10 +105,6 @@ Kirigami.FormLayout {
         Kirigami.FormData.isSection: true
     }
 
-    ColorSlider{
-        id: test
-    }
-
     ButtonGroup {
         id: colorizeButtonGroup
     }
