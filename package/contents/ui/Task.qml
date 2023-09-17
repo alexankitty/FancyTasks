@@ -254,7 +254,8 @@ MouseArea {
         let r = parseInt(result[1], 16);
         let g = parseInt(result[2], 16);
         let b = parseInt(result[3], 16);
-        r /= 255, g /= 255, b /= 255;
+        let a = parseInt(result[4], 16) || 255;
+        r /= 255, g /= 255, b /= 255, a /= 255;
         var max = Math.max(r, g, b), min = Math.min(r, g, b);
         var h, s, l = (max + min) / 2;
         if(max == min){
@@ -273,6 +274,7 @@ MouseArea {
     HSL['h']=h;
     HSL['s']=s;
     HSL['l']=l;
+    HSL['a']=a;
     return HSL;
     }
 

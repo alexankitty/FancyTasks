@@ -19,8 +19,4 @@ import org.kde.kquickcontrols 2.0 as KQControls
 Kirigami.FormLayout {
     anchors.left: parent.left
     anchors.right: parent.right
-    ColorSlider {
-        id: test
-    }
-
 }

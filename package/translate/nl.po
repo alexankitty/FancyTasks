@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fancytasks\n"
 "Report-Msgid-Bugs-To: https://github.com/alexankitty/FancyTasks\n"
-"POT-Creation-Date: 2023-09-16 20:43-0600\n"
+"POT-Creation-Date: 2023-09-17 01:27-0600\n"
 "PO-Revision-Date: 2023-07-13 22:27+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -74,11 +74,35 @@ msgid "9,999+"
 msgstr "9,999+"
 
 #: ../contents/ui/ColorSlider.qml
-msgid "Color:"
+msgid "Hue"
 msgstr ""
 
 #: ../contents/ui/ColorSlider.qml
-msgid "Icon Test:"
+msgid "Automatic"
+msgstr ""
+
+#: ../contents/ui/ColorSlider.qml
+msgid "°"
+msgstr ""
+
+#: ../contents/ui/ColorSlider.qml
+msgid "Saturation"
+msgstr ""
+
+#: ../contents/ui/ColorSlider.qml
+msgid "%"
+msgstr ""
+
+#: ../contents/ui/ColorSlider.qml
+msgid "Lightness"
+msgstr ""
+
+#: ../contents/ui/ColorSlider.qml
+msgid "Alpha"
+msgstr ""
+
+#: ../contents/ui/ColorSlider.qml
+msgid "Automatic icon color method:"
 msgstr ""
 
 #: ../contents/ui/ColorSlider.qml
@@ -103,6 +127,14 @@ msgstr ""
 
 #: ../contents/ui/ColorSlider.qml
 msgid "Dominant Contrast"
+msgstr ""
+
+#: ../contents/ui/ColorSlider.qml
+msgid "Icon Test:"
+msgstr ""
+
+#: ../contents/ui/ColorSlider.qml
+msgid "Color:"
 msgstr ""
 
 #: ../contents/ui/ConfigAppearance.qml
