@@ -30,7 +30,6 @@ Kirigami.FormLayout {
     property alias cfg_maxStripes: maxStripes.value
     property bool cfg_forceStripes
     property alias cfg_maxButtonLength: maxButtonLength.value
-    property alias cfg_maxButtonHeight: maxButtonHeight.value
     property int cfg_iconSpacing: 0
 
     property alias cfg_useBorders: useBorders.checked

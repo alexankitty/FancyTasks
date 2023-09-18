@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fancytasks\n"
 "Report-Msgid-Bugs-To: https://github.com/alexankitty/FancyTasks\n"
-"POT-Creation-Date: 2023-09-17 20:03-0600\n"
+"POT-Creation-Date: 2023-09-18 01:20-0600\n"
 "PO-Revision-Date: 2023-07-13 22:27+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -252,10 +252,6 @@ msgstr "Taken altĳd verdelen over zoveel mogelĳk rĳen"
 #: ../contents/ui/ConfigAppearance.qml
 msgid "Maximum button length (px):"
 msgstr "Maximale knopbreedte (in px):"
-
-#: ../contents/ui/ConfigAppearance.qml
-msgid "Maximum button height (px):"
-msgstr ""
 
 #: ../contents/ui/ConfigAppearance.qml
 msgid "Space between taskbar items (px):"
