@@ -791,13 +791,7 @@ MouseArea {
 
                 PropertyChanges {
                     target: iconBox
-                    anchors.leftMargin: {
-                        console.log(taskFrame.margins.left + iconBox.width + LayoutManager.labelMargin)
-                        console.log(LayoutManager.taskWidth())
-                        console.log(model.decoration)
-                        console.log("standalone mode")
-                        0
-                    }
+                    anchors.leftMargin: 0
                 }
             }
         ]
