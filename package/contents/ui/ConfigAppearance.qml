@@ -213,14 +213,6 @@ Kirigami.FormLayout {
     }
 
     SpinBox {
-        visible: plasmoidVertical && !iconOnly
-        id: maxButtonHeight
-        Kirigami.FormData.label: i18n("Maximum button height (px):")
-        from: 1
-        to: 9999
-    }
-
-    SpinBox {
         id: taskSpacingSize
         Kirigami.FormData.label: i18n("Space between taskbar items (px):")
         from: 0

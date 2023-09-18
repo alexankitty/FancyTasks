@@ -136,10 +136,9 @@ Kirigami.FormLayout {
         }
 
     }
-    function 
-    Connections{
+    Connections {
         target: buttonTab
-        function onCheckedChanged {
+        function onCheckedChanged() {
             
         }
     }
