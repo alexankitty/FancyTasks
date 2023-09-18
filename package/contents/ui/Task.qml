@@ -713,6 +713,9 @@ MouseArea {
             if(!iconsOnly && plasmoid.configuration.iconSizeOverride){
                 return plasmoid.configuration.iconSizePx
             }
+            if(tasks.vertical){
+                return parent.height
+            }
             return height * (plasmoid.configuration.iconScale / 100)
         }
         height: (parent.height - adjustMargin(false, parent.height, taskFrame.margins.top)
@@ -750,6 +753,9 @@ MouseArea {
                 if(iconsOnly && plasmoid.configuration.iconSizeOverride){
                     return plasmoid.configuration.iconSizePx
                 }
+                if(tasks.vertical){
+                    return parent.height
+                }
                 return parent.width
             }
             height: width
@@ -785,9 +791,13 @@ MouseArea {
 
                 PropertyChanges {
                     target: iconBox
-                    anchors.leftMargin: 0
-                    width: parent.width - adjustMargin(true, task.width, taskFrame.margins.left)
-                                        - adjustMargin(true, task.width, taskFrame.margins.right)
+                    anchors.leftMargin: {
+                        console.log(taskFrame.margins.left + iconBox.width + LayoutManager.labelMargin)
+                        console.log(LayoutManager.taskWidth())
+                        console.log(model.decoration)
+                        console.log("standalone mode")
+                        0
+                    }
                 }
             }
         ]
@@ -832,9 +842,11 @@ MouseArea {
 
     PlasmaComponents3.Label {
         id: label
-
+        property string test: {
+            return ""
+        }
         visible: (inPopup || !iconsOnly && model.IsLauncher !== true
-            && (parent.width - iconBox.height - PlasmaCore.Units.smallSpacing) >= (theme.mSize(theme.defaultFont).width * LayoutManager.minimumMColumns()))
+            && (taskFrame.margins.left + iconBox.width + LayoutManager.labelMargin) <= (task.width))
 
         anchors {
             fill: parent

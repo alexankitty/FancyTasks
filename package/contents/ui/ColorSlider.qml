@@ -12,7 +12,7 @@ import "code/tools.js" as TaskTools
 Item {
     function applyColors(hex){
         colorPicker.updating = true
-        if(!colorSlider.hue) colorSlider.hue = hex.h * 359
+        if(!colorSlider.autoHue) colorSlider.hue = hex.h * 359
         if(!colorSlider.autoSaturation) colorSlider.saturation = hex.s * 100
         if(!colorSlider.autoLightness) colorSlider.lightness = hex.l * 100
         colorSlider.alpha = hex.a * 100
@@ -67,15 +67,13 @@ Item {
     }
     id: colorSlider
     objectName: "ColorSlider"
-    anchors.left: parent.left
-    anchors.right: parent.right
     height: childrenRect.height
     width: childrenRect.width
     
-    readonly property alias autoHue: hueComponent.checked
-    readonly property alias autoSaturate: satComponent.checked
-    readonly property alias autoLightness: lightComponent.checked 
-    readonly property alias autoType: autoMethod.currentIndex
+    property alias autoHue: hueComponent.checked
+    property alias autoSaturate: satComponent.checked
+    property alias autoLightness: lightComponent.checked 
+    property alias autoType: autoMethod.currentIndex
 
     property alias hue: hueComponent.value
     property alias saturation: satComponent.value
@@ -139,6 +137,7 @@ Item {
             }
             ComboBox {
                 id: autoMethod
+                enabled: colorSlider.autoHue || colorSlider.autoSaturate || colorSlider.autoLightness
                 model: [
                     i18n("Average"),
                     i18n("Background"),

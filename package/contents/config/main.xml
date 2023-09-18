@@ -72,6 +72,11 @@
       <default>200</default>
       <min>1</min>
     </entry>
+    <entry name="maxButtonHeight" type="Int">
+      <label>The max legnth of a task button.</label>
+      <default>32</default>
+      <min>1</min>
+    </entry>
     <entry name="forceStripes" type="Bool">
       <label>Whether to try and always layout task buttons in as many rows/columns as set via maxStripes.</label>
       <default>false</default>

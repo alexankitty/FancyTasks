@@ -135,16 +135,16 @@ function preferredMinHeight() {
 
 function preferredMaxHeight() {
     if (tasks.vertical) {
+      let iconSize = 0
+      if(plasmoid.configuration.iconSizeOverride) iconSize = plasmoid.configuration.iconSizePx
+      if(!plasmoid.configuration.iconSizeOverride) iconSize = PlasmaCore.Units.iconSizes.medium * (plasmoid.configuration.iconScale / 100)
       return verticalMargins() +
              Math.min(
                  // Do not allow the preferred icon size to exceed the width of
                  // the vertical task manager.
                  tasks.width,
                  tasks.iconsOnly ? tasks.width :
-                    Math.max(
-                        PlasmaCore.Theme.mSize(PlasmaCore.Theme.defaultFont).height,
-                        PlasmaCore.Units.iconSizes.medium
-                    )
+                 iconSize
              );
     } else {
       return verticalMargins() +
@@ -186,7 +186,8 @@ function taskHeight() {
 }
 
 function launcherWidth() {
-    var baseWidth = tasks.vertical ? preferredMinHeight() : Math.min(tasks.height, PlasmaCore.Units.iconSizes.small * 3);
+    let iconSize = plasmoid.configuration.iconSizeOverride ? plasmoid.configuration.iconSizePx : (PlasmaCore.Units.iconSizes.small * 3) * plasmoid.configuration.iconScale
+    var baseWidth = tasks.vertical ? preferredMinHeight() : Math.min(tasks.height,iconSize) ;
 
     return (baseWidth + horizontalMargins())
         - (adjustMargin(baseWidth, taskFrame.margins.top) + adjustMargin(baseWidth, taskFrame.margins.bottom));

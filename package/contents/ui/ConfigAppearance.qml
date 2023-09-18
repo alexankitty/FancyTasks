@@ -30,6 +30,7 @@ Kirigami.FormLayout {
     property alias cfg_maxStripes: maxStripes.value
     property bool cfg_forceStripes
     property alias cfg_maxButtonLength: maxButtonLength.value
+    property alias cfg_maxButtonHeight: maxButtonHeight.value
     property int cfg_iconSpacing: 0
 
     property alias cfg_useBorders: useBorders.checked
@@ -207,6 +208,14 @@ Kirigami.FormLayout {
         visible: !plasmoidVertical && !iconOnly
         id: maxButtonLength
         Kirigami.FormData.label: i18n("Maximum button length (px):")
+        from: 1
+        to: 9999
+    }
+
+    SpinBox {
+        visible: plasmoidVertical && !iconOnly
+        id: maxButtonHeight
+        Kirigami.FormData.label: i18n("Maximum button height (px):")
         from: 1
         to: 9999
     }

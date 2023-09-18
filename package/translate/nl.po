@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fancytasks\n"
 "Report-Msgid-Bugs-To: https://github.com/alexankitty/FancyTasks\n"
-"POT-Creation-Date: 2023-09-17 01:27-0600\n"
+"POT-Creation-Date: 2023-09-17 20:03-0600\n"
 "PO-Revision-Date: 2023-07-13 22:27+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -254,6 +254,10 @@ msgid "Maximum button length (px):"
 msgstr "Maximale knopbreedte (in px):"
 
 #: ../contents/ui/ConfigAppearance.qml
+msgid "Maximum button height (px):"
+msgstr ""
+
+#: ../contents/ui/ConfigAppearance.qml
 msgid "Space between taskbar items (px):"
 msgstr "Ruimte tussen taakbalkitems (in px):"
 
@@ -492,6 +496,46 @@ msgstr "Rechterkant"
 #: ../contents/ui/ConfigBehavior.qml
 msgid "To the left"
 msgstr "Linkerkant"
+
+#: ../contents/ui/ConfigColors.qml
+msgid "Button Colors"
+msgstr ""
+
+#: ../contents/ui/ConfigColors.qml
+msgid "Indicator Colors"
+msgstr ""
+
+#: ../contents/ui/ConfigColors.qml
+msgid "Enable Button Color Overlay or Indicators to be able to use this page."
+msgstr ""
+
+#: ../contents/ui/ConfigColors.qml
+msgid "State"
+msgstr ""
+
+#: ../contents/ui/ConfigColors.qml
+msgid "Active"
+msgstr ""
+
+#: ../contents/ui/ConfigColors.qml
+msgid "Inactive"
+msgstr ""
+
+#: ../contents/ui/ConfigColors.qml
+msgid "Minimized"
+msgstr ""
+
+#: ../contents/ui/ConfigColors.qml
+msgid "Attention"
+msgstr ""
+
+#: ../contents/ui/ConfigColors.qml
+msgid "Progress"
+msgstr ""
+
+#: ../contents/ui/ConfigColors.qml
+msgid "Hover"
+msgstr ""
 
 #: ../contents/ui/ConfigIndicators.qml
 msgid "Indicators:"
