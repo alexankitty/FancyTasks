@@ -836,11 +836,9 @@ MouseArea {
 
     PlasmaComponents3.Label {
         id: label
-        property string test: {
-            return ""
-        }
+
         visible: (inPopup || !iconsOnly && model.IsLauncher !== true
-            && (taskFrame.margins.left + iconBox.width + LayoutManager.labelMargin) <= (task.width))
+            && (iconBox.width) < (frame.width - LayoutManager.labelMargin - taskFrame.margins.left - taskFrame.margins.right + (audioStreamIconLoader.shown ? (audioStreamIconLoader.width + LayoutManager.labelMargin) : 0)))
 
         anchors {
             fill: parent
@@ -849,7 +847,6 @@ MouseArea {
             rightMargin: taskFrame.margins.right + (audioStreamIconLoader.shown ? (audioStreamIconLoader.width + LayoutManager.labelMargin) : 0)
             bottomMargin: taskFrame.margins.bottom
         }
-
         wrapMode: (maximumLineCount == 1) ? Text.NoWrap : Text.Wrap
         elide: Text.ElideRight
         textFormat: Text.PlainText
