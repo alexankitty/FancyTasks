@@ -1,0 +1,716 @@
+# Translation of Fancy Tasks in pt_BR
+# Copyright (C) 2023
+# This file is distributed under the same license as the Fancy Tasks package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Fancy Tasks\n"
+"Report-Msgid-Bugs-To: https://github.com/alexankitty/FancyTasks\n"
+"POT-Creation-Date: 2023-09-13 22:51-0600\n"
+"PO-Revision-Date: 2023-09-21 16:18-0300\n"
+"Last-Translator:  Douglas Guimarães <<dg2003gh@gmail.com>>\n"
+"Language-Team: \n"
+"Language: pt_BR \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../contents/config/config.qml
+msgid "Appearance"
+msgstr "Aparência"
+
+#: ../contents/config/config.qml
+msgid "Behavior"
+msgstr "Comportamento"
+
+#: ../contents/config/config.qml
+msgid "Indicators"
+msgstr "Indicadores"
+
+#: ../contents/ui/Badge.qml
+msgctxt "Invalid number of new messages, overlay, keep short"
+msgid "—"
+msgstr "_"
+
+#: ../contents/ui/Badge.qml
+msgctxt "Over 9999 new messages, overlay, keep short"
+msgid "9,999+"
+msgstr "9,999+"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "General:"
+msgstr "Geral"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Show tooltips"
+msgstr "Mostrar visualizações"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Highlight windows when hovering over task tooltips"
+msgstr "Destacar janelas quando passar o cursor sobre as visualizações"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Mark applications that play audio"
+msgstr "Marque os programas que estiverem tocando áudio"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Use plasma borders"
+msgstr "Usar bordas do plasma"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Icon Scale"
+msgstr "Escala do ícone"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Icon Size (px):"
+msgstr "Tamanho do ícone (px):"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Set icon size instead of scaling"
+msgstr "Definir pelo tamanho do ícone ao invés da escala"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Button Colors:"
+msgstr "Cores do botão:"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Using Plasma Style/Accent"
+msgstr "Usar estilo/Acentuação do Plasma"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Using Color Overlay"
+msgstr "Usar cor sobreposição"
+
+#: ../contents/ui/ConfigAppearance.qml ../contents/ui/ConfigIndicators.qml
+msgid "Use dominant icon color"
+msgstr "Usar cor predominante do ícone"
+
+#: ../contents/ui/ConfigAppearance.qml ../contents/ui/ConfigIndicators.qml
+msgid "Custom Color:"
+msgstr "Cor customizada."
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Colorize inactive buttons"
+msgstr "Colorir botões inativos"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Plasma Button Decorations:"
+msgstr "Decoração dos botões do Plasma"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Disable All"
+msgstr "Desabilitar todos"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Disable Inactive Buttons"
+msgstr "Desabilitar botões inativos"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Plasma Button Direction:"
+msgstr "Direção dos botões do Plasma"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Override"
+msgstr "Sobrescrever"
+
+#: ../contents/ui/ConfigAppearance.qml ../contents/ui/ConfigIndicators.qml
+msgid "Be sure to use this when using as a floating widget"
+msgstr "Tenha certeza que está usando como um widget flutuante"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "North"
+msgstr "Norte"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "South"
+msgstr "Sul"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "West"
+msgstr "Oeste"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "East"
+msgstr "Leste"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Maximum columns:"
+msgstr "Máximo de colunas:"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Maximum rows:"
+msgstr "Máximo de linhas"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Always arrange tasks in rows of as many columns"
+msgstr "Sempre organize as tarefas em linhas com o máximo de colunas"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Always arrange tasks in columns of as many rows"
+msgstr "Sempre organize as tarefas em colunas com o máximo de linhas"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Maximum button length (px):"
+msgstr "Comprimento máximo do botão (px):"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Space between taskbar items (px):"
+msgstr "Espaço entre os itens da barra de tarefas (px):"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgid "Spacing between icons:"
+msgstr "Espaço entre os ícones:"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgctxt "@item:inlistbox Icon spacing"
+msgid "Small"
+msgstr "Pequeno"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgctxt "@item:inlistbox Icon spacing"
+msgid "Normal"
+msgstr "Normal"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgctxt "@item:inlistbox Icon spacing"
+msgid "Large"
+msgstr "Grande"
+
+#: ../contents/ui/ConfigAppearance.qml
+msgctxt "@info:usagetip under a set of radio buttons when Touch Mode is on"
+msgid "Automatically set to Large when in Touch Mode"
+msgstr "Definir automaticamente para grande no \"Touch Mode\""
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "Display:"
+msgstr "Exibir:"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "Show task names"
+msgstr "Exibir o nome das tarefas"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "Show icons only"
+msgstr "Exibir apenas os ícones"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "Group:"
+msgstr "Agrupar pelo:"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "Do not group"
+msgstr "Não agrupe"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "By program name"
+msgstr "Nome do programa"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "Clicking grouped task:"
+msgstr "Ao clicar em tarefas agrupadas:"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgctxt "Completes the sentence 'Clicking grouped task cycles through tasks' "
+msgid "Cycles through tasks"
+msgstr "Percorra entre as tarefas"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgctxt "Completes the sentence 'Clicking grouped task shows tooltip window thumbnails' "
+msgid "Shows tooltip window thumbnails"
+msgstr "Mostre as visualizações da janela"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgctxt "Completes the sentence 'Clicking grouped task shows windows side by side' "
+msgid "Shows windows side by side"
+msgstr "Mostre as janelas lado a lado"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgctxt "Completes the sentence 'Clicking grouped task shows textual list' "
+msgid "Shows textual list"
+msgstr "Mostre uma lista com seus títulos"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "Tooltips are disabled, so the windows will be displayed side by side instead."
+msgstr "As visualizações estão desativada, portanto as janelas serão exibidas lado a lado"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "Tooltips are disabled, and the compositor does not support displaying windows side by side, so a textual list will be displayed instead"
+msgstr "As visualizações estão desativada e o compositor não suporta exibir as janelas lado a lado, portanto as janelas serão exibidas atráves da lista de títulos"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "The compositor does not support displaying windows side by side, so a textual list will be displayed instead."
+msgstr "O compositor não suporta exibir as janelas lado a lado, portanto as janelas serão exibidas atráves da lista de títulos"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "Combine into single button"
+msgstr "Combine em um único botão"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "Group only when the Task Manager is full"
+msgstr "Agrupe apenas quando o gerenciador de tarefas estiver cheio"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "Sort:"
+msgstr "Organizar:"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "Do not sort"
+msgstr "Não organize"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "Manually"
+msgstr "Manualmente"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "Alphabetically"
+msgstr "Alfabeticamente"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "By desktop"
+msgstr "Por área de trabalho"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "By activity"
+msgstr "Por Atividade"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "Keep launchers separate"
+msgstr "Manter launchers separados "
+
+#: ../contents/ui/ConfigBehavior.qml
+msgctxt "Part of a sentence: 'Clicking active task minimizes the task'"
+msgid "Clicking active task:"
+msgstr "Clicando em tarefas abertas:"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgctxt "Part of a sentence: 'Clicking active task minimizes the task'"
+msgid "Minimizes the task"
+msgstr "Minimize a tarefa"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "Middle-clicking any task:"
+msgstr "Clicando no botão do scroll em qualquer tarefa:"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgctxt "Part of a sentence: 'Middle-clicking any task does nothing'"
+msgid "Does nothing"
+msgstr "Não faz nada"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgctxt "Part of a sentence: 'Middle-clicking any task closes window or group'"
+msgid "Closes window or group"
+msgstr "Fecha a janela ou o grupo de janelas"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgctxt "Part of a sentence: 'Middle-clicking any task opens a new window'"
+msgid "Opens a new window"
+msgstr "Abre uma nova janela"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgctxt "Part of a sentence: 'Middle-clicking any task minimizes/restores window or group'"
+msgid "Minimizes/Restores window or group"
+msgstr "Minimiza/restaura a janela ou grupo de janelas"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgctxt "Part of a sentence: 'Middle-clicking any task toggles grouping'"
+msgid "Toggles grouping"
+msgstr "Agrupa/desagrupa janelas"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgctxt "Part of a sentence: 'Middle-clicking any task brings it to the current virtual desktop'"
+msgid "Brings it to the current virtual desktop"
+msgstr "Traz para a área de trabalho virtual atual"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgctxt "Part of a sentence: 'Mouse wheel cycles through tasks'"
+msgid "Mouse wheel:"
+msgstr "Scroll do mouse"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgctxt "Part of a sentence: 'Mouse wheel cycles through tasks'"
+msgid "Cycles through tasks"
+msgstr "Percorre entre as tarefas"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "Skip minimized tasks"
+msgstr "Ignorar tarefas minimizadas"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "Show only tasks:"
+msgstr "Exibir apenas tarefas:"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "From current screen"
+msgstr "No monitor atual"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "From current desktop"
+msgstr "Na área de trabalho atual"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "From current activity"
+msgstr "Na atividade atual"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "That are minimized"
+msgstr "Que estão minimizadas"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "When panel is hidden:"
+msgstr "Quando o painel está ocultado:"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "Unhide when a window wants attention"
+msgstr "Desocultar quando uma janela necessita de atenção"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "New tasks appear:"
+msgstr "Novas tarefas aparecem:"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "To the right"
+msgstr "Na direita"
+
+#: ../contents/ui/ConfigBehavior.qml
+msgid "To the left"
+msgstr "Na esquerda"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Indicators:"
+msgstr "Indicadores:"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Disabled"
+msgstr "Desabilitado"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Enabled"
+msgstr "Habilitado"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Display Progress on Indicator"
+msgstr "Mostrar progresso no indicator"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Progress Color:"
+msgstr "Cor de progresso:"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Disable for Inactive Windows"
+msgstr "Desabilitar para janelas inativas"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Group Overlay:"
+msgstr "Agrupar sobreposição:"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Takes effect on next time plasma groups tasks."
+msgstr "Tem efeito na próxima vez que o plasma agrupar as tarefas."
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Animate Indicators:"
+msgstr "Animar indicadores:"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Indicator Location:"
+msgstr "Posição do indicador:"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Reverse shown side"
+msgstr "Exibir na posiçao oposta"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Override location"
+msgstr "Sobrepor posição"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Bottom"
+msgstr "Base"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Left"
+msgstr "Esquerda"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Right"
+msgstr "Direita"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Top"
+msgstr "Topo"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Indicator Edge Offset (px):"
+msgstr "Distância do indicador em relação da borda (px):"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Indicator Style:"
+msgstr "Estilo do indicador:"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Metro"
+msgstr "Metro"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Ciliora"
+msgstr "Ciliora"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Dashes"
+msgstr "Dashes"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Indicator Min Limit:"
+msgstr "Limite minímo de indicadores:"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Indicator Max Limit:"
+msgstr "Limite máximo de indicatores:"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Minimize Options:"
+msgstr "Ao minimizar uma tarefa:"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Desaturate"
+msgstr "Desaturar"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Shrink when minimized"
+msgstr "Encolher"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Growth/Shrink factor:"
+msgstr "Fator de crecimento/encolhimento:"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Indicator size (px):"
+msgstr "Tamanho do indicador (px):"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Indicator length (px):"
+msgstr "Comprimento do indicador (px):"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Indicator Radius (%):"
+msgstr "Raio do Indicador (%)"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Indicator margin (px):"
+msgstr "Margin do indicador"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Indicator Color:"
+msgstr "Cor do indicador:"
+
+#: ../contents/ui/ConfigIndicators.qml
+msgid "Use plasma accent color"
+msgstr "Usar cor de acentuação do Plasma"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "Places"
+msgstr "Locais"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "Recent Files"
+msgstr "Arquivos recentes"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "Actions"
+msgstr "Ações"
+
+#: ../contents/ui/ContextMenu.qml
+msgctxt "Play previous track"
+msgid "Previous Track"
+msgstr "Faixa anterior"
+
+#: ../contents/ui/ContextMenu.qml
+msgctxt "Pause playback"
+msgid "Pause"
+msgstr "Pausar"
+
+#: ../contents/ui/ContextMenu.qml
+msgctxt "Start playback"
+msgid "Play"
+msgstr "Reproduzir"
+
+#: ../contents/ui/ContextMenu.qml
+msgctxt "Play next track"
+msgid "Next Track"
+msgstr "Próxima faixa"
+
+#: ../contents/ui/ContextMenu.qml
+msgctxt "Stop playback"
+msgid "Stop"
+msgstr "Parar"
+
+#: ../contents/ui/ContextMenu.qml
+msgctxt "Quit media player app"
+msgid "Quit"
+msgstr "Fechar"
+
+#: ../contents/ui/ContextMenu.qml
+msgctxt "Open or bring to the front window of media player app"
+msgid "Restore"
+msgstr "Restaurar"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "Mute"
+msgstr "Silenciar"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "Open New Window"
+msgstr "Abrir nova janela"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "Move to &Desktop"
+msgstr "Mover para &área de trabalho"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "Move &To Current Desktop"
+msgstr "Mover &para a área de trabalho atual"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "&All Desktops"
+msgstr "&Todas as áreas de trabalho"
+
+#: ../contents/ui/ContextMenu.qml
+msgctxt "1 = number of desktop, 2 = desktop name"
+msgid "&%1 %2"
+msgstr "&%1 %2"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "&New Desktop"
+msgstr "&Nova área de trabalho"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "Show in &Activities"
+msgstr "Mostrar em &Activities"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "Add To Current Activity"
+msgstr "Adicionar a atividade atual"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "All Activities"
+msgstr "Todas as atividades"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "Move to %1"
+msgstr "Mover para %1"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "&Pin to Task Manager"
+msgstr "&Fixar no gerenciador de tarefas"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "On All Activities"
+msgstr "Em todas atividades"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "On The Current Activity"
+msgstr "Na atividade atual"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "Unpin from Task Manager"
+msgstr "Desafixar do gerenciador de tarefas"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "More"
+msgstr "Mais"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "&Move"
+msgstr "&Mover"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "Re&size"
+msgstr "Re&dimensionar"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "Ma&ximize"
+msgstr "Ma&ximizar"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "Mi&nimize"
+msgstr "Mi&nimizar"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "Keep &Above Others"
+msgstr "Manter &acima das outras janelas"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "Keep &Below Others"
+msgstr "Manter &abaixo das outras janelas"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "&Fullscreen"
+msgstr "&Tela cheia"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "&Shade"
+msgstr "&Sombreado"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "Allow this program to be grouped"
+msgstr "Permitir que este programa seja agrupado"
+
+#: ../contents/ui/ContextMenu.qml
+msgid "&Close"
+msgstr "&Fechar"
+
+#: ../contents/ui/Task.qml
+msgid "Activate %1"
+msgstr "Ativo %1"
+
+#: ../contents/ui/ToolTipInstance.qml
+msgctxt "button to unmute app"
+msgid "Unmute %1"
+msgstr "Silenciar %1"
+
+#: ../contents/ui/ToolTipInstance.qml
+msgctxt "button to mute app"
+msgid "Mute %1"
+msgstr "Mutar %1"
+
+#: ../contents/ui/ToolTipInstance.qml
+msgctxt "Accessibility data on volume slider"
+msgid "Adjust volume for %1"
+msgstr "Ajustar volume para %1"
+
+#: ../contents/ui/ToolTipInstance.qml
+msgctxt "volume percentage"
+msgid "%1%"
+msgstr "%1%"
+
+#: ../contents/ui/ToolTipInstance.qml
+msgctxt "only used for sizing, should be widest possible string"
+msgid "100%"
+msgstr "100%"
+
+#: ../contents/ui/ToolTipInstance.qml
+msgctxt "Comma-separated list of desktops"
+msgid "On %1"
+msgstr "Em %1"
+
+#: ../contents/ui/ToolTipInstance.qml
+msgctxt "Comma-separated list of desktops"
+msgid "Pinned to all desktops"
+msgstr "Fixar em todas as áreas de trabalho"
+
+#: ../contents/ui/ToolTipInstance.qml
+msgctxt "Which virtual desktop a window is currently on"
+msgid "Available on all activities"
+msgstr "Disponível em todas as atividades"
+
+#: ../contents/ui/ToolTipInstance.qml
+msgctxt "Activities a window is currently on (apart from the current one)"
+msgid "Also available on %1"
+msgstr "Disponível também em %1"
+
+#: ../contents/ui/ToolTipInstance.qml
+msgctxt "Which activities a window is currently on"
+msgid "Available on %1"
+msgstr "Disponível em %1"
