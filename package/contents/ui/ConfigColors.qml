@@ -21,57 +21,64 @@ Kirigami.FormLayout {
     property bool building: false
     //Props
     property color cfg_buttonActiveColor
-    property color cfg_buttonInctiveColor
+    property color cfg_buttonInactiveColor
     property color cfg_buttonMinimizedColor
     property color cfg_buttonAttentionColor
     property color cfg_buttonProgressColor
     property color cfg_buttonHoverColor
     property color cfg_indicatorActiveColor
-    property color cfg_indicatorInctiveColor
+    property color cfg_indicatorInactiveColor
     property color cfg_indicatorMinimizedColor
     property color cfg_indicatorAttentionColor
     property color cfg_indicatorProgressColor
     property color cfg_indicatorHoverColor
     property color cfg_indicatorTailActiveColor
-    property color cfg_indicatorTailInctiveColor
+    property color cfg_indicatorTailInactiveColor
     property color cfg_indicatorTailMinimizedColor
     property color cfg_indicatorTailAttentionColor
     property color cfg_indicatorTailProgressColor
     property color cfg_indicatorTailHoverColor
+    //Enable button colors
+    property bool cfg_buttonActiveColorEnabled
+    property bool cfg_buttonInactiveColorEnabled
+    property bool cfg_buttonMinimizedColorEnabled
+    property bool cfg_buttonAttentionColorEnabled
+    property bool cfg_buttonProgressColorEnabled
+    property bool cfg_buttonHoverColorEnabled
     //Auto Enabled
     property int cfg_buttonActiveColorAuto
-    property int cfg_buttonInctiveColorAuto
+    property int cfg_buttonInactiveColorAuto
     property int cfg_buttonMinimizedColorAuto
     property int cfg_buttonAttentionColorAuto
     property int cfg_buttonProgressColorAuto
     property int cfg_buttonHoverColorAuto
     property int cfg_indicatorActiveColorAuto
-    property int cfg_indicatorInctiveColorAuto
+    property int cfg_indicatorInactiveColorAuto
     property int cfg_indicatorMinimizedColorAuto
     property int cfg_indicatorAttentionColorAuto
     property int cfg_indicatorProgressColorAuto
     property int cfg_indicatorHoverColorAuto
     property int cfg_indicatorTailActiveColorAuto
-    property int cfg_indicatorTailInctiveColorAuto
+    property int cfg_indicatorTailInactiveColorAuto
     property int cfg_indicatorTailMinimizedColorAuto
     property int cfg_indicatorTailAttentionColorAuto
     property int cfg_indicatorTailProgressColorAuto
     property int cfg_indicatorTailHoverColorAuto
     //Auto methods
     property int cfg_buttonActiveColorMethod
-    property int cfg_buttonInctiveColorMethod
+    property int cfg_buttonInactiveColorMethod
     property int cfg_buttonMinimizedColorMethod
     property int cfg_buttonAttentionColorMethod
     property int cfg_buttonProgressColorMethod
     property int cfg_buttonHoverColorMethod
     property int cfg_indicatorActiveColorMethod
-    property int cfg_indicatorInctiveColorMethod
+    property int cfg_indicatorInactiveColorMethod
     property int cfg_indicatorMinimizedColorMethod
     property int cfg_indicatorAttentionColorMethod
     property int cfg_indicatorProgressColorMethod
     property int cfg_indicatorHoverColorMethod
     property int cfg_indicatorTailActiveColorMethod
-    property int cfg_indicatorTailInctiveColorMethod
+    property int cfg_indicatorTailInactiveColorMethod
     property int cfg_indicatorTailMinimizedColorMethod
     property int cfg_indicatorTailAttentionColorMethod
     property int cfg_indicatorTailProgressColorMethod
@@ -148,16 +155,21 @@ Kirigami.FormLayout {
                 }
             }
         }
+        CheckBox{
+            id: colorEnabled
+            text: i18n("Coloring Enabled")
+            visible: buttonTab.checked
+        }
         ColorSlider {
             id: colorSelector
-            enabled: (buttonColorize.checked && buttonTab.checked) || (indicatorTab.checked && plasmoid.configuration.indicatorsEnabled) || (indicatorTailTab.checked && plasmoid.configuration.indicatorsEnabled)
+            enabled: (buttonColorize.checked && buttonTab.checked && colorEnabled.checked) || (indicatorTab.checked && plasmoid.configuration.indicatorsEnabled) || (indicatorTailTab.checked && plasmoid.configuration.indicatorsEnabled)
             }
     }
     Component.onCompleted: buildColorSlider()
 
     function buildCfgKey(){
         var cfgKey = "cfg_"
-        if(buttonTab.checked)cfgKey += "button"
+        if(buttonTab.checked) cfgKey += "button"
         else if(indicatorTab.checked) cfgKey += "indicator"
         else if(indicatorTailTab.checked) cfgKey += "indicatorTail"
         else return false
@@ -166,7 +178,7 @@ Kirigami.FormLayout {
                 cfgKey += "Active"
                 break;
             case 1:
-                cfgKey += "Inctive"
+                cfgKey += "Inactive"
                 break;
             case 2:
                 cfgKey += "Minimized"
@@ -183,7 +195,6 @@ Kirigami.FormLayout {
             case -1:
                 return false
         }
-
         cfgKey += "Color"
         return cfgKey
     }
@@ -192,6 +203,35 @@ Kirigami.FormLayout {
         colorForm.building = true
         var cfgKey = buildCfgKey()
         if(!cfgKey) return
+        if(buttonTab.checked){
+            colorSelector.colorType = "button"
+            colorEnabled.checked = colorForm[cfgKey + "Enabled"]
+        } 
+        else if(indicatorTab.checked) colorSelector.colorType = "indicator"
+        else if(indicatorTailTab.checked) colorSelector.colorType = "indicatorTail"
+        switch(state.currentIndex){
+            case 0:
+                colorSelector.colorState = "Active"
+                break;
+            case 1:
+                colorSelector.colorState = "Inactive"
+                break;
+            case 2:
+                colorSelector.colorState = "Minimized"
+                break;
+            case 3:
+                colorSelector.colorState = "Attention"
+                break;
+            case 4:
+                colorSelector.colorState = "Progress"
+                break;
+            case 5:
+                colorSelector.colorState = "Hover"
+                break;
+            default:
+                colorSelector.colorState = "Active"
+                break;
+        }
         colorSelector.autoHue = colorForm[cfgKey + "Auto"] & 0b1 ? true : false
         colorSelector.autoSaturate = colorForm[cfgKey + "Auto"] & 0b10 ? true : false
         colorSelector.autoLightness = colorForm[cfgKey + "Auto"] & 0b100 ? true : false
@@ -213,11 +253,27 @@ Kirigami.FormLayout {
         colorForm[cfgKey + "Auto"] = autoMethod
         colorForm[cfgKey] = colorSelector.color
         colorForm[cfgKey + "Method"] = colorSelector.autoType
+        if(buttonTab.checked) colorForm[cfgKey + "Enabled"] = colorEnabled.checked
     }
 
     Connections {
         target: buttonTab
         function onCheckedChanged() {
+            state.currentIndex = 0
+            buildColorSlider()
+        }
+    }
+    Connections {
+        target: indicatorTab
+        function onCheckedChanged() {
+            state.currentIndex = 0
+            buildColorSlider()
+        }
+    }
+    Connections {
+        target: indicatorTailTab
+        function onCheckedChanged() {
+            state.currentIndex = 0
             buildColorSlider()
         }
     }
@@ -230,6 +286,12 @@ Kirigami.FormLayout {
     Connections {
         target: colorSelector
         function onValueChanged(){
+            updateColors()
+        }
+    }
+    Connections {
+        target: colorEnabled
+        function onCheckedChanged(){
             updateColors()
         }
     }

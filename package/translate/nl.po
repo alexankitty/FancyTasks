@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fancytasks\n"
 "Report-Msgid-Bugs-To: https://github.com/alexankitty/FancyTasks\n"
-"POT-Creation-Date: 2023-09-24 00:26-0600\n"
+"POT-Creation-Date: 2023-09-24 02:37-0600\n"
 "PO-Revision-Date: 2023-07-13 22:27+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -141,6 +141,14 @@ msgstr ""
 
 #: ../contents/ui/ColorSlider.qml
 msgid "Plasma Theme Accent Color"
+msgstr ""
+
+#: ../contents/ui/ColorSlider.qml
+msgid "Button Color"
+msgstr ""
+
+#: ../contents/ui/ColorSlider.qml
+msgid "Indicator Color"
 msgstr ""
 
 #: ../contents/ui/ColorSlider.qml
@@ -549,6 +557,10 @@ msgstr ""
 
 #: ../contents/ui/ConfigColors.qml
 msgid "Hover"
+msgstr ""
+
+#: ../contents/ui/ConfigColors.qml
+msgid "Coloring Enabled"
 msgstr ""
 
 #: ../contents/ui/ConfigIndicators.qml

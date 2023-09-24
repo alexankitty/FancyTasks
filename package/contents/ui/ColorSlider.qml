@@ -48,7 +48,22 @@ Item {
         colorSlider.valueChanged()
     }
     function autoColorPreview(){
-        switch(colorSlider.autoType){
+        if(colorSlider.autoType == 7){
+            if(colorForm["cfg_button" + colorSlider.colorState + "ColorAuto"]){
+                auto = colorForm["cfg_button" + colorSlider.colorState + "ColorMethod"]
+            } 
+            else auto = 7
+        }
+        if(colorSlider.autoType == 8){
+            if(colorForm["cfg_indicator" + colorSlider.colorState + "ColorAuto"]){
+                auto = colorForm["cfg_indicator" + colorSlider.colorState + "ColorMethod"]
+            } 
+            else auto = 8
+        }
+        else{
+            var auto = colorSlider.autoType
+        }
+        switch(auto){
             case 0:
                 var autoColor = colorTest.averageColor
                 break;
@@ -70,6 +85,13 @@ Item {
             case 6:
                 var autoColor = PlasmaCore.Theme.highlightColor
                 break;
+            case 7:
+                var autoColor = colorForm["cfg_button" + colorSlider.colorState + "Color"]
+                break;
+            case 8:
+                console.log(colorForm["cfg_indicator" + colorSlider.colorState + "Color"])
+                var autoColor = colorForm["cfg_indicator" + colorSlider.colorState + "Color"]
+                break;
             default:
                 TaskTools.hexToHSL(colorPicker.color)
                 break;
@@ -88,6 +110,8 @@ Item {
     property alias autoLightness: lightComponent.checked
     property alias tintResult: tintComponent.checked
     property alias autoType: autoMethod.currentIndex
+    property string colorType
+    property string colorState
 
     property alias hue: hueComponent.value
     property alias saturation: satComponent.value
@@ -168,14 +192,25 @@ Item {
                 id: autoMethod
                 enabled: colorSlider.autoHue || colorSlider.autoSaturate || colorSlider.autoLightness
                 model: [
-                    i18n("Average Icon Color"),
-                    i18n("Background Icon Color"),
-                    i18n("Closest to Black Icon Color"),
-                    i18n("Closest to White Icon Color"),
-                    i18n("Dominant Icon Color"),
-                    i18n("Dominant Contrast Icon Color"),
-                    i18n("Plasma Theme Accent Color")
+                    {text: i18n("Average Icon Color"), visible: true},
+                    {text: i18n("Background Icon Color"), visible: true},
+                    {text: i18n("Closest to Black Icon Color"), visible: true},
+                    {text: i18n("Closest to White Icon Color"), visible: true},
+                    {text: i18n("Dominant Icon Color"), visible: true},
+                    {text: i18n("Dominant Contrast Icon Color"), visible: true},
+                    {text: i18n("Plasma Theme Accent Color"), visible: true},
+                    {text: i18n("Button Color"), visible: colorSlider.colorType !== "button"},
+                    {text: i18n("Indicator Color"), visible: colorSlider.colorType !== "indicator"}
                 ]
+                textRole: "text"
+                delegate: ItemDelegate {
+                    width: modelData.visible ? parent.width : 0
+                    height: modelData.visible ? implicitHeight : 0
+                    text: modelData.visible ? modelData.text : ""
+                    font.weight: state.currentIndex === index ? Font.DemiBold : Font.Normal
+                    highlighted: ListView.isCurrentItem
+                    visible: modelData.visible
+                }
             }
         }
 
