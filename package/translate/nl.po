@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fancytasks\n"
 "Report-Msgid-Bugs-To: https://github.com/alexankitty/FancyTasks\n"
-"POT-Creation-Date: 2023-09-18 01:20-0600\n"
+"POT-Creation-Date: 2023-09-23 21:07-0600\n"
 "PO-Revision-Date: 2023-07-13 22:27+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -102,31 +102,35 @@ msgid "Alpha"
 msgstr ""
 
 #: ../contents/ui/ColorSlider.qml
-msgid "Automatic icon color method:"
+msgid "Automatic color method:"
 msgstr ""
 
 #: ../contents/ui/ColorSlider.qml
-msgid "Average"
+msgid "Average Icon Color"
 msgstr ""
 
 #: ../contents/ui/ColorSlider.qml
-msgid "Background"
+msgid "Background Icon Color"
 msgstr ""
 
 #: ../contents/ui/ColorSlider.qml
-msgid "Closest to Black"
+msgid "Closest to Black Icon Color"
 msgstr ""
 
 #: ../contents/ui/ColorSlider.qml
-msgid "Closest to White"
+msgid "Closest to White Icon Color"
 msgstr ""
 
 #: ../contents/ui/ColorSlider.qml
-msgid "Dominant"
+msgid "Dominant Icon Color"
 msgstr ""
 
 #: ../contents/ui/ColorSlider.qml
-msgid "Dominant Contrast"
+msgid "Dominant Contrast Icon Color"
+msgstr ""
+
+#: ../contents/ui/ColorSlider.qml
+msgid "Plasma Theme Accent Color"
 msgstr ""
 
 #: ../contents/ui/ColorSlider.qml
@@ -173,11 +177,11 @@ msgstr ""
 msgid "Button Colors:"
 msgstr ""
 
-#: ../contents/ui/ConfigAppearance.qml
+#: ../contents/ui/ConfigAppearance.qml ../contents/ui/ConfigColors.qml
 msgid "Using Plasma Style/Accent"
 msgstr ""
 
-#: ../contents/ui/ConfigAppearance.qml
+#: ../contents/ui/ConfigAppearance.qml ../contents/ui/ConfigColors.qml
 msgid "Using Color Overlay"
 msgstr ""
 

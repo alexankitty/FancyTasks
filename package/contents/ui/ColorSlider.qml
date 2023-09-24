@@ -5,6 +5,7 @@ import QtGraphicalEffects 1.0
 
 import org.kde.kquickcontrols 2.0 as KQControls
 import org.kde.kirigami 2.20 as Kirigami
+import org.kde.plasma.core 2.0 as PlasmaCore
 
 import "../libconfig" as LibConfig
 import "code/tools.js" as TaskTools
@@ -18,6 +19,7 @@ Item {
         colorSlider.alpha = hex.a * 100
         colorPicker.color = Qt.hsla(colorSlider.hue / 359, colorSlider.saturation/100, colorSlider.lightness/100, colorSlider.alpha/100) // Re-apply color in case it now differs
         colorPicker.updating = false
+        colorSlider.valueChanged()
     }
     function iconColors(hex){
         colorPicker.updating = true
@@ -26,6 +28,7 @@ Item {
         if(colorSlider.autoLightness) colorSlider.lightness = hex.l * 100
         colorPicker.color = Qt.hsla(colorSlider.hue / 359, colorSlider.saturation/100, colorSlider.lightness/100, colorSlider.alpha/100) // Re-apply color in case it now differs
         colorPicker.updating = false
+        colorSlider.valueChanged()
     }
     function syncColors(hex){
         colorPicker.updating = true
@@ -35,11 +38,13 @@ Item {
         colorSlider.alpha = hex.a * 100
         colorPicker.color = Qt.hsla(colorSlider.hue / 359, colorSlider.saturation/100, colorSlider.lightness/100, colorSlider.alpha/100) // Re-apply color in case it now differs
         colorPicker.updating = false
+        colorSlider.valueChanged()
     }
     function updateSliders(){
         colorPicker.updating = true
         colorPicker.color = Qt.hsla(colorSlider.hue / 359, colorSlider.saturation/100, colorSlider.lightness/100, colorSlider.alpha/100)
         colorPicker.updating = false
+        colorSlider.valueChanged()
     }
     function autoColorPreview(){
         if(!colorSlider.autoHue && !colorSlider.autoSaturate && !colorSlider.autoLightness) return TaskTools.hexToHSL(colorPicker.color)
@@ -62,6 +67,9 @@ Item {
             case 5:
                 var autoColor = colorTest.dominantContrastColor
                 break;
+            case 6:
+                var autoColor = PlasmaCore.Theme.highlightColor
+                break;
         }
         return TaskTools.hexToHSL(autoColor)
     }
@@ -69,6 +77,7 @@ Item {
     objectName: "ColorSlider"
     height: childrenRect.height
     width: childrenRect.width
+    signal valueChanged
     
     property alias autoHue: hueComponent.checked
     property alias autoSaturate: satComponent.checked
@@ -133,18 +142,19 @@ Item {
 
         RowLayout{
             Label{
-                text: i18n("Automatic icon color method:")
+                text: i18n("Automatic color method:")
             }
             ComboBox {
                 id: autoMethod
                 enabled: colorSlider.autoHue || colorSlider.autoSaturate || colorSlider.autoLightness
                 model: [
-                    i18n("Average"),
-                    i18n("Background"),
-                    i18n("Closest to Black"),
-                    i18n("Closest to White"),
-                    i18n("Dominant"),
-                    i18n("Dominant Contrast")
+                    i18n("Average Icon Color"),
+                    i18n("Background Icon Color"),
+                    i18n("Closest to Black Icon Color"),
+                    i18n("Closest to White Icon Color"),
+                    i18n("Dominant Icon Color"),
+                    i18n("Dominant Contrast Icon Color"),
+                    i18n("Plasma Theme Accent Color")
                 ]
             }
         }
@@ -177,9 +187,7 @@ Item {
         target: hueComponent
         function onValueChanged(){
             if(colorPicker.updating) return
-            colorPicker.updating = true
-            colorPicker.color = Qt.hsla(colorSlider.hue / 359, colorSlider.saturation/100, colorSlider.lightness/100, colorSlider.alpha/100)
-            colorPicker.updating = false
+            updateSliders()
         }
     }
     Connections{

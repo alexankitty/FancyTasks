@@ -17,6 +17,8 @@ import org.kde.kquickcontrols 2.0 as KQControls
 import "../libconfig" as LibConfig
 
 Kirigami.FormLayout {
+    property alias cfg_buttonColorize: buttonColorize.checked
+    property bool building: false
     //Props
     property color cfg_buttonActiveColor
     property color cfg_buttonInctiveColor
@@ -58,13 +60,13 @@ Kirigami.FormLayout {
     property int cfg_indicatorHoverColorMethod
 
     wideMode: false
+    id: colorForm
     width: parent.width
     anchors.left: parent.left
     anchors.right: parent.right
     ColumnLayout{
         TabBar{
             TabButton {
-                enabled: plasmoid.configuration.buttonColorize
                 id: buttonTab
                 text: i18n("Button Colors")
             }
@@ -72,11 +74,28 @@ Kirigami.FormLayout {
                 enabled: plasmoid.configuration.indicatorsEnabled
                 id: indicatorTab
                 text: i18n("Indicator Colors")
-                checked: !plasmoid.configuration.buttonColorize && plasmoid.configuration.indicatorsEnabled
             }
         }
+        ButtonGroup {
+            id: colorizeButtonGroup
+        }
+
+        RadioButton {
+            checked: !buttonColorize.checked
+            text: i18n("Using Plasma Style/Accent")
+            ButtonGroup.group: colorizeButtonGroup
+            visible: buttonTab.checked
+        }
+
+        RadioButton {
+            id: buttonColorize
+            checked: plasmoid.configuration.buttonColorize === true
+            text: i18n("Using Color Overlay")
+            ButtonGroup.group: colorizeButtonGroup
+            visible: buttonTab.checked
+        }
         Label{
-            visible: !plasmoid.configuration.buttonColorize && !plasmoid.configuration.indicatorsEnabled
+            visible: !buttonColorize.checked && !plasmoid.configuration.indicatorsEnabled
             text: i18n("Enable Button Color Overlay or Indicators to be able to use this page.")
         }
         RowLayout{
@@ -84,6 +103,7 @@ Kirigami.FormLayout {
                 text: i18n("State")
             }
             ComboBox {
+                enabled: (buttonColorize.checked && buttonTab.checked) || (indicatorTab.checked && plasmoid.configuration.indicatorsEnabled)
                 id: state
                 model: [
                     i18n("Active"),
@@ -97,50 +117,84 @@ Kirigami.FormLayout {
         }
     ColorSlider {
         id: colorSelector
-        enabled: plasmoid.configuration.buttonColorize || plasmoid.configuration.indicatorsEnabled
+        enabled: (buttonColorize.checked && buttonTab.checked) || (indicatorTab.checked && plasmoid.configuration.indicatorsEnabled)
         }
     }
-    function buildColorSlider(){
-        var autoHue
-        var autoSat
-        var autoLight
+    Component.onCompleted: buildColorSlider()
+
+    function buildCfgKey(){
         var cfgKey = "cfg_"
-        if(buttonTab.checked){
-            cfgKey += "button"
-        }
-        else if(indicatorTab.checked){
-            cfgKey += "indicator"
-        }
-        else{
-            return //This should never be reached.
-        }
+        if(buttonTab.checked)cfgKey += "button"
+        else if(indicatorTab.checked) cfgKey += "indicator"
+        else return false
         switch(state.currentIndex){
             case 0:
-            cfgKey += "Active"
-            break;
+                cfgKey += "Active"
+                break;
             case 1:
-            cfgKey += "Inctive"
-            break;
+                cfgKey += "Inctive"
+                break;
             case 2:
-            cfgKey += "Minimized"
-            break;
+                cfgKey += "Minimized"
+                break;
             case 3:
-            cfgKey += "Attention"
-            break;
+                cfgKey += "Attention"
+                break;
             case 4:
-            cfgKey += "Progress"
-            break;
+                cfgKey += "Progress"
+                break;
             case 5:
-            cfgKey += "Hover"
-            break;
+                cfgKey += "Hover"
+                break;
+            case -1:
+                return false
         }
 
+        cfgKey += "Color"
+        return cfgKey
     }
+
+    function buildColorSlider(){
+        colorForm.building = true
+        var cfgKey = buildCfgKey()
+        if(!cfgKey) return
+        colorSelector.autoHue = colorForm[cfgKey + "Auto"] & 0b1 ? true : false
+        colorSelector.autoSaturate = colorForm[cfgKey + "Auto"] & 0b10 ? true : false
+        colorSelector.autoLightness = colorForm[cfgKey + "Auto"] & 0b100 ? true : false
+        colorSelector.autoType = colorForm[cfgKey + "Method"]
+        colorSelector.color = colorForm[cfgKey]
+        colorForm.building = false
+    }
+
+    function updateColors(){
+        if(colorForm.building) return
+        var cfgKey = buildCfgKey()
+        if(!cfgKey) return
+        var autoMethod = 0
+        if(colorSelector.autoHue) autoMethod = autoMethod | 0b1
+        if(colorSelector.autoSaturate) autoMethod = autoMethod | 0b10
+        if(colorSelector.autoLightness) autoMethod = autoMethod | 0b100
+        colorForm[cfgKey + "Auto"] = autoMethod
+        colorForm[cfgKey] = colorSelector.color
+        colorForm[cfgKey + "Method"] = colorSelector.autoType
+    }
+
     Connections {
         target: buttonTab
         function onCheckedChanged() {
-            
+            buildColorSlider()
         }
     }
-
+    Connections {
+        target: state
+        function onActivated(){
+            buildColorSlider()
+        }
+    }
+    Connections {
+        target: colorSelector
+        function onValueChanged(){
+            updateColors()
+        }
+    }
 }

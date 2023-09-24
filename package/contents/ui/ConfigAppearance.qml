@@ -35,7 +35,7 @@ Kirigami.FormLayout {
     property alias cfg_useBorders: useBorders.checked
     property alias cfg_taskSpacingSize: taskSpacingSize.value
 
-    property alias cfg_buttonColorize: buttonColorize.checked
+    
     property alias cfg_buttonColorizeInactive: buttonColorizeInactive.checked
     property alias cfg_buttonColorizeDominant: buttonColorizeDominant.checked
     property alias cfg_buttonColorizeCustom: buttonColorizeCustom.color
