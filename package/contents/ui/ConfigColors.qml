@@ -32,6 +32,12 @@ Kirigami.FormLayout {
     property color cfg_indicatorAttentionColor
     property color cfg_indicatorProgressColor
     property color cfg_indicatorHoverColor
+    property color cfg_indicatorTailActiveColor
+    property color cfg_indicatorTailInctiveColor
+    property color cfg_indicatorTailMinimizedColor
+    property color cfg_indicatorTailAttentionColor
+    property color cfg_indicatorTailProgressColor
+    property color cfg_indicatorTailHoverColor
     //Auto Enabled
     property int cfg_buttonActiveColorAuto
     property int cfg_buttonInctiveColorAuto
@@ -45,6 +51,12 @@ Kirigami.FormLayout {
     property int cfg_indicatorAttentionColorAuto
     property int cfg_indicatorProgressColorAuto
     property int cfg_indicatorHoverColorAuto
+    property int cfg_indicatorTailActiveColorAuto
+    property int cfg_indicatorTailInctiveColorAuto
+    property int cfg_indicatorTailMinimizedColorAuto
+    property int cfg_indicatorTailAttentionColorAuto
+    property int cfg_indicatorTailProgressColorAuto
+    property int cfg_indicatorTailHoverColorAuto
     //Auto methods
     property int cfg_buttonActiveColorMethod
     property int cfg_buttonInctiveColorMethod
@@ -58,6 +70,12 @@ Kirigami.FormLayout {
     property int cfg_indicatorAttentionColorMethod
     property int cfg_indicatorProgressColorMethod
     property int cfg_indicatorHoverColorMethod
+    property int cfg_indicatorTailActiveColorMethod
+    property int cfg_indicatorTailInctiveColorMethod
+    property int cfg_indicatorTailMinimizedColorMethod
+    property int cfg_indicatorTailAttentionColorMethod
+    property int cfg_indicatorTailProgressColorMethod
+    property int cfg_indicatorTailHoverColorMethod
 
     wideMode: false
     id: colorForm
@@ -74,6 +92,11 @@ Kirigami.FormLayout {
                 enabled: plasmoid.configuration.indicatorsEnabled
                 id: indicatorTab
                 text: i18n("Indicator Colors")
+            }
+            TabButton {
+                enabled: plasmoid.configuration.indicatorsEnabled
+                id: indicatorTailTab
+                text: i18n("Indicator Tail Colors")
             }
         }
         ButtonGroup {
@@ -103,22 +126,32 @@ Kirigami.FormLayout {
                 text: i18n("State")
             }
             ComboBox {
-                enabled: (buttonColorize.checked && buttonTab.checked) || (indicatorTab.checked && plasmoid.configuration.indicatorsEnabled)
+                enabled: (buttonColorize.checked && buttonTab.checked) || (indicatorTab.checked && plasmoid.configuration.indicatorsEnabled) || (indicatorTailTab.checked && plasmoid.configuration.indicatorsEnabled)
+                currentIndex: 0
                 id: state
                 model: [
-                    i18n("Active"),
-                    i18n("Inactive"),
-                    i18n("Minimized"),
-                    i18n("Attention"),
-                    i18n("Progress"),
-                    i18n("Hover")
+                    {text: i18n("Active"), visible: true},
+                    {text: i18n("Inactive"), visible: true},
+                    {text: i18n("Minimized"), visible: true},
+                    {text: i18n("Attention"), visible: true},
+                    {text: i18n("Progress"), visible: !indicatorTailTab.checked},
+                    {text: i18n("Hover"), visible: true}
                 ]
+                textRole: "text"
+                delegate: ItemDelegate {
+                    width: modelData.visible ? parent.width : 0
+                    height: modelData.visible ? implicitHeight : 0
+                    text: modelData.visible ? modelData.text : ""
+                    font.weight: state.currentIndex === index ? Font.DemiBold : Font.Normal
+                    highlighted: ListView.isCurrentItem
+                    visible: modelData.visible
+                }
             }
         }
-    ColorSlider {
-        id: colorSelector
-        enabled: (buttonColorize.checked && buttonTab.checked) || (indicatorTab.checked && plasmoid.configuration.indicatorsEnabled)
-        }
+        ColorSlider {
+            id: colorSelector
+            enabled: (buttonColorize.checked && buttonTab.checked) || (indicatorTab.checked && plasmoid.configuration.indicatorsEnabled) || (indicatorTailTab.checked && plasmoid.configuration.indicatorsEnabled)
+            }
     }
     Component.onCompleted: buildColorSlider()
 
@@ -126,6 +159,7 @@ Kirigami.FormLayout {
         var cfgKey = "cfg_"
         if(buttonTab.checked)cfgKey += "button"
         else if(indicatorTab.checked) cfgKey += "indicator"
+        else if(indicatorTailTab.checked) cfgKey += "indicatorTail"
         else return false
         switch(state.currentIndex){
             case 0:
@@ -161,6 +195,7 @@ Kirigami.FormLayout {
         colorSelector.autoHue = colorForm[cfgKey + "Auto"] & 0b1 ? true : false
         colorSelector.autoSaturate = colorForm[cfgKey + "Auto"] & 0b10 ? true : false
         colorSelector.autoLightness = colorForm[cfgKey + "Auto"] & 0b100 ? true : false
+        colorSelector.tintResult = colorForm[cfgKey + "Auto"] & 0b1000 ? true : false
         colorSelector.autoType = colorForm[cfgKey + "Method"]
         colorSelector.color = colorForm[cfgKey]
         colorForm.building = false
@@ -174,6 +209,7 @@ Kirigami.FormLayout {
         if(colorSelector.autoHue) autoMethod = autoMethod | 0b1
         if(colorSelector.autoSaturate) autoMethod = autoMethod | 0b10
         if(colorSelector.autoLightness) autoMethod = autoMethod | 0b100
+        if(colorSelector.tintResult) autoMethod = autoMethod | 0b1000
         colorForm[cfgKey + "Auto"] = autoMethod
         colorForm[cfgKey] = colorSelector.color
         colorForm[cfgKey + "Method"] = colorSelector.autoType

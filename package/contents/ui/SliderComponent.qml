@@ -20,6 +20,7 @@ Item{
     property real changeValue: 0
     property alias stepSize: spin.stepSize
     property alias checked: check.checked
+    property bool invertChecked: false
     id: sliderComponent
     objectName: "SliderComponent"
     RowLayout{
@@ -35,7 +36,7 @@ Item{
                 from: sliderComponent.from
                 to: sliderComponent.to
                 value: spin.valueReal
-                enabled: !check.checked
+                enabled: (!check.checked && !invertChecked) || (check.checked && invertChecked)
             }
         }
         RowLayout{
@@ -46,7 +47,7 @@ Item{
                 minimumValue: 0.0
                 maximumValue: 99.0
                 stepSize: 1.0
-                enabled: !check.checked
+                enabled: (!check.checked && !invertChecked) || (check.checked && invertChecked)
             }
             CheckBox{
                 id: check

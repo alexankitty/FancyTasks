@@ -43,11 +43,11 @@ Item {
     function updateSliders(){
         colorPicker.updating = true
         colorPicker.color = Qt.hsla(colorSlider.hue / 359, colorSlider.saturation/100, colorSlider.lightness/100, colorSlider.alpha/100)
+        if(colorSlider.tintResult) colorPicker.color = Kirigami.ColorUtils.tintWithAlpha(colorPicker.color, colorSlider.tintColor, tintIntensity / 100)
         colorPicker.updating = false
         colorSlider.valueChanged()
     }
     function autoColorPreview(){
-        if(!colorSlider.autoHue && !colorSlider.autoSaturate && !colorSlider.autoLightness) return TaskTools.hexToHSL(colorPicker.color)
         switch(colorSlider.autoType){
             case 0:
                 var autoColor = colorTest.averageColor
@@ -70,7 +70,11 @@ Item {
             case 6:
                 var autoColor = PlasmaCore.Theme.highlightColor
                 break;
+            default:
+                TaskTools.hexToHSL(colorPicker.color)
+                break;
         }
+        if(colorSlider.tintResult) autoColor = Kirigami.ColorUtils.tintWithAlpha(autoColor, colorSlider.tintColor, tintIntensity / 100)
         return TaskTools.hexToHSL(autoColor)
     }
     id: colorSlider
@@ -81,14 +85,19 @@ Item {
     
     property alias autoHue: hueComponent.checked
     property alias autoSaturate: satComponent.checked
-    property alias autoLightness: lightComponent.checked 
+    property alias autoLightness: lightComponent.checked
+    property alias tintResult: tintComponent.checked
     property alias autoType: autoMethod.currentIndex
 
     property alias hue: hueComponent.value
     property alias saturation: satComponent.value
     property alias lightness: lightComponent.value
     property alias alpha: alphaComponent.value
+    property alias tintIntensity: tintComponent.value
     property alias color: colorPicker.color
+    property string tintColor: Kirigami.ColorUtils.brightnessForColor(PlasmaCore.Theme.backgroundColor) ===
+                                Kirigami.ColorUtils.Dark ?
+                                "#ffffff" : "#000000"
     ColumnLayout{
         Kirigami.ImageColors {
             id: colorTest
@@ -134,6 +143,17 @@ Item {
             label: i18n("Alpha")
             suffix: i18n("%")
             id: alphaComponent
+            from: 0
+            to: 100
+            stepSize: 1
+            decimals: 0
+        }
+        SliderComponent{
+            label: i18n("Light/Dark Theme Tint Intensity")
+            suffix: i18n("%")
+            checkLabel: i18nc("Correct the resulting color based on if the user has a light or dark theme.", "Tint Result")
+            id: tintComponent
+            invertChecked: true
             from: 0
             to: 100
             stepSize: 1
@@ -212,6 +232,14 @@ Item {
         }
     }
     Connections{
+        target: tintComponent
+        function onValueChanged(){
+            if(colorPicker.updating) return
+            var hexColor = autoColorPreview()
+            syncColors(hexColor)
+        }
+    }
+    Connections{
         target: colorPicker
         function onColorChanged(){
             if(colorPicker.updating) return
@@ -239,23 +267,22 @@ Item {
         target: colorSlider
         function onAutoHueChanged(){
             if(colorPicker.updating) return
-            if(colorSlider.autoHue) var hexColor = autoColorPreview()
-            else if(colorSlider.autoHue) var hexColor = TaskTools.hexToHSL(colorPicker.color)
-            else return
+            var hexColor = autoColorPreview()
             syncColors(hexColor)
         }
         function onAutoSaturateChanged(){
             if(colorPicker.updating) return
-            if(colorSlider.autoSaturate) var hexColor = autoColorPreview()
-            else if(colorSlider.autoSaturate) var hexColor = TaskTools.hexToHSL(colorPicker.color)
-            else return
+            var hexColor = autoColorPreview()
             syncColors(hexColor)
         }
         function onAutoLightnessChanged(){
             if(colorPicker.updating) return
-            if(colorSlider.autoLightness) var hexColor = TaskTools.hexToHSL(colorPicker.color)
-            else if(colorSlider.autoLightness) var hexColor = TaskTools.hexToHSL(colorPicker.color)
-            else return
+            var hexColor = autoColorPreview()
+            syncColors(hexColor)
+        }
+        function onTintResultChanged(){
+            if(colorPicker.updating) return
+            var hexColor = autoColorPreview()
             syncColors(hexColor)
         }
     }

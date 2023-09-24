@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fancytasks\n"
 "Report-Msgid-Bugs-To: https://github.com/alexankitty/FancyTasks\n"
-"POT-Creation-Date: 2023-09-23 21:07-0600\n"
+"POT-Creation-Date: 2023-09-24 00:26-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -98,6 +98,15 @@ msgstr ""
 
 #: ../contents/ui/ColorSlider.qml
 msgid "Alpha"
+msgstr ""
+
+#: ../contents/ui/ColorSlider.qml
+msgid "Light/Dark Theme Tint Intensity"
+msgstr ""
+
+#: ../contents/ui/ColorSlider.qml
+msgctxt "Correct the resulting color based on if the user has a light or dark theme."
+msgid "Tint Result"
 msgstr ""
 
 #: ../contents/ui/ColorSlider.qml
@@ -484,6 +493,10 @@ msgstr ""
 
 #: ../contents/ui/ConfigColors.qml
 msgid "Indicator Colors"
+msgstr ""
+
+#: ../contents/ui/ConfigColors.qml
+msgid "Indicator Tail Colors"
 msgstr ""
 
 #: ../contents/ui/ConfigColors.qml
