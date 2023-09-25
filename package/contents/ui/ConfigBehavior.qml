@@ -17,23 +17,23 @@ Item {
     width: childrenRect.width
     height: childrenRect.height
 
-    property alias cfg_groupingStrategy: groupingStrategy.currentIndex
-    property alias cfg_groupedTaskVisualization: groupedTaskVisualization.currentIndex
-    property alias cfg_groupPopups: groupPopups.checked
-    property alias cfg_onlyGroupWhenFull: onlyGroupWhenFull.checked
-    property alias cfg_sortingStrategy: sortingStrategy.currentIndex
-    property alias cfg_separateLaunchers: separateLaunchers.checked
-    property alias cfg_middleClickAction: middleClickAction.currentIndex
-    property alias cfg_wheelEnabled: wheelEnabled.checked
-    property alias cfg_wheelSkipMinimized: wheelSkipMinimized.checked
-    property alias cfg_showOnlyCurrentScreen: showOnlyCurrentScreen.checked
-    property alias cfg_showOnlyCurrentDesktop: showOnlyCurrentDesktop.checked
-    property alias cfg_showOnlyCurrentActivity: showOnlyCurrentActivity.checked
-    property alias cfg_showOnlyMinimized: showOnlyMinimized.checked
-    property alias cfg_minimizeActiveTaskOnClick: minimizeActive.checked
-    property alias cfg_unhideOnAttention: unhideOnAttention.checked
-    property alias cfg_reverseMode: reverseMode.checked
-    property alias cfg_iconOnly: iconOnly.currentIndex
+    property alias cfg_groupingStrategy: groupingStrategy.currentIndex //type: Enum; label: How tasks are grouped: 0 = Do Not Group, 1 = By Program Name; default: 1
+    property alias cfg_groupedTaskVisualization: groupedTaskVisualization.currentIndex //type: Enum; label: What happens when clicking on a grouped task: 0 = cycle through grouped tasks, 1 = try to show tooltips, 2 = try to show present Windows effect, 3 = show textual list (AKA group dialog); default: 0
+    property alias cfg_groupPopups: groupPopups.checked //type: Bool; label: Whether groups are to be reduced to a single task button and expand into a popup or task buttons are grouped on the widget itself.; default: true
+    property alias cfg_onlyGroupWhenFull: onlyGroupWhenFull.checked //type: Bool; label: Whether to group always or only when the widget runs out of space to show additional task buttons comfortably.; default: true
+    property alias cfg_sortingStrategy: sortingStrategy.currentIndex //type: Int; label: How to sort tasks: 0 = Do Not Sort, 1 = Manually, 2 = Alphabetically, 3 = By Desktop, 4 = By Activity; default: 1
+    property alias cfg_separateLaunchers: separateLaunchers.checked //type: Bool; label: Whether launcher tasks are sorted separately at the left side of the widget or can be mixed with other tasks.; default: true
+    property alias cfg_middleClickAction: middleClickAction.currentIndex //type: Enum; label: What to do on middle-mouse click on a task button.; enum: None Close NewInstance ToggleMinimized ToggleGrouping BringToCurrentDesktop; default: 2
+    property alias cfg_wheelEnabled: wheelEnabled.checked //type: Bool; label: Whether using the mouse wheel with the mouse pointer above the widget should switch between tasks.; default: true
+    property alias cfg_wheelSkipMinimized: wheelSkipMinimized.checked //type: Bool; label: Whether to skip minimized tasks when switching between them using the mouse wheel.; default: true
+    property alias cfg_showOnlyCurrentScreen: showOnlyCurrentScreen.checked //type: Bool; label: Whether to show only window tasks that are on the same screen as the widget.; default: false
+    property alias cfg_showOnlyCurrentDesktop: showOnlyCurrentDesktop.checked //type: Bool; label: Whether to only show tasks that are on the current virtual desktop.; default: true
+    property alias cfg_showOnlyCurrentActivity: showOnlyCurrentActivity.checked //type: Bool; label: Whether to show only tasks that are on the current activity.; default: true
+    property alias cfg_showOnlyMinimized: showOnlyMinimized.checked //type: Int; label: Whether to show only window tasks that are minmized.; default: false
+    property alias cfg_minimizeActiveTaskOnClick: minimizeActive.checked //type: Bool; label: Whether to minimize the currently-active task when clicked. If false, clicking on the currently-active task will do nothing.; default: true
+    property alias cfg_unhideOnAttention: unhideOnAttention.checked //type: Bool; label: Whether to unhide if a window wants attention.; default: true
+    property alias cfg_reverseMode: reverseMode.checked //type: Bool; label: Whether to grow the tasks in according to system configuration or opposite to system configuration.; default: false
+    property alias cfg_iconOnly: iconOnly.currentIndex //type: Enum; label: How tasks are display: 0 = Show Task Names, 1 = Show Icons Only; default: 1
 
     TaskManagerApplet.Backend {
         id: backend

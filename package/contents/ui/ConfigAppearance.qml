@@ -21,29 +21,29 @@ Kirigami.FormLayout {
     readonly property bool plasmoidVertical: Plasmoid.formFactor === PlasmaCore.Types.Vertical
     readonly property bool iconOnly: plasmoid.configuration.iconOnly
 
-    property alias cfg_showToolTips: showToolTips.checked
-    property alias cfg_highlightWindows: highlightWindows.checked
-    property bool cfg_indicateAudioStreams
-    property alias cfg_iconScale: iconScale.value
-    property alias cfg_iconSizePx: iconSizePx.value
-    property alias cfg_iconSizeOverride: iconSizeOverride.checked
-    property alias cfg_maxStripes: maxStripes.value
-    property bool cfg_forceStripes
-    property alias cfg_maxButtonLength: maxButtonLength.value
-    property int cfg_iconSpacing: 0
+    property alias cfg_showToolTips: showToolTips.checked //type: Bool; label: Whether to show tooltips when hovering task buttons.; default: true
+    property alias cfg_highlightWindows: highlightWindows.checked //type: Bool; label: Whether to request the window manager highlight windows when hovering corresponding task tooltips.; default: true
+    property bool cfg_indicateAudioStreams //type: Bool; label: Whether to indicate applications that are playing audio including an option to mute them.; default: true
+    property alias cfg_iconScale: iconScale.value //type: Int; label: Scale of taskbar icons.; default: 100
+    property alias cfg_iconSizePx: iconSizePx.value //type: Int; label: Size of taskbar icons in pixels.; default: 32
+    property alias cfg_iconSizeOverride: iconSizeOverride.checked //type: Bool; label: Use icon size instead of scale.; default: false
+    property alias cfg_maxStripes: maxStripes.value //type: Int; label: The maximum number of rows (in a horizontal-orientation containment, i.e. panel) or columns (in a vertical-orientation containment) to layout task buttons in.; default: 2
+    property bool cfg_forceStripes //type: Bool; label: Whether to try and always layout task buttons in as many rows/columns as set via maxStripes.; default: false
+    property alias cfg_maxButtonLength: maxButtonLength.value //type: Int; label: The max legnth of a task button.; default: 200
+    property int cfg_iconSpacing: 0 //type: Int; label:  Spacing between icons in task manager. Margin is multiplied by this value.; default: 1
 
-    property alias cfg_useBorders: useBorders.checked
-    property alias cfg_taskSpacingSize: taskSpacingSize.value
+    property alias cfg_useBorders: useBorders.checked //type: Bool; label: Enable plasma borders.; default: True
+    property alias cfg_taskSpacingSize: taskSpacingSize.value //type: Int; label: Size in pixels of space between taskbar items.; default: 0
 
-    
-    property alias cfg_buttonColorizeInactive: buttonColorizeInactive.checked
-    property alias cfg_buttonColorizeDominant: buttonColorizeDominant.checked
-    property alias cfg_buttonColorizeCustom: buttonColorizeCustom.color
+        
+    property alias cfg_buttonColorizeInactive: buttonColorizeInactive.checked //type: Bool; label: Colorize inactive task buttons; default: false
+    property alias cfg_buttonColorizeDominant: buttonColorizeDominant.checked //type: Bool; label: Make the task button use the icon's dominant color; default: true
+    property alias cfg_buttonColorizeCustom: buttonColorizeCustom.color //type: String; label: Set a custom color for the task button.; default: #FFFFFF
 
-    property alias cfg_disableButtonSvg: disableButtonSvg.checked
-    property alias cfg_disableButtonInactiveSvg: disableButtonInactiveSvg.checked
-    property alias cfg_overridePlasmaButtonDirection: overridePlasmaButtonDirection.checked
-    property alias cfg_plasmaButtonDirection: plasmaButtonDirection.currentIndex
+    property alias cfg_disableButtonSvg: disableButtonSvg.checked //type: Bool; label: Disables the decoration SVG; default: false
+    property alias cfg_disableButtonInactiveSvg: disableButtonInactiveSvg.checked //type: Bool; label: Disables the decoration SVG for inactive windows; default: false
+    property alias cfg_overridePlasmaButtonDirection: overridePlasmaButtonDirection.checked //type: Bool; label: Override the plasma button direction ; default: false
+    property alias cfg_plasmaButtonDirection: plasmaButtonDirection.currentIndex //type: Int; label: Direction of the plasma button SVG: 0 = North, 1 = West, 2 = South, 3 = East; default: 0
 
     CheckBox {
         id: showToolTips

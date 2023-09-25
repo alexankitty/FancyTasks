@@ -17,7 +17,7 @@ import org.kde.kquickcontrols 2.0 as KQControls
 import "../libconfig" as LibConfig
 
 Kirigami.FormLayout {
-    property alias cfg_buttonColorize: buttonColorize.checked
+property alias cfg_buttonColorize: buttonColorize.checked //type: Bool; label: Colorize task buttons; default: false
     property bool building: false
     //Props
     property color cfg_buttonActiveColor
@@ -30,7 +30,7 @@ Kirigami.FormLayout {
     property color cfg_indicatorInactiveColor
     property color cfg_indicatorMinimizedColor
     property color cfg_indicatorAttentionColor
-    property color cfg_indicatorProgressColor
+    property color cfg_indicatorProgressColor //type: String; label: Set a custom color for the task button.; default: #00FF00
     property color cfg_indicatorHoverColor
     property color cfg_indicatorTailActiveColor
     property color cfg_indicatorTailInactiveColor
@@ -83,6 +83,25 @@ Kirigami.FormLayout {
     property int cfg_indicatorTailAttentionColorMethod
     property int cfg_indicatorTailProgressColorMethod
     property int cfg_indicatorTailHoverColorMethod
+    //Tint intensity
+    property int cfg_buttonActiveColorTint
+    property int cfg_buttonInactiveColorTint
+    property int cfg_buttonMinimizedColorTint
+    property int cfg_buttonAttentionColorTint
+    property int cfg_buttonProgressColorTint
+    property int cfg_buttonHoverColorTint
+    property int cfg_indicatorActiveColorTint
+    property int cfg_indicatorInactiveColorTint
+    property int cfg_indicatorMinimizedColorTint
+    property int cfg_indicatorAttentionColorTint
+    property int cfg_indicatorProgressColorTint
+    property int cfg_indicatorHoverColorTint
+    property int cfg_indicatorTailActiveColorTint
+    property int cfg_indicatorTailInactiveColorTint
+    property int cfg_indicatorTailMinimizedColorTint
+    property int cfg_indicatorTailAttentionColorTint
+    property int cfg_indicatorTailProgressColorTint
+    property int cfg_indicatorTailHoverColorTint
 
     wideMode: false
     id: colorForm
@@ -237,6 +256,7 @@ Kirigami.FormLayout {
         colorSelector.autoLightness = colorForm[cfgKey + "Auto"] & 0b100 ? true : false
         colorSelector.tintResult = colorForm[cfgKey + "Auto"] & 0b1000 ? true : false
         colorSelector.autoType = colorForm[cfgKey + "Method"]
+        colorSelector.autoType = colorForm[cfgKey + "Tint"]
         colorSelector.color = colorForm[cfgKey]
         colorForm.building = false
     }
@@ -253,6 +273,7 @@ Kirigami.FormLayout {
         colorForm[cfgKey + "Auto"] = autoMethod
         colorForm[cfgKey] = colorSelector.color
         colorForm[cfgKey + "Method"] = colorSelector.autoType
+        colorForm[cfgKey + "Tint"] = colorSelector.tintIntensity
         if(buttonTab.checked) colorForm[cfgKey + "Enabled"] = colorEnabled.checked
     }
 

@@ -12,29 +12,29 @@ Kirigami.FormLayout {
     anchors.left: parent.left
     anchors.right: parent.right
 
-    property alias cfg_indicatorsEnabled: indicatorsEnabled.currentIndex
-    property alias cfg_groupIconEnabled: groupIconEnabled.currentIndex
-    property alias cfg_indicatorProgress: indicatorProgress.checked 
+    property alias cfg_indicatorsEnabled: indicatorsEnabled.currentIndex //type: Int; label: Enable taskbar indicator effect. 0 = Off, 1 = On; default: 0
+    property alias cfg_groupIconEnabled: groupIconEnabled.currentIndex //type: Int; label: Enable taskbar group overlay effect. 0 = Off, 1 = On; default: 1
+    property alias cfg_indicatorProgress: indicatorProgress.checked //type: Bool; label: Display progress on indicator instead of button; default: false
     property alias cfg_indicatorProgressColor: indicatorProgressColor.color
-    property alias cfg_disableInactiveIndicators: disableInactiveIndicators.checked
-    property alias cfg_indicatorsAnimated: indicatorsAnimated.checked
-    property alias cfg_indicatorLocation: indicatorLocation.currentIndex
-    property alias cfg_indicatorReverse: indicatorReverse.checked
-    property alias cfg_indicatorOverride: indicatorOverride.checked
-    property alias cfg_indicatorEdgeOffset: indicatorEdgeOffset.value
-    property alias cfg_indicatorStyle: indicatorStyle.currentIndex
-    property alias cfg_indicatorMinLimit: indicatorMinLimit.value
-    property alias cfg_indicatorMaxLimit: indicatorMaxLimit.value
-    property alias cfg_indicatorDesaturate: indicatorDesaturate.checked
-    property alias cfg_indicatorGrow: indicatorGrow.checked
-    property alias cfg_indicatorGrowFactor: indicatorGrowFactor.value
-    property alias cfg_indicatorSize: indicatorSize.value
-    property alias cfg_indicatorLength: indicatorLength.value
-    property alias cfg_indicatorRadius: indicatorRadius.value
-    property alias cfg_indicatorShrink: indicatorShrink.value
-    property alias cfg_indicatorDominantColor: indicatorDominantColor.checked
-    property alias cfg_indicatorAccentColor:  indicatorAccentColor.checked
-    property alias cfg_indicatorCustomColor: indicatorCustomColor.color 
+    property alias cfg_disableInactiveIndicators: disableInactiveIndicators.checked //type: Bool; label: Disables the indicator for inactive windows; default: false
+    property alias cfg_indicatorsAnimated: indicatorsAnimated.checked //type: Bool; label: Enable animating indicators; default: true
+    property alias cfg_indicatorLocation: indicatorLocation.currentIndex //type: Int; label: Sets where the indicator should be. 0 = Top, 1 = Bottom, 2 = Left, 3 = Right; default: 0
+    property alias cfg_indicatorReverse: indicatorReverse.checked //type: Bool; label: Reerse the side the indicator is shown on.; default: false
+    property alias cfg_indicatorOverride: indicatorOverride.checked //type: Bool; label: Enable override the indicator's shown side.; default: false
+    property alias cfg_indicatorEdgeOffset: indicatorEdgeOffset.value //type: Int; label: Sets how many pixels offset from the edge the indicator is; default: 0
+    property alias cfg_indicatorStyle: indicatorStyle.currentIndex //type: Int; label: Select between 1 of 3 indicator styles. 0 = Metro, 1 = Cliora, 2 = Dots; default: 0
+    property alias cfg_indicatorMinLimit: indicatorMinLimit.value //type: Int; label: Set the minimum number of running indicators to display.; default: 0
+    property alias cfg_indicatorMaxLimit: indicatorMaxLimit.value //type: Int; label: Set the maximum number of running indicators to display.; default: 4
+    property alias cfg_indicatorDesaturate: indicatorDesaturate.checked //type: Bool; label: Desaturate the indicator when minimized; default: false
+    property alias cfg_indicatorGrow: indicatorGrow.checked //type: Bool; label: Shrink the indicator when minimized; default: false
+    property alias cfg_indicatorGrowFactor: indicatorGrowFactor.value //type: Int; label: Amount to grow the indicator by; default: 100
+    property alias cfg_indicatorSize: indicatorSize.value //type: Int; label: Set the size of the indicator in pixels; default: 4
+    property alias cfg_indicatorLength: indicatorLength.value //type: Int; label: Set the length of the indicator in pixels; default: 8
+    property alias cfg_indicatorRadius: indicatorRadius.value //type: Int; label: Set the roundness of the indicator in percentage; default: 0
+    property alias cfg_indicatorShrink: indicatorShrink.value //type: Int; label: Set the indicator margins in pixels; default: 4
+    property alias cfg_indicatorDominantColor: indicatorDominantColor.checked //type: Bool; label: Make the indicator the dominant Icon Color; default: false
+    property alias cfg_indicatorAccentColor:  indicatorAccentColor.checked //type: Bool; label: Make the icon the plasma accent color.; default: true
+    property alias cfg_indicatorCustomColor: indicatorCustomColor.color //type: String; label: Set the indicator to a custom color.; default: white
 
     ComboBox {
         id: indicatorsEnabled
