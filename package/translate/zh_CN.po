@@ -391,7 +391,7 @@ msgstr "打开"
 
 #: ../contents/ui/ConfigIndicators.qml
 msgid "Display Progress on Indicator"
-msgstr "在只是其中显示进度"
+msgstr "在指示器中显示进度"
 
 #: ../contents/ui/ConfigIndicators.qml
 msgid "Progress Color:"
