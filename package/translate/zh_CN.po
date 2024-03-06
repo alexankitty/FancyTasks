@@ -1,16 +1,16 @@
 # Translation of fancytasks in zh_CN
 # Copyright (C) 2023
 # This file is distributed under the same license as the fancytasks package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# zetako <zetako@outlook.com>, 2024.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: fancytasks\n"
 "Report-Msgid-Bugs-To: https://github.com/alexankitty/FancyTasks\n"
-"POT-Creation-Date: 2023-09-13 22:51-0600\n"
+"POT-Creation-Date: 2024-03-06 11:36+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: zetako <zetako@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -61,27 +61,27 @@ msgstr "使用plasma边框"
 
 #: ../contents/ui/ConfigAppearance.qml
 msgid "Icon Scale"
-msgstr ""
+msgstr "图标缩放"
 
 #: ../contents/ui/ConfigAppearance.qml
 msgid "Icon Size (px):"
-msgstr ""
+msgstr "图标尺寸 (px)："
 
 #: ../contents/ui/ConfigAppearance.qml
 msgid "Set icon size instead of scaling"
-msgstr ""
+msgstr "直接设置图标尺寸而不是缩放"
 
 #: ../contents/ui/ConfigAppearance.qml
 msgid "Button Colors:"
-msgstr ""
+msgstr "按钮颜色："
 
 #: ../contents/ui/ConfigAppearance.qml
 msgid "Using Plasma Style/Accent"
-msgstr ""
+msgstr "使用Plasma主题/强调色"
 
 #: ../contents/ui/ConfigAppearance.qml
 msgid "Using Color Overlay"
-msgstr ""
+msgstr "使用颜色覆盖"
 
 #: ../contents/ui/ConfigAppearance.qml ../contents/ui/ConfigIndicators.qml
 msgid "Use dominant icon color"
@@ -93,7 +93,7 @@ msgstr "自定义颜色："
 
 #: ../contents/ui/ConfigAppearance.qml
 msgid "Colorize inactive buttons"
-msgstr ""
+msgstr "为不活动的按钮着色"
 
 #: ../contents/ui/ConfigAppearance.qml
 msgid "Plasma Button Decorations:"
@@ -101,15 +101,15 @@ msgstr "Plasma按钮装饰："
 
 #: ../contents/ui/ConfigAppearance.qml
 msgid "Disable All"
-msgstr ""
+msgstr "全部禁用"
 
 #: ../contents/ui/ConfigAppearance.qml
 msgid "Disable Inactive Buttons"
-msgstr ""
+msgstr "为不活动的按钮禁用"
 
 #: ../contents/ui/ConfigAppearance.qml
 msgid "Plasma Button Direction:"
-msgstr "Plasma按钮方向"
+msgstr "Plasma按钮方向："
 
 #: ../contents/ui/ConfigAppearance.qml
 msgid "Override"
@@ -137,11 +137,11 @@ msgstr "东"
 
 #: ../contents/ui/ConfigAppearance.qml
 msgid "Maximum columns:"
-msgstr "最大列数"
+msgstr "最大列数："
 
 #: ../contents/ui/ConfigAppearance.qml
 msgid "Maximum rows:"
-msgstr "最大行数"
+msgstr "最大行数："
 
 #: ../contents/ui/ConfigAppearance.qml
 msgid "Always arrange tasks in rows of as many columns"
@@ -153,11 +153,11 @@ msgstr "始终将任务排列成多行"
 
 #: ../contents/ui/ConfigAppearance.qml
 msgid "Maximum button length (px):"
-msgstr "最大按钮长度（px）"
+msgstr "最大按钮长度 (px)："
 
 #: ../contents/ui/ConfigAppearance.qml
 msgid "Space between taskbar items (px):"
-msgstr "任务栏组件间距（px）"
+msgstr "任务栏组件间距 (px)："
 
 #: ../contents/ui/ConfigAppearance.qml
 msgid "Spacing between icons:"
@@ -339,7 +339,7 @@ msgstr "跳过最小化的任务"
 
 #: ../contents/ui/ConfigBehavior.qml
 msgid "Show only tasks:"
-msgstr "只展示任务"
+msgstr "只展示任务："
 
 #: ../contents/ui/ConfigBehavior.qml
 msgid "From current screen"
@@ -391,19 +391,19 @@ msgstr "打开"
 
 #: ../contents/ui/ConfigIndicators.qml
 msgid "Display Progress on Indicator"
-msgstr ""
+msgstr "在只是其中显示进度"
 
 #: ../contents/ui/ConfigIndicators.qml
 msgid "Progress Color:"
-msgstr ""
+msgstr "进度条颜色："
 
 #: ../contents/ui/ConfigIndicators.qml
 msgid "Disable for Inactive Windows"
-msgstr ""
+msgstr "为不活动的窗口禁用"
 
 #: ../contents/ui/ConfigIndicators.qml
 msgid "Group Overlay:"
-msgstr "分组覆盖"
+msgstr "分组覆盖："
 
 #: ../contents/ui/ConfigIndicators.qml
 msgid "Takes effect on next time plasma groups tasks."
@@ -411,7 +411,7 @@ msgstr "在下一次plasma组合任务时生效"
 
 #: ../contents/ui/ConfigIndicators.qml
 msgid "Animate Indicators:"
-msgstr "动态指示器"
+msgstr "动态指示器："
 
 #: ../contents/ui/ConfigIndicators.qml
 msgid "Indicator Location:"
@@ -443,11 +443,11 @@ msgstr "顶部"
 
 #: ../contents/ui/ConfigIndicators.qml
 msgid "Indicator Edge Offset (px):"
-msgstr ""
+msgstr "指示器边缘偏移 (px)："
 
 #: ../contents/ui/ConfigIndicators.qml
 msgid "Indicator Style:"
-msgstr "指示器风格"
+msgstr "指示器风格："
 
 #: ../contents/ui/ConfigIndicators.qml
 msgid "Metro"
@@ -463,11 +463,11 @@ msgstr "Dashes"
 
 #: ../contents/ui/ConfigIndicators.qml
 msgid "Indicator Min Limit:"
-msgstr ""
+msgstr "指示器最小限制："
 
 #: ../contents/ui/ConfigIndicators.qml
 msgid "Indicator Max Limit:"
-msgstr ""
+msgstr "指示器最大限制："
 
 #: ../contents/ui/ConfigIndicators.qml
 msgid "Minimize Options:"
@@ -483,23 +483,23 @@ msgstr "最小化时收缩"
 
 #: ../contents/ui/ConfigIndicators.qml
 msgid "Growth/Shrink factor:"
-msgstr "增长/收缩因数"
+msgstr "增长/收缩因数："
 
 #: ../contents/ui/ConfigIndicators.qml
 msgid "Indicator size (px):"
-msgstr "指示器大小（px）："
+msgstr "指示器大小 (px)："
 
 #: ../contents/ui/ConfigIndicators.qml
 msgid "Indicator length (px):"
-msgstr "指示器长度（px）："
+msgstr "指示器长度 (px)："
 
 #: ../contents/ui/ConfigIndicators.qml
 msgid "Indicator Radius (%):"
-msgstr "指示器圆角（%）："
+msgstr "指示器圆角 (%)："
 
 #: ../contents/ui/ConfigIndicators.qml
 msgid "Indicator margin (px):"
-msgstr "指示器间距（px）"
+msgstr "指示器间距 (px)："
 
 #: ../contents/ui/ConfigIndicators.qml
 msgid "Indicator Color:"
@@ -507,7 +507,7 @@ msgstr "指示器颜色："
 
 #: ../contents/ui/ConfigIndicators.qml
 msgid "Use plasma accent color"
-msgstr "使用plasma预设"
+msgstr "使用plasma强调色"
 
 #: ../contents/ui/ContextMenu.qml
 msgid "Places"
