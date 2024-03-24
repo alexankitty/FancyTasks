@@ -12,21 +12,21 @@ ConfigModel {
     ConfigCategory {
          name: i18n("Appearance")
          icon: "preferences-desktop-color"
-         source: "ConfigAppearance.qml"
+         source: "../configcomponents/ConfigAppearance.qml"
     }
     ConfigCategory {
         name: i18n("Colors")
         icon: "preferences-desktop-theme-global"
-        source: "ConfigColors.qml"
+        source: "../configcomponents/ConfigColors.qml"
     }
     ConfigCategory {
          name: i18n("Behavior")
          icon: "preferences-desktop"
-         source: "ConfigBehavior.qml"
+         source: "../configcomponents/ConfigBehavior.qml"
     }
     ConfigCategory {
         name: i18n("Indicators")
         icon: "preferences-desktop-navigation"
-        source: "ConfigIndicators.qml"
+        source: "../configcomponents/ConfigIndicators.qml"
     }
 }

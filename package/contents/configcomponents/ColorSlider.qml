@@ -8,7 +8,7 @@ import org.kde.kirigami 2.20 as Kirigami
 import org.kde.plasma.core 2.0 as PlasmaCore
 
 import "../libconfig" as LibConfig
-import "code/tools.js" as TaskTools
+import "../ui/code/tools.js" as TaskTools
 
 Item {
     function applyColors(hex){
