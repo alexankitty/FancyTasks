@@ -276,6 +276,30 @@
       <label>Enable override the indicator's shown side.</label>
       <default>false</default>
     </entry>
+    <entry name="buttonActiveProperties" type="StringList">
+      <label>String list for Active states. 0-4: Main Button, 5-9: Indicator, 10-14: Indicator Tail</label>
+      <default>#00000000,0,0,0,0,#00000000,0,0,0,0,#00000000,0,0,0,0</default>
+    </entry>
+    <entry name="buttonInactiveProperties" type="StringList">
+      <label>String list for Inactive states. 0-4: Main Button, 5-9: Indicator, 10-14: Indicator Tail</label>
+      <default>#00000000,0,0,0,0,#00000000,0,0,0,0,#00000000,0,0,0,0</default>
+    </entry>
+    <entry name="buttonMinimizedProperties" type="StringList">
+      <label>String list for Minimized states. 0-4: Main Button, 5-9: Indicator, 10-14: Indicator Tail</label>
+      <default>#00000000,0,0,0,0,#00000000,0,0,0,0,#00000000,0,0,0,0</default>
+    </entry>
+    <entry name="buttonAttentionProperties" type="StringList">
+      <label>String list for Attention states. 0-4: Main Button, 5-9: Indicator, 10-14: Indicator Tail</label>
+      <default>#00000000,0,0,0,0,#00000000,0,0,0,0,#00000000,0,0,0,0</default>
+    </entry>
+    <entry name="buttonProgressProperties" type="StringList">
+      <label>String list for Progress states. 0-4: Main Button, 5-9: Indicator, 10-14: Indicator Tail</label>
+      <default>#00000000,0,0,0,0,#00000000,0,0,0,0,#00000000,0,0,0,0</default>
+    </entry> 
+    <entry name="buttonHoverProperties" type="StringList">
+      <label>String list for Hover states. 0-4: Main Button, 5-9: Indicator, 10-14: Indicator Tail</label>
+      <default>#00000000,0,0,0,0,#00000000,0,0,0,0,#00000000,0,0,0,0</default>
+    </entry>  
   </group>
 
 </kcfg>

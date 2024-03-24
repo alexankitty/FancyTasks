@@ -9,6 +9,79 @@
 .import org.kde.taskmanager 0.1 as TaskManager
 .import org.kde.plasma.core 2.0 as PlasmaCore // Needed by TaskManager
 
+class buttonProperties {
+    /* QML's implementation of ecmascript really does not like typing public variables in the class.
+    color;
+    enabled;
+    autoH;
+    autoS;
+    autoL;
+    autoT;
+    method;
+    tint;
+    */
+    constructor(color, enabled, auto, method, tint){
+        this.color = color;
+        this.enabled = enabled;
+        this.autoH = auto & 0b1 ? true : false
+        this.autoS = auto & 0b10 ? true : false
+        this.autoL = auto & 0b100 ? true : false
+        this.autoT = auto & 0b1000 ? true : false
+        this.method = method;
+        this.tint = tint;
+    }
+}
+
+function getButtonProperties(type, stringList){
+    if(!stringList) return false;
+    let accessorModifer = null;
+    let properties = ['color', 'enabled', 'auto', 'method', 'tint']
+    switch(type){
+        case "Button":
+            accessorModifer = 0;
+            break;
+        case "Indicator":
+            accessorModifer = properties.length * 1;
+            break;
+        case "IndicatorTail":
+            accessorModifer = properties.length * 2;
+            break;
+    }
+    if(accessorModifer == null) return;
+    let result = [];
+    for(let x = 0; x < properties.length; x++){
+        result.push(stringList[accessorModifer + x]);
+    }
+    return new buttonProperties(... result);
+}
+
+function setButtonProperties(type, object, stringList){
+    if(!stringList) return false;
+    let properties = ['color', 'enabled', 'auto', 'method', 'tint']
+    let accessorModifer = null;
+    switch(type){
+        case "Button":
+            accessorModifer = 0;
+            break;
+        case "Indicator":
+            accessorModifer = properties.length * 1;
+            break;
+        case "IndicatorTail":
+            accessorModifer = properties.length * 2;
+            break;
+    }
+    if(accessorModifer == null) return;
+    for(let x = 0; x < properties.length; x++){
+        if(properties[x] == "auto"){
+            let autoBits = (object.autoH << 0) | (object.autoS << 1) | (object.autoL << 2) | (object.autoT << 3);
+            stringList[accessorModifer + x] = autoBits;
+            continue;
+        }
+        stringList[accessorModifer + x] = object[properties[x]];
+    }
+    return stringList;
+}
+
 function wheelActivateNextPrevTask(anchor, wheelDelta, eventDelta) {
     // magic number 120 for common "one click"
     // See: http://qt-project.org/doc/qt-5/qml-qtquick-wheelevent.html#angleDelta-prop
@@ -324,3 +397,4 @@ HSLA['l']=l;
 HSLA['a']=a;
 return HSLA;
 }
+

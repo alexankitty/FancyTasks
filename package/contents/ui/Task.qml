@@ -38,6 +38,7 @@ MouseArea {
     readonly property int pid: model.AppPid !== undefined ? model.AppPid : 0
     readonly property string appName: model.AppName || ""
     readonly property variant winIdList: model.WinIdList
+    property string activeState
     property int itemIndex: index
     property bool inPopup: false
     property bool isWindow: model.IsWindow === true
@@ -93,6 +94,11 @@ MouseArea {
     }
     function hideToolTipTemporarily() {
         toolTipArea.hideToolTip();
+    }
+
+    function getCurrentButtonProperties(type){
+        cfgKey = `button${task.state}Properties`
+        return TaskTools.getButtonProperties(type, plasmoid.configuration[cfgKey])
     }
 
     acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MidButton | Qt.BackButton | Qt.ForwardButton
@@ -247,35 +253,6 @@ MouseArea {
 
     onAudioIndicatorsEnabledChanged: {
         audioStreamIconLoader.active = hasAudioStream && audioIndicatorsEnabled;
-    }
-
-    function hexToHSL(hex) {
-    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-        let r = parseInt(result[1], 16);
-        let g = parseInt(result[2], 16);
-        let b = parseInt(result[3], 16);
-        let a = parseInt(result[4], 16) || 255;
-        r /= 255, g /= 255, b /= 255, a /= 255;
-        var max = Math.max(r, g, b), min = Math.min(r, g, b);
-        var h, s, l = (max + min) / 2;
-        if(max == min){
-        h = s = 0; // achromatic
-        }else{
-        var d = max - min;
-        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-        switch(max){
-            case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-            case g: h = (b - r) / d + 2; break;
-            case b: h = (r - g) / d + 4; break;
-        }
-        h /= 6;
-        }
-    var HSL = new Object();
-    HSL['h']=h;
-    HSL['s']=s;
-    HSL['l']=l;
-    HSL['a']=a;
-    return HSL;
     }
 
     Keys.onReturnPressed: TaskTools.activateTask(modelIndex(), model, event.modifiers, task)
@@ -495,7 +472,7 @@ MouseArea {
                         height = indicatorComputedSize
                     }
                     if(plasmoid.configuration.indicatorDesaturate && task.state === "minimizedNormal") {
-                        var colorHSL = hexToHSL(colorEval)
+                        var colorHSL = TaskTools.hexToHSL(colorEval)
                         colorCalc = Qt.hsla(colorHSL.h, colorHSL.s*0.5, colorHSL.l*.8, 1)
                     }
                     else if(!isFirst && plasmoid.configuration.indicatorStyle ===  0 && task.state !== "minimizedNormal") {//Metro specific handling
@@ -880,13 +857,18 @@ MouseArea {
             }
         },
         State {
-            name: "attention"
+            name: "Attention"
             when: model.IsDemandingAttention === true || (task.smartLauncherItem && task.smartLauncherItem.urgent)
 
             PropertyChanges {
                 target: frame
                 basePrefix: "attention"
-                visible: (plasmoid.configuration.buttonColorize && !frame.isHovered) || !plasmoid.configuration.buttonColorize
+                visible: {
+                    properties = getCurrentButtonProperties("button")
+                    if(properties.enabled && !frame.isHovered) return true
+                    
+                }
+                (plasmoid.configuration.buttonColorize && !frame.isHovered) || !plasmoid.configuration.buttonColorize
             }
             PropertyChanges { 
                 target: colorOverride
@@ -951,7 +933,12 @@ MouseArea {
             when: model.IsActive === false && !frame.isHovered && !plasmoid.configuration.disableButtonInactiveSvg
             PropertyChanges { 
                 target: colorOverride
-                visible: plasmoid.configuration.buttonColorize && plasmoid.configuration.buttonColorizeInactive ? true : false
+                visible: {
+
+                    if(plasmoid.configuration.buttonColorize && plasmoid.configuration.buttonColorizeInactive) return true
+                    else if(plasmoid.configuration.disableButtonInactiveSvg) return false
+                    else return false
+                } 
             }
             PropertyChanges { 
                 target: frame
