@@ -140,6 +140,7 @@ MouseArea {
         let alpha = mixedColor.a
         console.log(mixedColor, imageColors.tintColor, buttonProperties.color, autoColor, buttonProperties.tint)
         if(buttonProperties.autoT) mixedColor = Kirigami.ColorUtils.tintWithAlpha(mixedColor, imageColors.tintColor, buttonProperties.tint / 100)
+        //restore alpha
         mixedColor.a = alpha
         return mixedColor
     }
@@ -416,28 +417,12 @@ MouseArea {
                                 "#ffffff" : "#000000"
     }
 
-    ColorOverlay {
-        id: colorOverride
+    Loader {
         anchors.fill: frame
-        source: frame
-        color: getColor()
-        opacity: TaskTools.hexToHSL(buttonProperties.color).a
-        visible: buttonProperties.enabled && plasmoid.configuration.buttonColorize == 1 ? true : false
+        asynchronous: false
+        source: "ColorOverlayFrame.qml"
+        active: task.buttonProperties.enabled && plasmoid.configuration.buttonColorize == 1 ? true : false
     }
-
-    /*Rectangle{
-        id: colorFrame
-        anchors {
-            fill: parent
-            topMargin: (!tasks.vertical && taskList.rows > 1) ? LayoutManager.iconMargin : 0
-            bottomMargin: (!tasks.vertical && taskList.rows > 1) ? LayoutManager.iconMargin : 0
-            leftMargin: ((inPopup || tasks.vertical) && taskList.columns > 1) ? LayoutManager.iconMargin : 0
-            rightMargin: ((inPopup || tasks.vertical) && taskList.columns > 1) ? LayoutManager.iconMargin : 0           
-        }
-        color: getColor()
-        opacity: TaskTools.hexToHSL(buttonProperties.color).a
-        visible: buttonProperties.enabled && plasmoid.configuration.buttonColorize == 2 ? true : false
-    }*/
 
     Loader {
         anchors.fill: frame

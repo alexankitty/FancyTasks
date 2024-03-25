@@ -8,7 +8,7 @@ Item {
     id: background
 
     Item {
-        id: progress
+        id: solidFrame
         anchors {
             top: parent.top
             left: parent.left
@@ -20,11 +20,11 @@ Item {
         width: parent.width
 
         Rectangle{
-        id: colorFrame
-        width: background.width
-        height: background.height
-        color: task.getColor()
-        opacity: TaskTools.hexToHSL(task.buttonProperties.color).a
+            id: colorFrame
+            width: background.width
+            height: background.height
+            color: getColor()
+            opacity: TaskTools.hexToHSL(buttonProperties.color).a
         }
     }
 }
