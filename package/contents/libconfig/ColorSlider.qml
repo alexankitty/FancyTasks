@@ -14,7 +14,7 @@ Item {
     function applyColors(hex){
         colorPicker.updating = true
         if(!colorSlider.autoHue) colorSlider.hue = hex.h * 359
-        if(!colorSlider.autoSaturation) colorSlider.saturation = hex.s * 100
+        if(!colorSlider.autoSaturate) colorSlider.saturation = hex.s * 100
         if(!colorSlider.autoLightness) colorSlider.lightness = hex.l * 100
         colorSlider.alpha = hex.a * 100
         colorPicker.color = Qt.hsla(colorSlider.hue / 359, colorSlider.saturation/100, colorSlider.lightness/100, colorSlider.alpha/100) // Re-apply color in case it now differs
@@ -24,7 +24,7 @@ Item {
     function iconColors(hex){
         colorPicker.updating = true
         if(colorSlider.autoHue) colorSlider.hue = hex.h * 359
-        if(colorSlider.autoSaturation) colorSlider.saturation = hex.s * 100
+        if(colorSlider.autoSaturate) colorSlider.saturation = hex.s * 100
         if(colorSlider.autoLightness) colorSlider.lightness = hex.l * 100
         colorPicker.color = Qt.hsla(colorSlider.hue / 359, colorSlider.saturation/100, colorSlider.lightness/100, colorSlider.alpha/100) // Re-apply color in case it now differs
         colorPicker.updating = false
@@ -48,20 +48,21 @@ Item {
         colorSlider.valueChanged()
     }
     function autoColorPreview(){
-        if(colorSlider.autoType == 7){
-            if(colorForm["cfg_button" + colorSlider.colorState + "ColorAuto"]){
-                auto = colorForm["cfg_button" + colorSlider.colorState + "ColorMethod"]
+        var cfgKey = "cfg_button" + colorSlider.colorState + "Properties"
+        var buttonProperties = TaskTools.getButtonProperties("Button", colorForm[cfgKey])
+        var indicatorProperties = TaskTools.getButtonProperties("Indicator", colorForm[cfgKey])
+        var auto = colorSlider.autoType
+        if(colorSlider.autoType == 7){            
+            if(buttonProperties.autoH || buttonProperties.autoS || buttonProperties.autoL || buttonProperties.autoT){
+                
+                var auto = buttonProperties.method
             } 
-            else auto = 7
         }
-        if(colorSlider.autoType == 8){
-            if(colorForm["cfg_indicator" + colorSlider.colorState + "ColorAuto"]){
-                auto = colorForm["cfg_indicator" + colorSlider.colorState + "ColorMethod"]
+        else if(colorSlider.autoType == 8){
+            if(buttonProperties.autoH || buttonProperties.autoS || buttonProperties.autoL || buttonProperties.autoT){
+                
+                var auto = indicatorProperties.method
             } 
-            else auto = 8
-        }
-        else{
-            var auto = colorSlider.autoType
         }
         switch(auto){
             case 0:
@@ -86,11 +87,10 @@ Item {
                 var autoColor = PlasmaCore.Theme.highlightColor
                 break;
             case 7:
-                var autoColor = colorForm["cfg_button" + colorSlider.colorState + "Color"]
+                var autoColor = buttonProperties.color
                 break;
             case 8:
-                console.log(colorForm["cfg_indicator" + colorSlider.colorState + "Color"])
-                var autoColor = colorForm["cfg_indicator" + colorSlider.colorState + "Color"]
+                var autoColor = indicatorProperties.color
                 break;
             default:
                 TaskTools.hexToHSL(colorPicker.color)

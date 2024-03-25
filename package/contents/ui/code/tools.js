@@ -27,7 +27,7 @@ class buttonProperties {
         this.autoS = auto & 0b10 ? true : false
         this.autoL = auto & 0b100 ? true : false
         this.autoT = auto & 0b1000 ? true : false
-        this.method = method;
+        this.method = parseInt(method);
         this.tint = tint;
     }
 }

@@ -107,6 +107,7 @@ Kirigami.FormLayout {
         LibConfig.ColorSlider {
             id: colorSelector
             enabled: (buttonColorize.checked && buttonTab.checked && colorEnabled.checked) || (indicatorTab.checked && plasmoid.configuration.indicatorsEnabled) || (indicatorTailTab.checked && plasmoid.configuration.indicatorsEnabled)
+            colorState: state.displayText
             }
     }
     Component.onCompleted: buildColorSlider()

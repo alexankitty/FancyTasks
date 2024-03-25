@@ -38,7 +38,9 @@ MouseArea {
     readonly property int pid: model.AppPid !== undefined ? model.AppPid : 0
     readonly property string appName: model.AppName || ""
     readonly property variant winIdList: model.WinIdList
-    property string activeState
+    property var buttonProperties
+    property var indicatorProperties
+    property var indicatortailProperties
     property int itemIndex: index
     property bool inPopup: false
     property bool isWindow: model.IsWindow === true
@@ -97,8 +99,15 @@ MouseArea {
     }
 
     function getCurrentButtonProperties(type){
-        cfgKey = `button${task.state}Properties`
-        return TaskTools.getButtonProperties(type, plasmoid.configuration[cfgKey])
+        var cfgKey = `button${task.state}Properties`
+        var propKey = type.toLowerCase(type) + 'Properties'
+        task[propKey] = TaskTools.getButtonProperties(type, plasmoid.configuration[cfgKey])
+    }
+
+    onStateChanged: {
+        getCurrentButtonProperties("Button")
+        getCurrentButtonProperties("Indicator")
+        getCurrentButtonProperties("IndicatorTail")
     }
 
     acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MidButton | Qt.BackButton | Qt.ForwardButton
@@ -346,8 +355,15 @@ MouseArea {
             id: imageColors
             source: model.decoration
         }
+        property color averageColor: imageColors.average
+        property color backgroundColor: imageColors.background
+        property color closestToBlackColor: imageColors.closestToBlack
+        property color closestToWhiteColor: imageColors.closestToWhite
         property color dominantColor: imageColors.dominant
-        property color indicatorColor: Kirigami.ColorUtils.tintWithAlpha(frame.dominantColor, tintColor, .38)
+        property color dominantContrastColor: imageColors.dominantContrast
+        property string tintColor: Kirigami.ColorUtils.brightnessForColor(PlasmaCore.Theme.backgroundColor) ===
+                                Kirigami.ColorUtils.Dark ?
+                                "#ffffff" : "#000000"
         anchors {
             fill: parent
 
@@ -361,7 +377,7 @@ MouseArea {
         property bool isHovered: task.highlighted && plasmoid.configuration.taskHoverEffect
         property string basePrefix: "normal"
         prefix: isHovered ? TaskTools.taskPrefixHovered(basePrefix) : TaskTools.taskPrefix(basePrefix)
-        visible: plasmoid.configuration.buttonColorize ? false : true
+        visible: buttonProperties.enabled ? false : true
     }
 
     ColorOverlay {
@@ -864,29 +880,35 @@ MouseArea {
                 target: frame
                 basePrefix: "attention"
                 visible: {
-                    properties = getCurrentButtonProperties("button")
-                    if(properties.enabled && !frame.isHovered) return true
-                    
+                    if(!buttonProperties.enabled && !frame.isHovered) return true
+                    else return false
                 }
-                (plasmoid.configuration.buttonColorize && !frame.isHovered) || !plasmoid.configuration.buttonColorize
             }
             PropertyChanges { 
                 target: colorOverride
-                visible: (plasmoid.configuration.buttonColorize && frame.isHovered)
+                visible: (buttonProperties.enabled && !frame.isHovered)
             }
         },
         State {
-            name: "minimizedNormal"
+            name: "Minimized"
             when: model.IsMinimized === true && !frame.isHovered && !plasmoid.configuration.disableButtonInactiveSvg
 
             PropertyChanges {
                 target: frame
                 basePrefix: "minimized"
-                visible: (plasmoid.configuration.buttonColorize && plasmoid.configuration.buttonColorizeInactive) ? false : true
+                visible: {
+                    if(buttonProperties.enabled) return false
+                    else if(plasmoid.configuration.disableButtonInactiveSvg) return false
+                    else return true
+                } 
             }
             PropertyChanges { 
                 target: colorOverride
-                visible: (plasmoid.configuration.buttonColorize && plasmoid.configuration.buttonColorizeInactive) ? true : false
+                visible: {
+                    if(buttonProperties.enabled) return true
+                    else if(plasmoid.configuration.disableButtonInactiveSvg) return false
+                    else return false
+                }
             }
             PropertyChanges{
                 target: indicator
@@ -894,25 +916,7 @@ MouseArea {
             }
         },
         State {
-            name: "minimizedNodecoration"
-            when: (model.IsMinimized === true && !frame.isHovered) && plasmoid.configuration.disableButtonInactiveSvg
-
-            PropertyChanges {
-                target: frame
-                basePrefix: "minimized"
-                visible: plasmoid.configuration.disableButtonInactiveSvg ? false : true
-            }
-            PropertyChanges { 
-                target: colorOverride
-                visible: plasmoid.configuration.disableButtonInactiveSvg ? false : true
-            }
-            PropertyChanges{
-                target: indicator
-                visible: plasmoid.configuration.disableInactiveIndicators ? false : true
-            }
-        },
-        State {
-            name: "active"
+            name: "Active"
             when: model.IsActive === true
 
             PropertyChanges {
@@ -921,7 +925,7 @@ MouseArea {
             }
             PropertyChanges { 
                 target: colorOverride
-                visible: plasmoid.configuration.buttonColorize ? true : false
+                visible: task.buttonProperties.enabled ? true : false
             }
             PropertyChanges{
                 target: indicator
@@ -929,20 +933,18 @@ MouseArea {
             }
         },
         State {
-            name: "inactiveNormal"
+            name: "Inactive"
             when: model.IsActive === false && !frame.isHovered && !plasmoid.configuration.disableButtonInactiveSvg
             PropertyChanges { 
                 target: colorOverride
                 visible: {
-
-                    if(plasmoid.configuration.buttonColorize && plasmoid.configuration.buttonColorizeInactive) return true
-                    else if(plasmoid.configuration.disableButtonInactiveSvg) return false
+                    if(buttonProperties.enabled) return true
                     else return false
                 } 
             }
             PropertyChanges { 
                 target: frame
-                visible: plasmoid.configuration.buttonColorize && plasmoid.configuration.buttonColorizeInactive ? false : true
+                visible: buttonProperties.enabled && plasmoid.configuration.disableButtonInactiveSvg ? false : true
             }
             PropertyChanges{
                 target: indicator
@@ -950,31 +952,15 @@ MouseArea {
             }
         },
         State {
-            name: "inactiveNoDecoration"
-            when: (model.IsActive === false && !frame.isHovered) && plasmoid.configuration.disableButtonInactiveSvg
-            PropertyChanges { 
-                target: colorOverride
-                visible: plasmoid.configuration.disableButtonInactiveSvg ? false : true
-            }
-            PropertyChanges { 
-                target: frame
-                visible: plasmoid.configuration.disableButtonInactiveSvg ? false : true
-            }
-            PropertyChanges{
-                target: indicator
-                visible: plasmoid.configuration.disableInactiveIndicators ? false : true
-            }
-        },
-        State {
-            name: "hover"
+            name: "Hover"
             when: frame.isHovered
             PropertyChanges { 
                 target: colorOverride
-                visible: plasmoid.configuration.buttonColorize ? true : false
+                visible: buttonProperties.enabled ? true : false
             }
             PropertyChanges { 
                 target: frame
-                visible: plasmoid.configuration.buttonColorize ? false : true
+                visible: buttonProperties.enabled ? false : true
             }
             PropertyChanges{
                 target: indicator
