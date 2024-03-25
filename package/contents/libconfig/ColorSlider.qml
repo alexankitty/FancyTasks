@@ -97,6 +97,7 @@ Item {
                 break;
         }
         if(colorSlider.tintResult) autoColor = Kirigami.ColorUtils.tintWithAlpha(autoColor, colorSlider.tintColor, tintIntensity / 100)
+        autoColor.a = colorSlider.alpha/100;
         return TaskTools.hexToHSL(autoColor)
     }
     id: colorSlider
