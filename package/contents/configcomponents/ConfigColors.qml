@@ -63,7 +63,7 @@ Kirigami.FormLayout {
 
         RadioButton {
             id: buttonColorize
-            checked: plasmoid.configuration.buttonColorize === true
+            checked: cfg_buttonColorize === true
             text: i18n("Using Color Overlay")
             ButtonGroup.group: colorizeButtonGroup
             visible: buttonTab.checked
@@ -113,6 +113,7 @@ Kirigami.FormLayout {
             id: colorEnabled
             text: i18n("Coloring Enabled")
             visible: buttonTab.checked
+            enabled: (buttonColorize.checked && buttonTab.checked) || (indicatorTab.checked && plasmoid.configuration.indicatorsEnabled) || (indicatorTailTab.checked && plasmoid.configuration.indicatorsEnabled)
         }
         LibConfig.ColorSlider {
             id: colorSelector

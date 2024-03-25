@@ -82,6 +82,22 @@ function setButtonProperties(type, object, stringList){
     return stringList;
 }
 
+function mixColor(input, auto, autoBits){
+    console.log(input, auto)
+    let staticColor = hexToHSL(input);
+    let autoColor = hexToHSL(auto);
+    let properties = ["h", "s", "l"]
+    let destinationColor = {h: 0, s: 0, l: 0, a: 1}
+    for(let index in properties){
+        if(autoBits[properties[index]]) destinationColor[properties[index]] = autoColor[properties[index]]
+        else destinationColor[properties[index]] = staticColor[properties[index]]
+    }
+    let colorArr = []
+    for(let key in destinationColor) colorArr.push(destinationColor[key])
+    console.log(... colorArr)
+    return Qt.hsla(... colorArr)
+}
+
 function wheelActivateNextPrevTask(anchor, wheelDelta, eventDelta) {
     // magic number 120 for common "one click"
     // See: http://qt-project.org/doc/qt-5/qml-qtquick-wheelevent.html#angleDelta-prop
@@ -379,22 +395,22 @@ function hexToHSL(hex) {
     var max = Math.max(r, g, b), min = Math.min(r, g, b);
     var h, s, l = (max + min) / 2;
     if(max == min){
-    h = s = 0; // achromatic
+        h = s = 0; // achromatic
     }else{
-    var d = max - min;
-    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-    switch(max){
-        case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-        case g: h = (b - r) / d + 2; break;
-        case b: h = (r - g) / d + 4; break;
+        var d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        switch(max){
+            case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+            case g: h = (b - r) / d + 2; break;
+            case b: h = (r - g) / d + 4; break;
+        }
+        h /= 6;
     }
-    h /= 6;
-}
-var HSLA = new Object();
-HSLA['h']=h;
-HSLA['s']=s;
-HSLA['l']=l;
-HSLA['a']=a;
-return HSLA;
+    var HSLA = new Object();
+    HSLA['h']=h;
+    HSLA['s']=s;
+    HSLA['l']=l;
+    HSLA['a']=a;
+    return HSLA;
 }
 
