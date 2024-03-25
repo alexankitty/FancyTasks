@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fancytasks\n"
 "Report-Msgid-Bugs-To: https://github.com/alexankitty/FancyTasks\n"
-"POT-Creation-Date: 2024-03-24 04:32-0600\n"
+"POT-Creation-Date: 2024-03-25 00:10-0600\n"
 "PO-Revision-Date: 2023-07-13 22:27+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -47,46 +47,6 @@ msgstr ""
 
 #: ../contents/configcomponents/ConfigAppearance.qml
 msgid "Set icon size instead of scaling"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigAppearance.qml
-msgid "Button Colors:"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigAppearance.qml
-#: ../contents/configcomponents/ConfigColors.qml
-msgid "Using Plasma Style/Accent"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigAppearance.qml
-#: ../contents/configcomponents/ConfigColors.qml
-msgid "Using Color Overlay"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigAppearance.qml
-#: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Use dominant icon color"
-msgstr "Dominante pictogramkleur gebruiken"
-
-#: ../contents/configcomponents/ConfigAppearance.qml
-#: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Custom Color:"
-msgstr "Zelfgekozen kleur:"
-
-#: ../contents/configcomponents/ConfigAppearance.qml
-msgid "Colorize inactive buttons"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigAppearance.qml
-msgid "Plasma Button Decorations:"
-msgstr "Plasma-knopdecoraties:"
-
-#: ../contents/configcomponents/ConfigAppearance.qml
-msgid "Disable All"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigAppearance.qml
-msgid "Disable Inactive Buttons"
 msgstr ""
 
 #: ../contents/configcomponents/ConfigAppearance.qml
@@ -391,6 +351,18 @@ msgid "Indicator Tail Colors"
 msgstr ""
 
 #: ../contents/configcomponents/ConfigColors.qml
+msgid "Using Plasma Style/Accent"
+msgstr ""
+
+#: ../contents/configcomponents/ConfigColors.qml
+msgid "Using Color Overlay"
+msgstr ""
+
+#: ../contents/configcomponents/ConfigColors.qml
+msgid "Using Solid Color"
+msgstr ""
+
+#: ../contents/configcomponents/ConfigColors.qml
 msgid "Enable Button Color Overlay or Indicators to be able to use this page."
 msgstr ""
 
@@ -555,8 +527,16 @@ msgid "Indicator Color:"
 msgstr "Indicatorkleur:"
 
 #: ../contents/configcomponents/ConfigIndicators.qml
+msgid "Use dominant icon color"
+msgstr "Dominante pictogramkleur gebruiken"
+
+#: ../contents/configcomponents/ConfigIndicators.qml
 msgid "Use plasma accent color"
 msgstr "Plasma-accentkleur"
+
+#: ../contents/configcomponents/ConfigIndicators.qml
+msgid "Custom Color:"
+msgstr "Zelfgekozen kleur:"
 
 #: ../contents/config/config.qml
 msgid "Appearance"
@@ -905,6 +885,9 @@ msgstr "Ook actief op %1"
 msgctxt "Which activities a window is currently on"
 msgid "Available on %1"
 msgstr "Actief op %1"
+
+#~ msgid "Plasma Button Decorations:"
+#~ msgstr "Plasma-knopdecoraties:"
 
 #~ msgid "Press OK to fix layout issues."
 #~ msgstr "Klik op oké om indelingsproblemen op te lossen."

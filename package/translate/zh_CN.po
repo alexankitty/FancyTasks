@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fancytasks\n"
 "Report-Msgid-Bugs-To: https://github.com/alexankitty/FancyTasks\n"
-"POT-Creation-Date: 2024-03-24 04:32-0600\n"
+"POT-Creation-Date: 2024-03-25 00:10-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,42 +47,6 @@ msgstr ""
 
 #: ../contents/configcomponents/ConfigAppearance.qml
 msgid "Set icon size instead of scaling"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigAppearance.qml
-msgid "Button Colors:"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigAppearance.qml ../contents/configcomponents/ConfigColors.qml
-msgid "Using Plasma Style/Accent"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigAppearance.qml ../contents/configcomponents/ConfigColors.qml
-msgid "Using Color Overlay"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigAppearance.qml ../contents/configcomponents/ConfigIndicators.qml
-msgid "Use dominant icon color"
-msgstr "使用图标主体色"
-
-#: ../contents/configcomponents/ConfigAppearance.qml ../contents/configcomponents/ConfigIndicators.qml
-msgid "Custom Color:"
-msgstr "自定义颜色："
-
-#: ../contents/configcomponents/ConfigAppearance.qml
-msgid "Colorize inactive buttons"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigAppearance.qml
-msgid "Plasma Button Decorations:"
-msgstr "Plasma按钮装饰："
-
-#: ../contents/configcomponents/ConfigAppearance.qml
-msgid "Disable All"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigAppearance.qml
-msgid "Disable Inactive Buttons"
 msgstr ""
 
 #: ../contents/configcomponents/ConfigAppearance.qml
@@ -368,6 +332,18 @@ msgid "Indicator Tail Colors"
 msgstr ""
 
 #: ../contents/configcomponents/ConfigColors.qml
+msgid "Using Plasma Style/Accent"
+msgstr ""
+
+#: ../contents/configcomponents/ConfigColors.qml
+msgid "Using Color Overlay"
+msgstr ""
+
+#: ../contents/configcomponents/ConfigColors.qml
+msgid "Using Solid Color"
+msgstr ""
+
+#: ../contents/configcomponents/ConfigColors.qml
 msgid "Enable Button Color Overlay or Indicators to be able to use this page."
 msgstr ""
 
@@ -532,8 +508,16 @@ msgid "Indicator Color:"
 msgstr "指示器颜色："
 
 #: ../contents/configcomponents/ConfigIndicators.qml
+msgid "Use dominant icon color"
+msgstr "使用图标主体色"
+
+#: ../contents/configcomponents/ConfigIndicators.qml
 msgid "Use plasma accent color"
 msgstr "使用plasma预设"
+
+#: ../contents/configcomponents/ConfigIndicators.qml
+msgid "Custom Color:"
+msgstr "自定义颜色："
 
 #: ../contents/config/config.qml
 msgid "Appearance"
@@ -880,6 +864,9 @@ msgstr "也在 %1 上可用"
 msgctxt "Which activities a window is currently on"
 msgid "Available on %1"
 msgstr "在 %1 上可用"
+
+#~ msgid "Plasma Button Decorations:"
+#~ msgstr "Plasma按钮装饰："
 
 #~ msgid "Press OK to fix layout issues."
 #~ msgstr "按OK键来修复布局问题。"

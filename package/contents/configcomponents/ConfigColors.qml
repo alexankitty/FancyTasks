@@ -18,7 +18,7 @@ import "../libconfig" as LibConfig
 import "../ui/code/tools.js" as TaskTools
 
 Kirigami.FormLayout {
-    property alias cfg_buttonColorize: buttonColorize.checked //type: Bool; label: Colorize task buttons; default: false
+    property alias cfg_buttonColorize: buttonColorize.currentIndex
     property var cfg_buttonActiveProperties
     property var cfg_buttonInactiveProperties
     property var cfg_buttonMinimizedProperties
@@ -50,26 +50,35 @@ Kirigami.FormLayout {
                 text: i18n("Indicator Tail Colors")
             }
         }
-        ButtonGroup {
-            id: colorizeButtonGroup
-        }
-
-        RadioButton {
-            checked: !buttonColorize.checked
-            text: i18n("Using Plasma Style/Accent")
-            ButtonGroup.group: colorizeButtonGroup
-            visible: buttonTab.checked
-        }
-
-        RadioButton {
-            id: buttonColorize
-            checked: cfg_buttonColorize === true
-            text: i18n("Using Color Overlay")
-            ButtonGroup.group: colorizeButtonGroup
-            visible: buttonTab.checked
-        }
+        ComboBox {
+                property int prevIndex
+                id: buttonColorize
+                visible: buttonTab.checked
+                model: [
+                    {text: i18n("Using Plasma Style/Accent"), visible: true, enabled: true},
+                    {text: i18n("Using Color Overlay"), visible: true, enabled: true},
+                    {text: i18n("Using Solid Color"), visible: true, enabled: true},
+                ]
+                textRole: "text"
+                delegate: ItemDelegate {
+                    width: modelData.visible ? parent.width : 0
+                    height: modelData.visible ? implicitHeight : 0
+                    text: modelData.visible ? modelData.text : ""
+                    font.weight: state.currentIndex === index ? Font.DemiBold : Font.Normal
+                    highlighted: ListView.isCurrentItem
+                    visible: modelData.visible
+                    enabled: modelData.enabled
+                }
+                onActivated: {
+                    if(!model[currentIndex].enabled){
+                        if(currentIndex < count - 1 && prevIndex < currentIndex) currentIndex += 1
+                        else currentIndex -= 1
+                    }
+                    prevIndex = currentIndex
+                }
+            }
         Label{
-            visible: !buttonColorize.checked && !plasmoid.configuration.indicatorsEnabled
+            visible: !buttonColorize.currentIndex && !plasmoid.configuration.indicatorsEnabled
             text: i18n("Enable Button Color Overlay or Indicators to be able to use this page.")
         }
         RowLayout{
@@ -77,7 +86,7 @@ Kirigami.FormLayout {
                 text: i18n("State")
             }
             ComboBox {
-                enabled: (buttonColorize.checked && buttonTab.checked) || (indicatorTab.checked && plasmoid.configuration.indicatorsEnabled) || (indicatorTailTab.checked && plasmoid.configuration.indicatorsEnabled)
+                enabled: (buttonColorize.currentIndex && buttonTab.checked) || (indicatorTab.checked && plasmoid.configuration.indicatorsEnabled) || (indicatorTailTab.checked && plasmoid.configuration.indicatorsEnabled)
                 currentIndex: 0
                 property int prevIndex
                 id: state
@@ -91,7 +100,6 @@ Kirigami.FormLayout {
                 ]
                 textRole: "text"
                 delegate: ItemDelegate {
-                    id: stateDelegate
                     width: modelData.visible ? parent.width : 0
                     height: modelData.visible ? implicitHeight : 0
                     text: modelData.visible ? modelData.text : ""
@@ -113,11 +121,11 @@ Kirigami.FormLayout {
             id: colorEnabled
             text: i18n("Coloring Enabled")
             visible: buttonTab.checked
-            enabled: (buttonColorize.checked && buttonTab.checked) || (indicatorTab.checked && plasmoid.configuration.indicatorsEnabled) || (indicatorTailTab.checked && plasmoid.configuration.indicatorsEnabled)
+            enabled: (buttonColorize.currentIndex && buttonTab.checked) || (indicatorTab.checked && plasmoid.configuration.indicatorsEnabled) || (indicatorTailTab.checked && plasmoid.configuration.indicatorsEnabled)
         }
         LibConfig.ColorSlider {
             id: colorSelector
-            enabled: (buttonColorize.checked && buttonTab.checked && colorEnabled.checked) || (indicatorTab.checked && plasmoid.configuration.indicatorsEnabled) || (indicatorTailTab.checked && plasmoid.configuration.indicatorsEnabled)
+            enabled: (buttonColorize.currentIndex && buttonTab.checked && colorEnabled.checked) || (indicatorTab.checked && plasmoid.configuration.indicatorsEnabled) || (indicatorTailTab.checked && plasmoid.configuration.indicatorsEnabled)
             colorState: state.displayText
             }
     }
@@ -176,7 +184,7 @@ Kirigami.FormLayout {
             else buttonProperties.enabled = 0
         }
         colorForm[cfgKey] = TaskTools.setButtonProperties(colorForm.decorationType, buttonProperties, colorForm[cfgKey])
-        plasmoid.configuration.buttonColorize == buttonColorize.checked
+        cfg_buttonColorize = buttonColorize.currentIndex
     }
 
     Connections {

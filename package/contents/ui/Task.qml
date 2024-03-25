@@ -120,6 +120,20 @@ MouseArea {
             getButtonProperties()
         }
     }
+
+    function getColor() {
+        let colorMethods = ["average", "background", "closestToBlack", "closestToWhite", "dominant", "dominantContrast", "plasmaTheme"]
+        let autoColor = colorOverride[colorMethods[buttonProperties.method] + "Color"]
+        let autoBits = {
+            h: buttonProperties.autoH,
+            s: buttonProperties.autoS,
+            l: buttonProperties.autoL,
+        }
+        let mixedColor = TaskTools.mixColor(buttonProperties.color, autoColor, autoBits)
+        if(buttonProperties.autoT) mixedColor = Kirigami.ColorUtils.tintWithAlpha(autoColor, tintColor, buttonProperties.tint / 100)
+        return mixedColor            
+    }
+
     acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MidButton | Qt.BackButton | Qt.ForwardButton
 
     onPidChanged: updateAudioStreams({delay: false})
@@ -369,12 +383,12 @@ MouseArea {
             leftMargin: ((inPopup || tasks.vertical) && taskList.columns > 1) ? LayoutManager.iconMargin : 0
             rightMargin: ((inPopup || tasks.vertical) && taskList.columns > 1) ? LayoutManager.iconMargin : 0           
         }
-        imagePath: plasmoid.configuration.disableButtonSvg ? "" : "widgets/tasks"
+        imagePath: "widgets/tasks"
         enabledBorders: plasmoid.configuration.useBorders ? 1 | 2 | 4 | 8 : 0
         property bool isHovered: task.highlighted && plasmoid.configuration.taskHoverEffect
         property string basePrefix: "normal"
         prefix: isHovered ? TaskTools.taskPrefixHovered(basePrefix) : TaskTools.taskPrefix(basePrefix)
-        visible: buttonProperties.enabled && plasmoid.configuration.buttonColorize ? false : true
+        visible: !plasmoid.configuration.buttonColorize ? true : false
     }
 
     ColorOverlay {
@@ -388,26 +402,30 @@ MouseArea {
         property color closestToWhiteColor: imageColors.closestToWhite
         property color dominantColor: imageColors.dominant
         property color dominantContrastColor: imageColors.dominantContrast
+        property color plasmaThemeColor: PlasmaCore.Theme.highlightColor
         property string tintColor: Kirigami.ColorUtils.brightnessForColor(PlasmaCore.Theme.backgroundColor) ===
                                 Kirigami.ColorUtils.Dark ?
                                 "#ffffff" : "#000000"
         id: colorOverride
         anchors.fill: frame
         source: frame
-        color: {
-            let colorMethods = ["average", "background", "closestToBlack", "closestToWhite", "dominant", "dominantContrast"]
-            let autoColor = colorOverride[colorMethods[buttonProperties.method] + "Color"]
-            let autoBits = {
-                h: buttonProperties.autoH,
-                s: buttonProperties.autoS,
-                l: buttonProperties.autoL,
-            }
-            let mixedColor = TaskTools.mixColor(buttonProperties.color, autoColor, autoBits)
-            if(buttonProperties.autoT) mixedColor = Kirigami.ColorUtils.tintWithAlpha(autoColor, tintColor, buttonProperties.tint / 100)
-            return mixedColor            
-        }
+        color: getColor()
         opacity: TaskTools.hexToHSL(buttonProperties.color).a
-        visible: buttonProperties.enabled && plasmoid.configuration.buttonColorize ? true : false
+        visible: buttonProperties.enabled && plasmoid.configuration.buttonColorize == 1 ? true : false
+    }
+
+    Rectangle{
+        id: colorFrame
+        anchors {
+            fill: parent
+            topMargin: (!tasks.vertical && taskList.rows > 1) ? LayoutManager.iconMargin : 0
+            bottomMargin: (!tasks.vertical && taskList.rows > 1) ? LayoutManager.iconMargin : 0
+            leftMargin: ((inPopup || tasks.vertical) && taskList.columns > 1) ? LayoutManager.iconMargin : 0
+            rightMargin: ((inPopup || tasks.vertical) && taskList.columns > 1) ? LayoutManager.iconMargin : 0           
+        }
+        color: getColor()
+        opacity: TaskTools.hexToHSL(buttonProperties.color).a
+        visible: buttonProperties.enabled && plasmoid.configuration.buttonColorize == 2 ? true : false
     }
 
     Flow {
@@ -891,6 +909,10 @@ MouseArea {
                 target: colorOverride
                 visible: false
             }
+            PropertyChanges {
+                target: colorFrame
+                visible: false
+            }
         },
         State {
             name: "Attention"
@@ -905,11 +927,6 @@ MouseArea {
             name: "Minimized"
             when: model.IsMinimized === true && !frame.isHovered
 
-            PropertyChanges {
-                target: frame
-                basePrefix: "minimized"
-                visible: buttonProperties.enabled && plasmoid.configuration.buttonColorize || plasmoid.configuration.disableButtonInactiveSvg ? false : true
-            }
             PropertyChanges{
                 target: indicator
                 visible: plasmoid.configuration.disableInactiveIndicators ? false : true
@@ -917,7 +934,7 @@ MouseArea {
         },
         State {
             name: "Active"
-            when: model.IsActive === true
+            when: model.IsActive === true && !frame.isHovered
 
             PropertyChanges {
                 target: frame
@@ -931,10 +948,6 @@ MouseArea {
         State {
             name: "Inactive"
             when: model.IsActive === false && !frame.isHovered
-            PropertyChanges { 
-                target: frame
-                visible: buttonProperties.enabled && plasmoid.configuration.buttonColorize || plasmoid.configuration.disableButtonInactiveSvg ? false : true
-            }
             PropertyChanges{
                 target: indicator
                 visible: plasmoid.configuration.disableInactiveIndicators ? false : true

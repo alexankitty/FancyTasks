@@ -35,13 +35,6 @@ Kirigami.FormLayout {
     property alias cfg_useBorders: useBorders.checked //type: Bool; label: Enable plasma borders.; default: True
     property alias cfg_taskSpacingSize: taskSpacingSize.value //type: Int; label: Size in pixels of space between taskbar items.; default: 0
 
-        
-    property alias cfg_buttonColorizeInactive: buttonColorizeInactive.checked //type: Bool; label: Colorize inactive task buttons; default: false
-    property alias cfg_buttonColorizeDominant: buttonColorizeDominant.checked //type: Bool; label: Make the task button use the icon's dominant color; default: true
-    property alias cfg_buttonColorizeCustom: buttonColorizeCustom.color //type: String; label: Set a custom color for the task button.; default: #FFFFFF
-
-    property alias cfg_disableButtonSvg: disableButtonSvg.checked //type: Bool; label: Disables the decoration SVG; default: false
-    property alias cfg_disableButtonInactiveSvg: disableButtonInactiveSvg.checked //type: Bool; label: Disables the decoration SVG for inactive windows; default: false
     property alias cfg_overridePlasmaButtonDirection: overridePlasmaButtonDirection.checked //type: Bool; label: Override the plasma button direction ; default: false
     property alias cfg_plasmaButtonDirection: plasmaButtonDirection.currentIndex //type: Int; label: Direction of the plasma button SVG: 0 = North, 1 = West, 2 = South, 3 = East; default: 0
 
@@ -103,64 +96,6 @@ Kirigami.FormLayout {
 
     Item {
         Kirigami.FormData.isSection: true
-    }
-
-    ButtonGroup {
-        id: colorizeButtonGroup
-    }
-
-    RadioButton {
-        Kirigami.FormData.label: i18n("Button Colors:")
-        checked: !buttonColorize.checked
-        text: i18n("Using Plasma Style/Accent")
-        ButtonGroup.group: colorizeButtonGroup
-    }
-
-    RadioButton {
-        id: buttonColorize
-        checked: plasmoid.configuration.buttonColorize === true
-        text: i18n("Using Color Overlay")
-        ButtonGroup.group: colorizeButtonGroup
-    }
-
-    CheckBox {
-        enabled: buttonColorize.checked
-        id: buttonColorizeDominant
-        text: i18n("Use dominant icon color")
-        visible: buttonColorize.checked
-    }
-
-
-
-    KQControls.ColorButton {
-        Layout.leftMargin: Kirigami.Units.GridUnit
-        enabled: buttonColorize.checked & !buttonColorizeDominant.checked
-        id: buttonColorizeCustom
-        Kirigami.FormData.label: i18n("Custom Color:")
-        showAlphaChannel: true
-        visible: buttonColorize.checked && !buttonColorizeDominant.checked
-    }
-
-    CheckBox {
-        id: buttonColorizeInactive
-        text: i18n("Colorize inactive buttons")
-        visible: buttonColorize.checked
-        enabled: !disableButtonInactiveSvg.checked
-    }
-
-    Item {
-        Kirigami.FormData.isSection: true
-    }
-
-    CheckBox {
-        id: disableButtonSvg
-        Kirigami.FormData.label: i18n("Plasma Button Decorations:")
-        text: i18n("Disable All")
-    }
-    CheckBox {
-        id: disableButtonInactiveSvg
-        text: i18n("Disable Inactive Buttons")
-        enabled: !disableButtonSvg.checked
     }
 
     CheckBox {
