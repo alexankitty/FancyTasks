@@ -129,15 +129,19 @@ MouseArea {
 
     function getColor() {
         let colorMethods = ["average", "background", "closestToBlack", "closestToWhite", "dominant", "dominantContrast", "plasmaTheme"]
-        let autoColor = colorOverride[colorMethods[buttonProperties.method] + "Color"]
+        let autoColor = imageColors[colorMethods[task.buttonProperties.method] + "Color"]
+        
         let autoBits = {
             h: buttonProperties.autoH,
             s: buttonProperties.autoS,
             l: buttonProperties.autoL,
         }
         let mixedColor = TaskTools.mixColor(buttonProperties.color, autoColor, autoBits)
-        if(buttonProperties.autoT) mixedColor = Kirigami.ColorUtils.tint(autoColor, tintColor, buttonProperties.tint / 100)
-        return mixedColor            
+        let alpha = mixedColor.a
+        console.log(mixedColor, imageColors.tintColor, buttonProperties.color, autoColor, buttonProperties.tint)
+        if(buttonProperties.autoT) mixedColor = Kirigami.ColorUtils.tintWithAlpha(mixedColor, imageColors.tintColor, buttonProperties.tint / 100)
+        mixedColor.a = alpha
+        return mixedColor
     }
 
     acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MidButton | Qt.BackButton | Qt.ForwardButton
@@ -397,11 +401,9 @@ MouseArea {
         visible: !plasmoid.configuration.buttonColorize ? true : false
     }
 
-    ColorOverlay {
-        Kirigami.ImageColors {
-            id: imageColors
-            source: model.decoration
-        }
+    Kirigami.ImageColors {
+        id: imageColors
+        source: model.decoration
         property color averageColor: imageColors.average
         property color backgroundColor: imageColors.background
         property color closestToBlackColor: imageColors.closestToBlack
@@ -412,6 +414,9 @@ MouseArea {
         property string tintColor: Kirigami.ColorUtils.brightnessForColor(PlasmaCore.Theme.backgroundColor) ===
                                 Kirigami.ColorUtils.Dark ?
                                 "#ffffff" : "#000000"
+    }
+
+    ColorOverlay {
         id: colorOverride
         anchors.fill: frame
         source: frame
@@ -420,7 +425,7 @@ MouseArea {
         visible: buttonProperties.enabled && plasmoid.configuration.buttonColorize == 1 ? true : false
     }
 
-    Rectangle{
+    /*Rectangle{
         id: colorFrame
         anchors {
             fill: parent
@@ -432,6 +437,13 @@ MouseArea {
         color: getColor()
         opacity: TaskTools.hexToHSL(buttonProperties.color).a
         visible: buttonProperties.enabled && plasmoid.configuration.buttonColorize == 2 ? true : false
+    }*/
+
+    Loader {
+        anchors.fill: frame
+        asynchronous: false
+        source: "SolidColorFrame.qml"
+        active: task.buttonProperties.enabled && plasmoid.configuration.buttonColorize == 2 ? true : false
     }
 
     Flow {
@@ -726,6 +738,7 @@ MouseArea {
 
 
     Loader {
+        id: taskProgressOverlayLoader
         anchors.fill: frame
         asynchronous: true
         source: "TaskProgressOverlay.qml"
