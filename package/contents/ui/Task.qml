@@ -99,7 +99,13 @@ MouseArea {
     }
 
     function getCurrentButtonProperties(type){
-        var cfgKey = `button${task.state}Properties`
+        if(!task.state){
+            //assume inactive if stateless
+            var cfgKey = 'buttonInactiveProperties'
+        }
+        else {
+            var cfgKey = `button${task.state}Properties`
+        }
         var propKey = type.toLowerCase(type) + 'Properties'
         task[propKey] = TaskTools.getButtonProperties(type, plasmoid.configuration[cfgKey])
     }
