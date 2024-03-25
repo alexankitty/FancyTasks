@@ -191,16 +191,17 @@ Item {
             ComboBox {
                 id: autoMethod
                 enabled: colorSlider.autoHue || colorSlider.autoSaturate || colorSlider.autoLightness
+                property int prevIndex
                 model: [
-                    {text: i18n("Average Icon Color"), visible: true},
-                    {text: i18n("Background Icon Color"), visible: true},
-                    {text: i18n("Closest to Black Icon Color"), visible: true},
-                    {text: i18n("Closest to White Icon Color"), visible: true},
-                    {text: i18n("Dominant Icon Color"), visible: true},
-                    {text: i18n("Dominant Contrast Icon Color"), visible: true},
-                    {text: i18n("Plasma Theme Accent Color"), visible: true},
-                    {text: i18n("Button Color"), visible: colorSlider.colorType !== "button"},
-                    {text: i18n("Indicator Color"), visible: colorSlider.colorType !== "indicator"}
+                    {text: i18n("Average Icon Color"), visible: true, enabled: true},
+                    {text: i18n("Background Icon Color"), visible: true, enabled: true},
+                    {text: i18n("Closest to Black Icon Color"), visible: true, enabled: true},
+                    {text: i18n("Closest to White Icon Color"), visible: true, enabled: true},
+                    {text: i18n("Dominant Icon Color"), visible: true, enabled: true},
+                    {text: i18n("Dominant Contrast Icon Color"), visible: true, enabled: true},
+                    {text: i18n("Plasma Theme Accent Color"), visible: true, enabled: true},
+                    {text: i18n("Button Color"), visible: colorSlider.colorType !== "button", enabled: colorSlider.colorType !== "button"},
+                    {text: i18n("Indicator Color"), visible: colorSlider.colorType !== "indicator", enabled: colorSlider.colorType !== "indicator"}
                 ]
                 textRole: "text"
                 delegate: ItemDelegate {
@@ -210,6 +211,14 @@ Item {
                     font.weight: state.currentIndex === index ? Font.DemiBold : Font.Normal
                     highlighted: ListView.isCurrentItem
                     visible: modelData.visible
+                    enabled: modelData.enabled
+                }
+                onActivated: {
+                    if(!model[currentIndex].enabled){
+                        if(currentIndex < count - 1 && prevIndex < currentIndex) currentIndex += 1
+                        else currentIndex -= 1
+                    }
+                    prevIndex = currentIndex
                 }
             }
         }

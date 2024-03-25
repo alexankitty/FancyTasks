@@ -79,23 +79,33 @@ Kirigami.FormLayout {
             ComboBox {
                 enabled: (buttonColorize.checked && buttonTab.checked) || (indicatorTab.checked && plasmoid.configuration.indicatorsEnabled) || (indicatorTailTab.checked && plasmoid.configuration.indicatorsEnabled)
                 currentIndex: 0
+                property int prevIndex
                 id: state
                 model: [
-                    {text: i18n("Active"), visible: true},
-                    {text: i18n("Inactive"), visible: true},
-                    {text: i18n("Minimized"), visible: true},
-                    {text: i18n("Attention"), visible: true},
-                    {text: i18n("Progress"), visible: !indicatorTailTab.checked},
-                    {text: i18n("Hover"), visible: true}
+                    {text: i18n("Active"), visible: true, enabled: true},
+                    {text: i18n("Inactive"), visible: true, enabled: true},
+                    {text: i18n("Minimized"), visible: true, enabled: true},
+                    {text: i18n("Attention"), visible: true, enabled: true},
+                    {text: i18n("Progress"), visible: !indicatorTailTab.checked, enabled: !indicatorTailTab.checked},
+                    {text: i18n("Hover"), visible: true, enabled: true}
                 ]
                 textRole: "text"
                 delegate: ItemDelegate {
+                    id: stateDelegate
                     width: modelData.visible ? parent.width : 0
                     height: modelData.visible ? implicitHeight : 0
                     text: modelData.visible ? modelData.text : ""
                     font.weight: state.currentIndex === index ? Font.DemiBold : Font.Normal
                     highlighted: ListView.isCurrentItem
                     visible: modelData.visible
+                    enabled: modelData.enabled
+                }
+                onActivated: {
+                    if(!model[currentIndex].enabled){
+                        if(currentIndex < count - 1 && prevIndex < currentIndex) currentIndex += 1
+                        else currentIndex -= 1
+                    }
+                    prevIndex = currentIndex
                 }
             }
         }
@@ -113,7 +123,7 @@ Kirigami.FormLayout {
     Component.onCompleted: buildColorSlider()
 
     function buildCfgKey(){
-        let cfgKey = "button"
+        let cfgKey = "cfg_button"
         if(buttonTab.checked) colorForm.decorationType = "Button"
         else if(indicatorTab.checked) colorForm.decorationType = "Indicator"
         else if(indicatorTailTab.checked) colorForm.decorationType = "IndicatorTail"
@@ -127,7 +137,7 @@ Kirigami.FormLayout {
         colorForm.building = true
         var cfgKey = buildCfgKey()
         if(!cfgKey) return
-        var buttonProperties = TaskTools.getButtonProperties(colorForm.decorationType, colorForm["cfg_" + cfgKey]);
+        var buttonProperties = TaskTools.getButtonProperties(colorForm.decorationType, colorForm[cfgKey]);
         if(buttonTab.checked) colorSelector.colorType = "button"
         else if(indicatorTab.checked) colorSelector.colorType = "indicator"
         else if(indicatorTailTab.checked) colorSelector.colorType = "indicatorTail"
@@ -147,7 +157,7 @@ Kirigami.FormLayout {
     function updateColors(){
         var cfgKey = buildCfgKey()
         if(!cfgKey) return
-        var buttonProperties = TaskTools.getButtonProperties(colorForm.decorationType, colorForm["cfg_" + cfgKey]);
+        var buttonProperties = TaskTools.getButtonProperties(colorForm.decorationType, colorForm[cfgKey]);
         if(!buttonProperties) return
         if(colorSelector.autoHue) buttonProperties.autoH = 1
         else buttonProperties.autoH = 0
@@ -164,7 +174,7 @@ Kirigami.FormLayout {
             if(colorEnabled.checked) buttonProperties.enabled = 1
             else buttonProperties.enabled = 0
         }
-        colorForm["cfg_" + cfgKey] = TaskTools.setButtonProperties(colorForm.decorationType, buttonProperties, plasmoid.configuration[cfgKey])
+        colorForm[cfgKey] = TaskTools.setButtonProperties(colorForm.decorationType, buttonProperties, colorForm[cfgKey])
         plasmoid.configuration.buttonColorize == buttonColorize.checked
     }
 
