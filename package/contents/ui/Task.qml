@@ -136,7 +136,7 @@ MouseArea {
             l: buttonProperties.autoL,
         }
         let mixedColor = TaskTools.mixColor(buttonProperties.color, autoColor, autoBits)
-        if(buttonProperties.autoT) mixedColor = Kirigami.ColorUtils.tintWithAlpha(autoColor, tintColor, buttonProperties.tint / 100)
+        if(buttonProperties.autoT) mixedColor = Kirigami.ColorUtils.tint(autoColor, tintColor, buttonProperties.tint / 100)
         return mixedColor            
     }
 
