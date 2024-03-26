@@ -20,6 +20,7 @@ import QtGraphicalEffects 1.15
 
 import "code/layout.js" as LayoutManager
 import "code/tools.js" as TaskTools
+import "code/colortools.js" as ColorTools
 
 MouseArea {
     id: task
@@ -107,7 +108,7 @@ MouseArea {
             var cfgKey = `button${task.state}Properties`
         }
         var propKey = type.toLowerCase(type) + 'Properties'
-        task[propKey] = TaskTools.getButtonProperties(type, plasmoid.configuration[cfgKey])
+        task[propKey] = ColorTools.getButtonProperties(type, plasmoid.configuration[cfgKey])
     }
 
     function getButtonProperties(){
@@ -129,16 +130,16 @@ MouseArea {
 
     function getColor() {
         let colorMethods = ["average", "background", "closestToBlack", "closestToWhite", "dominant", "dominantContrast", "plasmaTheme"]
-        let autoColor = imageColors[colorMethods[task.buttonProperties.method] + "Color"]
+        let methodString = colorMethods[buttonProperties.method] + "Color"
+        let autoColor = imageColors[methodString]
         
         let autoBits = {
             h: buttonProperties.autoH,
             s: buttonProperties.autoS,
             l: buttonProperties.autoL,
         }
-        let mixedColor = TaskTools.mixColor(buttonProperties.color, autoColor, autoBits)
+        let mixedColor = ColorTools.mixColor(buttonProperties.color, autoColor, autoBits)
         let alpha = mixedColor.a
-        console.log(mixedColor, imageColors.tintColor, buttonProperties.color, autoColor, buttonProperties.tint)
         if(buttonProperties.autoT) mixedColor = Kirigami.ColorUtils.tintWithAlpha(mixedColor, imageColors.tintColor, buttonProperties.tint / 100)
         //restore alpha
         mixedColor.a = alpha
@@ -420,15 +421,13 @@ MouseArea {
     Loader {
         anchors.fill: frame
         asynchronous: false
-        source: "ColorOverlayFrame.qml"
-        active: task.buttonProperties.enabled && plasmoid.configuration.buttonColorize == 1 ? true : false
+        source: task.buttonProperties.enabled && plasmoid.configuration.buttonColorize == 1 ? "ColorOverlayFrame.qml" : ''
     }
 
     Loader {
         anchors.fill: frame
         asynchronous: false
-        source: "SolidColorFrame.qml"
-        active: task.buttonProperties.enabled && plasmoid.configuration.buttonColorize == 2 ? true : false
+        source: task.buttonProperties.enabled && plasmoid.configuration.buttonColorize == 2 ? "SolidColorFrame.qml" : ''
     }
 
     Flow {
@@ -529,7 +528,7 @@ MouseArea {
                         height = indicatorComputedSize
                     }
                     if(plasmoid.configuration.indicatorDesaturate && task.state === "minimizedNormal") {
-                        var colorHSL = TaskTools.hexToHSL(colorEval)
+                        var colorHSL = ColorTools.hexToHSL(colorEval)
                         colorCalc = Qt.hsla(colorHSL.h, colorHSL.s*0.5, colorHSL.l*.8, 1)
                     }
                     else if(!isFirst && plasmoid.configuration.indicatorStyle ===  0 && task.state !== "minimizedNormal") {//Metro specific handling

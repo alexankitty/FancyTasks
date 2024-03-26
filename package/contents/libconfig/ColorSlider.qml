@@ -44,7 +44,7 @@ Item {
         colorPicker.updating = true
         colorPicker.color = Qt.hsla(colorSlider.hue / 359, colorSlider.saturation/100, colorSlider.lightness/100, colorSlider.alpha/100)
         let alpha = colorSlider.alpha/100
-        if(colorSlider.tintResult) colorPicker.color = Kirigami.ColorUtils.tint(colorPicker.color, colorSlider.tintColor, tintIntensity / 100)
+        if(colorSlider.tintResult) colorPicker.color = Kirigami.ColorUtils.tintWithAlpha(colorPicker.color, colorSlider.tintColor, tintIntensity / 100)
         colorPicker.color.a = alpha
         colorPicker.updating = false
         colorSlider.valueChanged()
@@ -98,7 +98,8 @@ Item {
                 TaskTools.hexToHSL(colorPicker.color)
                 break;
         }
-        if(colorSlider.tintResult) autoColor = Kirigami.ColorUtils.tint(autoColor, colorSlider.tintColor, tintIntensity / 100)
+        autoColor.a = 1;
+        if(colorSlider.tintResult) autoColor = Kirigami.ColorUtils.tintWithAlpha(autoColor, colorSlider.tintColor, tintIntensity / 100)
         autoColor.a = colorSlider.alpha/100;
         return TaskTools.hexToHSL(autoColor)
     }

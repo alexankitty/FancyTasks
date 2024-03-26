@@ -2,7 +2,7 @@ import QtQuick 2.15
 
 import org.kde.plasma.core 2.0 as PlasmaCore
 
-import "code/tools.js" as TaskTools
+import "code/colortools.js" as ColorTools
 
 Item {
     id: background
@@ -24,7 +24,7 @@ Item {
             width: background.width
             height: background.height
             color: getColor()
-            opacity: TaskTools.hexToHSL(buttonProperties.color).a
+            opacity: ColorTools.hexToHSL(buttonProperties.color).a
         }
     }
 }

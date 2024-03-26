@@ -15,10 +15,11 @@ import org.kde.kquickcontrols 2.0 as KQControls
 
 
 import "../libconfig" as LibConfig
-import "../ui/code/tools.js" as TaskTools
+import "../ui/code/tools.js" as ColorTools
 
 Kirigami.FormLayout {
     property alias cfg_buttonColorize: buttonColorize.currentIndex
+    property var buttonProperties
     property var cfg_buttonActiveProperties
     property var cfg_buttonInactiveProperties
     property var cfg_buttonMinimizedProperties
@@ -26,7 +27,7 @@ Kirigami.FormLayout {
     property var cfg_buttonProgressProperties
     property var cfg_buttonHoverProperties
     property bool building: false
-    property bool ready: false
+    property int ready: 0
     property string decorationType
     wideMode: false
     id: colorForm
@@ -129,7 +130,14 @@ Kirigami.FormLayout {
             colorState: state.displayText
             }
     }
-    Component.onCompleted: buildColorSlider()
+    Component.onCompleted: {
+        colorForm.building = true
+        getProperties();
+        buildColorSlider();
+        colorSelectorConnector.enabled = true
+        colorEnabledConnector.enabled = true
+        colorForm.building = false
+        }
 
     function buildCfgKey(){
         let cfgKey = "cfg_button"
@@ -142,11 +150,14 @@ Kirigami.FormLayout {
         return cfgKey
     }
 
+    function getProperties(){
+        let cfgKey = buildCfgKey();
+        buttonProperties = ColorTools.getButtonProperties(colorForm.decorationType, colorForm[cfgKey]);
+    }
+
     function buildColorSlider(){
-        colorForm.building = true
         var cfgKey = buildCfgKey()
         if(!cfgKey) return
-        var buttonProperties = TaskTools.getButtonProperties(colorForm.decorationType, colorForm[cfgKey]);
         if(buttonTab.checked) colorSelector.colorType = "button"
         else if(indicatorTab.checked) colorSelector.colorType = "indicator"
         else if(indicatorTailTab.checked) colorSelector.colorType = "indicatorTail"
@@ -158,15 +169,11 @@ Kirigami.FormLayout {
         colorSelector.autoType = buttonProperties.method
         colorSelector.tintIntensity = buttonProperties.tint
         colorSelector.color = buttonProperties.color
-        colorSelectorConnector.enabled = true
-        colorEnabledConnector.enabled = true
-        colorForm.building = false
     }
 
     function updateColors(){
         var cfgKey = buildCfgKey()
         if(!cfgKey) return
-        var buttonProperties = TaskTools.getButtonProperties(colorForm.decorationType, colorForm[cfgKey]);
         if(!buttonProperties) return
         if(colorSelector.autoHue) buttonProperties.autoH = 1
         else buttonProperties.autoH = 0
@@ -183,35 +190,48 @@ Kirigami.FormLayout {
             if(colorEnabled.checked) buttonProperties.enabled = 1
             else buttonProperties.enabled = 0
         }
-        colorForm[cfgKey] = TaskTools.setButtonProperties(colorForm.decorationType, buttonProperties, colorForm[cfgKey])
-        cfg_buttonColorize = buttonColorize.currentIndex
+        
+        colorForm[cfgKey] = ColorTools.setButtonProperties(colorForm.decorationType, buttonProperties, colorForm[cfgKey])
+        cfg_buttonColorize = buttonColorize.currentIndex      
     }
 
     Connections {
         target: buttonTab
         function onCheckedChanged() {
+            colorForm.building = true
             state.currentIndex = 0
+            getProperties()
             buildColorSlider()
+            colorForm.building = false
         }
     }
     Connections {
         target: indicatorTab
         function onCheckedChanged() {
+            colorForm.building = true
             state.currentIndex = 0
+            getProperties()
             buildColorSlider()
+            colorForm.building = false
         }
     }
     Connections {
         target: indicatorTailTab
         function onCheckedChanged() {
+            colorForm.building = true
             state.currentIndex = 0
+            getProperties()
             buildColorSlider()
+            colorForm.building = false
         }
     }
     Connections {
         target: state
         function onActivated(){
+            colorForm.building = true
+            getProperties()
             buildColorSlider()
+            colorForm.building = false
         }
     }
     Connections {
@@ -219,10 +239,9 @@ Kirigami.FormLayout {
         target: colorSelector
         function onValueChanged(){
             if(colorForm.building) return
-            //hack: prevents the first run of this to alleviate the race condition against the form builder
-            if(!colorForm.ready) {
-                colorForm.ready = true
-                return;
+            if(colorForm.ready < 2){
+                colorForm.ready++;
+                return
             }
             updateColors()
         }
