@@ -8,18 +8,22 @@
                     this[key] = buttonPropTemplate[key]
                 }
             }
-            for(let key in data[type]){
-                for(let key in data[type]){
-                    this[key] = data[type][key]
+            else {
+                for(let key in buttonPropTemplate){
+                    if(data[type][key] == undefined){
+                        //adds entries if they don't exist
+                        this[key] = buttonPropTemplate[key]
+                    }
+                    else{
+                        this[key] = data[type][key]
+                    }
                 }
             }
             this['type'] = type
-            console.log(JSON.stringify(this))
         }
         save(json){
             let data = JSON.parse(json)
             data[this.type] = this
-            console.log(JSON.stringify(data, this.replacer))
             return JSON.stringify(data, this.replacer)
         }
         replacer(key, value){

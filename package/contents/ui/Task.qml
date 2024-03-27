@@ -41,7 +41,7 @@ MouseArea {
     readonly property variant winIdList: model.WinIdList
     property var buttonProperties
     property var indicatorProperties
-    property var indicatortailProperties
+    property var indicatorTailProperties
     property int itemIndex: index
     property bool inPopup: false
     property bool isWindow: model.IsWindow === true
@@ -102,19 +102,19 @@ MouseArea {
     function getCurrentButtonProperties(type){
         if(!task.state){
             //assume inactive if stateless
-            var cfgKey = 'buttonInactiveProperties'
+            var propKey = type + 'Inactive'
         }
         else {
-            var cfgKey = `button${task.state}Properties`
+            var propKey = type + task.state
         }
-        var propKey = type.toLowerCase(type) + 'Properties'
-        task[propKey] = ColorTools.getButtonProperties(type, plasmoid.configuration[cfgKey])
+        var key = type + 'Properties'
+        task[key] = new ColorTools.buttonProperties(plasmoid.configuration.buttonProperties, propKey)
     }
 
     function getButtonProperties(){
-        /* getCurrentButtonProperties("Button")
-        getCurrentButtonProperties("Indicator")
-        getCurrentButtonProperties("IndicatorTail") */
+        getCurrentButtonProperties("button")
+        getCurrentButtonProperties("indicator")
+        getCurrentButtonProperties("indicatorTail")
     }
 
     onStateChanged: {
@@ -400,7 +400,7 @@ MouseArea {
         property bool isHovered: task.highlighted && plasmoid.configuration.taskHoverEffect
         property string basePrefix: "normal"
         prefix: isHovered ? TaskTools.taskPrefixHovered(basePrefix) : TaskTools.taskPrefix(basePrefix)
-        visible: !plasmoid.configuration.buttonColorize ? true : false
+        visible: !plasmoid.configuration.buttonColorize || !task.buttonProperties.enabled && plasmoid.configuration.buttonColorize ? true : false
     }
 
     Kirigami.ImageColors {

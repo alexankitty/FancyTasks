@@ -258,7 +258,7 @@
     </entry>
     <entry name="buttonProperties" type="String">
       <label>JSON Representation of all button related settings.</label>
-      <default>{"buttonActiveProperties":{"color":"#000000","enabled":false,"autoH":false,"autoS":false,"autoL":false,"autoT":false,"method":0}}</default>
+      <default>{"Active":{"color":"#b376627d","tint":25,"enabled":true,"autoH":true,"autoS":true,"autoL":true,"autoT":true,"method":0},"buttonInactive":{"color":"#666d5775","tint":20,"enabled":true,"autoH":true,"autoS":true,"autoL":true,"autoT":true,"method":0},"buttonActive":{"color":"#9976627d","tint":25,"enabled":true,"autoH":true,"autoS":true,"autoL":true,"autoT":true,"method":0},"buttonMinimized":{"color":"#3376627d","tint":25,"enabled":true,"autoH":true,"autoS":true,"autoL":true,"autoT":true,"method":0},"buttonAttention":{"color":"#cc76627d","tint":25,"enabled":true,"autoH":true,"autoS":true,"autoL":true,"autoT":true,"method":0},"buttonProgress":{"color":"#9944ff44","tint":25,"enabled":true,"autoH":false,"autoS":false,"autoL":false,"autoT":true,"method":0},"buttonHover":{"color":"#b376627d","tint":25,"enabled":true,"autoH":true,"autoS":true,"autoL":true,"autoT":true,"method":0}}</default>
     </entry>
   </group>
 

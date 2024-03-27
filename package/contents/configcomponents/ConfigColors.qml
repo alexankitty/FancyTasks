@@ -141,7 +141,7 @@ Kirigami.FormLayout {
     }
 
     function buildColorSlider(){
-        return
+        console.log("building")
         if(buttonTab.checked) colorSelector.colorType = "button"
         else if(indicatorTab.checked) colorSelector.colorType = "indicator"
         else if(indicatorTailTab.checked) colorSelector.colorType = "indicatorTail"
@@ -157,19 +157,20 @@ Kirigami.FormLayout {
 
     function updateColors(){
         if(!buttonProperties) return
+        
         buttonProperties.autoH = colorSelector.autoHue
         buttonProperties.autoS = colorSelector.autoSaturate
         buttonProperties.autoL = colorSelector.autoLightness
         buttonProperties.autoT = colorSelector.tintResult
-        colorSelector.color = buttonProperties.color
-        return
-        colorSelector.autoType = buttonProperties.method
-        colorSelector.tintIntensity = buttonProperties.tint
+        buttonProperties.color = colorSelector.color.toString()
+        console.log(colorSelector.color)
+        buttonProperties.method = colorSelector.autoType
+        buttonProperties.tint = colorSelector.tintIntensity
         if(buttonTab.checked) {
             buttonProperties.enabled = colorEnabled.checked
         }
-        //cfg_buttonProperties = buttonProperties.save(cfg_buttonProperties)
-        cfg_buttonColorize = buttonColorize.currentIndex      
+        cfg_buttonProperties = buttonProperties.save(cfg_buttonProperties)
+        cfg_buttonColorize = buttonColorize.currentIndex
     }
 
     Connections {
@@ -220,7 +221,7 @@ Kirigami.FormLayout {
                 colorForm.ready++;
                 return
             }
-            //updateColors()
+            updateColors()
         }
         enabled: false
     }
@@ -229,7 +230,7 @@ Kirigami.FormLayout {
         target: colorEnabled
         function onCheckedChanged(){
             if(colorForm.building) return
-            //updateColors()
+            updateColors()
         }
         enabled: false
     }

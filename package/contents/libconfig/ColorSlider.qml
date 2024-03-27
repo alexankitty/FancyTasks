@@ -23,10 +23,10 @@ Item {
         }
         let alpha = ColorTools.hexToHSL(inputColor).a
         let mixedColor = ColorTools.mixColor(inputColor, autoColor, autoBits)
+        mixedColor.a = 1
+        if(tintResult) mixedColor = Kirigami.ColorUtils.tintWithAlpha(mixedColor, tintColor, tintIntensity / 100)
         //restore alpha
         mixedColor.a = alpha
-        mixedColor.a = alpha;
-        if(tintResult) mixedColor = Kirigami.ColorUtils.tintWithAlpha(mixedColor, tintColor, tintIntensity / 100)
         applyColors(ColorTools.hexToHSL(mixedColor), source)
         colorPicker.updating = false
     }
@@ -43,8 +43,8 @@ Item {
     function autoColorPreview(){
         let buttonPropKey = 'button' + colorState
         let indicatorPropKey = 'indicator' + colorState
-        /* var buttonProperties = new ColorTools.buttonProperties(cfg_buttonProperties, buttonPropKey)
-        var indicatorProperties = new ColorTools.buttonProperties(cfg_buttonProperties, buttonPropKey) */
+        var buttonProperties = new ColorTools.buttonProperties(cfg_buttonProperties, buttonPropKey)
+        var indicatorProperties = new ColorTools.buttonProperties(cfg_buttonProperties, buttonPropKey)
         var auto = colorSlider.autoType
         if(colorSlider.autoType == 7){            
             if(buttonProperties.autoH || buttonProperties.autoS || buttonProperties.autoL || buttonProperties.autoT){
