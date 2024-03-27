@@ -15,7 +15,7 @@ import org.kde.kquickcontrols 2.0 as KQControls
 
 
 import "../libconfig" as LibConfig
-import "../ui/code/tools.js" as ColorTools
+import "../ui/code/colortools.js" as ColorTools
 
 Kirigami.FormLayout {
     property alias cfg_buttonColorize: buttonColorize.currentIndex

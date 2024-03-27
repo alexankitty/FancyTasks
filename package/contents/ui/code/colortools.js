@@ -25,12 +25,12 @@ class buttonProperties {
             this[list[x]] = argsArr[x]
         }
     }
-    
 }
 
 function getButtonProperties(type, stringList){
-    if(!stringList) return false;
+    if(!stringList) return false
     let list = buttonProperties.getList();
+    stringList = expandArray(stringList, list)
     let accessorModifer = getAccessModifier(type, list);
     if(accessorModifer === false) return;
     let result = [];
@@ -46,6 +46,7 @@ function setButtonProperties(type, object, stringList){
     let autoList = buttonProperties.getAutoList();
     let accessorModifer = getAccessModifier(type, list);
     if(!accessorModifer === false) return;
+    stringList = expandArray(stringList, list)
     for(let x = 0; x < list.length; x++){
         if(list[x] == "auto"){
             let bits = 0
@@ -58,6 +59,35 @@ function setButtonProperties(type, object, stringList){
         stringList[accessorModifer + x] = object[list[x]];
     }
     return stringList;
+}
+
+function expandArray(arr, list){
+    let listSize = 0
+    for(let x = 0; x < arr.length; x++){
+        let startFound = false
+        if(arr[x].startsWith("#")){
+            if(startFound){
+                listSize = x + 1
+                break
+            }
+            startFound = true
+        }
+    }
+    const propCount = arr.length / listSize
+    const elementCount = arr.length / propCount
+
+    if(propCount < list.length){
+        let toAdd = list.length - propCount
+        let arraySplatter = [... Array(toAdd)]
+        for(let x = 1; x <= elementCount; x++){
+            arr = [
+                ...arr.slice(0, x * propCount),
+                ...arraySplatter,
+                ...arr.slice(x * propCount)
+            ]
+        }
+    }
+    return arr;
 }
 
 function getAccessModifier(type, list){

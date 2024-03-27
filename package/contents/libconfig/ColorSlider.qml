@@ -8,7 +8,7 @@ import org.kde.kirigami 2.20 as Kirigami
 import org.kde.plasma.core 2.0 as PlasmaCore
 
 import "../libconfig" as LibConfig
-import "../ui/code/tools.js" as TaskTools
+import "../ui/code/colortools.js" as ColorTools
 
 Item {
     function applyColors(hex){
@@ -51,8 +51,8 @@ Item {
     }
     function autoColorPreview(){
         var cfgKey = "cfg_button" + colorSlider.colorState + "Properties"
-        var buttonProperties = TaskTools.getButtonProperties("Button", colorForm[cfgKey])
-        var indicatorProperties = TaskTools.getButtonProperties("Indicator", colorForm[cfgKey])
+        var buttonProperties = ColorTools.getButtonProperties("Button", colorForm[cfgKey])
+        var indicatorProperties = ColorTools.getButtonProperties("Indicator", colorForm[cfgKey])
         var auto = colorSlider.autoType
         if(colorSlider.autoType == 7){            
             if(buttonProperties.autoH || buttonProperties.autoS || buttonProperties.autoL || buttonProperties.autoT){
@@ -95,13 +95,13 @@ Item {
                 var autoColor = indicatorProperties.color
                 break;
             default:
-                TaskTools.hexToHSL(colorPicker.color)
+                ColorTools.hexToHSL(colorPicker.color)
                 break;
         }
         autoColor.a = 1;
         if(colorSlider.tintResult) autoColor = Kirigami.ColorUtils.tintWithAlpha(autoColor, colorSlider.tintColor, tintIntensity / 100)
         autoColor.a = colorSlider.alpha/100;
-        return TaskTools.hexToHSL(autoColor)
+        return ColorTools.hexToHSL(autoColor)
     }
     id: colorSlider
     objectName: "ColorSlider"
@@ -290,7 +290,7 @@ Item {
         target: colorPicker
         function onColorChanged(){
             if(colorPicker.updating) return
-            var hexColor = TaskTools.hexToHSL(colorPicker.color)
+            var hexColor = ColorTools.hexToHSL(colorPicker.color)
             applyColors(hexColor)
         }
     }
