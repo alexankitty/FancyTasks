@@ -11,48 +11,40 @@ import "../libconfig" as LibConfig
 import "../ui/code/colortools.js" as ColorTools
 
 Item {
-    function applyColors(hex){
+    function syncColors(source = 0){
         colorPicker.updating = true
-        if(!colorSlider.autoHue) colorSlider.hue = hex.h * 359
-        if(!colorSlider.autoSaturate) colorSlider.saturation = hex.s * 100
-        if(!colorSlider.autoLightness) colorSlider.lightness = hex.l * 100
-        colorSlider.alpha = hex.a * 100
-        colorPicker.color = Qt.hsla(colorSlider.hue / 359, colorSlider.saturation/100, colorSlider.lightness/100, colorSlider.alpha/100) // Re-apply color in case it now differs
+        let autoColor = autoColorPreview();
+        if(source == 2) {var inputColor = Qt.hsla(colorSlider.hue / 359, colorSlider.saturation/100, colorSlider.lightness/100, colorSlider.alpha/100)}
+        else {var inputColor = colorPicker.color}
+        let autoBits = {
+            h: autoHue,
+            s: autoSaturate,
+            l: autoLightness,
+        }
+        let alpha = ColorTools.hexToHSL(inputColor).a
+        let mixedColor = ColorTools.mixColor(inputColor, autoColor, autoBits)
+        //restore alpha
+        mixedColor.a = alpha
+        mixedColor.a = alpha;
+        if(tintResult) mixedColor = Kirigami.ColorUtils.tintWithAlpha(mixedColor, tintColor, tintIntensity / 100)
+        applyColors(ColorTools.hexToHSL(mixedColor), source)
         colorPicker.updating = false
-        colorSlider.valueChanged()
     }
-    function iconColors(hex){
-        colorPicker.updating = true
-        if(colorSlider.autoHue) colorSlider.hue = hex.h * 359
-        if(colorSlider.autoSaturate) colorSlider.saturation = hex.s * 100
-        if(colorSlider.autoLightness) colorSlider.lightness = hex.l * 100
-        colorPicker.color = Qt.hsla(colorSlider.hue / 359, colorSlider.saturation/100, colorSlider.lightness/100, colorSlider.alpha/100) // Re-apply color in case it now differs
-        colorPicker.updating = false
-        colorSlider.valueChanged()
-    }
-    function syncColors(hex){
-        colorPicker.updating = true
-        colorSlider.hue = hex.h * 359
-        colorSlider.saturation = hex.s * 100
-        colorSlider.lightness = hex.l * 100
-        colorSlider.alpha = hex.a * 100
-        colorPicker.color = Qt.hsla(colorSlider.hue / 359, colorSlider.saturation/100, colorSlider.lightness/100, colorSlider.alpha/100) // Re-apply color in case it now differs
-        colorPicker.updating = false
-        colorSlider.valueChanged()
-    }
-    function updateSliders(){
-        colorPicker.updating = true
-        colorPicker.color = Qt.hsla(colorSlider.hue / 359, colorSlider.saturation/100, colorSlider.lightness/100, colorSlider.alpha/100)
-        let alpha = colorSlider.alpha/100
-        if(colorSlider.tintResult) colorPicker.color = Kirigami.ColorUtils.tintWithAlpha(colorPicker.color, colorSlider.tintColor, tintIntensity / 100)
-        colorPicker.color.a = alpha
-        colorPicker.updating = false
+    function applyColors(hex, source = 0){
+        if(source == 1 || source == 0){
+            colorSlider.hue = hex.h * 359
+            colorSlider.saturation = hex.s * 100
+            colorSlider.lightness = hex.l * 100
+            colorSlider.alpha = hex.a * 100
+        }
+        if(source == 2 || source == 0) colorPicker.color = Qt.hsla(hex.h, hex.s, hex.l, hex.a)
         colorSlider.valueChanged()
     }
     function autoColorPreview(){
-        var cfgKey = "cfg_button" + colorSlider.colorState + "Properties"
-        var buttonProperties = ColorTools.getButtonProperties("Button", colorForm[cfgKey])
-        var indicatorProperties = ColorTools.getButtonProperties("Indicator", colorForm[cfgKey])
+        let buttonPropKey = 'button' + colorState
+        let indicatorPropKey = 'indicator' + colorState
+        /* var buttonProperties = new ColorTools.buttonProperties(cfg_buttonProperties, buttonPropKey)
+        var indicatorProperties = new ColorTools.buttonProperties(cfg_buttonProperties, buttonPropKey) */
         var auto = colorSlider.autoType
         if(colorSlider.autoType == 7){            
             if(buttonProperties.autoH || buttonProperties.autoS || buttonProperties.autoL || buttonProperties.autoT){
@@ -95,13 +87,10 @@ Item {
                 var autoColor = indicatorProperties.color
                 break;
             default:
-                ColorTools.hexToHSL(colorPicker.color)
+                var autoColor = ColorTools.hexToHSL(colorPicker.color)
                 break;
         }
-        autoColor.a = 1;
-        if(colorSlider.tintResult) autoColor = Kirigami.ColorUtils.tintWithAlpha(autoColor, colorSlider.tintColor, tintIntensity / 100)
-        autoColor.a = colorSlider.alpha/100;
-        return ColorTools.hexToHSL(autoColor)
+        return autoColor
     }
     id: colorSlider
     objectName: "ColorSlider"
@@ -255,82 +244,75 @@ Item {
         target: hueComponent
         function onValueChanged(){
             if(colorPicker.updating) return
-            updateSliders()
+            syncColors(2)
         }
     }
     Connections{
         target: satComponent
         function onValueChanged(){
             if(colorPicker.updating) return
-            updateSliders()
+            syncColors(2)
         }
     }
     Connections{
         target: lightComponent
         function onValueChanged(){
             if(colorPicker.updating) return
-            updateSliders()
+            syncColors(2)
         }
     }
     Connections{
         target: alphaComponent
         function onValueChanged(){
             if(colorPicker.updating) return
-            updateSliders()
+            syncColors(2)
         }
     }
     Connections{
         target: tintComponent
         function onValueChanged(){
             if(colorPicker.updating) return
-            updateSliders()
+            syncColors()
         }
     }
     Connections{
         target: colorPicker
         function onColorChanged(){
             if(colorPicker.updating) return
-            var hexColor = ColorTools.hexToHSL(colorPicker.color)
-            applyColors(hexColor)
+            syncColors(1)
         }
     }
     Connections{
         target: colorTest
         function onPaletteChanged() {
             if(colorPicker.updating) return
-            var hexColor = autoColorPreview()
-            iconColors(hexColor)
+            syncColors()
         }
     }
     Connections{
         target: autoMethod
         function onCurrentIndexChanged(){
             if(colorPicker.updating) return
-            var hexColor = autoColorPreview()
-            iconColors(hexColor)
+            syncColors()
         }
     }
     Connections{
         target: colorSlider
         function onAutoHueChanged(){
             if(colorPicker.updating) return
-            var hexColor = autoColorPreview()
-            syncColors(hexColor)
+            syncColors()
         }
         function onAutoSaturateChanged(){
             if(colorPicker.updating) return
-            var hexColor = autoColorPreview()
-            syncColors(hexColor)
+            syncColors()
         }
         function onAutoLightnessChanged(){
             if(colorPicker.updating) return
-            var hexColor = autoColorPreview()
-            syncColors(hexColor)
+            syncColors()
         }
         function onTintResultChanged(){
             if(colorPicker.updating) return
-            var hexColor = autoColorPreview()
-            syncColors(hexColor)
+            syncColors()
         }
     }
 }

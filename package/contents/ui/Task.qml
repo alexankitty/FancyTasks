@@ -112,9 +112,9 @@ MouseArea {
     }
 
     function getButtonProperties(){
-        getCurrentButtonProperties("Button")
+        /* getCurrentButtonProperties("Button")
         getCurrentButtonProperties("Indicator")
-        getCurrentButtonProperties("IndicatorTail")
+        getCurrentButtonProperties("IndicatorTail") */
     }
 
     onStateChanged: {

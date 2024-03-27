@@ -20,12 +20,7 @@ import "../ui/code/colortools.js" as ColorTools
 Kirigami.FormLayout {
     property alias cfg_buttonColorize: buttonColorize.currentIndex
     property var buttonProperties
-    property var cfg_buttonActiveProperties
-    property var cfg_buttonInactiveProperties
-    property var cfg_buttonMinimizedProperties
-    property var cfg_buttonAttentionProperties
-    property var cfg_buttonProgressProperties
-    property var cfg_buttonHoverProperties
+    property var cfg_buttonProperties
     property bool building: false
     property int ready: 0
     property string decorationType
@@ -139,29 +134,18 @@ Kirigami.FormLayout {
         colorForm.building = false
         }
 
-    function buildCfgKey(){
-        let cfgKey = "cfg_button"
-        if(buttonTab.checked) colorForm.decorationType = "Button"
-        else if(indicatorTab.checked) colorForm.decorationType = "Indicator"
-        else if(indicatorTailTab.checked) colorForm.decorationType = "IndicatorTail"
-        else return false
-        cfgKey += state.displayText
-        cfgKey += "Properties"
-        return cfgKey
-    }
-
     function getProperties(){
-        let cfgKey = buildCfgKey();
-        buttonProperties = ColorTools.getButtonProperties(colorForm.decorationType, colorForm[cfgKey]);
+        if(!state.displayText) return
+        let propKey = colorSelector.colorType + state.displayText
+        buttonProperties = new ColorTools.buttonProperties(cfg_buttonProperties, propKey);
     }
 
     function buildColorSlider(){
-        var cfgKey = buildCfgKey()
-        if(!cfgKey) return
+        return
         if(buttonTab.checked) colorSelector.colorType = "button"
         else if(indicatorTab.checked) colorSelector.colorType = "indicator"
         else if(indicatorTailTab.checked) colorSelector.colorType = "indicatorTail"
-        colorEnabled.checked = buttonProperties.enabled == 1 ? true : false
+        colorEnabled.checked = buttonProperties.enabled
         colorSelector.autoHue = buttonProperties.autoH
         colorSelector.autoSaturate = buttonProperties.autoS
         colorSelector.autoLightness = buttonProperties.autoL
@@ -172,26 +156,19 @@ Kirigami.FormLayout {
     }
 
     function updateColors(){
-        var cfgKey = buildCfgKey()
-        if(!cfgKey) return
         if(!buttonProperties) return
-        if(colorSelector.autoHue) buttonProperties.autoH = 1
-        else buttonProperties.autoH = 0
-        if(colorSelector.autoSaturate) buttonProperties.autoS = 1
-        else buttonProperties.autoS = 0
-        if(colorSelector.autoLightness) buttonProperties.autoL = 1
-        else buttonProperties.autoL = 0
-        if(colorSelector.tintResult) buttonProperties.autoT = 1
-        else buttonProperties.autoT = 0
-        buttonProperties.color = colorSelector.color
-        buttonProperties.method = colorSelector.autoType
-        buttonProperties.tint = colorSelector.tintIntensity
+        buttonProperties.autoH = colorSelector.autoHue
+        buttonProperties.autoS = colorSelector.autoSaturate
+        buttonProperties.autoL = colorSelector.autoLightness
+        buttonProperties.autoT = colorSelector.tintResult
+        colorSelector.color = buttonProperties.color
+        return
+        colorSelector.autoType = buttonProperties.method
+        colorSelector.tintIntensity = buttonProperties.tint
         if(buttonTab.checked) {
-            if(colorEnabled.checked) buttonProperties.enabled = 1
-            else buttonProperties.enabled = 0
+            buttonProperties.enabled = colorEnabled.checked
         }
-        
-        colorForm[cfgKey] = ColorTools.setButtonProperties(colorForm.decorationType, buttonProperties, colorForm[cfgKey])
+        //cfg_buttonProperties = buttonProperties.save(cfg_buttonProperties)
         cfg_buttonColorize = buttonColorize.currentIndex      
     }
 
@@ -243,7 +220,7 @@ Kirigami.FormLayout {
                 colorForm.ready++;
                 return
             }
-            updateColors()
+            //updateColors()
         }
         enabled: false
     }
@@ -252,7 +229,7 @@ Kirigami.FormLayout {
         target: colorEnabled
         function onCheckedChanged(){
             if(colorForm.building) return
-            updateColors()
+            //updateColors()
         }
         enabled: false
     }

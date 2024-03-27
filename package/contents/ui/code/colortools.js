@@ -1,106 +1,43 @@
 .import QtQml 2.15 as QtQml
 
-class buttonProperties {
-    static getList() { return ['color', 'enabled', 'auto', 'method', 'tint']}
-    static getAutoList() { return ['autoH', 'autoS', 'autoL', 'autoT']}
-    static getNumberList() { return ['method']}
-    static getTypes() { return ['Button', 'Indicator', 'IndicatorTail']}
-    constructor(argsArr){
-        let list = buttonProperties.getList()
-        let autoList = buttonProperties.getAutoList()
-        let numberList = buttonProperties.getNumberList()
-        for(let x = 0; x < list.length; x++){
-            if(list[x] == 'auto'){
-                for(let y = 0; y < autoList.length; y++){
-                    this[autoList[y]] = argsArr[x] & ( 1 << y) ? true : false
-                }
-                continue
-            }
-            for(let z = 0; z < numberList.length; z++){
-                if(argsArr[x] == numberList[z]){
-                    this[list[x]] = parseInt(argsArr[x])
-                    continue
+    class buttonProperties {
+        constructor(json, type){
+            let data = JSON.parse(json);
+            if(data[type] == undefined) {
+                for(let key in buttonPropTemplate){
+                    this[key] = buttonPropTemplate[key]
                 }
             }
-            this[list[x]] = argsArr[x]
-        }
-    }
-}
-
-function getButtonProperties(type, stringList){
-    if(!stringList) return false
-    let list = buttonProperties.getList();
-    stringList = expandArray(stringList, list)
-    let accessorModifer = getAccessModifier(type, list);
-    if(accessorModifer === false) return;
-    let result = [];
-    for(let x = 0; x < list.length; x++){
-        result.push(stringList[accessorModifer + x]);
-    }
-    return new buttonProperties(result);
-}
-
-function setButtonProperties(type, object, stringList){
-    if(!stringList) return false;
-    let list = buttonProperties.getList();
-    let autoList = buttonProperties.getAutoList();
-    let accessorModifer = getAccessModifier(type, list);
-    if(!accessorModifer === false) return;
-    stringList = expandArray(stringList, list)
-    for(let x = 0; x < list.length; x++){
-        if(list[x] == "auto"){
-            let bits = 0
-            for(let y = 0; y < autoList.length; y++){
-                bits = bits | (object[autoList[y]] & 1) << y;
+            for(let key in data[type]){
+                for(let key in data[type]){
+                    this[key] = data[type][key]
+                }
             }
-            stringList[accessorModifer + x] = bits
-            continue;
+            this['type'] = type
+            console.log(JSON.stringify(this))
         }
-        stringList[accessorModifer + x] = object[list[x]];
-    }
-    return stringList;
-}
-
-function expandArray(arr, list){
-    let listSize = 0
-    for(let x = 0; x < arr.length; x++){
-        let startFound = false
-        if(arr[x].startsWith("#")){
-            if(startFound){
-                listSize = x + 1
-                break
-            }
-            startFound = true
+        save(json){
+            let data = JSON.parse(json)
+            data[this.type] = this
+            console.log(JSON.stringify(data, this.replacer))
+            return JSON.stringify(data, this.replacer)
+        }
+        replacer(key, value){
+            if(key=='type') return undefined
+            else return value
         }
     }
-    const propCount = arr.length / listSize
-    const elementCount = arr.length / propCount
 
-    if(propCount < list.length){
-        let toAdd = list.length - propCount
-        let arraySplatter = [... Array(toAdd)]
-        for(let x = 1; x <= elementCount; x++){
-            arr = [
-                ...arr.slice(0, x * propCount),
-                ...arraySplatter,
-                ...arr.slice(x * propCount)
-            ]
-        }
+    var buttonPropTemplate = {
+        color: '#000000',
+        tint: 0,
+        enabled: false,
+        autoH: false,
+        autoS: false,
+        autoL: false,
+        autoT: false,
+        method: 0
     }
-    return arr;
-}
-
-function getAccessModifier(type, list){
-    if(typeof type == "number") return list.length * number
-    //Minor optimization
-    else{
-        let types = buttonProperties.getTypes();
-        for(let i = 0; i < types.length; i++){
-            if(type == types[i]) return list.length * i
-        }
-    }  
-    return false;
-}
 
 function mixColor(input, auto, autoBits){
     let staticColor = hexToHSL(input);
