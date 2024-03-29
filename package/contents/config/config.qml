@@ -29,4 +29,9 @@ ConfigModel {
         icon: "preferences-desktop-navigation"
         source: "../configcomponents/ConfigIndicators.qml"
     }
+    ConfigCategory {
+        name: i18n("Advanced")
+        icon: "configure"
+        source: "../lib/ConfigAdvanced.qml"
+    }
 }

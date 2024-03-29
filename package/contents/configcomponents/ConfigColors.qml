@@ -30,108 +30,48 @@ Kirigami.FormLayout {
     anchors.left: parent.left
     anchors.right: parent.right
     ColumnLayout{
-        TabBar{
-            TabButton {
-                id: buttonTab
-                text: i18n("Button Colors")
-            }
-            TabButton {
-                enabled: plasmoid.configuration.indicatorsEnabled
-                id: indicatorTab
-                text: i18n("Indicator Colors")
-            }
-            TabButton {
-                enabled: plasmoid.configuration.indicatorsEnabled
-                id: indicatorTailTab
-                text: i18n("Indicator Tail Colors")
-            }
+        LibConfig.ButtonTabComponent{
+            id: buttonTab
+            showButtonColors: true
+            indicatorCount: plasmoid.configuration.indicatorMaxLimit
         }
-        ComboBox {
-                property int prevIndex
-                id: buttonColorize
-                visible: buttonTab.checked
-                model: [
-                    {text: i18n("Using Plasma Style/Accent"), visible: true, enabled: true},
-                    {text: i18n("Using Color Overlay"), visible: true, enabled: true},
-                    {text: i18n("Using Solid Color"), visible: true, enabled: true},
-                ]
-                textRole: "text"
-                delegate: ItemDelegate {
-                    width: modelData.visible ? parent.width : 0
-                    height: modelData.visible ? implicitHeight : 0
-                    text: modelData.visible ? modelData.text : ""
-                    font.weight: state.currentIndex === index ? Font.DemiBold : Font.Normal
-                    highlighted: ListView.isCurrentItem
-                    visible: modelData.visible
-                    enabled: modelData.enabled
-                }
-                onActivated: {
-                    if(!model[currentIndex].enabled){
-                        if(currentIndex < count - 1 && prevIndex < currentIndex) currentIndex += 1
-                        else currentIndex -= 1
-                    }
-                    prevIndex = currentIndex
-                }
-            }
+        LibConfig.MaskingComboBox{
+            id: buttonColorize
+            model: [
+                {text: i18n("Using Plasma Style/Accent"), visible: true, enabled: true},
+                {text: i18n("Using Color Overlay"), visible: true, enabled: true},
+                {text: i18n("Using Solid Color"), visible: true, enabled: true},
+            ]
+        }
         Label{
             visible: !buttonColorize.currentIndex && !plasmoid.configuration.indicatorsEnabled
             text: i18n("Enable Button Color Overlay or Indicators to be able to use this page.")
         }
         RowLayout{
-            Label{
-                text: i18n("State")
-            }
-            ComboBox {
-                enabled: (buttonColorize.currentIndex && buttonTab.checked) || (indicatorTab.checked && plasmoid.configuration.indicatorsEnabled) || (indicatorTailTab.checked && plasmoid.configuration.indicatorsEnabled)
-                currentIndex: 0
-                property int prevIndex
+            LibConfig.StateComboBox {
                 id: state
-                model: [
-                    {text: i18n("Active"), visible: true, enabled: true},
-                    {text: i18n("Inactive"), visible: true, enabled: true},
-                    {text: i18n("Minimized"), visible: true, enabled: true},
-                    {text: i18n("Attention"), visible: true, enabled: true},
-                    {text: i18n("Progress"), visible: !indicatorTailTab.checked, enabled: !indicatorTailTab.checked},
-                    {text: i18n("Hover"), visible: true, enabled: true}
-                ]
-                textRole: "text"
-                delegate: ItemDelegate {
-                    width: modelData.visible ? parent.width : 0
-                    height: modelData.visible ? implicitHeight : 0
-                    text: modelData.visible ? modelData.text : ""
-                    font.weight: state.currentIndex === index ? Font.DemiBold : Font.Normal
-                    highlighted: ListView.isCurrentItem
-                    visible: modelData.visible
-                    enabled: modelData.enabled
-                }
-                onActivated: {
-                    if(!model[currentIndex].enabled){
-                        if(currentIndex < count - 1 && prevIndex < currentIndex) currentIndex += 1
-                        else currentIndex -= 1
-                    }
-                    prevIndex = currentIndex
-                }
+                showProgress: !buttonTab.selectedIndex == 2
             }
         }
         CheckBox{
             id: colorEnabled
             text: i18n("Coloring Enabled")
-            visible: buttonTab.checked
-            enabled: (buttonColorize.currentIndex && buttonTab.checked) || (indicatorTab.checked && plasmoid.configuration.indicatorsEnabled) || (indicatorTailTab.checked && plasmoid.configuration.indicatorsEnabled)
+            visible: buttonTab.selectedIndex == 0
+            enabled: (buttonColorize.currentIndex && buttonTab.selectedIndex == 0) || (buttonTab.selectedIndex == 1 && plasmoid.configuration.indicatorsEnabled) || (buttonTab.selectedIndex == 2 && plasmoid.configuration.indicatorsEnabled)
         }
         LibConfig.ColorSlider {
             id: colorSelector
-            enabled: (buttonColorize.currentIndex && buttonTab.checked && colorEnabled.checked) || (indicatorTab.checked && plasmoid.configuration.indicatorsEnabled) || (indicatorTailTab.checked && plasmoid.configuration.indicatorsEnabled)
+            enabled: (buttonColorize.currentIndex && buttonTab.selectedIndex == 0 && colorEnabled.checked) || (buttonTab.selectedIndex == 1 && plasmoid.configuration.indicatorsEnabled) || (buttonTab.selectedIndex == 2 && plasmoid.configuration.indicatorsEnabled)
             colorState: state.displayText
-            }
+        }
     }
     Component.onCompleted: {
-        colorForm.building = true
-        getProperties();
-        buildColorSlider();
-        colorSelectorConnector.enabled = true
-        colorEnabledConnector.enabled = true
-        colorForm.building = false
+            colorForm.building = true
+            getProperties();
+            buildColorSlider();
+            colorSelectorConnector.enabled = true
+            colorEnabledConnector.enabled = true
+            colorForm.building = false
         }
 
     function getProperties(){
@@ -141,10 +81,9 @@ Kirigami.FormLayout {
     }
 
     function buildColorSlider(){
-        console.log("building")
-        if(buttonTab.checked) colorSelector.colorType = "button"
-        else if(indicatorTab.checked) colorSelector.colorType = "indicator"
-        else if(indicatorTailTab.checked) colorSelector.colorType = "indicatorTail"
+        if(buttonTab.selectedIndex == 0) colorSelector.colorType = "button"
+        else if(buttonTab.selectedIndex == 1) colorSelector.colorType = "indicator"
+        else if(buttonTab.selectedIndex == 2) colorSelector.colorType = "indicatorTail"
         colorEnabled.checked = buttonProperties.enabled
         colorSelector.autoHue = buttonProperties.autoH
         colorSelector.autoSaturate = buttonProperties.autoS
@@ -157,7 +96,6 @@ Kirigami.FormLayout {
 
     function updateColors(){
         if(!buttonProperties) return
-        
         buttonProperties.autoH = colorSelector.autoHue
         buttonProperties.autoS = colorSelector.autoSaturate
         buttonProperties.autoL = colorSelector.autoLightness
@@ -166,7 +104,7 @@ Kirigami.FormLayout {
         console.log(colorSelector.color)
         buttonProperties.method = colorSelector.autoType
         buttonProperties.tint = colorSelector.tintIntensity
-        if(buttonTab.checked) {
+        if(buttonTab.selectedIndex == 0) {
             buttonProperties.enabled = colorEnabled.checked
         }
         cfg_buttonProperties = buttonProperties.save(cfg_buttonProperties)
@@ -175,27 +113,7 @@ Kirigami.FormLayout {
 
     Connections {
         target: buttonTab
-        function onCheckedChanged() {
-            colorForm.building = true
-            state.currentIndex = 0
-            getProperties()
-            buildColorSlider()
-            colorForm.building = false
-        }
-    }
-    Connections {
-        target: indicatorTab
-        function onCheckedChanged() {
-            colorForm.building = true
-            state.currentIndex = 0
-            getProperties()
-            buildColorSlider()
-            colorForm.building = false
-        }
-    }
-    Connections {
-        target: indicatorTailTab
-        function onCheckedChanged() {
+        function onActivated() {
             colorForm.building = true
             state.currentIndex = 0
             getProperties()

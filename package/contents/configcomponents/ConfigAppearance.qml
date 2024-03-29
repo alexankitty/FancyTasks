@@ -35,7 +35,6 @@ Kirigami.FormLayout {
     property alias cfg_useBorders: useBorders.checked //type: Bool; label: Enable plasma borders.; default: True
     property alias cfg_taskSpacingSize: taskSpacingSize.value //type: Int; label: Size in pixels of space between taskbar items.; default: 0
 
-    property alias cfg_overridePlasmaButtonDirection: overridePlasmaButtonDirection.checked //type: Bool; label: Override the plasma button direction ; default: false
     property alias cfg_plasmaButtonDirection: plasmaButtonDirection.currentIndex //type: Int; label: Direction of the plasma button SVG: 0 = North, 1 = West, 2 = South, 3 = East; default: 0
 
     CheckBox {
@@ -66,6 +65,13 @@ Kirigami.FormLayout {
     CheckBox {
         id: useBorders
         text: i18n("Use plasma borders")
+        enabled: plasmoid.configuration.buttonColorize != 2;
+    }
+
+    Label {
+        visible: !useBorders.enabled
+        text: i18n("Can't be changed when Button Colors are set to Using Solid Color.")
+        font: Kirigami.Theme.smallFont
     }
 
     Item {
@@ -76,7 +82,7 @@ Kirigami.FormLayout {
         id: iconScale
         from: 0
         to: 300
-        stepSize: 25.0
+        stepSize: 25
         Kirigami.FormData.label: i18n("Icon Scale") + " " + iconScale.valueAt(iconScale.position) + "%"
         visible: !iconSizeOverride.checked
     }
@@ -98,25 +104,15 @@ Kirigami.FormLayout {
         Kirigami.FormData.isSection: true
     }
 
-    CheckBox {
-        id: overridePlasmaButtonDirection
-        Kirigami.FormData.label: i18n("Plasma Button Direction:")
-        text: i18n("Override")
-    }
-
-    Label {
-        text: i18n("Be sure to use this when using as a floating widget")
-        font: Kirigami.Theme.smallFont
-    }
-
     ComboBox {
         id: plasmaButtonDirection
-        visible: overridePlasmaButtonDirection.checked
         model: [
-            i18n("North"),
-            i18n("South"),
-            i18n("West"),
-            i18n("East")
+            i18n("Follow System"),
+            i18n("Reverse System"),
+            i18n("Bottom"),
+            i18n("Left"),
+            i18n("Right"),
+            i18n("Top")
         ]
     }
 

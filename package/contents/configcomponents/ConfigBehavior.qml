@@ -34,6 +34,8 @@ Item {
     property alias cfg_unhideOnAttention: unhideOnAttention.checked //type: Bool; label: Whether to unhide if a window wants attention.; default: true
     property alias cfg_reverseMode: reverseMode.checked //type: Bool; label: Whether to grow the tasks in according to system configuration or opposite to system configuration.; default: false
     property alias cfg_iconOnly: iconOnly.currentIndex //type: Enum; label: How tasks are display: 0 = Show Task Names, 1 = Show Icons Only; default: 1
+    property alias cfg_groupIconEnabled: groupIconEnabled.currentIndex //type: Int; label: Enable taskbar group overlay effect. 0 = Off, 1 = On; default: 1
+
 
     TaskManagerApplet.Backend {
         id: backend
@@ -74,6 +76,14 @@ Item {
                 i18nc("Completes the sentence 'Clicking grouped task shows textual list' ", "Shows textual list"),
             ]
         }
+
+        ComboBox {
+        id: groupIconEnabled
+        Kirigami.FormData.label: i18n("Group Overlay:")
+        model: [i18n("Disabled"), i18n("Enabled")]
+        enabled: groupingStrategy.currentIndex !== 0
+        }
+
         // "You asked for Tooltips but Tooltips are disabled" message
         Kirigami.InlineMessage {
             Layout.fillWidth: true

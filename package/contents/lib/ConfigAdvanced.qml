@@ -6,8 +6,15 @@ import QtQuick.Controls.Styles 1.0
 import QtQuick.Layouts 1.0
 import org.kde.kirigami 2.0 as Kirigami
 
+
+
 ColumnLayout {
 	id: page
+
+	CheckBox {
+		id: showAdvanced
+		text: i18n("Show Advanced Settings")
+	}
 
 	SystemPalette { id: systemPalette }
 
@@ -26,6 +33,7 @@ ColumnLayout {
 	}
 
 	ScrollView {
+		opacity: showAdvanced.checked
 		Layout.fillWidth: true
 		Layout.fillHeight: true
 

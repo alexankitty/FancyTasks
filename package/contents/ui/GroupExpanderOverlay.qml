@@ -16,7 +16,7 @@ PlasmaCore.SvgItem {
         horizontalCenter: iconBox.horizontalCenter
     }
 
-    visible: task.m.IsGroupParent === true
+    visible: task.m.IsGroupParent === true && plasmoid.configuration.groupIconEnabled === true
 
     states: [
         State {

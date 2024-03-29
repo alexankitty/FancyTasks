@@ -8,6 +8,7 @@
 .import QtQml 2.15 as QtQml
 .import org.kde.taskmanager 0.1 as TaskManager
 .import org.kde.plasma.core 2.0 as PlasmaCore // Needed by TaskManager
+.import org.kde.plasma.plasmoid 2.0 as Plasmoid
 
 function wheelActivateNextPrevTask(anchor, wheelDelta, eventDelta) {
     // magic number 120 for common "one click"
@@ -284,5 +285,17 @@ function createGroupDialog(visualParent) {
                 visualParent: visualParent,
             }
         );
+    }
+}
+
+function isVertical(key){
+    let panelVertical = Plasmoid.formFactor === PlasmaCore.Types.Vertical
+    switch(key){
+        case 0: return panelVertical
+        case 1: return panelVertical
+        case 2: return false
+        case 3: return true
+        case 4: return true
+        case 5: return false
     }
 }

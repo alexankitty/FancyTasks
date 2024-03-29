@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fancytasks\n"
 "Report-Msgid-Bugs-To: https://github.com/alexankitty/FancyTasks\n"
-"POT-Creation-Date: 2024-03-25 00:10-0600\n"
+"POT-Creation-Date: 2024-03-28 21:35-0600\n"
 "PO-Revision-Date: 2023-07-13 22:27+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -38,6 +38,10 @@ msgid "Use plasma borders"
 msgstr "Plasmakaders gebruiken"
 
 #: ../contents/configcomponents/ConfigAppearance.qml
+msgid "Can't be changed when Button Colors are set to Using Solid Color."
+msgstr ""
+
+#: ../contents/configcomponents/ConfigAppearance.qml
 msgid "Icon Scale"
 msgstr ""
 
@@ -50,33 +54,34 @@ msgid "Set icon size instead of scaling"
 msgstr ""
 
 #: ../contents/configcomponents/ConfigAppearance.qml
-msgid "Plasma Button Direction:"
-msgstr "Plasma-knoprichting:"
-
-#: ../contents/configcomponents/ConfigAppearance.qml
-msgid "Override"
-msgstr "Afdwingen"
+#: ../contents/configcomponents/ConfigIndicators.qml
+msgid "Follow System"
+msgstr ""
 
 #: ../contents/configcomponents/ConfigAppearance.qml
 #: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Be sure to use this when using as a floating widget"
-msgstr "Let op: gebruik dit alleen bĳ gebruik als zwevende widget"
+msgid "Reverse System"
+msgstr ""
 
 #: ../contents/configcomponents/ConfigAppearance.qml
-msgid "North"
-msgstr "Bovenaan"
-
-#: ../contents/configcomponents/ConfigAppearance.qml
-msgid "South"
+#: ../contents/configcomponents/ConfigIndicators.qml
+msgid "Bottom"
 msgstr "Onderaan"
 
 #: ../contents/configcomponents/ConfigAppearance.qml
-msgid "West"
+#: ../contents/configcomponents/ConfigIndicators.qml
+msgid "Left"
 msgstr "Links"
 
 #: ../contents/configcomponents/ConfigAppearance.qml
-msgid "East"
+#: ../contents/configcomponents/ConfigIndicators.qml
+msgid "Right"
 msgstr "Rechts"
+
+#: ../contents/configcomponents/ConfigAppearance.qml
+#: ../contents/configcomponents/ConfigIndicators.qml
+msgid "Top"
+msgstr "Bovenaan"
 
 #: ../contents/configcomponents/ConfigAppearance.qml
 msgid "Maximum columns:"
@@ -176,6 +181,20 @@ msgstr "Vensters naast elkaar tonen"
 msgctxt "Completes the sentence 'Clicking grouped task shows textual list' "
 msgid "Shows textual list"
 msgstr "Vensterlĳst tonen"
+
+#: ../contents/configcomponents/ConfigBehavior.qml
+msgid "Group Overlay:"
+msgstr "Groepslaag:"
+
+#: ../contents/configcomponents/ConfigBehavior.qml
+#: ../contents/configcomponents/ConfigIndicators.qml
+msgid "Disabled"
+msgstr "Uitgeschakeld"
+
+#: ../contents/configcomponents/ConfigBehavior.qml
+#: ../contents/configcomponents/ConfigIndicators.qml
+msgid "Enabled"
+msgstr "Ingeschakeld"
 
 #: ../contents/configcomponents/ConfigBehavior.qml
 msgid ""
@@ -339,18 +358,6 @@ msgid "To the left"
 msgstr "Linkerkant"
 
 #: ../contents/configcomponents/ConfigColors.qml
-msgid "Button Colors"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigColors.qml
-msgid "Indicator Colors"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigColors.qml
-msgid "Indicator Tail Colors"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigColors.qml
 msgid "Using Plasma Style/Accent"
 msgstr ""
 
@@ -367,34 +374,6 @@ msgid "Enable Button Color Overlay or Indicators to be able to use this page."
 msgstr ""
 
 #: ../contents/configcomponents/ConfigColors.qml
-msgid "State"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigColors.qml
-msgid "Active"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigColors.qml
-msgid "Inactive"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigColors.qml
-msgid "Minimized"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigColors.qml
-msgid "Attention"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigColors.qml
-msgid "Progress"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigColors.qml
-msgid "Hover"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigColors.qml
 msgid "Coloring Enabled"
 msgstr ""
 
@@ -403,140 +382,109 @@ msgid "Indicators:"
 msgstr "Indicators:"
 
 #: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Disabled"
-msgstr "Uitgeschakeld"
-
-#: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Enabled"
-msgstr "Ingeschakeld"
-
-#: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Display Progress on Indicator"
+msgid "Progress on:"
 msgstr ""
 
 #: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Progress Color:"
+msgid "Frame"
 msgstr ""
 
 #: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Disable for Inactive Windows"
+msgid "Indicator"
 msgstr ""
 
 #: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Group Overlay:"
-msgstr "Groepslaag:"
+msgid "Both"
+msgstr ""
 
 #: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Takes effect on next time plasma groups tasks."
-msgstr "Let op: dit wordt toegepast na de volgende groepering."
+msgid "Minimum:"
+msgstr ""
 
 #: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Animate Indicators:"
-msgstr "Indicators voorzien van animaties:"
+msgid "Maximum:"
+msgstr ""
+
+#: ../contents/configcomponents/ConfigIndicators.qml
+msgid "Animation Duration (ms):"
+msgstr ""
 
 #: ../contents/configcomponents/ConfigIndicators.qml
 msgid "Indicator Location:"
 msgstr "Indicatorlocatie:"
 
 #: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Reverse shown side"
-msgstr "Aan andere zĳde tonen"
-
-#: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Override location"
-msgstr "Locatie afdwingen"
-
-#: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Bottom"
-msgstr "Onderaan"
-
-#: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Left"
-msgstr "Links"
-
-#: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Right"
-msgstr "Rechts"
-
-#: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Top"
-msgstr "Bovenaan"
-
-#: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Indicator Edge Offset (px):"
+msgid "Align:"
 msgstr ""
 
 #: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Indicator Style:"
-msgstr "Indicatorstijl:"
-
-#: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Metro"
-msgstr "Metro"
-
-#: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Ciliora"
-msgstr "Ciliora"
-
-#: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Dashes"
-msgstr "Streepjes"
-
-#: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Indicator Min Limit:"
+msgid "Center"
 msgstr ""
 
 #: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Indicator Max Limit:"
+msgid "Fill Available Space:"
 msgstr ""
 
 #: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Minimize Options:"
-msgstr "Minimaliseeropties:"
+msgid "Units:"
+msgstr ""
 
 #: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Desaturate"
-msgstr "Verzadiging verminderen"
+msgid "Pixels"
+msgstr ""
 
 #: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Shrink when minimized"
-msgstr "Verkleinen"
+msgid "Percent"
+msgstr ""
 
 #: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Growth/Shrink factor:"
-msgstr "Vergroot-/Verkleinfactor:"
+msgid "Height (px):"
+msgstr ""
 
 #: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Indicator size (px):"
-msgstr "Indicatorgrootte (in px):"
+msgid "Width (px):"
+msgstr ""
 
 #: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Indicator length (px):"
-msgstr "Indicatorbreedte (in px):"
+msgid "Corner Radius (px):"
+msgstr ""
 
 #: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Indicator Radius (%):"
-msgstr "Indicatorstraal (in %):"
+msgid "Margins (px):"
+msgstr ""
 
 #: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Indicator margin (px):"
-msgstr "Indicatormarge (in px):"
+msgid "Height"
+msgstr ""
 
 #: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Indicator Color:"
-msgstr "Indicatorkleur:"
+#: ../contents/libconfig/ColorSlider.qml
+msgid "%"
+msgstr ""
 
 #: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Use dominant icon color"
-msgstr "Dominante pictogramkleur gebruiken"
+msgid "Width"
+msgstr ""
 
 #: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Use plasma accent color"
-msgstr "Plasma-accentkleur"
+msgid "Corner Radius"
+msgstr ""
 
 #: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Custom Color:"
-msgstr "Zelfgekozen kleur:"
+msgid "Margin Top"
+msgstr ""
+
+#: ../contents/configcomponents/ConfigIndicators.qml
+msgid "Margin Left"
+msgstr ""
+
+#: ../contents/configcomponents/ConfigIndicators.qml
+msgid "Margin Right"
+msgstr ""
+
+#: ../contents/configcomponents/ConfigIndicators.qml
+msgid "Margin Bottom"
+msgstr ""
 
 #: ../contents/config/config.qml
 msgid "Appearance"
@@ -554,8 +502,32 @@ msgstr "Gedrag"
 msgid "Indicators"
 msgstr "Indicators"
 
+#: ../contents/config/config.qml
+msgid "Advanced"
+msgstr ""
+
 #: ../contents/lib/AppletVersion.qml
 msgid "<b>Version:</b> %1"
+msgstr ""
+
+#: ../contents/lib/ConfigAdvanced.qml
+msgid "Show Advanced Settings"
+msgstr ""
+
+#: ../contents/libconfig/ButtonTabComponent.qml
+msgid "Customize Individual Indicator Tails"
+msgstr ""
+
+#: ../contents/libconfig/ButtonTabComponent.qml
+msgid "Button Colors"
+msgstr ""
+
+#: ../contents/libconfig/ButtonTabComponent.qml
+msgid "Indicator Colors"
+msgstr ""
+
+#: ../contents/libconfig/ButtonTabComponent.qml
+msgid "Indicator Tail Colors"
 msgstr ""
 
 #: ../contents/libconfig/ColorSlider.qml
@@ -572,10 +544,6 @@ msgstr ""
 
 #: ../contents/libconfig/ColorSlider.qml
 msgid "Saturation"
-msgstr ""
-
-#: ../contents/libconfig/ColorSlider.qml
-msgid "%"
 msgstr ""
 
 #: ../contents/libconfig/ColorSlider.qml
@@ -668,6 +636,30 @@ msgstr ""
 
 #: ../contents/libconfig/SoundField.qml ../contents/lib/ConfigSound.qml
 msgid "All files (%1)"
+msgstr ""
+
+#: ../contents/libconfig/StateComboBox.qml
+msgid "Active"
+msgstr ""
+
+#: ../contents/libconfig/StateComboBox.qml
+msgid "Inactive"
+msgstr ""
+
+#: ../contents/libconfig/StateComboBox.qml
+msgid "Minimized"
+msgstr ""
+
+#: ../contents/libconfig/StateComboBox.qml
+msgid "Attention"
+msgstr ""
+
+#: ../contents/libconfig/StateComboBox.qml
+msgid "Progress"
+msgstr ""
+
+#: ../contents/libconfig/StateComboBox.qml
+msgid "Hover"
 msgstr ""
 
 #: ../contents/ui/Badge.qml
@@ -885,6 +877,87 @@ msgstr "Ook actief op %1"
 msgctxt "Which activities a window is currently on"
 msgid "Available on %1"
 msgstr "Actief op %1"
+
+#~ msgid "Indicator margin (px):"
+#~ msgstr "Indicatormarge (in px):"
+
+#~ msgid "Plasma Button Direction:"
+#~ msgstr "Plasma-knoprichting:"
+
+#~ msgid "Override"
+#~ msgstr "Afdwingen"
+
+#~ msgid "Be sure to use this when using as a floating widget"
+#~ msgstr "Let op: gebruik dit alleen bĳ gebruik als zwevende widget"
+
+#~ msgid "North"
+#~ msgstr "Bovenaan"
+
+#~ msgid "South"
+#~ msgstr "Onderaan"
+
+#~ msgid "West"
+#~ msgstr "Links"
+
+#~ msgid "East"
+#~ msgstr "Rechts"
+
+#~ msgid "Takes effect on next time plasma groups tasks."
+#~ msgstr "Let op: dit wordt toegepast na de volgende groepering."
+
+#~ msgid "Animate Indicators:"
+#~ msgstr "Indicators voorzien van animaties:"
+
+#~ msgid "Reverse shown side"
+#~ msgstr "Aan andere zĳde tonen"
+
+#~ msgid "Override location"
+#~ msgstr "Locatie afdwingen"
+
+#~ msgid "Indicator Style:"
+#~ msgstr "Indicatorstijl:"
+
+#~ msgid "Metro"
+#~ msgstr "Metro"
+
+#~ msgid "Ciliora"
+#~ msgstr "Ciliora"
+
+#~ msgid "Dashes"
+#~ msgstr "Streepjes"
+
+#~ msgid "Minimize Options:"
+#~ msgstr "Minimaliseeropties:"
+
+#~ msgid "Desaturate"
+#~ msgstr "Verzadiging verminderen"
+
+#~ msgid "Shrink when minimized"
+#~ msgstr "Verkleinen"
+
+#~ msgid "Growth/Shrink factor:"
+#~ msgstr "Vergroot-/Verkleinfactor:"
+
+#~ msgid "Indicator size (px):"
+#~ msgstr "Indicatorgrootte (in px):"
+
+#~ msgid "Indicator length (px):"
+#~ msgstr "Indicatorbreedte (in px):"
+
+#~ msgid "Indicator Radius (%):"
+#~ msgstr "Indicatorstraal (in %):"
+
+#~ msgid "Indicator Color:"
+#~ msgstr "Indicatorkleur:"
+
+#~ msgid "Use dominant icon color"
+#~ msgstr "Dominante pictogramkleur gebruiken"
+
+#~ msgid "Use plasma accent color"
+#~ msgstr "Plasma-accentkleur"
+
+#~ msgid "Custom Color:"
+#~ msgstr "Zelfgekozen kleur:"
 
 #~ msgid "Plasma Button Decorations:"
 #~ msgstr "Plasma-knopdecoraties:"
