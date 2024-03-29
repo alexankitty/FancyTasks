@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Tasks\n"
 "Report-Msgid-Bugs-To: https://github.com/alexankitty/FancyTasks\n"
-"POT-Creation-Date: 2024-03-28 21:35-0600\n"
+"POT-Creation-Date: 2024-03-28 21:56-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -331,6 +331,22 @@ msgstr ""
 msgid "To the left"
 msgstr ""
 
+#: ../contents/configcomponents/ConfigColors.qml ../contents/configcomponents/ConfigIndicators.qml
+msgid "Progress on:"
+msgstr ""
+
+#: ../contents/configcomponents/ConfigColors.qml ../contents/configcomponents/ConfigIndicators.qml
+msgid "Frame"
+msgstr ""
+
+#: ../contents/configcomponents/ConfigColors.qml ../contents/configcomponents/ConfigIndicators.qml
+msgid "Indicator"
+msgstr ""
+
+#: ../contents/configcomponents/ConfigColors.qml ../contents/configcomponents/ConfigIndicators.qml
+msgid "Both"
+msgstr ""
+
 #: ../contents/configcomponents/ConfigColors.qml
 msgid "Using Plasma Style/Accent"
 msgstr ""
@@ -353,22 +369,6 @@ msgstr ""
 
 #: ../contents/configcomponents/ConfigIndicators.qml
 msgid "Indicators:"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Progress on:"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Frame"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Indicator"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Both"
 msgstr ""
 
 #: ../contents/configcomponents/ConfigIndicators.qml

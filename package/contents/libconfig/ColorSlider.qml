@@ -10,7 +10,7 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import "../libconfig" as LibConfig
 import "../ui/code/colortools.js" as ColorTools
 
-Item {
+ColumnLayout {
     function syncColors(source = 0){
         colorPicker.updating = true
         let autoColor = autoColorPreview();

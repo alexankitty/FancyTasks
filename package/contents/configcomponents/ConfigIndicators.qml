@@ -38,7 +38,6 @@ Kirigami.FormLayout {
         }
         ComboBox {
             id: indicatorProgress
-            enabled: indicatorsEnabled.currentIndex
             model: [i18n("Frame"), i18n("Indicator"), i18n("Both")]
         }
     }
@@ -67,246 +66,246 @@ Kirigami.FormLayout {
     Item {
         Kirigami.FormData.isSection: true
     }
-
+    LibConfig.StateComboBox {
+        id: state
+        showProgress: buttonTab.selectedIndex !== 2 && indicatorProgress.currentIndex
+    }
     LibConfig.ButtonTabComponent{
         id: buttonTab
         showButtonColors: false
         indicatorCount: indicatorMaxLimit.value
     }
 
-    LibConfig.StateComboBox {
-        id: state
-        showProgress: !buttonTab.selectedIndex == 2
-    }
-
-    ColumnLayout {
-        enabled: indicatorsEnabled.currentIndex
-        RowLayout{
-            Label{
-                text: i18n("Animation Duration (ms):")
+        Frame {
+        ColumnLayout {
+            enabled: indicatorsEnabled.currentIndex
+            RowLayout{
+                Label{
+                    text: i18n("Animation Duration (ms):")
+                }
+                SpinBox {
+                    id: indicatorAnimationDuration
+                    from: 0
+                    to: 5000
+                }
             }
-            SpinBox {
-                id: indicatorAnimationDuration
-                from: 0
-                to: 5000
+            RowLayout{
+                Label{
+                    text: i18n("Indicator Location:")
+                }
+                ComboBox {
+                    id: indicatorLocation
+                    model: [
+                        i18n("Follow System"),
+                        i18n("Reverse System"),
+                        i18n("Bottom"),
+                        i18n("Left"),
+                        i18n("Right"),
+                        i18n("Top")
+                    ]
+                }
             }
-        }
-        RowLayout{
-            Label{
-                text: i18n("Indicator Location:")
-            }
-            ComboBox {
-                id: indicatorLocation
-                model: [
-                    i18n("Follow System"),
-                    i18n("Reverse System"),
-                    i18n("Bottom"),
-                    i18n("Left"),
-                    i18n("Right"),
-                    i18n("Top")
-                ]
-            }
-        }
-
-        RowLayout{
-            Label{
-                text: i18n("Align:")
-            }
-            ComboBox{
-                id: indicatorAlignment
-                model:[
-                    i18n("Left"),
-                    i18n("Center"),
-                    i18n("Right"),
-                ]
-            }
-        }
-
-
-        Item {
-            Kirigami.FormData.isSection: true
-        }
-        RowLayout{
-            Label {
-                text: i18n("Fill Available Space:")
-            }
-            CheckBox {
-                id: indicatorFillAvailable
-            }
-        }
-        
-        RowLayout{
-            Label{
-                text: i18n("Units:")
-            }
-            ComboBox {
-                id: indicatorUnits
-                model: [i18n("Pixels"), i18n("Percent")]
-            }
-        }
-        
-
-        ColumnLayout{
-            visible: indicatorUnits.currentIndex == 0
 
             RowLayout{
                 Label{
-                    text: i18n("Height (px):")
+                    text: i18n("Align:")
                 }
-                SpinBox {
-                    enabled: !indicatorFillAvailable.checked || (indicatorFillAvailable.checked && !plasmoidVertical)
-                    id: indicatorHeight
-                    from: 1
-                    to: 999
+                ComboBox{
+                    id: indicatorAlignment
+                    model:[
+                        i18n("Left"),
+                        i18n("Center"),
+                        i18n("Right"),
+                    ]
+                }
+            }
+
+
+            Item {
+                Kirigami.FormData.isSection: true
+            }
+            RowLayout{
+                Label {
+                    text: i18n("Fill Available Space:")
+                }
+                CheckBox {
+                    id: indicatorFillAvailable
                 }
             }
             
             RowLayout{
-                Label {
-                    text: i18n("Width (px):")
-                }
-                SpinBox {
-                    enabled: !indicatorFillAvailable.checked || (indicatorFillAvailable.checked && plasmoidVertical)
-                    id: indicatorWidth
-                    from: 1
-                    to: 999
-                }
-            }
-
-            RowLayout {
-                Label {
-                    text: i18n("Corner Radius (px):")
-                }
-                SpinBox {
-                    id: indicatorRadius
-                    from: 0
-                    to: 100
-                }
-            }
-            RowLayout{
                 Label{
-                    text: i18n("Margins (px):")
-                    height: parent.height
-                    Layout.fillHeight: true
-                    verticalAlignment: Text.AlignTop
+                    text: i18n("Units:")
+                }
+                ComboBox {
+                    id: indicatorUnits
+                    model: [i18n("Pixels"), i18n("Percent")]
+                }
+            }
+            
+
+            ColumnLayout{
+                visible: indicatorUnits.currentIndex == 0
+
+                RowLayout{
+                    Label{
+                        text: i18n("Height (px):")
+                    }
+                    SpinBox {
+                        enabled: !indicatorFillAvailable.checked || (indicatorFillAvailable.checked && !plasmoidVertical)
+                        id: indicatorHeight
+                        from: 1
+                        to: 999
+                    }
+                }
+                
+                RowLayout{
+                    Label {
+                        text: i18n("Width (px):")
+                    }
+                    SpinBox {
+                        enabled: !indicatorFillAvailable.checked || (indicatorFillAvailable.checked && plasmoidVertical)
+                        id: indicatorWidth
+                        from: 1
+                        to: 999
+                    }
+                }
+
+                RowLayout {
+                    Label {
+                        text: i18n("Corner Radius (px):")
+                    }
+                    SpinBox {
+                        id: indicatorRadius
+                        from: 0
+                        to: 100
+                    }
                 }
                 RowLayout{
-                    ColumnLayout{
-                        Label{
-                            text: i18n("Top")
-                        }
-                        SpinBox {
-                            id: indicatorMarginTop
-                            from: 0
-                            to: 999
-                        }
+                    Label{
+                        text: i18n("Margins (px):")
+                        height: parent.height
+                        Layout.fillHeight: true
+                        verticalAlignment: Text.AlignTop
                     }
-                    ColumnLayout{
-                        Label{
-                            text: i18n("Left")
+                    RowLayout{
+                        ColumnLayout{
+                            Label{
+                                text: i18n("Top")
+                            }
+                            SpinBox {
+                                id: indicatorMarginTop
+                                from: 0
+                                to: 999
+                            }
                         }
-                        SpinBox {
-                            id: indicatorMarginLeft
-                            from: 0
-                            to: 999
+                        ColumnLayout{
+                            Label{
+                                text: i18n("Left")
+                            }
+                            SpinBox {
+                                id: indicatorMarginLeft
+                                from: 0
+                                to: 999
+                            }
                         }
-                    }
-                    ColumnLayout{
-                        Label{
-                            text: i18n("Bottom")
+                        ColumnLayout{
+                            Label{
+                                text: i18n("Bottom")
+                            }
+                            SpinBox {
+                                id: indicatorMarginRight
+                                from: 0
+                                to: 999
+                            }
                         }
-                        SpinBox {
-                            id: indicatorMarginRight
-                            from: 0
-                            to: 999
-                        }
-                    }
-                    ColumnLayout{
-                        Label{
-                            text: i18n("Right")
-                        }
-                        SpinBox {
-                            id: indicatorMarginBottom
-                            from: 0
-                            to: 999
+                        ColumnLayout{
+                            Label{
+                                text: i18n("Right")
+                            }
+                            SpinBox {
+                                id: indicatorMarginBottom
+                                from: 0
+                                to: 999
+                            }
                         }
                     }
                 }
             }
-        }
 
-        ColumnLayout{
-            visible: indicatorUnits.currentIndex == 1
-            LibConfig.SliderComponent{
-                enabled: !indicatorFillAvailable.checked || (indicatorFillAvailable.checked && plasmoidVertical)
-                label: i18n("Height")
-                suffix: i18n("%")
-                id: indicatorHeightPercent
-                from: 0
-                to: 100
-                stepSize: 1
-                decimals: 0
+            ColumnLayout{
+                visible: indicatorUnits.currentIndex == 1
+                LibConfig.SliderComponent{
+                    enabled: !indicatorFillAvailable.checked || (indicatorFillAvailable.checked && plasmoidVertical)
+                    label: i18n("Height")
+                    suffix: i18n("%")
+                    id: indicatorHeightPercent
+                    from: 0
+                    to: 100
+                    stepSize: 1
+                    decimals: 0
+                }
+                LibConfig.SliderComponent{
+                    enabled: !indicatorFillAvailable.checked || (indicatorFillAvailable.checked && !plasmoidVertical)
+                    label: i18n("Width")
+                    suffix: i18n("%")
+                    id: indicatorWidthPercent
+                    from: 0
+                    to: 100
+                    stepSize: 1
+                    decimals: 0
+                }
+                LibConfig.SliderComponent{
+                    enabled: !indicatorFillAvailable.checked || (indicatorFillAvailable.checked && !plasmoidVertical)
+                    label: i18n("Corner Radius")
+                    suffix: i18n("%")
+                    id: indicatorCornerRadiusPercent
+                    from: 0
+                    to: 100
+                    stepSize: 1
+                    decimals: 0
+                }
+                LibConfig.SliderComponent{
+                    label: i18n("Margin Top")
+                    suffix: i18n("%")
+                    id: indicatorMarginTopPercent
+                    from: 0
+                    to: 100
+                    stepSize: 1
+                    decimals: 0
+                }
+                LibConfig.SliderComponent{
+                    label: i18n("Margin Left")
+                    suffix: i18n("%")
+                    id: indicatorMarginLeftPercent
+                    from: 0
+                    to: 100
+                    stepSize: 1
+                    decimals: 0
+                }
+                LibConfig.SliderComponent{
+                    label: i18n("Margin Right")
+                    suffix: i18n("%")
+                    id: indicatorMarginRightPercent
+                    from: 0
+                    to: 100
+                    stepSize: 1
+                    decimals: 0
+                }
+                LibConfig.SliderComponent{
+                    label: i18n("Margin Bottom")
+                    suffix: i18n("%")
+                    id: indicatorMarginBottomPercent
+                    from: 0
+                    to: 100
+                    stepSize: 1
+                    decimals: 0
+                }
             }
-            LibConfig.SliderComponent{
-                enabled: !indicatorFillAvailable.checked || (indicatorFillAvailable.checked && !plasmoidVertical)
-                label: i18n("Width")
-                suffix: i18n("%")
-                id: indicatorWidthPercent
-                from: 0
-                to: 100
-                stepSize: 1
-                decimals: 0
-            }
-            LibConfig.SliderComponent{
-                enabled: !indicatorFillAvailable.checked || (indicatorFillAvailable.checked && !plasmoidVertical)
-                label: i18n("Corner Radius")
-                suffix: i18n("%")
-                id: indicatorCornerRadiusPercent
-                from: 0
-                to: 100
-                stepSize: 1
-                decimals: 0
-            }
-            LibConfig.SliderComponent{
-                label: i18n("Margin Top")
-                suffix: i18n("%")
-                id: indicatorMarginTopPercent
-                from: 0
-                to: 100
-                stepSize: 1
-                decimals: 0
-            }
-            LibConfig.SliderComponent{
-                label: i18n("Margin Left")
-                suffix: i18n("%")
-                id: indicatorMarginLeftPercent
-                from: 0
-                to: 100
-                stepSize: 1
-                decimals: 0
-            }
-            LibConfig.SliderComponent{
-                label: i18n("Margin Right")
-                suffix: i18n("%")
-                id: indicatorMarginRightPercent
-                from: 0
-                to: 100
-                stepSize: 1
-                decimals: 0
-            }
-            LibConfig.SliderComponent{
-                label: i18n("Margin Bottom")
-                suffix: i18n("%")
-                id: indicatorMarginBottomPercent
-                from: 0
-                to: 100
-                stepSize: 1
-                decimals: 0
-            }
-        }
 
-        Item {
-            Kirigami.FormData.isSection: true
+            Item {
+                Kirigami.FormData.isSection: true
+            }
         }
     }
 }

@@ -21,6 +21,8 @@ Kirigami.FormLayout {
     property alias cfg_buttonColorize: buttonColorize.currentIndex
     property var buttonProperties
     property var cfg_buttonProperties
+    property alias cfg_indicatorProgress: indicatorProgress.currentIndex
+
     property bool building: false
     property int ready: 0
     property string decorationType
@@ -30,39 +32,51 @@ Kirigami.FormLayout {
     anchors.left: parent.left
     anchors.right: parent.right
     ColumnLayout{
+        RowLayout{
+            Label {
+                text: i18n("Progress on:")
+            }
+            ComboBox {
+                id: indicatorProgress
+                model: [i18n("Frame"), i18n("Indicator"), i18n("Both")]
+            }
+        }
+        LibConfig.StateComboBox {
+            id: state
+            showProgress: buttonTab.selectedIndex !== 2 && (cfg_indicatorProgress == 2 || cfg_indicatorProgress == 0 )
+        }
         LibConfig.ButtonTabComponent{
             id: buttonTab
             showButtonColors: true
             indicatorCount: plasmoid.configuration.indicatorMaxLimit
         }
-        LibConfig.MaskingComboBox{
-            id: buttonColorize
-            model: [
-                {text: i18n("Using Plasma Style/Accent"), visible: true, enabled: true},
-                {text: i18n("Using Color Overlay"), visible: true, enabled: true},
-                {text: i18n("Using Solid Color"), visible: true, enabled: true},
-            ]
-        }
-        Label{
-            visible: !buttonColorize.currentIndex && !plasmoid.configuration.indicatorsEnabled
-            text: i18n("Enable Button Color Overlay or Indicators to be able to use this page.")
-        }
-        RowLayout{
-            LibConfig.StateComboBox {
-                id: state
-                showProgress: !buttonTab.selectedIndex == 2
+        Frame{
+            ColumnLayout{
+                ComboBox{
+                    id: buttonColorize
+                    model: [
+                        i18n("Using Plasma Style/Accent"),
+                        i18n("Using Color Overlay"),
+                        i18n("Using Solid Color"),
+                    ]
+                }
+                Label{
+                    visible: !buttonColorize.currentIndex && !plasmoid.configuration.indicatorsEnabled
+                    text: i18n("Enable Button Color Overlay or Indicators to be able to use this page.")
+                }
+
+                CheckBox{
+                    id: colorEnabled
+                    text: i18n("Coloring Enabled")
+                    visible: buttonTab.selectedIndex == 0
+                    enabled: (buttonColorize.currentIndex && buttonTab.selectedIndex == 0) || (buttonTab.selectedIndex == 1 && plasmoid.configuration.indicatorsEnabled) || (buttonTab.selectedIndex == 2 && plasmoid.configuration.indicatorsEnabled)
+                }
+                    LibConfig.ColorSlider {
+                    id: colorSelector
+                    enabled: (buttonColorize.currentIndex && buttonTab.selectedIndex == 0 && colorEnabled.checked) || (buttonTab.selectedIndex == 1 && plasmoid.configuration.indicatorsEnabled) || (buttonTab.selectedIndex == 2 && plasmoid.configuration.indicatorsEnabled)
+                    colorState: state.displayText
+                }
             }
-        }
-        CheckBox{
-            id: colorEnabled
-            text: i18n("Coloring Enabled")
-            visible: buttonTab.selectedIndex == 0
-            enabled: (buttonColorize.currentIndex && buttonTab.selectedIndex == 0) || (buttonTab.selectedIndex == 1 && plasmoid.configuration.indicatorsEnabled) || (buttonTab.selectedIndex == 2 && plasmoid.configuration.indicatorsEnabled)
-        }
-        LibConfig.ColorSlider {
-            id: colorSelector
-            enabled: (buttonColorize.currentIndex && buttonTab.selectedIndex == 0 && colorEnabled.checked) || (buttonTab.selectedIndex == 1 && plasmoid.configuration.indicatorsEnabled) || (buttonTab.selectedIndex == 2 && plasmoid.configuration.indicatorsEnabled)
-            colorState: state.displayText
         }
     }
     Component.onCompleted: {

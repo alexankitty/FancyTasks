@@ -8,7 +8,7 @@ import "../libconfig" as LibConfig
 RowLayout {
     height: childrenRect.height
     width: childrenRect.width
-    property string text
+    property string labelText
     property alias currentIndex: comboBox.currentIndex
     property alias displayText: comboBox.displayText
     property alias model: comboBox.model
@@ -17,7 +17,7 @@ RowLayout {
     objectName: "MaskingComboBox" 
     Label {
         id: comboBoxLabel
-        text: text
+        text: labelText
     }
     ComboBox {
         property int prevIndex

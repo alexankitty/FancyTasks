@@ -16,7 +16,7 @@ RowLayout {
     signal activated
     RowLayout{
         LibConfig.MaskingComboBox{
-            text: "State: "
+            labelText: "State: "
             id: stateBox
             model: [
                 {text: i18n("Active"), visible: true, enabled: true},
