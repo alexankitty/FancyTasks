@@ -88,3 +88,6 @@ Minimized task shrinking
 I'm a solo developer working on this project in my free time so it may take me a bit of time to work on issues. You can help me out by either doing a PR with fixes and I'll validate that they work in the code, or put in an issue for things that need to be changed.
 Especially helpful will be settings names to make them more clear. I have a code bias unfortunately so it does make it exceedingly difficult to convey what everything does.
 Lastly any feedback is appreciated, and I'll try to implement it as soon as I can.
+
+## Supporters
+catraxx
