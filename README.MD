@@ -95,5 +95,5 @@ Lastly any feedback is appreciated, and I'll try to implement it as soon as I ca
 catraxx  
 Kloud  
 
-If you want to support the project, you may do so below.  
+If you want to support the project and have your name added to the readme, you may do so below.  
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Q5Q4IFNAO)
