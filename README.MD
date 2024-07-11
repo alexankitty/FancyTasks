@@ -1,5 +1,7 @@
 # Notice
-Development of this project has more or less resumed. Help is always wanted and appreciated, however.
+Development of this project has more or less resumed. Help is always wanted and appreciated, however.  
+I'm struggling with burn out at the moment. I'm hoping to return to the project soon but I need to get that under control.  
+Currently I'm almost done with the overhauls of indicators which should finalize the Plasma 5 version of this plasmoid. Once that is completed, Plasma 5 will be split into its own fork and the main branch will be for Plasma 6. Any new features and code improvements the plasma 6 widget offers will be back ported in. I'm also in the process of modularizing the FancyTasks additions in order to make development simpler. 
 
 # Contact
 You can reach me at ideas@alexankitty.com, by putting an issue on this github, by commenting on the [AUR package](https://aur.archlinux.org/packages/fancytasks), by commenting on the kde-look page, or on the [FancyTasks KDE Reddit community](https://www.reddit.com/r/fancytaskskde/).
@@ -90,4 +92,8 @@ Especially helpful will be settings names to make them more clear. I have a code
 Lastly any feedback is appreciated, and I'll try to implement it as soon as I can.
 
 ## Supporters
-catraxx
+catraxx  
+Kloud  
+
+If you want to support the project, you may do so below.  
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Q5Q4IFNAO)
