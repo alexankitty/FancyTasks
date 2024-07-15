@@ -39,11 +39,14 @@ ColumnLayout {
         }
         let alpha = ColorTools.hexToHSL(inputColor).a
         let mixedColor = ColorTools.mixColor(inputColor, autoColor, autoBits)
-        applyColors(ColorTools.hexToHSL(mixedColor), source, sendValueChanged)
+        let colorResult = ColorTools.hexToHSL(mixedColor)
+        colorResult.a = alpha
+        applyColors(colorResult, source, sendValueChanged)
         colorPicker.updating = false
     }
     function applyColors(hex, source = 0, sendValueChanged = true){
         console.log("applying colors")
+        console.log(hex.a)
         if(source == 1 || source == 0){
             colorSlider.hue = hex.h * 359
             colorSlider.saturation = hex.s * 100

@@ -19,9 +19,7 @@ Button{
     id: root
     
     property alias color: colorDialog.color
-    property alias showAlphaChannel: root.showAlphaChannel
-
-    property bool showAlphaChannel: true
+    property alias showAlphaChannel: colorDialog.showAlphaChannel
 
     readonly property real _buttonMarigns: 4 // same as QStyles. Remove if we can get this provided by the QQC theme
 
@@ -56,7 +54,7 @@ Button{
     }
     Rectangle {
         id: colorBlock
-
+        
         anchors.centerIn: parent
         height: parent.height - root._buttonMarigns * 2
         width: parent.width - root._buttonMarigns * 2
@@ -71,5 +69,6 @@ Button{
 
     ColorDialog {
         id: colorDialog
+        showAlphaChannel: true
     }
 }
