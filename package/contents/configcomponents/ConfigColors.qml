@@ -80,11 +80,13 @@ Kirigami.FormLayout {
         }
     }
     Component.onCompleted: {
+            console.log("Component onCompleted triggered")
             colorForm.building = true
-            getProperties();
-            buildColorSlider();
+            getProperties()
+            buildColorSlider()
             colorSelectorConnector.enabled = true
             colorEnabledConnector.enabled = true
+            console.log("Color form completed building")
             colorForm.building = false
         }
 
@@ -99,17 +101,13 @@ Kirigami.FormLayout {
         else if(buttonTab.selectedIndex == 1) colorSelector.colorType = "indicator"
         else if(buttonTab.selectedIndex == 2) colorSelector.colorType = "indicatorTail"
         colorEnabled.checked = buttonProperties.enabled
-        colorSelector.autoHue = buttonProperties.autoH
-        colorSelector.autoSaturate = buttonProperties.autoS
-        colorSelector.autoLightness = buttonProperties.autoL
-        colorSelector.tintResult = buttonProperties.autoT
-        colorSelector.autoType = buttonProperties.method
-        colorSelector.tintIntensity = buttonProperties.tint
-        colorSelector.color = buttonProperties.color
+        colorSelector.buildComponent(buttonProperties)
     }
 
     function updateColors(){
+        console.log("checking if we can update colors")
         if(!buttonProperties) return
+        console.log("Updating colors")
         buttonProperties.autoH = colorSelector.autoHue
         buttonProperties.autoS = colorSelector.autoSaturate
         buttonProperties.autoL = colorSelector.autoLightness
@@ -128,6 +126,7 @@ Kirigami.FormLayout {
     Connections {
         target: buttonTab
         function onActivated() {
+            console.log("button tab changed")
             colorForm.building = true
             state.currentIndex = 0
             getProperties()
@@ -138,6 +137,7 @@ Kirigami.FormLayout {
     Connections {
         target: state
         function onActivated(){
+            console.log("state changed")
             colorForm.building = true
             getProperties()
             buildColorSlider()
@@ -148,11 +148,8 @@ Kirigami.FormLayout {
         id: colorSelectorConnector
         target: colorSelector
         function onValueChanged(){
+            console.log("received value changed")
             if(colorForm.building) return
-            if(colorForm.ready < 2){
-                colorForm.ready++;
-                return
-            }
             updateColors()
         }
         enabled: false
@@ -161,6 +158,7 @@ Kirigami.FormLayout {
         id: colorEnabledConnector
         target: colorEnabled
         function onCheckedChanged(){
+            console.log("received automatic checkbox change")
             if(colorForm.building) return
             updateColors()
         }

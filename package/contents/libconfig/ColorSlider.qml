@@ -11,7 +11,23 @@ import "../libconfig" as LibConfig
 import "../ui/code/colortools.js" as ColorTools
 
 ColumnLayout {
-    function syncColors(source = 0){
+    function buildComponent(buttonProperties){
+        console.log("Disabling color connectors.")
+        toggleConnections(false)
+        autoHue = buttonProperties.autoH
+        autoSaturate = buttonProperties.autoS
+        autoLightness = buttonProperties.autoL
+        tintResult = buttonProperties.autoT
+        autoType = buttonProperties.method
+        tintIntensity = buttonProperties.tint
+        color = buttonProperties.color
+        syncColors(1, false)
+        toggleConnections(true)
+        console.log("Enabling color connectors.")
+    }
+    function syncColors(source = 0, sendValueChanged = true){
+        //Source: 0: Automatic Checkbox 1: Color Picker 2: Color Slider
+        console.log("syncing colors")
         colorPicker.updating = true
         let autoColor = autoColorPreview();
         if(source == 2) {var inputColor = Qt.hsla(colorSlider.hue / 359, colorSlider.saturation/100, colorSlider.lightness/100, colorSlider.alpha/100)}
@@ -27,10 +43,11 @@ ColumnLayout {
         if(tintResult) mixedColor = Kirigami.ColorUtils.tintWithAlpha(mixedColor, tintColor, tintIntensity / 100)
         //restore alpha
         mixedColor.a = alpha
-        applyColors(ColorTools.hexToHSL(mixedColor), source)
+        applyColors(ColorTools.hexToHSL(mixedColor), source, sendValueChanged)
         colorPicker.updating = false
     }
-    function applyColors(hex, source = 0){
+    function applyColors(hex, source = 0, sendValueChanged = true){
+        console.log("applying colors")
         if(source == 1 || source == 0){
             colorSlider.hue = hex.h * 359
             colorSlider.saturation = hex.s * 100
@@ -38,7 +55,7 @@ ColumnLayout {
             colorSlider.alpha = hex.a * 100
         }
         if(source == 2 || source == 0) colorPicker.color = Qt.hsla(hex.h, hex.s, hex.l, hex.a)
-        colorSlider.valueChanged()
+        if(sendValueChanged) colorSlider.valueChanged()
     }
     function autoColorPreview(){
         let buttonPropKey = 'button' + colorState
@@ -48,7 +65,6 @@ ColumnLayout {
         var auto = colorSlider.autoType
         if(colorSlider.autoType == 7){            
             if(buttonProperties.autoH || buttonProperties.autoS || buttonProperties.autoL || buttonProperties.autoT){
-                
                 var auto = buttonProperties.method
             } 
         }
@@ -92,6 +108,17 @@ ColumnLayout {
         }
         return autoColor
     }
+    function toggleConnections(state) {
+        hueConnector.enabled = state
+        satConnector.enabled = state
+        lightConnector.enabled = state
+        alphaConnector.enabled = state
+        tintConnector.enabled = state
+        colorPickerConnector.enabled = state
+        colorTestConnector.enabled = state
+        autoMethodConnector.enabled = state
+        colorSliderConnector.enabled = state
+    }
     id: colorSlider
     objectName: "ColorSlider"
     height: childrenRect.height
@@ -108,7 +135,7 @@ ColumnLayout {
 
     property alias hue: hueComponent.value
     property alias saturation: satComponent.value
-    property alias lightness: lightComponent.value
+    property alias lightness: lightComponent.value  
     property alias alpha: alphaComponent.value
     property alias tintIntensity: tintComponent.value
     property alias color: colorPicker.color
@@ -125,6 +152,7 @@ ColumnLayout {
             property color closestToWhiteColor: colorTest.closestToWhite
             property color dominantColor: colorTest.dominant
             property color dominantContrastColor: colorTest.dominantContrast
+            property bool firstColorChange: false
         }
         SliderComponent{
             label: i18n("Hue")
@@ -241,76 +269,101 @@ ColumnLayout {
         }
     }
     Connections{
+        id: hueConnector
         target: hueComponent
         function onValueChanged(){
+            console.log("hue value changed")
             if(colorPicker.updating) return
             syncColors(2)
         }
     }
     Connections{
+        id: satConnector
         target: satComponent
         function onValueChanged(){
+            console.log("sat value changed")
             if(colorPicker.updating) return
             syncColors(2)
         }
     }
     Connections{
+        id: lightConnector
         target: lightComponent
         function onValueChanged(){
+            console.log("lightness value changed")
             if(colorPicker.updating) return
             syncColors(2)
         }
     }
     Connections{
+        id: alphaConnector
         target: alphaComponent
         function onValueChanged(){
+            console.log("alpha value changed")
             if(colorPicker.updating) return
             syncColors(2)
         }
     }
     Connections{
+        id: tintConnector
         target: tintComponent
         function onValueChanged(){
+            console.log("tint value changed")
             if(colorPicker.updating) return
             syncColors()
         }
     }
     Connections{
+        id: colorPickerConnector
         target: colorPicker
         function onColorChanged(){
+            console.log("color picker changed")
             if(colorPicker.updating) return
             syncColors(1)
         }
     }
     Connections{
+        id: colorTestConnector
         target: colorTest
         function onPaletteChanged() {
+            if(!colorTest.firstColorChange) {
+                colorTest.firstColorChange = true
+                return
+            }
+            console.log("icon palette changed")
             if(colorPicker.updating) return
             syncColors()
         }
     }
     Connections{
+        id: autoMethodConnector
         target: autoMethod
         function onCurrentIndexChanged(){
+            console.log("auto method changed")
             if(colorPicker.updating) return
             syncColors()
         }
     }
     Connections{
+        id: colorSliderConnector
         target: colorSlider
         function onAutoHueChanged(){
+            console.log("auto hue changed")
             if(colorPicker.updating) return
             syncColors()
         }
         function onAutoSaturateChanged(){
+            console.log("auto saturate changed")
             if(colorPicker.updating) return
             syncColors()
         }
         function onAutoLightnessChanged(){
+            console.log("auto lightness changed")
             if(colorPicker.updating) return
             syncColors()
         }
         function onTintResultChanged(){
+            console.log("tinting changed")
             if(colorPicker.updating) return
             syncColors()
         }
