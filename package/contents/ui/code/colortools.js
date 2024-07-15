@@ -40,7 +40,16 @@
         autoS: false,
         autoL: false,
         autoT: false,
-        method: 0
+        method: 0,
+        AnimationDuration: 0,
+        Location: 0,
+        Alignment: 0,
+        fill: 0,
+        Units: 0,
+        Height: 0,
+        Width: 0,
+        Radius: 0,
+        margins: [0, 0, 0, 0]
     }
 
 function mixColor(input, auto, autoBits){

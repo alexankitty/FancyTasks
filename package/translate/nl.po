@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fancytasks\n"
 "Report-Msgid-Bugs-To: https://github.com/alexankitty/FancyTasks\n"
-"POT-Creation-Date: 2024-03-28 21:56-0600\n"
+"POT-Creation-Date: 2024-03-29 00:30-0600\n"
 "PO-Revision-Date: 2023-07-13 22:27+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -54,32 +54,32 @@ msgid "Set icon size instead of scaling"
 msgstr ""
 
 #: ../contents/configcomponents/ConfigAppearance.qml
-#: ../contents/configcomponents/ConfigIndicators.qml
+#: ../contents/libconfig/IndicatorOptions.qml
 msgid "Follow System"
 msgstr ""
 
 #: ../contents/configcomponents/ConfigAppearance.qml
-#: ../contents/configcomponents/ConfigIndicators.qml
+#: ../contents/libconfig/IndicatorOptions.qml
 msgid "Reverse System"
 msgstr ""
 
 #: ../contents/configcomponents/ConfigAppearance.qml
-#: ../contents/configcomponents/ConfigIndicators.qml
+#: ../contents/libconfig/IndicatorOptions.qml
 msgid "Bottom"
 msgstr "Onderaan"
 
 #: ../contents/configcomponents/ConfigAppearance.qml
-#: ../contents/configcomponents/ConfigIndicators.qml
+#: ../contents/libconfig/IndicatorOptions.qml
 msgid "Left"
 msgstr "Links"
 
 #: ../contents/configcomponents/ConfigAppearance.qml
-#: ../contents/configcomponents/ConfigIndicators.qml
+#: ../contents/libconfig/IndicatorOptions.qml
 msgid "Right"
 msgstr "Rechts"
 
 #: ../contents/configcomponents/ConfigAppearance.qml
-#: ../contents/configcomponents/ConfigIndicators.qml
+#: ../contents/libconfig/IndicatorOptions.qml
 msgid "Top"
 msgstr "Bovenaan"
 
@@ -409,87 +409,6 @@ msgstr ""
 msgid "Maximum:"
 msgstr ""
 
-#: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Animation Duration (ms):"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Indicator Location:"
-msgstr "Indicatorlocatie:"
-
-#: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Align:"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Center"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Fill Available Space:"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Units:"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Pixels"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Percent"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Height (px):"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Width (px):"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Corner Radius (px):"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Margins (px):"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Height"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigIndicators.qml
-#: ../contents/libconfig/ColorSlider.qml
-msgid "%"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Width"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Corner Radius"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Margin Top"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Margin Left"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Margin Right"
-msgstr ""
-
-#: ../contents/configcomponents/ConfigIndicators.qml
-msgid "Margin Bottom"
-msgstr ""
-
 #: ../contents/config/config.qml
 msgid "Appearance"
 msgstr "Vormgeving"
@@ -499,12 +418,12 @@ msgid "Colors"
 msgstr ""
 
 #: ../contents/config/config.qml
-msgid "Behavior"
-msgstr "Gedrag"
-
-#: ../contents/config/config.qml
 msgid "Indicators"
 msgstr "Indicators"
+
+#: ../contents/config/config.qml
+msgid "Behavior"
+msgstr "Gedrag"
 
 #: ../contents/config/config.qml
 msgid "Advanced"
@@ -548,6 +467,11 @@ msgstr ""
 
 #: ../contents/libconfig/ColorSlider.qml
 msgid "Saturation"
+msgstr ""
+
+#: ../contents/libconfig/ColorSlider.qml
+#: ../contents/libconfig/IndicatorOptions.qml
+msgid "%"
 msgstr ""
 
 #: ../contents/libconfig/ColorSlider.qml
@@ -619,6 +543,82 @@ msgstr ""
 #: ../contents/libconfig/FontFamily.qml ../contents/lib/ConfigFontFamily.qml
 msgctxt "Use default font"
 msgid "Default"
+msgstr ""
+
+#: ../contents/libconfig/IndicatorOptions.qml
+msgid "Animation Duration (ms):"
+msgstr ""
+
+#: ../contents/libconfig/IndicatorOptions.qml
+msgid "Indicator Location:"
+msgstr "Indicatorlocatie:"
+
+#: ../contents/libconfig/IndicatorOptions.qml
+msgid "Align:"
+msgstr ""
+
+#: ../contents/libconfig/IndicatorOptions.qml
+msgid "Center"
+msgstr ""
+
+#: ../contents/libconfig/IndicatorOptions.qml
+msgid "Fill Available Space:"
+msgstr ""
+
+#: ../contents/libconfig/IndicatorOptions.qml
+msgid "Units:"
+msgstr ""
+
+#: ../contents/libconfig/IndicatorOptions.qml
+msgid "Pixels"
+msgstr ""
+
+#: ../contents/libconfig/IndicatorOptions.qml
+msgid "Percent"
+msgstr ""
+
+#: ../contents/libconfig/IndicatorOptions.qml
+msgid "Height (px):"
+msgstr ""
+
+#: ../contents/libconfig/IndicatorOptions.qml
+msgid "Width (px):"
+msgstr ""
+
+#: ../contents/libconfig/IndicatorOptions.qml
+msgid "Corner Radius (px):"
+msgstr ""
+
+#: ../contents/libconfig/IndicatorOptions.qml
+msgid "Margins (px):"
+msgstr ""
+
+#: ../contents/libconfig/IndicatorOptions.qml
+msgid "Height"
+msgstr ""
+
+#: ../contents/libconfig/IndicatorOptions.qml
+msgid "Width"
+msgstr ""
+
+#: ../contents/libconfig/IndicatorOptions.qml
+msgid "Corner Radius"
+msgstr ""
+
+#: ../contents/libconfig/IndicatorOptions.qml
+msgid "Margin Top"
+msgstr ""
+
+#: ../contents/libconfig/IndicatorOptions.qml
+msgid "Margin Left"
+msgstr ""
+
+#: ../contents/libconfig/IndicatorOptions.qml
+msgid "Margin Right"
+msgstr ""
+
+#: ../contents/libconfig/IndicatorOptions.qml
+msgid "Margin Bottom"
 msgstr ""
 
 #: ../contents/libconfig/NotificationField.qml

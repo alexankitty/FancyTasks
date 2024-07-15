@@ -20,14 +20,14 @@ ConfigModel {
         source: "../configcomponents/ConfigColors.qml"
     }
     ConfigCategory {
-         name: i18n("Behavior")
-         icon: "preferences-desktop"
-         source: "../configcomponents/ConfigBehavior.qml"
-    }
-    ConfigCategory {
         name: i18n("Indicators")
         icon: "preferences-desktop-navigation"
         source: "../configcomponents/ConfigIndicators.qml"
+    }
+    ConfigCategory {
+         name: i18n("Behavior")
+         icon: "preferences-desktop"
+         source: "../configcomponents/ConfigBehavior.qml"
     }
     ConfigCategory {
         name: i18n("Advanced")

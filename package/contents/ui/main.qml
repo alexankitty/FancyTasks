@@ -244,8 +244,9 @@ MouseArea {
                 if (source === "@multiplex") {
                     continue;
                 }
+                
                 var sourceData
-                var browserIntegrationArray = ["firefox", "chrome", "chromium", "vivaldi", "brave", "opera", "microsoft-edge"]
+                var browserIntegrationArray = ["firefox", "chrome", "chromium", "vivaldi", "brave", "opera", "microsoft-edge", "thorium"]
                 if(browserIntegrationArray.findIndex(browser => browser.includes(desktopFileName)) !== -1){//Hack to replace any plasma browser integration compatible browser
                     for (var x = 0, length = connectedSources.length; x < length; ++x) {
                         sourceData = data[connectedSources[x]]
@@ -254,6 +255,7 @@ MouseArea {
                         }
                     }
                 }
+                if(desktopFileName == "chromium") return "" // chromium mpris implementation is no bueno, so we're not going to bother even trying
                 sourceData = data[source];
                 /**
                  * If the task is in a group, we can't use desktopFileName to match the task.
