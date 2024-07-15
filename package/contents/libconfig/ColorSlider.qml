@@ -39,10 +39,6 @@ ColumnLayout {
         }
         let alpha = ColorTools.hexToHSL(inputColor).a
         let mixedColor = ColorTools.mixColor(inputColor, autoColor, autoBits)
-        mixedColor.a = 1
-        if(tintResult) mixedColor = Kirigami.ColorUtils.tintWithAlpha(mixedColor, tintColor, tintIntensity / 100)
-        //restore alpha
-        mixedColor.a = alpha
         applyColors(ColorTools.hexToHSL(mixedColor), source, sendValueChanged)
         colorPicker.updating = false
     }
@@ -55,6 +51,15 @@ ColumnLayout {
             colorSlider.alpha = hex.a * 100
         }
         if(source == 2 || source == 0) colorPicker.color = Qt.hsla(hex.h, hex.s, hex.l, hex.a)
+        let finalColor = hex
+        let alpha = hex.a
+        finalColor.a = 1
+        if(tintResult) {
+                let tintedColor = Kirigami.ColorUtils.tintWithAlpha(Qt.hsla(finalColor.h, finalColor.s, finalColor.l, finalColor.a), tintColor, tintIntensity / 100)
+                finalColor  = ColorTools.hexToHSL(tintedColor)
+            }
+        finalColor.a = alpha
+        colorPreview.color = Qt.hsla(finalColor.h, finalColor.s, finalColor.l, finalColor.a)
         if(sendValueChanged) colorSlider.valueChanged()
     }
     function autoColorPreview(){
@@ -260,11 +265,19 @@ ColumnLayout {
                 Layout.leftMargin: iconTestLabel.width - width
             }
             KQControls.ColorButton {
+                visible: false
                 id: colorPicker
+                showAlphaChannel: true
+                property bool updating: false //prevent a binding loop by not updating until we're done
+            }
+            DummyColorButton {
+                id: colorPreview
                 showAlphaChannel: true
                 Layout.alignment: Qt.AlignLeft
                 Layout.fillWidth: true
-                property bool updating: false //prevent a binding loop by not updating until we're done
+                onClicked:{
+                    colorPicker.clicked()
+                }
             }
         }
     }
