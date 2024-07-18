@@ -80,13 +80,11 @@ Kirigami.FormLayout {
         }
     }
     Component.onCompleted: {
-            console.log("Component onCompleted triggered")
             colorForm.building = true
             getProperties()
             buildColorSlider()
             colorSelectorConnector.enabled = true
             colorEnabledConnector.enabled = true
-            console.log("Color form completed building")
             colorForm.building = false
         }
 
@@ -105,15 +103,12 @@ Kirigami.FormLayout {
     }
 
     function updateColors(){
-        console.log("checking if we can update colors")
         if(!buttonProperties) return
-        console.log("Updating colors")
         buttonProperties.autoH = colorSelector.autoHue
         buttonProperties.autoS = colorSelector.autoSaturate
         buttonProperties.autoL = colorSelector.autoLightness
         buttonProperties.autoT = colorSelector.tintResult
         buttonProperties.color = colorSelector.color.toString()
-        console.log(colorSelector.color)
         buttonProperties.method = colorSelector.autoType
         buttonProperties.tint = colorSelector.tintIntensity
         if(buttonTab.selectedIndex == 0) {
@@ -126,7 +121,6 @@ Kirigami.FormLayout {
     Connections {
         target: buttonTab
         function onActivated() {
-            console.log("button tab changed")
             colorForm.building = true
             state.currentIndex = 0
             getProperties()
@@ -137,7 +131,6 @@ Kirigami.FormLayout {
     Connections {
         target: state
         function onActivated(){
-            console.log("state changed")
             colorForm.building = true
             getProperties()
             buildColorSlider()
@@ -148,7 +141,6 @@ Kirigami.FormLayout {
         id: colorSelectorConnector
         target: colorSelector
         function onValueChanged(){
-            console.log("received value changed")
             if(colorForm.building) return
             updateColors()
         }
@@ -158,7 +150,6 @@ Kirigami.FormLayout {
         id: colorEnabledConnector
         target: colorEnabled
         function onCheckedChanged(){
-            console.log("received automatic checkbox change")
             if(colorForm.building) return
             updateColors()
         }

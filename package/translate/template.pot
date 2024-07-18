@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Tasks\n"
 "Report-Msgid-Bugs-To: https://github.com/alexankitty/FancyTasks\n"
-"POT-Creation-Date: 2024-03-29 00:30-0600\n"
+"POT-Creation-Date: 2024-07-17 20:57-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -506,6 +506,21 @@ msgstr ""
 
 #: ../contents/libconfig/ColorSlider.qml
 msgid "Color:"
+msgstr ""
+
+#: ../contents/libconfig/DummyColorButton.qml
+msgctxt "@info:whatsthis for a button"
+msgid "Color button"
+msgstr ""
+
+#: ../contents/libconfig/DummyColorButton.qml
+msgctxt "@info:whatsthis for a button of current color code %1"
+msgid "Current color is %1. This button will open a color chooser dialog."
+msgstr ""
+
+#: ../contents/libconfig/DummyColorButton.qml
+msgctxt "@info:whatsthis for a button of current color code %1"
+msgid "Current color is %1."
 msgstr ""
 
 #: ../contents/libconfig/FontFamily.qml ../contents/lib/ConfigFontFamily.qml

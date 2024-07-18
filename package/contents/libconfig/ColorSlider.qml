@@ -2,6 +2,7 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import QtGraphicalEffects 1.0
+import QtQuick.Dialogs 1.3
 
 import org.kde.kquickcontrols 2.0 as KQControls
 import org.kde.kirigami 2.20 as Kirigami
@@ -12,7 +13,6 @@ import "../ui/code/colortools.js" as ColorTools
 
 ColumnLayout {
     function buildComponent(buttonProperties){
-        console.log("Disabling color connectors.")
         toggleConnections(false)
         autoHue = buttonProperties.autoH
         autoSaturate = buttonProperties.autoS
@@ -23,11 +23,9 @@ ColumnLayout {
         color = buttonProperties.color
         syncColors(1, false)
         toggleConnections(true)
-        console.log("Enabling color connectors.")
     }
     function syncColors(source = 0, sendValueChanged = true){
         //Source: 0: Automatic Checkbox 1: Color Picker 2: Color Slider
-        console.log("syncing colors")
         colorPicker.updating = true
         let autoColor = autoColorPreview();
         if(source == 2) {var inputColor = Qt.hsla(colorSlider.hue / 359, colorSlider.saturation/100, colorSlider.lightness/100, colorSlider.alpha/100)}
@@ -45,7 +43,6 @@ ColumnLayout {
         colorPicker.updating = false
     }
     function applyColors(hex, source = 0, sendValueChanged = true){
-        console.log("applying colors")
         console.log(hex.a)
         if(source == 1 || source == 0){
             colorSlider.hue = hex.h * 359
@@ -267,19 +264,20 @@ ColumnLayout {
                 text: i18n("Color:")
                 Layout.leftMargin: iconTestLabel.width - width
             }
-            KQControls.ColorButton {
-                visible: false
+
+            ColorDialog {
                 id: colorPicker
                 showAlphaChannel: true
                 property bool updating: false //prevent a binding loop by not updating until we're done
             }
+
             DummyColorButton {
                 id: colorPreview
                 showAlphaChannel: true
                 Layout.alignment: Qt.AlignLeft
                 Layout.fillWidth: true
                 onClicked:{
-                    colorPicker.clicked()
+                    colorPicker.open()
                 }
             }
         }
@@ -288,7 +286,6 @@ ColumnLayout {
         id: hueConnector
         target: hueComponent
         function onValueChanged(){
-            console.log("hue value changed")
             if(colorPicker.updating) return
             syncColors(2)
         }
@@ -297,7 +294,6 @@ ColumnLayout {
         id: satConnector
         target: satComponent
         function onValueChanged(){
-            console.log("sat value changed")
             if(colorPicker.updating) return
             syncColors(2)
         }
@@ -306,7 +302,6 @@ ColumnLayout {
         id: lightConnector
         target: lightComponent
         function onValueChanged(){
-            console.log("lightness value changed")
             if(colorPicker.updating) return
             syncColors(2)
         }
@@ -315,7 +310,6 @@ ColumnLayout {
         id: alphaConnector
         target: alphaComponent
         function onValueChanged(){
-            console.log("alpha value changed")
             if(colorPicker.updating) return
             syncColors(2)
         }
@@ -324,7 +318,6 @@ ColumnLayout {
         id: tintConnector
         target: tintComponent
         function onValueChanged(){
-            console.log("tint value changed")
             if(colorPicker.updating) return
             syncColors()
         }
@@ -333,7 +326,6 @@ ColumnLayout {
         id: colorPickerConnector
         target: colorPicker
         function onColorChanged(){
-            console.log("color picker changed")
             if(colorPicker.updating) return
             syncColors(1)
         }
@@ -346,7 +338,6 @@ ColumnLayout {
                 colorTest.firstColorChange = true
                 return
             }
-            console.log("icon palette changed")
             if(colorPicker.updating) return
             syncColors()
         }
@@ -355,7 +346,6 @@ ColumnLayout {
         id: autoMethodConnector
         target: autoMethod
         function onCurrentIndexChanged(){
-            console.log("auto method changed")
             if(colorPicker.updating) return
             syncColors()
         }
@@ -364,22 +354,18 @@ ColumnLayout {
         id: colorSliderConnector
         target: colorSlider
         function onAutoHueChanged(){
-            console.log("auto hue changed")
             if(colorPicker.updating) return
             syncColors()
         }
         function onAutoSaturateChanged(){
-            console.log("auto saturate changed")
             if(colorPicker.updating) return
             syncColors()
         }
         function onAutoLightnessChanged(){
-            console.log("auto lightness changed")
             if(colorPicker.updating) return
             syncColors()
         }
         function onTintResultChanged(){
-            console.log("tinting changed")
             if(colorPicker.updating) return
             syncColors()
         }
