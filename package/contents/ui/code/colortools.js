@@ -1,55 +1,86 @@
 .import QtQml 2.15 as QtQml
 
     class buttonProperties {
-        constructor(json, type){
-            let data = JSON.parse(json);
-            if(data[type] == undefined) {
-                for(let key in buttonPropTemplate){
-                    this[key] = buttonPropTemplate[key]
+        constructor(json, type, optionSet){
+            let data = this.loadJson(json)
+            if(data[type] == undefined || data[type][optionSet] == undefined) {
+                //loads in the default template
+                for(let key in buttonPropTemplate[optionSet]){
+                    this[key] = buttonPropTemplate[optionSet][key]
                 }
             }
             else {
-                for(let key in buttonPropTemplate){
-                    if(data[type][key] == undefined){
+                for(let key in buttonPropTemplate[optionSet]){
+                    if(data[type][optionSet][key] == undefined){
                         //adds entries if they don't exist
-                        this[key] = buttonPropTemplate[key]
+                        this[key] = buttonPropTemplate[optionSet][key]
                     }
                     else{
-                        this[key] = data[type][key]
+                        this[key] = data[type][optionSet][key]
                     }
                 }
             }
             this['type'] = type
+            this['optionSet'] = optionSet
         }
         save(json){
-            let data = JSON.parse(json)
-            data[this.type] = this
+            let data = this.loadJson(json)
+            if(data[this.type] == undefined) data[this.type] = new Object()
+            data[this.type][this.optionSet] = this
             return JSON.stringify(data, this.replacer)
         }
         replacer(key, value){
             if(key=='type') return undefined
+            if(key=='optionSet') return undefined
             else return value
+        }
+        loadJson(json){
+            try{
+                return JSON.parse(json);
+            }
+            catch(e) {
+                return new Object()
+            }
         }
     }
 
     var buttonPropTemplate = {
-        color: '#000000',
-        tint: 0,
-        enabled: false,
-        autoH: false,
-        autoS: false,
-        autoL: false,
-        autoT: false,
-        method: 0,
-        AnimationDuration: 0,
-        Location: 0,
-        Alignment: 0,
-        fill: 0,
-        Units: 0,
-        Height: 0,
-        Width: 0,
-        Radius: 0,
-        margins: [0, 0, 0, 0]
+        version: 1,
+        colorProps: {
+            color: '#000000',
+            tint: 0,
+            enabled: false,
+            autoH: false,
+            autoS: false,
+            autoL: false,
+            autoT: false,
+            method: 0
+        },
+        indicatorProps: {
+            height: 0,
+            heightPercent: 0,
+            width: 0,
+            widthPercent: 0,
+            radius: 0,
+            radiusPercent: 0,
+            margins: {
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0
+            },
+            marginsPercent: {
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0
+            },
+            aniDuration: 0,
+            location: 0,
+            align: 0,
+            fill: false,
+            unit: 0,
+        }
     }
 
 function mixColor(input, auto, autoBits){

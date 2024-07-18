@@ -43,7 +43,6 @@ ColumnLayout {
         colorPicker.updating = false
     }
     function applyColors(hex, source = 0, sendValueChanged = true){
-        console.log(hex.a)
         if(source == 1 || source == 0){
             colorSlider.hue = hex.h * 359
             colorSlider.saturation = hex.s * 100
@@ -65,8 +64,8 @@ ColumnLayout {
     function autoColorPreview(){
         let buttonPropKey = 'button' + colorState
         let indicatorPropKey = 'indicator' + colorState
-        var buttonProperties = new ColorTools.buttonProperties(cfg_buttonProperties, buttonPropKey)
-        var indicatorProperties = new ColorTools.buttonProperties(cfg_buttonProperties, buttonPropKey)
+        var buttonProperties = new ColorTools.buttonProperties(cfg_buttonProperties, buttonPropKey, 'colorProps')
+        var indicatorProperties = new ColorTools.buttonProperties(cfg_buttonProperties, buttonPropKey, 'colorProps')
         var auto = colorSlider.autoType
         if(colorSlider.autoType == 7){            
             if(buttonProperties.autoH || buttonProperties.autoS || buttonProperties.autoL || buttonProperties.autoT){

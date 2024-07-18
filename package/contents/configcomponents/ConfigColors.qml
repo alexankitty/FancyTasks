@@ -16,6 +16,7 @@ import org.kde.kquickcontrols 2.0 as KQControls
 
 import "../libconfig" as LibConfig
 import "../ui/code/colortools.js" as ColorTools
+import "../ui/code/tools.js" as Tools
 
 Kirigami.FormLayout {
     property alias cfg_buttonColorize: buttonColorize.currentIndex
@@ -89,15 +90,12 @@ Kirigami.FormLayout {
         }
 
     function getProperties(){
-        if(!state.displayText) return
-        let propKey = colorSelector.colorType + state.displayText
-        buttonProperties = new ColorTools.buttonProperties(cfg_buttonProperties, propKey);
+            let propKey = buttonTab.indexEnum[buttonTab.selectedIndex] + state.indexEnum[state.currentIndex]
+            buttonProperties = new ColorTools.buttonProperties(cfg_buttonProperties, propKey, 'colorProps');
     }
 
     function buildColorSlider(){
-        if(buttonTab.selectedIndex == 0) colorSelector.colorType = "button"
-        else if(buttonTab.selectedIndex == 1) colorSelector.colorType = "indicator"
-        else if(buttonTab.selectedIndex == 2) colorSelector.colorType = "indicatorTail"
+        colorSelector.colorType = buttonTab.indexEnum[buttonTab.selectedIndex]
         colorEnabled.checked = buttonProperties.enabled
         colorSelector.buildComponent(buttonProperties)
     }

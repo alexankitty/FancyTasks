@@ -7,10 +7,9 @@ import "../libconfig" as LibConfig
 
 
 RowLayout {
-    height: childrenRect.height
-    width: childrenRect.width
     property alias currentIndex: stateBox.currentIndex
     property alias displayText: stateBox.displayText
+    property var indexEnum: ['active', 'inactive', 'minimized', 'attention', 'progress', 'hover']
     property bool showProgress
     id: state
     signal activated

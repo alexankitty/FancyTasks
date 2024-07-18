@@ -10,6 +10,7 @@ ColumnLayout{
     property int indicatorCount: 0
     property bool enableIndicators: true
     property int selectedIndex: 0
+    property var indexEnum: ['button', 'indicator', 'indicatorTail']
     property alias tailIndex: tailSelect.currentIndex
     signal activated
     id: buttonTabComponent
@@ -34,20 +35,20 @@ ColumnLayout{
     RowLayout{
         TabBar{
             id: bar
-            TabButton {
+            TabButton { 
                 id: buttonTab
-                text: i18n("Button Colors")
+                text: i18n("Button")
             }
             TabButton {
                 enabled: enableIndicators
                 checked: !showButtonColors
                 id: indicatorTab
-                text: i18n("Indicator Colors")
+                text: i18n("Indicator")
             }
             TabButton {
-                enabled: enableIndicators
+                enabled: enableIndicators && indicatorCount >= 2
                 id: indicatorTailTab
-                text: i18n("Indicator Tail Colors")
+                text: i18n("Indicator Tail")
             }
         }
         LibConfig.CountingComboBox{

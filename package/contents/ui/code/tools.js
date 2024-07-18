@@ -299,3 +299,17 @@ function isVertical(key){
         case 5: return false
     }
 }
+
+//https://stackoverflow.com/a/28514691
+
+function delayTimer() {
+    return Qt.createQmlObject("import QtQuick 2.0; Timer {}", root);
+}
+
+function delay(delayTime, cb) {
+    let timer = new delayTimer();
+    timer.interval = delayTime;
+    timer.repeat = false;
+    timer.triggered.connect(cb);
+    timer.start();
+}
