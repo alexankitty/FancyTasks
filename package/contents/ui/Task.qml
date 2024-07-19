@@ -108,6 +108,7 @@ MouseArea {
             var propKey = type + task.state
         }
         var key = type + 'Properties'
+        
         task[key] = new ColorTools.buttonProperties(plasmoid.configuration.buttonProperties, propKey, 'colorProps')
     }
 
@@ -681,14 +682,14 @@ MouseArea {
                 target: frame
                 basePrefix: ""
             }
-/*             PropertyChanges { 
+            PropertyChanges { 
                 target: colorOverride
                 visible: false
             }
             PropertyChanges {
                 target: colorFrame
                 visible: false
-            } */
+            }
         },
         State {
             name: "Attention"

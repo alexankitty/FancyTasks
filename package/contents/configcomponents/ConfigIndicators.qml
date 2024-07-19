@@ -119,8 +119,7 @@ Kirigami.FormLayout {
     }
 
     function getProperties(){
-        if(!state.displayText) return
-        let propKey = getType() + state.displayText
+        let propKey = buttonTab.indexEnum[buttonTab.selectedIndex] + ColorTools.capitalizeFirstLetter(state.indexEnum[state.currentIndex])
         buttonProperties = new ColorTools.buttonProperties(cfg_buttonProperties, propKey, 'indicatorProps');
     }
 

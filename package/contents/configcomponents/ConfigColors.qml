@@ -90,7 +90,7 @@ Kirigami.FormLayout {
         }
 
     function getProperties(){
-            let propKey = buttonTab.indexEnum[buttonTab.selectedIndex] + state.indexEnum[state.currentIndex]
+            let propKey = buttonTab.indexEnum[buttonTab.selectedIndex] + ColorTools.capitalizeFirstLetter(state.indexEnum[state.currentIndex])
             buttonProperties = new ColorTools.buttonProperties(cfg_buttonProperties, propKey, 'colorProps');
     }
 
