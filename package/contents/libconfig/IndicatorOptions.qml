@@ -10,9 +10,12 @@ import "../libconfig" as LibConfig
 ColumnLayout {
     property bool plasmoidVertical: false
 
-    property var valueArr: []
+    property var valueArr: {return new Object()}
 
     property alias location: locationComponent.currentIndex
+
+    property bool inserting: false
+    property bool ready: false
 
     id: indicatorOptions
     objectName: "IndicatorOptions"
@@ -28,7 +31,7 @@ ColumnLayout {
             to: 5000
             onValueChanged: {
                 valueArr['aniDuration'] = value
-                indicatorOptions.valueChanged()
+                indicatorOptions.sendValueChangedSignal()
             }
         }
     }
@@ -48,7 +51,7 @@ ColumnLayout {
             ]
             onCurrentIndexChanged: {
                 valueArr['location'] = currentIndex
-                indicatorOptions.valueChanged()
+                indicatorOptions.sendValueChangedSignal()
             }
         }
     }
@@ -66,7 +69,7 @@ ColumnLayout {
             ]
             onCurrentIndexChanged: {
                 valueArr['align'] = currentIndex
-                indicatorOptions.valueChanged()
+                indicatorOptions.sendValueChangedSignal()
             }
         }
     }
@@ -83,7 +86,7 @@ ColumnLayout {
             id: fillComponent
             onCheckedChanged: {
                 valueArr['fill'] = checked
-                indicatorOptions.valueChanged()
+                indicatorOptions.sendValueChangedSignal()
             }
         }
     }
@@ -97,7 +100,7 @@ ColumnLayout {
             model: [i18n("Pixels"), i18n("Percent")]
             onCurrentIndexChanged: {
                 valueArr['unit'] = currentIndex
-                indicatorOptions.valueChanged()
+                indicatorOptions.sendValueChangedSignal()
             }
         }
     }
@@ -113,11 +116,11 @@ ColumnLayout {
             SpinBox {
                 enabled: !fillComponent.checked || (fillComponent.checked && !plasmoidVertical)
                 id: heightComponent
-                from: 1
+                from: 0
                 to: 999
                 onValueChanged: {
                     valueArr['height'] = value
-                    indicatorOptions.valueChanged()
+                    indicatorOptions.sendValueChangedSignal()
                 }
             }
             
@@ -130,11 +133,11 @@ ColumnLayout {
             SpinBox {
                 enabled: !fillComponent.checked || (fillComponent.checked && plasmoidVertical)
                 id: widthComponent
-                from: 1
+                from: 0
                 to: 999
                 onValueChanged: {
                     valueArr['width'] = value
-                    indicatorOptions.valueChanged()
+                    indicatorOptions.sendValueChangedSignal()
                 }
             }
             
@@ -150,7 +153,7 @@ ColumnLayout {
                 to: 100
                 onValueChanged: {
                     valueArr['radius'] = value
-                    indicatorOptions.valueChanged()
+                    indicatorOptions.sendValueChangedSignal()
                 }
             }
         }
@@ -172,7 +175,7 @@ ColumnLayout {
                         to: 999
                         onValueChanged: {
                             valueArr['margins']['top'] = value
-                            indicatorOptions.valueChanged()
+                            indicatorOptions.sendValueChangedSignal()
                         }
                     }
                     
@@ -187,7 +190,7 @@ ColumnLayout {
                         to: 999
                         onValueChanged: {
                             valueArr['margins']['left'] = value
-                            indicatorOptions.valueChanged()
+                            indicatorOptions.sendValueChangedSignal()
                         }
                     }
                 }
@@ -201,7 +204,7 @@ ColumnLayout {
                         to: 999
                         onValueChanged: {
                             valueArr['margins']['right'] = value
-                            indicatorOptions.valueChanged()
+                            indicatorOptions.sendValueChangedSignal()
                         }
                     }
                 }
@@ -215,7 +218,7 @@ ColumnLayout {
                         to: 999
                         onValueChanged: {
                             valueArr['margins']['bottom'] = value
-                            indicatorOptions.valueChanged()
+                            indicatorOptions.sendValueChangedSignal()
                         }
                     }
                 }
@@ -236,7 +239,7 @@ ColumnLayout {
             decimals: 0
             onValueChanged: {
                 valueArr['heightPercent']['top'] = value
-                indicatorOptions.valueChanged()
+                indicatorOptions.sendValueChangedSignal()
             }
         }
         LibConfig.SliderComponent{
@@ -250,7 +253,7 @@ ColumnLayout {
             decimals: 0
             onValueChanged: {
                 valueArr['widthPercent']['top'] = value
-                indicatorOptions.valueChanged()
+                indicatorOptions.sendValueChangedSignal()
             }
         }
         LibConfig.SliderComponent{
@@ -264,7 +267,7 @@ ColumnLayout {
             decimals: 0
             onValueChanged: {
                 valueArr['radiusPercent']['top'] = value
-                indicatorOptions.valueChanged()
+                indicatorOptions.sendValueChangedSignal()
             }
         }
         LibConfig.SliderComponent{
@@ -277,7 +280,7 @@ ColumnLayout {
             decimals: 0
             onValueChanged: {
                 valueArr['marginsPercent']['top'] = value
-                indicatorOptions.valueChanged()
+                indicatorOptions.sendValueChangedSignal()
             }
         }
         LibConfig.SliderComponent{
@@ -290,7 +293,7 @@ ColumnLayout {
             decimals: 0
             onValueChanged: {
                 valueArr['marginsPercent']['left'] = value
-                indicatorOptions.valueChanged()
+                indicatorOptions.sendValueChangedSignal()
             }
         }
         LibConfig.SliderComponent{
@@ -303,7 +306,7 @@ ColumnLayout {
             decimals: 0
             onValueChanged: {
                 valueArr['marginsPercent']['right'] = value
-                indicatorOptions.valueChanged()
+                indicatorOptions.sendValueChangedSignal()
             }
         }
         LibConfig.SliderComponent{
@@ -316,7 +319,7 @@ ColumnLayout {
             decimals: 0
             onValueChanged: {
                 valueArr['marginsPercent']['bottom'] = value
-                indicatorOptions.valueChanged()
+                indicatorOptions.sendValueChangedSignal()
             }
         }
     }
@@ -354,19 +357,37 @@ ColumnLayout {
         }
     }
 
+    Component.onCompleted: {
+        indicatorOptions.ready = true
+    }
+
     function insertValues(obj) {
+    
+        indicatorOptions.inserting = true
+        console.log(indicatorOptions.inserting)
+        valueArr = obj
         let keys = getKeys()
         for(let key in keys.unitKeys){
-            indicatorOptions[key + keys['component']] = obj[key]
-            indicatorOptions[key + keys['percent'] + keys['component']] = obj[(key + keys['percent'])]
+            console.log(keys.unitKeys[key])
+            indicatorOptions[keys.unitKeys[key] + keys['component']] = obj[keys.unitKeys[key]]
+            indicatorOptions[keys.unitKeys[key] + keys['percent'] + keys['component']] = obj[(keys.unitKeys[key] + keys['percent'])]
         }
         for(let key in keys.marginKeys){
-            indicatorOptions[keys['margins'] + key + keys['component']] = obj[keys['margins'][key]]
-            indicatorOptions[keys['margins'] + key + keys['percent'] + keys['component']] = obj[(keys['margins'] + keys['percent'])[key]]
+            console.log(keys.marginKeys[key])
+            indicatorOptions[keys['margins'] + keys.marginKeys[key] + keys['component']] = obj[keys['margins'][keys.marginKeys[key]]]
+            indicatorOptions[keys['margins'] + keys.marginKeys[key] + keys['percent'] + keys['component']] = obj[(keys['margins'] + keys['percent'])[keys.marginKeys[key]]]
         }
         for(let key in keys.optionKeys){
-            indicatorOptions[key + keys['component']][keys[optionValueVar[key]]] = obj['key']
+            console.log(keys.optionKeys[key])
+            indicatorOptions[keys.optionKeys[key] + keys['component']][keys[optionValueVar][key]] = obj['key']
         }
-        valueArr = obj
+        indicatorOptions.inserting = false
+        console.log(indicatorOptions.inserting)
+    }   
+    function sendValueChangedSignal(){
+        console.log(indicatorOptions.ready)
+        console.log(indicatorOptions.inserting)
+        if(indicatorOptions.inserting) return;
+        if(indicatorOptions.ready) indicatorOptions.valueChanged()  
     }
 }

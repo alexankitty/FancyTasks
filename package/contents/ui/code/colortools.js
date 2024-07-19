@@ -24,6 +24,7 @@
             this['optionSet'] = optionSet
         }
         save(json){
+            console.log(json)
             let data = this.loadJson(json)
             if(data[this.type] == undefined) data[this.type] = new Object()
             data[this.type][this.optionSet] = this

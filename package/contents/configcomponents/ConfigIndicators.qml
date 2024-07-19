@@ -97,7 +97,9 @@ Kirigami.FormLayout {
             Connections {
                 target: options
                 function onValueChanged(){
-                    
+                    if(indicatorForm.building) return
+                    console.log("responding to value change")
+                    setProperties()
                 }
             }
         }
@@ -106,16 +108,7 @@ Kirigami.FormLayout {
         indicatorForm.building = true
         getProperties();
         buildForm();
-        /* colorSelectorConnector.enabled = true
-        colorEnabledConnector.enabled = true */
         indicatorForm.building = false
-    }
-
-    function getType(){
-        switch(buttonTab.selectedIndex){
-            case 1: return 'indicator'
-            case 2: return 'indicatorTail'
-        }
     }
 
     function getProperties(){
@@ -124,11 +117,15 @@ Kirigami.FormLayout {
     }
 
     function buildForm(){
-
+        console.log("building")
+        options.insertValues(buttonProperties)
     }
 
     function setProperties(){
-        //do the things?
+        buttonProperties = options.valueArr
+        for(let key in options.valueArr) console.log(`${key}: ${options.valueArr[key]}`)
+        //cfg_buttonProperties = buttonProperties.save(cfg_buttonProperties)
+        console.log(buttonProperties.save(cfg_buttonProperties))
     }
 
 }
