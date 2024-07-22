@@ -18,7 +18,7 @@ Kirigami.FormLayout {
     id: indicatorForm
     anchors.left: parent.left
     anchors.right: parent.right
-    wideMode: false
+    //wideMode: false
 
     property bool plasmoidVertical: TaskTools.isVertical(indicatorLocation)
     property alias cfg_indicatorsEnabled: indicatorsEnabled.currentIndex //type: Int; label: Enable taskbar indicator effect. 0 = Off, 1 = On; default: 0

@@ -27,7 +27,7 @@ Kirigami.FormLayout {
     property bool building: false
     property int ready: 0
     property string decorationType
-    wideMode: false
+    //wideMode: false
     id: colorForm
     width: parent.width
     anchors.left: parent.left
