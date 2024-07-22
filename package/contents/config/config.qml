@@ -34,4 +34,9 @@ ConfigModel {
         icon: "configure"
         source: "../lib/ConfigAdvanced.qml"
     }
+    ConfigCategory {
+        name: i18n("Donate")
+        icon: "view-financial-account-cash"
+        source: "../configcomponents/ConfigDonate.qml"
+    }
 }

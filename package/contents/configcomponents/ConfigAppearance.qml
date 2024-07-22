@@ -74,6 +74,28 @@ Kirigami.FormLayout {
         font: Kirigami.Theme.smallFont
     }
 
+    Slider {
+        id: iconScale
+        from: 0
+        to: 300
+        stepSize: 25
+        Kirigami.FormData.label: i18n("Icon Scale") + " " + iconScale.valueAt(iconScale.position) + "%"
+        visible: !iconSizeOverride.checked
+    }
+
+    SpinBox {
+        id: iconSizePx
+        Kirigami.FormData.label: i18n("Icon Size (px):")
+        from: 0
+        to: 999
+        visible: iconSizeOverride.checked
+    }
+
+    CheckBox {
+        id: iconSizeOverride
+        text: i18n("Set icon size instead of scaling")
+    }
+
     Item {
         Kirigami.FormData.isSection: true
     }

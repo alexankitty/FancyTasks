@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fancy Tasks\n"
 "Report-Msgid-Bugs-To: https://github.com/alexankitty/FancyTasks\n"
-"POT-Creation-Date: 2024-07-17 20:57-0600\n"
+"POT-Creation-Date: 2024-07-21 19:44-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -339,7 +339,7 @@ msgstr ""
 msgid "Frame"
 msgstr ""
 
-#: ../contents/configcomponents/ConfigColors.qml ../contents/configcomponents/ConfigIndicators.qml
+#: ../contents/configcomponents/ConfigColors.qml ../contents/configcomponents/ConfigIndicators.qml ../contents/libconfig/ButtonTabComponent.qml
 msgid "Indicator"
 msgstr ""
 
@@ -399,6 +399,10 @@ msgstr ""
 msgid "Advanced"
 msgstr ""
 
+#: ../contents/config/config.qml
+msgid "Donate"
+msgstr ""
+
 #: ../contents/lib/AppletVersion.qml
 msgid "<b>Version:</b> %1"
 msgstr ""
@@ -412,15 +416,11 @@ msgid "Customize Individual Indicator Tails"
 msgstr ""
 
 #: ../contents/libconfig/ButtonTabComponent.qml
-msgid "Button Colors"
+msgid "Button"
 msgstr ""
 
 #: ../contents/libconfig/ButtonTabComponent.qml
-msgid "Indicator Colors"
-msgstr ""
-
-#: ../contents/libconfig/ButtonTabComponent.qml
-msgid "Indicator Tail Colors"
+msgid "Indicator Tail"
 msgstr ""
 
 #: ../contents/libconfig/ColorSlider.qml
