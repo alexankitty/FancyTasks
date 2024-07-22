@@ -325,35 +325,31 @@ ColumnLayout {
     }
     function getKeys(){
         return {
-            baseKey: 'indicator',
-            unitKeys: [
-                'height',
-                'width',
-                'radius',
-            ],
-            optionKeys: [
-                'aniduration',
-                'location',
-                'align',
-                'fill',
-                'unit'
-            ],
-            optionValueVar: {
-                aniduration: 'value',
-                location: 'currentIndex',
-                align: 'currentIndex',
-                fill: 'checked',
-                unit: 'currentIndex'
+            optionValues: {
+                height: heightComponent.value,
+                heightPercent: heightPercentComponent.value,
+                width: widthComponent.value,
+                widthPercent: widthPercentComponent.value,
+                radius: radiusComponent.value,
+                radisuPercent: radiusPercentComponent.value,
+                aniDuration: animationDurationComponent.value,
+                location: locationComponent.currentIndex,
+                align: alignComponent.currentIndex,
+                fill: fillComponent.checked,
+                unit: unitComponent.currentIndex,
             },
-            marginKeys: [
-                'Top',
-                'Left',
-                'Right',
-                'Bottom'
+            marginValues: [
+                marginTopComponent.value,
+                marginLeftComponent.value,
+                marginRightComponent.value,
+                marginBottomComponent.value
             ],
-            percent: 'Percent',
-            component: 'Component',
-            margins: 'margins'
+            marginPercentValues: [
+                marginTopPercentComponent.value,
+                marginLeftPercentComponent.value,
+                marginRightPercentComponent.value,
+                marginBottomPercentComponent.value
+            ]
         }
     }
 
@@ -362,31 +358,17 @@ ColumnLayout {
     }
 
     function insertValues(obj) {
-    
         indicatorOptions.inserting = true
-        console.log(indicatorOptions.inserting)
         valueArr = obj
         let keys = getKeys()
-        for(let key in keys.unitKeys){
-            console.log(keys.unitKeys[key])
-            indicatorOptions[keys.unitKeys[key] + keys['component']] = obj[keys.unitKeys[key]]
-            indicatorOptions[keys.unitKeys[key] + keys['percent'] + keys['component']] = obj[(keys.unitKeys[key] + keys['percent'])]
+        for(let key in keys.optionValues){
+            keys.optionValues[key] = obj[key]
         }
-        for(let key in keys.marginKeys){
-            console.log(keys.marginKeys[key])
-            indicatorOptions[keys['margins'] + keys.marginKeys[key] + keys['component']] = obj[keys['margins'][keys.marginKeys[key]]]
-            indicatorOptions[keys['margins'] + keys.marginKeys[key] + keys['percent'] + keys['component']] = obj[(keys['margins'] + keys['percent'])[keys.marginKeys[key]]]
-        }
-        for(let key in keys.optionKeys){
-            console.log(keys.optionKeys[key])
-            indicatorOptions[keys.optionKeys[key] + keys['component']][keys[optionValueVar][key]] = obj['key']
-        }
+        obj.margins = keys.marginValues
+        obj.marginsPercent = keys.marginPercentValues
         indicatorOptions.inserting = false
-        console.log(indicatorOptions.inserting)
     }   
     function sendValueChangedSignal(){
-        console.log(indicatorOptions.ready)
-        console.log(indicatorOptions.inserting)
         if(indicatorOptions.inserting) return;
         if(indicatorOptions.ready) indicatorOptions.valueChanged()  
     }

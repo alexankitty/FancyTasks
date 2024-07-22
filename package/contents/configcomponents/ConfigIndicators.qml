@@ -98,7 +98,6 @@ Kirigami.FormLayout {
                 target: options
                 function onValueChanged(){
                     if(indicatorForm.building) return
-                    console.log("responding to value change")
                     setProperties()
                 }
             }
@@ -117,14 +116,13 @@ Kirigami.FormLayout {
     }
 
     function buildForm(){
-        console.log("building")
         options.insertValues(buttonProperties)
     }
 
     function setProperties(){
         buttonProperties = options.valueArr
         for(let key in options.valueArr) console.log(`${key}: ${options.valueArr[key]}`)
-        //cfg_buttonProperties = buttonProperties.save(cfg_buttonProperties)
+        cfg_buttonProperties = buttonProperties.save(cfg_buttonProperties)
         console.log(buttonProperties.save(cfg_buttonProperties))
     }
 
