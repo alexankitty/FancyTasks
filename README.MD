@@ -1,5 +1,6 @@
 # Notice
-I got pretty burned out on the project after the code hell involved in the color-overhaul branch that I never finished. In my place [FancyTasksNG](https://github.com/DayDve/FancyTasksNG) works on latest plasma, and I recommend you use that.
+I got pretty burned out on the project after the code hell involved in the color-overhaul branch that I never finished. In my place [FancyTasksNG](https://github.com/DayDve/FancyTasksNG) works on latest plasma, and I recommend you use that.  
+I've long since moved to hyprland, so working on this project isn't very easy for me. If we were to get a plasmoid compatible shell for hyprland (either via quickshell or similar) I would look at restarting development.
 
 # Contact
 You can reach me at ideas@alexankitty.com, by putting an issue on this github, by commenting on the [AUR package](https://aur.archlinux.org/packages/fancytasks), by commenting on the kde-look page, or on the [FancyTasks KDE Reddit community](https://www.reddit.com/r/fancytaskskde/).
