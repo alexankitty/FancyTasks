@@ -748,7 +748,7 @@ MouseArea {
                 if(iconsOnly && plasmoid.configuration.iconSizeOverride){
                     return plasmoid.configuration.iconSizePx
                 }
-                return parent.width
+                return isWider ? parent.height : parent.width
             }
             height: width
 
